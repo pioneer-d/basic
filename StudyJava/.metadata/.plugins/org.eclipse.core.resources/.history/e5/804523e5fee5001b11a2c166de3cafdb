@@ -1,0 +1,14 @@
+package day2;
+
+public class WhileTest {	//while 기본예제
+	public static void main(String[] args) {
+
+		int i = 0;
+
+		while(i<10) {
+			System.out.println("현재 i는 "+i);
+			i++;	
+		}
+		
+	}
+}
