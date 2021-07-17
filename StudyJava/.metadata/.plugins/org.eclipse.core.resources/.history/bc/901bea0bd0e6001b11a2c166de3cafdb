@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class MethodTest1 {		//객체지향언어를 이해하기 위한 메소드 만들기
 
 	
-	public static void main(String[] args) {	//결국도 main도 하나의 메소드이다. 단, 이 클래스와는 관련이 없다고 생각하자.
+	public static void main(String[] args) {	//결국도 main도 하나의 메소드이다.
 		
 		Scanner scanner = new Scanner(System.in);
 		

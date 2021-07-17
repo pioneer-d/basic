@@ -1,0 +1,13 @@
+package day3;
+
+public class Student {
+	
+	private String name;
+	private int age;
+	private int studentNum;
+	private String major;
+	
+	
+	
+
+}
