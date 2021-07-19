@@ -2,4 +2,11 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="com.sun.java_cup.internal.runtime.Scanner"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="day2.MethodTest1"/>
+    <fullyQualifiedTypeName name="day3.Class3"/>
+    <fullyQualifiedTypeName name="day4.FirstChild"/>
+    <fullyQualifiedTypeName name="day4.SecondChild"/>
+    <fullyQualifiedTypeName name="day4.ThirdChild"/>
+    <fullyQualifiedTypeName name="day4.PapaPouch"/>
+    <fullyQualifiedTypeName name="day4.ParentClass"/>
 </qualifiedTypeNameHistroy>

@@ -1,0 +1,15 @@
+package day4;
+
+public class MainClass {
+	
+	public static void main(String[] args) {
+	
+		AccessClass ac = new AccessClass();
+//		ac.a;	//AccessClass의 a값이 private이기 때문에 접근이 불가하다.
+		int c = ac.b;
+		
+		System.out.println(c);
+		
+}
+
+}

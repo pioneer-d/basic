@@ -1,0 +1,10 @@
+package day4;
+
+public class SecondChild {
+
+	public void getMoney(int money) {
+		
+		PapaPouch.MONEY = PapaPouch.MONEY - money;
+		if(PapaPouch.MONEY < 0 )System.out.println("둘째가 받을 돈이 지갑에 없습니다.");
+	}
+}

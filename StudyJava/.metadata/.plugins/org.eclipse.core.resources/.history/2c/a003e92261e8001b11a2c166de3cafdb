@@ -1,0 +1,15 @@
+package day4.extend.copy;
+
+public class ParentClass {	//상속의 이해
+	
+	String parent = "부모의 String";
+	
+	public void getPapaName() {
+		System.out.println("아빠이름 가져오기");
+	}
+	
+	public void getMamaName() {
+		System.out.println("엄마이름 가져오기");
+	}
+
+}

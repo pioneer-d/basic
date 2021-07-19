@@ -1,0 +1,13 @@
+package day4;
+
+public class MainClass {
+	
+	public static void main(String[] args) {
+	
+		AceessClass ac = new AccessClass();
+		ac.a;
+		ac.b;
+		
+}
+
+}
