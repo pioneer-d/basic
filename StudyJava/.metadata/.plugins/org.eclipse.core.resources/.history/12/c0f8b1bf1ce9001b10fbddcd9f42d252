@@ -1,0 +1,5 @@
+package day5.abstractTest2;
+
+public abstract class LaunchMenu {
+
+}

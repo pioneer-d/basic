@@ -1,0 +1,23 @@
+package day5.abstractTest;
+
+public class Store1 extends HeadStore {
+	
+	public Store1() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public void chicken() {
+		System.out.println("저희 매장은 2만원 입니다.");
+		
+	}@Override
+	public void coffee() {
+		System.out.println("저희 매장은 2만원 입니다.");
+		
+	}@Override
+	public void pizza() {
+		System.out.println("저희 매장은 2만원 입니다.");
+		
+	}
+
+}

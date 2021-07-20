@@ -1,0 +1,10 @@
+package day5.interfaceTest2;
+
+public class MainClass {
+	
+	//자기자신이 객체타입인 경우
+	APhone ap = new APhone();
+	BPhone bp = new BPhone();
+	CPhone cp = new CPhone();
+
+}

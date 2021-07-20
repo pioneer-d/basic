@@ -1,0 +1,5 @@
+package day5.interfaceTest2;
+
+public class APhone implements ISpec {
+
+}

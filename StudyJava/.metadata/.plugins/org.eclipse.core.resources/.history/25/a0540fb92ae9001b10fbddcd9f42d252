@@ -1,0 +1,15 @@
+package day5.interfaceTest2;
+
+public class MainClass {
+	
+	//자기자신이 객체타입인 경우
+	APhone ap = new APhone();
+	BPhone bp = new BPhone();
+	CPhone cp = new CPhone();
+	
+	//ISpec이 객체타입인경우 (객체타입의 통일)
+	ISpec ap1 = new APhone();
+	ISpec bp1 = new BPhone();
+	ISpec cp1 = new CPhone();
+
+}
