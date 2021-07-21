@@ -1,0 +1,5 @@
+package day6.strategy3.iinterface;
+
+public interface FlyYes extends Ifly {
+
+}

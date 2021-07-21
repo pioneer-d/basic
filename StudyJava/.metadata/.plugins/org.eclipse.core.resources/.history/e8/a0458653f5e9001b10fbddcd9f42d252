@@ -1,0 +1,27 @@
+package day6.strategy3;
+
+public class MainClass {
+	
+	public static void main(String[] args) {
+		//개별기능까지 전부 부품화할 순 없을까...?라는 의문점이 든다면 strategy3패키지를 보자.
+		
+		//방법1 데이터타입을 자기자신으로 객체를 생성한다.
+		SuperRobot superR = new SuperRobot();
+		superR.defaultFunction();
+		superR.shape();
+		
+		System.out.println("");
+		
+		StandardRobot standardR = new StandardRobot();
+		standardR.defaultFunction();
+		standardR.shape();
+		
+		System.out.println("");
+		
+		LowRobot lowR = new LowRobot();
+		lowR.defaultFunction();
+		lowR.shape();
+		
+	}
+
+}

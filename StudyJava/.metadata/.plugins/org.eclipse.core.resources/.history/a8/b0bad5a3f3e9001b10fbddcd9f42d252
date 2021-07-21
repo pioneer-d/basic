@@ -1,0 +1,11 @@
+package day6.strategy3.iinterface;
+
+public class MisailNo implements IMisail {
+
+	@Override
+	public void misail() {
+		// TODO Auto-generated method stub
+
+	}
+
+}
