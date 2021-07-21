@@ -1,0 +1,5 @@
+package day6.strategy1;
+
+public class LowRobot {	//strategy2와 비교하며 보자. 이 패키지는 비효율적인 코딩을 보여주는 예시이다.
+
+}

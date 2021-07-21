@@ -9,7 +9,7 @@ public class InterfaceImplementClass implements Interface1, Interface2 {
 	
 	@Override
 	public String method2() {
-		System.out.println("무조건 자식이 모든 메소드 재정의!");
+		System.out.println("인터페이스는 상수와 추상메소드만 존재가 가능하다.");
 		return null;
 	}
 

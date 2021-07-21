@@ -1,0 +1,27 @@
+package day6.strategy2;
+
+public class SuperRobot extends RobotFrame {
+
+	public SuperRobot() {
+		System.out.println("SuperRobot 입니다");
+	}
+	
+	@Override
+	public void actionFly() {
+		System.out.println("이 로봇은 날 수 있습니다.");
+		
+	}
+
+	@Override
+	public void actionMisail() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void knife() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

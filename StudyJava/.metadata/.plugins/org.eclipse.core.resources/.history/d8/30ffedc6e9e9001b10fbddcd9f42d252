@@ -1,0 +1,30 @@
+package day6.strategy1;
+
+public class SuperRobot {
+	
+	public SuperRobot() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public void defaultFunction() {
+		System.out.println("기본적으로 걷고, 뛸 수 있습니다");
+	}
+	
+	public void shape() {
+		System.out.println("기본적으로 머리,몸통,다리 등이 있습니다");
+		
+	}
+	
+	public void actionFly() {
+		
+	}
+	
+	public void actionMisail() {
+		
+	}
+	
+	public void knife() {
+		
+	}
+
+}

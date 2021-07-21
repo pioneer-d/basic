@@ -1,0 +1,31 @@
+package day6.strategy1;
+
+public class MainClass {	//strategy2와 비교하며 보자. 이 패키지는 비효율적인 코딩을 보여주는 예시이다.
+
+	public static void main(String[] args) {
+		
+		SuperRobot superR = new SuperRobot();
+		StandardRobot standardR = new StandardRobot();
+		LowRobot lowR = new LowRobot();
+		
+		superR.defaultFunction();
+		superR.shape();
+		superR.actionFly();
+		superR.actionMisail();
+		superR.knife();
+		
+		standardR.defaultFunction();
+		standardR.shape();
+		standardR.actionFly();
+		standardR.actionMisail();
+		standardR.knife();
+		
+		lowR.defaultFunction();
+		lowR.shape();
+		lowR.actionFly();
+		lowR.actionMisail();
+		lowR.knife();
+		
+	}
+	
+}

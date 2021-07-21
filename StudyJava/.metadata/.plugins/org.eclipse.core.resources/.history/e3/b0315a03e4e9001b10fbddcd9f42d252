@@ -1,0 +1,7 @@
+package day6.singleton;
+
+public class FirstClass {	
+	
+	SingletonClass singleton = SingletonClass.getSingle();
+
+}
