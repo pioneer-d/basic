@@ -1,0 +1,15 @@
+package day7.string;
+
+public class String1 {
+	
+	public static void main(String[] args) {
+		
+		String str1 = "abcd";
+		String str2 = "efgh";
+		String str3 = "ijkl";
+		
+		
+		
+	}
+
+}

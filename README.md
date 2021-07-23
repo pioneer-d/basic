@@ -151,7 +151,42 @@ equal은 대상의 내용자체를 비교한다. 비교를 위한 연산자 메�
 
 Day7
 
-API란
+API란 - 쉽게 말해 누군가가 만들어 놓은 기능이다.
+자바는 3000천여개가 넘는 클래스가 있다.
+모두 외울 필요없이 필수적인것 제외하고 그때그때 필요할 때마다 익히면 된다.
+
+String클래스 - 분명 클래스이다.
+그래서	String string = "abc";
+	String string = new String("abc"); 이 두개가 같다.
+워낙 많이 쓰는 클래스라 예외허용이다.
+
+근데 String은 메모리 소비가 심하다
+그래서 대안으로 나온것이 StringBuffer, StringBuilder이다(둘이 비슷함)
+StringBuilder의 주요기능
+append - 문자열 추가
+insert - 특정 위치에 문자열 추가
+delete - 문자열 삭제
+deleteChatAt - 특정 문자 하나 삭제
+
+Calendar클래스
+System.currentTimeMills() - 속도재기용
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

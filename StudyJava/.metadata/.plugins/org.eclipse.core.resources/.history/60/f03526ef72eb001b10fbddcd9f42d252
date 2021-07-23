@@ -1,0 +1,34 @@
+package day7.string;
+
+public class String1 {
+	
+	public static void main(String[] args) {
+		
+		String str1 = "abcd";
+		String str2 = "efgh";
+		String str3 = "ijkl";
+		
+		//concat - 문자열 연결
+		
+		//substring - 문자열 자르기
+		
+		//length - 문자열 길이
+		
+		//toUpperCase - 대문자화ㅣ
+		
+		//to LowerCase - 소문자화
+		
+		//charAt - 특정 위치의 글자 찾기
+		
+		//indexOf - 특정 문자열의 위치 찾기
+		
+		//equal - 문자열 비교
+		
+		//trim - 문자열 공백제거
+		
+		//replace - 특정문자 변경
+		
+		//replaceAll - 특정 문자열 변경
+	}
+
+}
