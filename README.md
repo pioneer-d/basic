@@ -171,12 +171,20 @@ deleteChatAt - 특정 문자 하나 삭제
 Calendar클래스
 System.currentTimeMills() - 속도재기용
 
+Scanner - next(), newxtInt(), nextLine(이건 개행에 유의해야한다.) 
+Sysout
 
+기초데이터를 객체데이터로 변경 - Wrapper클래스
+ex)	int - Integer
+	char - Character (이 둘을 제외하고 모두 앞글자만 대문자화)
 
+Timer
+실행하는 클래스는 TimerTask를 상속받고, run메소드를 오버라이딩 한다.
+관리하는 클래스는 예외처리를 하고 Timer클래스 객체를 생성하고,
+schedule과 Thread로 관리한다.
 
-
-
-
+StringTokenizer클래스
+문자열을 분할 할 때 사용하는 클래스
 
 
 
