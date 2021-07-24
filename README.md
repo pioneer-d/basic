@@ -208,8 +208,12 @@ NullPointetException - 존재하지 않는 객체를 가리킬 때 발생.
 NumberFormatException - 문자를 숫자로 처리할 떄 발생.
 
 
+Collection
 
+1. List계열 컬렉션 클래스
+ex) ArrayList - 크기를 고정하지 않아도 된다.
 
+이 외에 LinkedList, Vector등등이 있다. 다들 비슷한데 특성이 조금씩 다르다.
 
 
 
