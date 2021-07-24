@@ -1,0 +1,23 @@
+package day8.throwsTest;
+
+public class ThrowsClass {
+	
+	public ThrowsClass() {
+		actionC();
+	}
+
+	public void actionA() {
+		
+	}
+	
+	public void actionB() {
+		System.out.println("actionB 메소드 시작 및 actionA 메소드 호출");
+		System.out.println();
+	}
+	
+	public void actionC() {
+		System.out.println("actionC 메소드 시작 및 actionB 메소드 호출");
+		actionB();
+		System.out.println("actionC 메소드 종료");
+	}
+}

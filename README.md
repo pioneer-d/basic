@@ -188,9 +188,24 @@ StringTokenizer클래스
 
 
 
+Day8
 
+예외처리
+ : 프로그램에서 문제가 발생될 만한 곳을 예상하여 사전에 '문제가 발생하면 이렇게 처리해라'
+라고 프로그래밍 하는것.
 
+1. try~catch
+ : 자체적으로 내부에서 예외를 처리하는 방법.
+	try쪽에 문제가 될 것같은 부분을 넣고, catch문에서 처리를한다.
 
+2.throws
+ : 문제가 생기면 자신을 호출한 곳으로 예외를 보내는 방법.
+ 호출 한 곳에서 예외처리를 한다.
+
+많이 보는 예외들
+ArrayIndexOutOfBoundsException - 배열을 사용시 존재하지 않는 index값을 호출할 때
+NullPointetException - 존재하지 않는 객체를 가리킬 때 발생.
+NumberFormatException - 문자를 숫자로 처리할 떄 발생.
 
 
 
