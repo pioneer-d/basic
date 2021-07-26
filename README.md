@@ -187,7 +187,6 @@ StringTokenizer클래스
 문자열을 분할 할 때 사용하는 클래스
 
 
-
 Day8
 
 예외처리
@@ -212,11 +211,28 @@ Collection
 
 1. List계열 컬렉션 클래스
 ex) ArrayList - 크기를 고정하지 않아도 된다.
-
 이 외에 LinkedList, Vector등등이 있다. 다들 비슷한데 특성이 조금씩 다르다.
 
 
+Day9
 
+Collection
+
+2. Map계열 컬렉션 클래스
+ex) HashMap - List계열과 달리 인덱스가 없고, key와 value로만 구분된다.
+중복을 허락한다.
+
+3. Set계열 컬렉션 클래스
+ex) HashSet - 데이터의 순서가 없다. 데이터의 중복을 허용하지 않는다.
+
+자료구조형을 사용할 때 파라미터 데이터가 객체인 경우.
+https://jisooo.tistory.com/entry/java-hashcode%EC%99%80-
+equals-%EB%A9%94%EC%84%9C%EB%93%9C%EB%8A%94-
+%EC%96%B8%EC%A0%9C-%EC%82%AC%EC%9A%A9%ED%95
+%98%EA%B3%A0-%EC%99%9C-%EC%82%AC%EC%9A%A9%ED%95%A0%EA%B9%8C
+페이지 참고
+
+모든 자료구조형에는 iterator메소드가 존재한다.(반복자)
 
 
 

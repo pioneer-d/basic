@@ -1,0 +1,13 @@
+package day9.hashSet;
+
+import java.util.HashSet;
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		
+		HashSet <Student> hashSet = new HashSet <Student>(); 
+		
+	}
+	
+}

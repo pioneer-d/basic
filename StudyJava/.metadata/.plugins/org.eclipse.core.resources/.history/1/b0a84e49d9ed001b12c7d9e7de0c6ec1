@@ -1,0 +1,21 @@
+package day9.hashSet;
+
+import java.util.HashSet;
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		
+		HashSet <Student> hashSet = new HashSet <Student>(); 
+		//데이터 타입이 Student이다. Student 객체만 들어올 수 있다.
+		
+		hashSet.add(new Student("동준영",1));
+		hashSet.add(new Student("김상목",2));
+		hashSet.add(new Student("김승기",3));
+		
+		//Student클래스에서 toString()을 재정의 하지 않으면 주소값을 반환한다.
+		System.out.println(hashSet);
+		
+	}
+	
+}
