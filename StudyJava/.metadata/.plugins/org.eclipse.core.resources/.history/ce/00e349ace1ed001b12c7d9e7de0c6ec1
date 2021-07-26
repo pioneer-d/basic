@@ -1,0 +1,16 @@
+package day9.inputStream;
+
+import java.io.FileInputStream;
+import java.io.InputStream;
+
+public class MainClass {
+	
+	public static void main(String[] args) {
+		
+		InputStream is = new FileInputStream("C:\\GitHub\\test.txt");
+		
+		
+		
+	}
+
+}

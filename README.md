@@ -225,7 +225,7 @@ ex) HashMap - List계열과 달리 인덱스가 없고, key와 value로만 구�
 3. Set계열 컬렉션 클래스
 ex) HashSet - 데이터의 순서가 없다. 데이터의 중복을 허용하지 않는다.
 
-자료구조형을 사용할 때 파라미터 데이터가 객체인 경우.
+자료구조형을 사용할 때 데이터가 객체인 경우.
 https://jisooo.tistory.com/entry/java-hashcode%EC%99%80-
 equals-%EB%A9%94%EC%84%9C%EB%93%9C%EB%8A%94-
 %EC%96%B8%EC%A0%9C-%EC%82%AC%EC%9A%A9%ED%95
@@ -234,5 +234,25 @@ equals-%EB%A9%94%EC%84%9C%EB%93%9C%EB%8A%94-
 
 모든 자료구조형에는 iterator메소드가 존재한다.(반복자)
 
+입출력(보통 예외처리를 해야한다.)
+주로 I/O라고 한다.
+
+1byte 단위
+InputStream, OutStream - 이미지, 동영상 등의 데이터에 주로 사용
+
+2byte 단위
+Reader, Writer - 문자열에 주로 사용
+
+InputStream은 추상클래스다. 이 추상클래스를 상속하는 많은 클래스가 있다.
+그중 하나가 FileInputStream이다.
+InputStream은 read(), read(byte[]) 메소드가 있다.(추상메소드)
+
+OutputStream도 추상클래스.
+write()메소드를 이용해 데이터 입력.
+write(), write(byte[]), write(byte[], int,int) 이렇게 세개의 메소드 이용가능.
+
+I/O작업이 끝나면 마지막에 close로 닫아줘야한다.
+
+DataInputStream, DataOutputStream - 위의 클래스보다 발전된 클래스다.
 
 

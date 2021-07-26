@@ -1,0 +1,14 @@
+package day9.inputOutput;
+
+import java.io.FileInputStream;
+import java.io.InputStream;
+
+public class InputOutputCollabo {
+	
+	public static void main(String[] args) {
+		
+		InputStream is = new FileInputStream("C:\\GitHub\\testInOut.txt");
+		
+	}
+
+}

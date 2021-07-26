@@ -1,0 +1,25 @@
+package day9.inputOutput;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+
+public class MainClassOutput {
+	
+	public static void main(String[] args) {
+		
+		try {
+			OutputStream os = new FileOutputStream("C:\\GitHub\\testOutput.txt");
+			String str = "¿À´ÃÀº ³¯¾¾°¡ ³Ê¹« ´þ´Ù.";
+			byte[] bs =  str.getBytes();	//String°ªÀ» byte·Î ¹ÝÈ¯
+			os.write(bs);
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		
+	}
+
+}

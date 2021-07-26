@@ -1,0 +1,25 @@
+package day9.inputStream;
+
+import java.io.FileInputStream;
+import java.io.InputStream;
+
+public class MainClass {
+	
+	public static void main(String[] args) {
+		
+		try {	//입출력은 보통 예외처리를 해야 가능하다.
+		InputStream is = new FileInputStream("C:\\GitHub\\test.txt");
+		while(true) {
+			int i = is.read();
+			System.out.println("데이터 : "+i);
+			if(i == -1)break;
+		}
+		
+		
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
+
+}
