@@ -256,3 +256,19 @@ I/O작업이 끝나면 마지막에 close로 닫아줘야한다.
 DataInputStream, DataOutputStream - 위의 클래스보다 발전된 클래스다.
 
 
+Thread
+ex) 한 컴퓨터에서 유튜브 틀고..코딩하고..여러가지 작업을 같이한다
+	= 이것이 멀티프로세스이다. 
+
+자바의 thread방식 2가지
+1. 객체 하나를 n개의 스레드가 공유하는 방식
+2. 객체 하나당 하나의 스레드가 존재하는 방식
+
+Runnable인터페이스 구현을 통한 thread
+Thread 클래스 상속을 통한 thread
+
+synchronized 
+ex) 식당에 갔는데 테이블이 없다. 그러니 밖에서 기다려달라.. 이런 느낌이다.
+먼저 들어온 thread부터 해결하고 그 다음 thread를 실행시킴.
+
+

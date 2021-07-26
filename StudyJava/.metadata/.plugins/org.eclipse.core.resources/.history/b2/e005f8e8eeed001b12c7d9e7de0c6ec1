@@ -1,0 +1,20 @@
+package day9.object1thread2;
+
+public class MainClass {	//객체는 1개, thread는 2개인 경우
+	
+	public static void main(String[] args) {
+		
+		ThreadClass thread = new ThreadClass();
+		
+		Thread threadA = new Thread(thread,"A");
+		Thread threadB = new Thread(thread,"B");
+		
+		threadA.start();
+		threadB.start();
+		
+		
+		
+		
+	}
+
+}
