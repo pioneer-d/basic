@@ -1,9 +1,0 @@
-package day4.extendSuper;
-
-public class MainClass {	
-
-	ParentClass test = new ChildClass();
-	
-	test.method1();
-	
-}
