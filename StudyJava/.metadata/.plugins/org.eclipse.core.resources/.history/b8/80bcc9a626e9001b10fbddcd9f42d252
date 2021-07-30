@@ -1,9 +1,0 @@
-package day5.interfaceTest;
-
-public class MainClass {
-	
-	public static void main(String[] args) {
-		InterfaceImplementClass inter = new InterfaceImplementClass();
-	}
-
-}

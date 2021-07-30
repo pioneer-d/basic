@@ -1,8 +1,0 @@
-package day6.singleton;
-
-public class FirstClass {	
-	
-	//객체생성이 아닌 static메소드를 호출하여 객체를 불러온다.
-	SingletonClass singleton = SingletonClass.getSingle();
-
-}

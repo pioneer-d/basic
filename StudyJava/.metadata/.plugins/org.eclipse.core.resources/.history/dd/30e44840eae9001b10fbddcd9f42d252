@@ -1,9 +1,0 @@
-package day6.strategy1;
-
-public class StandardRobot {
-
-	public StandardRobot() {
-		System.out.println("StandardRobot¿‘¥œ¥Ÿ.");
-	}
-	
-}
