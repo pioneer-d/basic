@@ -1,0 +1,9 @@
+package day10.URLConnection;
+
+public class URLConnectionClass {
+	
+	public URLConnectionClass() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

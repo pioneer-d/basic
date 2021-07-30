@@ -1,0 +1,47 @@
+package day10.socket;
+
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+import jdk.internal.org.jline.utils.InputStreamReader;
+
+public class ServerSocketClass {
+	
+	ServerSocket serverSocket = null;
+	Socket socket = null;
+	PrintWriter writer;
+	BufferedReader reader = null;
+	String lineStr;
+	
+	public ServerSocketClass() {
+		
+		try {
+			
+			//포트번호 설정.
+			serverSocket = new ServerSocket(2000);
+			
+			while(true) {
+				//clinet의 요청 대기
+				socket = serverSocket.accept();
+				System.out.println("Client 요청");
+				
+				writer = new PrintWriter(socket.getOutputStream(),true);
+				reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+				
+				
+			}
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+	}
+	
+	
+	
+
+}

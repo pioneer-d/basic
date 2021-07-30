@@ -273,5 +273,36 @@ ex) 식당에 갔는데 테이블이 없다. 그러니 밖에서 기다려달라
 
 github상위 폴더에 I/O 테스트 파일 있음.
 
-면접준비, 게시판 복습 ㄱㄱ
+
+Day10
+
+네트워크
+
+InetAddress - 호스트의 ip주소 및 네트워크 상의 정보 얻어오는 클래스
+
+DNS란 ip주소와 도메인 주소를 맵핑해주는 서버.
+
+URLConnectionClass - 해당 ip와 연결
+BufferedReader - 데이터 읽기
+FileWriter - 파일에 데이터 입력
+
+
+Socket - 네트워크 상 통신의 수단.(매채)
+
+기본적인 Socket통신 구조
+1. Server에서 ServerSocket을 만들고, Client의 요청을 기다림.
+2. Client에서 Socket을 만들고, I/O Stream을 만들어 Server로 요청을 함.
+3. Server에서 Client의 요청을 받아 Socket을 만들고, I/O Stream을 만듦.
+4. 통신함
+5. Socket을 닫음.
+
+
+포트(항구) - ip마다 받는 포트가 다르다.
+
+
+
+
+
+
+
 

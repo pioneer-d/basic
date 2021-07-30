@@ -1,0 +1,10 @@
+package day10.socket;
+
+import java.net.ServerSocket;
+
+public class ServerSocketClass {
+	
+	ServerSocket serverSocket;
+	
+
+}

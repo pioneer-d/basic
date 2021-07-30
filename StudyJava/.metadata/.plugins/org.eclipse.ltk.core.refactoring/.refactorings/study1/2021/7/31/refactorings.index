@@ -6,3 +6,5 @@
 1627287557373	Rename package 'day9.thread'
 1627289639844	Copy package
 1627290780337	Copy package
+1627625060774	Rename type 'ServerSocket'
+1627625065045	Rename type 'ClientSocket'
