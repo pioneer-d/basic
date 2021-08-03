@@ -50,5 +50,26 @@ context path는 WAS에서 웹어플리케이션을 구분하기 위한 path.
 이클립스에서 프로젝트를 생성하면 자동으로 server.xml에 추가됨.
 
 
+Day2
+
+Servlet 작동순서
+Client -> 웹브라우저 -> 웹서버 -> 웹어플리케이션 서버 -> Servlet컨테이너
+						1. 스레드 생성
+						2. Servlet객체 생성
+다른 CGI언어에 비해 서버 부하가 적게 발생한다.(스레드 이용으로 인해)
+
+Servlet 생명주기
+Servlet은 최초 요청시 객체가 만즐어져 메모리에 로딩이 되고, 이후 요청시에 기존의 객체를 재활용한다.(동작 속도가 빠름)
+
+Servlet 객체 생성(최초 한번) -> 
+init() 호출(최초 한번) -> (init전에 선처리 @PostConstruct 가능하다)
+service(), doGet(), doPost() 호출(요청시 매번) -> 
+destroy() 호출(마지막 한번) (destroy후에 후처리 @PreDestroy 가능하다)
+
+
+
+
+
+
 
 

@@ -16,6 +16,7 @@ public class ServletTest extends HttpServlet {
     public ServletTest() {
         super();
     }
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//이건 console창에 나올것.
