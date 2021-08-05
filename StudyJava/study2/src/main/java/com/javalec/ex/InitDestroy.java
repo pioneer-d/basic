@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/InitDestroy")
-public class InitDestroy extends HttpServlet {		//Servlet의 생명주기를 할 수 있는 서블릿.
+public class InitDestroy extends HttpServlet {		//Servlet의 생명주기를 할 수 있는 서블릿.	서버 실행 해보자
 	private static final long serialVersionUID = 1L;
 
 	//처음에 최초 한번 실행됨.
