@@ -68,8 +68,48 @@ destroy() 호출(마지막 한번) (destroy후에 후처리 @PreDestroy 가능�
 
 
 
+나중에 DB부분 미리 하기
+
+데이터 베이스 연결 순서
+(ojdbc6.jar파일 lib폴더에 넣은 후 )
+
+1. JDBC드라이버 로드
+	DriverManager
+	("oracle.jdbc.driver.OracleDriver"); 
+	: 메모리에 OracleDriver가 로드됨
+
+2. 데이터베이스 연결
+	Connection
+	DriverManager.getConnection(JDBC URL, 계정아이디, 비밀번호);
+	: Connection객체 생성함.(DB접근)
+
+3. SQL문 실행
+	Statement
+	PreparedStatement는 Statement의 진화버전(중복코드를 완화해준다.) - inset 어쩌구 블라블라 ?,?,?,? 이런거
+	connection.createStatement();
+	: Statement객체를 통해 SQL문이 실행됨.
+
+	ResultSet
+	statement.executeQuery(); (SQL문 실행 후 리턴값이 있는경우)
+	(이때 반환 값은 ResultSet으로 진행됨.)
+	(next(), previous(), first(), last(), getString(), getInt()등등)
+	statement.executeUpdate(); (SQL문 실행 후 테이블의 내용만 변경되는 경우)
+	: SQL문의 결과값을 ResultSet객체로 받음.
+
+4. 데이터베이스 연결 해제
+		close()로 자원해제 해줌.
 
 
+DAO - Data Access Object (DB로 접근하여 로직 수행하는 객체 코드의 모듈화, 유지보수의 효율성을 위해 사용.)
+DTO - Data Transfer Object (데이터를 일반적인 변수가 아닌 데이터 클래스로 만들어 관리하기 위함. Bean말하는 건가?)
+	DB에 입력하거나 출력할때 DTO로 일괄적으로 효율적으로 수행.
 
+커넥션 풀(DBCP)
+Client에서 다수의 요청이 들어올 경우 데이터베이스에 부하가 발생함.
+이를 해결하기 위한 기법이 커넥션 풀.
+미리 커넥션을 만들어 놓고 요청이 들어오면 사용하도록 하는 구조.
+
+커넥션 풀을 사용하기 위해 context.xml을 META-INF에 삽입 하던가,(구조는 소스 참고.)
+			Server패키지 속 context.cml에 코드 삽입
 
 
