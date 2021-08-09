@@ -66,6 +66,8 @@ init() 호출(최초 한번) -> (init전에 선처리 @PostConstruct 가능하�
 service(), doGet(), doPost() 호출(요청시 매번) -> 
 destroy() 호출(마지막 한번) (destroy후에 후처리 @PreDestroy 가능하다)
 
+JSP부분 다시 강의 보다가 여기부터 쭉 드가자~
+
 
 
 나중에 DB부분 미리 하기
