@@ -66,7 +66,41 @@ init() 호출(최초 한번) -> (init전에 선처리 @PostConstruct 가능하�
 service(), doGet(), doPost() 호출(요청시 매번) -> 
 destroy() 호출(마지막 한번) (destroy후에 후처리 @PreDestroy 가능하다)
 
-JSP부분 다시 강의 보다가 여기부터 쭉 드가자~
+
+
+Day3
+
+HTML의 Form태그
+서버쪽으로 정보를 전달할 때 사용하는 테그.
+(input의 type submit으로 값을 전달할 수 있다.)
+form태그에서 action값과 method값을 지정.
+action에서 맵핑명이나 jsp이름 같은거 지정.(주소입력이라고 생각)
+method에서 get,post같은거 지정 가능.
+
+form의 submit 버튼을 통해 데이터를 서버로 전송하면, 해당파일(Servlet)에서는 HttpServlet객체를 이용하여 Parameter값을 얻을 수 있다.
+getParameter(name) - Value값을 줌
+getParameterValues(name) - 값이 여러개 일때 사용
+getParameterNames() - 이름들 추출
+
+
+한글처리 방식
+Get방식 - server.xml을 수정한다.
+	<Connector URIEncoding = "UTF-8" ......>이거 추가
+
+Post방식 - request.setCharacterEncoding("UTF-8")이거 사용.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
