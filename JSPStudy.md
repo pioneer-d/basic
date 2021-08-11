@@ -1,3 +1,4 @@
+여기부터 Study2패키지임!
 Day1
 
 프로토콜 : 네트워크상에서 약속한 통신규약 (Http, FTP, SMTP, POP, DHCP)
@@ -5,7 +6,7 @@ IP : 네트워크상에서 컴퓨터를 식별할 수 있는 주소
 DNS : IP주소를 인간이 쉽게 외우도록 맵핑한 문자열
 Port : IP주소가 컴퓨터를 식별할 수 있게 해준다면, Port번호는 해당 컴퓨터의 구동되고 있는 프로그램을 구분할 수 있는 번호
 
-http://www.test.com:80/index
+예시 http://www.test.com:80/index
 http - 프로토콜
 www.test.com - 컴퓨터 주소(DNS를 통한 IP주소로 변경)
 80 - port(80이 default)
@@ -32,6 +33,8 @@ port - Http 포트 번호 8181로 변경(오라클이 기본적으로 8080을 �
 서버 실행 후 브라우저에 http://localhost:8181 검색. -> 초기 서버 페이지 나옴.(아파치)
 
 JSP아키텍쳐 - jsp파일 -> java파일 -> class파일 그다음 실행.
+: 클라이언트가 웹브라우저로 hi.jsp를 요청하면 JSP컨테이너가 JSP파일을 Servlet파일(.java)로 변환한다.
+  그리고 Servlet파일(.java)은 컴파일 된 후 클래스 파일(.class)로 변환되고, 요청한 클라이언트에게 html파일 형태로 응답.
 
 Servlet - MVC패턴 중 주로 C로 이용됨.
 
@@ -90,16 +93,45 @@ Get방식 - server.xml을 수정한다.
 Post방식 - request.setCharacterEncoding("UTF-8")이거 사용.
 
 
+Day4
+
+Servlet 초기화 파라미터 : ServletConfig
+ : 특정 Servlet이 생성될때 초기에 필요한 데이터(초기화 파라미터)를 web.xml에 기술하여 사용.(Servlet에 직접 사용해도 ㅇㅋ)
+
+  	<init-param>	<!-- 여기서 초기화 파라미터 값을 입력해줄 수 있다. -->
+  		<param-name>id</param-name>
+  		<param-value>qwe</param-value>
+  	</init-param>	
+이런식으로 맵핑할 때 넣어준다.
+
+또 다른 한가지 방식은 Servlet에서 직접 기술하여 사용하는 방식이다.(서블릿 맵핑하는 곳에 있다.)
+@WebServlet(urlPatterns = {"/Param2"}, initParams = {@WebInitParam(name = "id", value = "qwer"),
+					@WebInitParam(name = "pw", value = "qwe1234")})
+이런식으로 어노테이션을 활용하여 InitParam을 입력한다.
 
 
+또한 특정 Servlet이 아닌 여러 Servlet이 공유하는 방식도 있다 : ServletContext
+web.xml에 기술하고 Servlet에서 가져가 사용한다.
 
 
+웹 어플리케이션 생명주기를 감시하는 리스너가 있다.
+클래스를 만들어 ServletContextListener을 구현(implement)하고 재정의 하면 된다.
+시작과 종료시에 호출된다.
+그리고 web.xml에
+	<listener>
+		<listener-class>com.javalec.ex.서블릿이름</listener-class>
+	</listener>
+이렇게 서블릿 적어주면 끝.(console에 나온다.)
 
 
-
-
-
-
+JSP태그 종류
+1. 지시자 : <%@	%> : 페이지 속성(import같은 것 할때)
+2. 주석 : <%--	--%> : 주석
+3. 선언 : <%!	%> : 변수, 메소드 선언
+4. 표현식 : <%=	%> : 결과값 출렷
+5. 스크립트릿 : <%	%> : 자바코드
+6. 액션태그 : <jsp:action>	</jsp:action> : 자바빈 연결
+html의 주석은 페이지 소스보기 하면 볼 수 있다.(jsp주석은 안보임)
 
 
 

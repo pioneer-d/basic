@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/FormEx")
-public class FormEx extends HttpServlet {
+public class Day3FormEx extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public FormEx() {
+    public Day3FormEx() {
         super();
         // TODO Auto-generated constructor stub
     }
