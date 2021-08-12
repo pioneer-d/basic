@@ -134,6 +134,15 @@ JSP태그 종류
 html의 주석은 페이지 소스보기 하면 볼 수 있다.(jsp주석은 안보임)
 
 
+JSP의 내부객체
+객체를 생성할 필요 없이 바로 사용가능한 객체가 내부객체이다.
+(Servlet으로 변환될때 JSP컨테이너가 자동으로 객체 생성해줌)
+종류
+1. 입출력 객체 : request, response, out
+2. 서블릿 객체 : page, config
+3. 세션 객체 : session
+4. 예외 객체 : exception
+
 
 
 나중에 DB부분 미리 하기
