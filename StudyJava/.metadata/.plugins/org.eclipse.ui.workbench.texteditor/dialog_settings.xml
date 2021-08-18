@@ -8,6 +8,7 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=EUC-KR&quot;"/>
 			<item value="standardR"/>
 			<item value="superR"/>
 			<item value="private"/>

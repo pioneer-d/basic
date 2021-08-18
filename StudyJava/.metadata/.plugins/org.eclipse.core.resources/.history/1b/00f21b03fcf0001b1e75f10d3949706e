@@ -1,8 +1,0 @@
-package day10.socket;
-
-public class ServerSocketClass {
-	
-	ServerSocketClass serverSocket;
-	
-
-}
