@@ -176,17 +176,42 @@ Day6
 세션 또한 쿠키와 마찬가지로 서버와의 관계를 유지하는 수단임.
 단, 쿠키와 달리 클라이언트측에 특정정보를 저장하는게 아닌, 서버상에 객체로 존재함.
 따라서 세션은 서버에서만 접근이 가능하며, 보안이 좋고, 데이터의 한계가 없다.
-세션 또한 쿠키와 같이 내부객체.
+세션은 내부객체.
 
 클라이언트의 요청 -> session자동 생성 -> session속성 설정.
 (아파치 폴더 내부에 web.xml에 기본 세션 유지시간이 30분으로 지정되어 있다.)
 setAttribute(), getAttribute()등 여러 메소드가 있다.
 
+이때 get은 Object로 받고 적절히 캐스팅하여 사용한다.
+(Enumeration이라는 객체도 사용해봤다.)
 
 
+JSP내의 예외처리
 
+1. page지시자를 통한 예외처리
 
+//에러난 경우 해당 페이지로 이동
+<%@ page errorPage = "errorPage.jsp" %>
 
+//에러페이지 표시.
+<%@ page isErrorPage = "true" %> (기본값이 false로 되어있기 때문에 반드시 명시를 해야함.)
+true로 명시하면 exception.getMessage()등의 메소드 사용 가능.
+response.setStatus(200); -> 오류번호 200 = 정상적인 페이지라는 뜻.(500번이나 404 생각하면 된다)
+
+2. web.xml파일을 이용한 예외처리
+<error-page>
+  <error-code>404</error-code>
+  <location>/error404.jsp</location>
+</error-page>
+<error-page>
+  <error-code>500</error-code>
+  <location>/error500.jsp</location>
+</error-page>
+
+이런식으로 지정하면 된다.
+마찬가지로 오류페이지에
+<%@ page isErrorPage = "true" %> 
+<% response.setStatus(200); %>이렇게 명시를 해야한다.
 
 
 
