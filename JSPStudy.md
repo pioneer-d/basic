@@ -262,9 +262,11 @@ JDBC란?
 우리는 Oracle을 사용하므로, 오라클의 JDBC를 사용.(오라클 설치시 자동으로 설치됨)
 
 
+이클립스에 JDBC연결
+window -> preference -> java -> build path -> classpath variable -> JRE_LIB폴더 위치 찾기
+이 폴더에 ext가 있다.(외부 라이브러리를 저장하는 곳.) 이곳에 JDBC를 삽입!
+(각각의 프로젝트 lib폴더에 삽입해도 된다..)
 
-
-나중에 DB부분 미리 하기
 
 데이터 베이스 연결 순서
 (ojdbc6.jar파일 lib폴더에 넣은 후 )
@@ -286,14 +288,25 @@ JDBC란?
 	: Statement객체를 통해 SQL문이 실행됨.
 
 	ResultSet
-	statement.executeQuery(); (SQL문 실행 후 리턴값이 있는경우)
+	statement.executeQuery(); (SQL문 실행 후 리턴값이 있는경우) ex)select
 	(이때 반환 값은 ResultSet으로 진행됨.)
 	(next(), previous(), first(), last(), getString(), getInt()등등)
-	statement.executeUpdate(); (SQL문 실행 후 테이블의 내용만 변경되는 경우)
-	: SQL문의 결과값을 ResultSet객체로 받음.
+	statement.executeUpdate(); (SQL문 실행 후 테이블의 내용만 변경되는 경우) ex)insert, delete, update등
+	: SQL문의 결과값을 ResultSet객체로 받음. (반환값이 int형임.)
 
 4. 데이터베이스 연결 해제
 		close()로 자원해제 해줌.
+
+DB관련 코드는 예외가 발생할 수 있으므로 try catch로 감싸준다.
+그 후 finally로 자원 해제까지.
+
+Tip - "The local variable '변수명' may not have been initialized"이런 오류가 나는 것은 선언만 하고 값이 할당되지 않았기 때문!
+
+
+여기부터 진행.
+
+
+
 
 
 DAO - Data Access Object (DB로 접근하여 로직 수행하는 객체 코드의 모듈화, 유지보수의 효율성을 위해 사용.)
