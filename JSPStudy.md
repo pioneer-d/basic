@@ -214,6 +214,53 @@ response.setStatus(200); -> 오류번호 200 = 정상적인 페이지라는 뜻.
 <% response.setStatus(200); %>이렇게 명시를 해야한다.
 
 
+Day7
+
+빈이란 - 반복적인 작업을 효율적으로 하기 위한, 데이터 속성과 기능,메소드로 이루어진 클래스
+
+빈 관련 액션태그
+//특정 Bean을 사용한다고 명시할때 사용하는 액션태그
+<jsp:useBean id = "student" class = "com.javalec.ex.Student" scope = "page" />
+	             빈 이름		클래스 이름	    스코프 범위
+
+//데이터 값을 설정 할 때 사용하는 액션태그
+<jsp:setProperty name = "student" property = "name" value = "홍길동" />
+		빈 이름		속성 이름		value
+
+//데이터 값을 받아올 때 사용하는 액션태그
+<jsp:getProperty name = "student" property = "name"/>
+		        빈 이름	      속성 이름	
+
+스코프 종류
+1. page : 생선된 페이지 내에서만 사용 가능.
+2. request : 요청된 페이지 내에서만 사용 가능
+3. session : 웹브라우저의 생명주기와 동일하게 사용 가능.
+4. application ; 웹 어플리케이션 생명주기와 동일하게 사용 가능.
+
+
+DBMS : DataBase Management System
+이때 오라클은 RDBMS(Relational DBMS)
+
+사용할 DB테이블
+
+//테이블 생성
+create table STUDYMEMBER(
+S_ID varchar2(20) not null primary key,
+S_PW varchar2(20),
+S_AGE number,
+);
+
+//컬럼 추가
+alter table STUDYMEMBER add(S_NAME varchar2(20));
+
+//데이터 입력
+insert into STUDYMEMBER values('qwe','qwe123',24,'동준영);
+
+
+JDBC란?
+: JAVA프로그램에서 SQL문을 실행하여 데이터를 관리하기 위한 JAVA API임.
+우리는 Oracle을 사용하므로, 오라클의 JDBC를 사용.(오라클 설치시 자동으로 설치됨)
+
 
 
 
