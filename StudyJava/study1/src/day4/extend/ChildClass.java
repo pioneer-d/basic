@@ -10,7 +10,7 @@ public class ChildClass extends ParentClass  {	//상속의 이해
 	}
 	
 	@Override
-	public void getChange() {
+	public void getChange() {	//이것이 오버라이딩
 		System.out.println("이건 자식이 바꾼다! 개편하자!");
 	}
 	

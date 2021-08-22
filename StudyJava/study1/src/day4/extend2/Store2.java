@@ -1,6 +1,6 @@
 package day4.extend2;
 
-public class Store2 extends HeadStore{
+public class Store2 extends HeadStore{	//피자값만 변경
 	
 	@Override
 	public void pizza() {

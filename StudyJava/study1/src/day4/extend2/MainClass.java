@@ -30,5 +30,6 @@ public class MainClass {	//객체타입에 대한 설명
 		store2.pizza();
 		store2.coffee();
 		
+		
 	}
 }

@@ -23,6 +23,7 @@ public class Array1 {	//배열 선언 2가지
 		//이걸 출력하면 객체의 주소 값이 나온다. 이때 주소 값을 '레퍼런스'라고 한다.
 		System.out.print(i);	
 		System.out.println("");
+		System.out.println(i == j);
 		System.out.print(i == z);	//i를 z에 대입 했으니 i의 주소 값이 z에 그대로 입력된다.
 		System.out.println("");
 

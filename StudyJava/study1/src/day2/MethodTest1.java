@@ -17,6 +17,7 @@ public class MethodTest1 {		//객체지향언어를 이해하기 위한 메소드 만들기
 		MethodTest1 method1 = new MethodTest1();
 		method1.gugudan(gugu);
 		//이렇게 호출하기만 하면 만들어 놓은 틀을 계속적으로 사용할 수 있다. 절차지향이라면 모든 구구단에 대해 만들어 둬야하는 끔찍한...
+		
 	
 	}
 	
