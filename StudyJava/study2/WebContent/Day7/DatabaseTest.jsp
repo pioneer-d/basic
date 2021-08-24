@@ -33,7 +33,6 @@
 		resultSet = statement.executeQuery(query);
 		
 		while(resultSet.next()){	//next를 통해 모든 데이터를 수집.
-			//id pw age name
 			String id = resultSet.getString("S_ID");
 			String pw = resultSet.getString("S_PW");
 			int age = resultSet.getInt("S_AGE");
@@ -58,24 +57,7 @@
 		
 	}
 
-
-
-
-
-
-
-
 %>
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>

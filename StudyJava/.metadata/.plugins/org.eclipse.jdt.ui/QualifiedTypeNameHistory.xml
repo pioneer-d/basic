@@ -4,7 +4,6 @@
     <fullyQualifiedTypeName name="day4.extend.ChildClass"/>
     <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="day4.extend2.HeadStore"/>
-    <fullyQualifiedTypeName name="day5.abstractTest.HeadStore"/>
     <fullyQualifiedTypeName name="day5.abstractTest2.LunchMenu"/>
     <fullyQualifiedTypeName name="day5.interfaceTest.InterfaceImplementClass"/>
     <fullyQualifiedTypeName name="day5.interfaceTest2.APhone"/>
@@ -60,4 +59,5 @@
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="javax.servlet.annotation.WebInitParam"/>
     <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="day5.abstractTest.HeadStore"/>
 </qualifiedTypeNameHistroy>

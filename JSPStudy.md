@@ -303,7 +303,10 @@ DB관련 코드는 예외가 발생할 수 있으므로 try catch로 감싸준�
 Tip - "The local variable '변수명' may not have been initialized"이런 오류가 나는 것은 선언만 하고 값이 할당되지 않았기 때문!
 
 
-여기부터 진행.
+Day8
+
+원초적 회원가입 틀 만들어보기.
+
 
 
 
