@@ -18,10 +18,10 @@
 	String name = (String)getName;
 	
 	//String name = (String)session.getAttribute("name"); 이렇게 한번에 ㄱㄱ
-
 %>
 
-	<h2><%=name %>님 환영합니다</h2>
+	<h2><%=name %>님 환영합니다</h2><br>
+	<a href = "modify.jsp">정보 수정하기</a>
 
 </body>
 </html>

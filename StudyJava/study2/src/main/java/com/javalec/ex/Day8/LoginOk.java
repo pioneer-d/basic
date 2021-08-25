@@ -61,7 +61,7 @@ public class LoginOk extends HttpServlet {
 				getS_NAME = rs.getString("S_NAME");
 			}
 			
-//			if(getS_ID == null || getS_PW == null) {	틀릴경우는 어케했더라
+//			if(getS_ID == null || getS_PW == null) {	//틀릴경우는 어케했더라
 //				response.setContentType("text/html; charset = UTF-8");
 //				PrintWriter writer = response.getWriter();
 //				writer.println("<html><head><script type = 'text/javascript'></head><body>");
