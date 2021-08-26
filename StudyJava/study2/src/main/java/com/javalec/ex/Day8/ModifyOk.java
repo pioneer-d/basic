@@ -46,7 +46,7 @@ public class ModifyOk extends HttpServlet {
 		S_NAME = request.getParameter("name");
 		S_GENDER = request.getParameter("gender");
 		
-		String query = "update STUDYMEMBER set S_ID = '" + S_ID + "',S_PW = '" + S_PW + "',S_AGE = '" + S_AGE + "',S_NAME = '" + S_NAME + "',S_GENDER = '" + S_GENDER + "')";
+		String query = "update STUDYMEMBER set S_ID = '" + S_ID + "',S_PW = '" + S_PW + "',S_AGE = '" + S_AGE + "',S_NAME = '" + S_NAME + "',S_GENDER = '" + S_GENDER + "' where S_ID = '"+ S_ID +"'";
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -57,6 +57,10 @@ public class ModifyOk extends HttpServlet {
 			int i = stmt.executeUpdate(query);	//입력은 ResultSet이 아닌 Statement에서 바로 입력한다.
 			if(i == 1) {	//이때 1은 입력갯수.
 				System.out.println("수정 DB에 입력 완료.");
+				HttpSession session = request.getSession();
+				session.setAttribute("id", S_ID);
+				session.setAttribute("pw", S_PW);
+				session.setAttribute("name", S_NAME);
 				response.sendRedirect("modifyResult.jsp");
 			}else {
 				System.out.println("수정 실패");

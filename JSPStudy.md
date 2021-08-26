@@ -247,7 +247,7 @@ DBMS : DataBase Management System
 create table STUDYMEMBER(
 S_ID varchar2(20) not null primary key,
 S_PW varchar2(20),
-S_AGE number,
+S_AGE number
 );
 
 //컬럼 추가
@@ -306,7 +306,7 @@ Tip - "The local variable '변수명' may not have been initialized"이런 오�
 Day8
 
 원초적 회원가입 틀 만들어보기.
-일단 commit
+다이어그램 만듬. 찍어서 올리기
 
 
 
