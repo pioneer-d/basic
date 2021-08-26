@@ -307,7 +307,12 @@ Day8
 
 원초적 회원가입 틀 만들어보기.
 다이어그램 만듬. 찍어서 올리기
-
+opgg용 이력서, 포트폴리오 만들기
+https://www.saramin.co.kr/zf_user/jobs/relay/view?isMypage=no&rec_idx=40993808&recommend_ids=
+eJxNz8sRxDAIA9Bq9g4YkDinkPTfxeJMYvv4RiM%2Bo4AK6k3NHy6XChfGZhqBpkyqKDTyptWTpnrK0XUtbL
+KGYXzsbiRidRnDvEepvcyiN9%2B02xVHCiOb4yHonSwmRS0WmY6R6wx4b8rjQfZT%2B0gXmR99k82Re1GR6jXP
+%2BANw10Bb&view_type=search&searchword=%EC%98%A4%ED%94%BC%EC%A7%80%EC%A7%80&searchType=s
+earch&gz=1&t_ref_content=generic&t_ref=search&paid_fl=n#seq=0
 
 
 
