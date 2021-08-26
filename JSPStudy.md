@@ -306,6 +306,7 @@ Tip - "The local variable '변수명' may not have been initialized"이런 오�
 Day8
 
 원초적 회원가입 틀 만들어보기.
+일단 commit
 
 
 
