@@ -308,19 +308,22 @@ Day8
 원초적 회원가입 틀 만들어보기.
 다이어그램 만듬. 찍어서 올리기
 opgg용 이력서, 포트폴리오 만들기
+넥슨용 이력서, 포트폴리오. - 엔지니어 부문.
 https://www.saramin.co.kr/zf_user/jobs/relay/view?isMypage=no&rec_idx=40993808&recommend_ids=
 eJxNz8sRxDAIA9Bq9g4YkDinkPTfxeJMYvv4RiM%2Bo4AK6k3NHy6XChfGZhqBpkyqKDTyptWTpnrK0XUtbL
 KGYXzsbiRidRnDvEepvcyiN9%2B02xVHCiOb4yHonSwmRS0WmY6R6wx4b8rjQfZT%2B0gXmR99k82Re1GR6jXP
 %2BANw10Bb&view_type=search&searchword=%EC%98%A4%ED%94%BC%EC%A7%80%EC%A7%80&searchType=s
 earch&gz=1&t_ref_content=generic&t_ref=search&paid_fl=n#seq=0
 
-
-
-
+Day9
 
 DAO - Data Access Object (DB로 접근하여 로직 수행하는 객체 코드의 모듈화, 유지보수의 효율성을 위해 사용.)
+	-DB접근은 모두 DAO로 일괄 사용.
 DTO - Data Transfer Object (데이터를 일반적인 변수가 아닌 데이터 클래스로 만들어 관리하기 위함. Bean말하는 건가?)
-	DB에 입력하거나 출력할때 DTO로 일괄적으로 효율적으로 수행.
+	-Bean역할.
+
+PreparedStatement - 기존의 Statement의 중복코드를 완화해줌. '?'를 통해서! 예제확인.
+
 
 커넥션 풀(DBCP)
 Client에서 다수의 요청이 들어올 경우 데이터베이스에 부하가 발생함.
@@ -330,7 +333,11 @@ Client에서 다수의 요청이 들어올 경우 데이터베이스에 부하�
 커넥션 풀을 사용하기 위해 context.xml을 META-INF에 삽입 하던가,(구조는 소스 참고.)
 			Server패키지 속 context.cml에 코드 삽입
 
-(이전에 할거 더 있다. 순차적으로 해야하지만 면접이 얼마 안남은 관계로 띄엄띄엄 한다.)
+DTO, DAO를 활용한, 커넥션풀을 사용한 간단한 프로젝트
+ - dao, dto, jsp
+추가된 객체 종류
+DataSource, Context, InitialContext
+
 
 Spring - 프레임워크 = IOC컨테이너
 
