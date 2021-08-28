@@ -339,6 +339,22 @@ DTO, DAO를 활용한, 커넥션풀을 사용한 간단한 프로젝트
 DataSource, Context, InitialContext
 
 
+Day10
+
+DTO, DAO, PreparedStatement를 활용한 회원가입	회원가입 인증추가.
+
+//테이블 생성
+create table STUDYMEMBER2 (
+id varchar2(20) not null primary key,
+pw varchar2(20),
+name varchar2(20),
+email varchar2(30),
+address varchar2(50)
+);
+
+
+
+
 Spring - 프레임워크 = IOC컨테이너
 
 의존 방법 2가지

@@ -45,7 +45,7 @@ public class MemberDAO {
 			//커넥션 풀 사용하기 전
 			//con = DriverManager.getConnction(url,uid,upw);
 			
-			con = dataSource.getConnection();
+			con = dataSource.getConnection();	//필요할때 가져다 쓰기만 하면 됨.
 			stmt = con.createStatement();
 			rs = stmt.executeQuery("select * from STUDYMEMBER");
 			

@@ -15,7 +15,6 @@ INDEX VERSION 1.131+C:\GitHub\pioneer-d\StudyJava\.metadata\.plugins\org.eclipse
 3786865694.index
 3925490168.index
 2715310064.index
-3723019696.index
 3274236323.index
 4004709069.index
 2333419045.index
