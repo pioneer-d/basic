@@ -1,11 +1,14 @@
 package com.javalec.ex.Day10;
 
+import java.sql.Timestamp;
+
 public class MemeberDTO {
 	
 	private String id;
 	private String pw;
 	private String name;
 	private String email;
+	private Timestamp rDate;
 	private String address;
 	
 	public MemeberDTO(String id,String pw,String name,String email,String address) {
@@ -46,6 +49,14 @@ public class MemeberDTO {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public Timestamp getrDate() {
+		return rDate;
+	}
+
+	public void setrDate(Timestamp rDate) {
+		this.rDate = rDate;
 	}
 
 	public String getAddress() {

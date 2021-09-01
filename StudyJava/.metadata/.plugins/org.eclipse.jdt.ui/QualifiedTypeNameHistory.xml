@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="day6.strategy1.StandardRobot"/>
     <fullyQualifiedTypeName name="day6.strategy1.LowRobot"/>
     <fullyQualifiedTypeName name="java.awt.Robot"/>
     <fullyQualifiedTypeName name="day6.strategy2.SuperRobot"/>
@@ -60,4 +59,5 @@
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="com.javalec.ex.Day9.MemberDTO"/>
     <fullyQualifiedTypeName name="com.javalec.ex.Day10.MemeberDTO"/>
+    <fullyQualifiedTypeName name="java.sql.Timestamp"/>
 </qualifiedTypeNameHistroy>
