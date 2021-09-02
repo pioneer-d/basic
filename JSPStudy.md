@@ -349,11 +349,12 @@ id varchar2(20) not null primary key,
 pw varchar2(20),
 name varchar2(20),
 email varchar2(30),
+rdate date,
 address varchar2(50)
 );
 
-
-Day11
+DAO 입출력시 반환값을 final 상수를 통해 관리하기 쉽도록.
+싱글톤을 활용. DAO생성자를 변수로 가져옴.
 
 
 

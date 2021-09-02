@@ -2,16 +2,16 @@ package com.javalec.ex.Day10;
 
 import java.sql.Timestamp;
 
-public class MemeberDTO {
+public class MemberDTO {
 	
 	private String id;
 	private String pw;
 	private String name;
 	private String email;
-	private Timestamp rDate;
+	private Timestamp rdate;
 	private String address;
 	
-	public MemeberDTO(String id,String pw,String name,String email,String address) {
+	public MemberDTO(String id,String pw,String name,String email,String address) {
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
@@ -51,12 +51,12 @@ public class MemeberDTO {
 		this.email = email;
 	}
 	
-	public Timestamp getrDate() {
-		return rDate;
+	public Timestamp getRdate() {
+		return rdate;
 	}
 
-	public void setrDate(Timestamp rDate) {
-		this.rDate = rDate;
+	public void setRdate(Timestamp rDate) {
+		this.rdate = rDate;
 	}
 
 	public String getAddress() {
