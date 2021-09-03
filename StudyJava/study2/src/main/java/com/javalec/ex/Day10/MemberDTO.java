@@ -8,16 +8,16 @@ public class MemberDTO {
 	private String pw;
 	private String name;
 	private String email;
-	private Timestamp rdate;
 	private String address;
+	private Timestamp rdate;
 	
-	public MemberDTO(String id,String pw,String name,String email,String address) {
-		this.id = id;
-		this.pw = pw;
-		this.name = name;
-		this.email = email;
-		this.address = address;
-	}
+//	public MemberDTO(String id,String pw,String name,String email,String address) {
+//		this.id = id;
+//		this.pw = pw;
+//		this.name = name;
+//		this.email = email;
+//		this.address = address;
+//	}
 
 	public String getId() {
 		return id;
