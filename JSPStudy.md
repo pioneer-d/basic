@@ -356,6 +356,7 @@ address varchar2(50)
 DAO 입출력시 반환값을 final 상수를 통해 관리하기 쉽도록.
 싱글톤을 활용. DAO생성자를 변수로 가져옴.
 
+여기부터 다시 on
 
 
 Spring - 프레임워크 = IOC컨테이너
