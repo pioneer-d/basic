@@ -356,7 +356,50 @@ address varchar2(50)
 DAO 입출력시 반환값을 final 상수를 통해 관리하기 쉽도록.
 싱글톤을 활용. DAO생성자를 변수로 가져옴.
 
-여기부터 다시 on
+
+Day11
+
+파일 업로드 라이브러리
+www.servlets.com에서 cos.jar파일 다운(이것이 라이브러리다)
+form 부분에 enctype = "multipart/form-data" 이것 넣어줘야함. why? - 인코딩의 형식이다.
+파일 올리는 태그 <input type = "file">
+이클립스에서 fileFolder폴더를 만들어 이 경로를 적어주지만, 
+실제 저장되는 fileFolder는 아파치 톰캣 폴더 내부에 있다.
+(C:\Program Files\Apache Software Foundation\Tomcat 9.0\wtpwebapps\study2\fileFolder) - 실제 경로
+
+EL(Expresstion Language)
+ : 표현식 또는 액션 태그를 개신해서 값을 표현하는 언어.
+ex) 표현식 -  <%= value %>
+     EL       -  ${ value }
+
+ex) <jsp:getProperty name = "member" property = "name"/>
+  -> ${member.name}
+
+ex) String id = request.getParameter("id");
+  -> ${param.id} or ${param["id"]}
+
+내장객체로 param, paramValue, initParam, cookie,
+	pageScope, requestScope, sessionScope, applicationScope등이 있다.
+
+JSTL
+ : JSP의 경우 HTML 태그와 같이 사용되어 전체적인 코드의 가독성이 떨어짐.
+  이 단점을 보완하고자 만들어진 태그 라이브러리가 JSTL.
+  따로 설치를 해야함. 설치후 아파치의 lib에 삽입.
+
+JSTL은 다섯 가지의 라이브러리를 제공함.
+Core, XML Processing, formatting, SQL, Function)
+
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+이것을 명시하고 c로 시작하면서 태그 사용하면 된다.(Core사용 예시)
+
+
+
+
+
+
+
+
+
 
 
 Spring - 프레임워크 = IOC컨테이너
@@ -384,4 +427,7 @@ Spring - 프레임워크 = IOC컨테이너
 
 
 
-
+사용 라이브러리 정리
+ojdbc.jar - 오라클 jdbc라이브러리
+cos.jar - 파일 업로드 라이브러리
+jstl.jar / standard.jar - JSTL태그 라이브러리
