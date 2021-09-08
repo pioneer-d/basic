@@ -392,7 +392,7 @@ Core, XML Processing, formatting, SQL, Function)
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 이것을 명시하고 c로 시작하면서 태그 사용하면 된다.(Core사용 예시)
 
-
+복습!
 
 
 
@@ -419,6 +419,8 @@ Spring - 프레임워크 = IOC컨테이너
 (인터페이스를 통한 부품화)
 
 예시로 xml을 만들어 bean태그에 어쩌구 한다...
+
+
 
 
 
