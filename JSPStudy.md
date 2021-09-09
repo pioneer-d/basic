@@ -417,7 +417,15 @@ FrontController - 클라이언트의 다양한 요청을 한곳으로 집중시�
 각각 기능이 다른 클래스들을 만들어 interface를 구현한다.(클래스에서 dao접근)
 객체타입이 같으므로 FrontController에서 통일하여 사용할 수 있다.
 
-
+Forwarding
+서블릿 또는 JSP에서 요청을 받은 후 다른 컴포넌트로 요청을 위임 할 수 있다.
+1. RequestDispatcher클래스
+	요청 받은 요청객체(request)를 위임한 컴포넌트에 동일하게 전달
+2. HttpServletResponse클래스
+	클라이언트 -> 요청받은 컴포넌트 -> 다시 클라이언트 -> 위임할 컴포넌트 이구조다.
+	RequestDispatcher와 다르게 request객체가 동일하지 않다.
+	(redirect를 갖고있는 객체이다. jsp에서 내부객체)
+	즉 request에 정보를 담고 redirect로 보내면 같은 request가 아니기 때문에 정보를 받을 수 없다.
 
 
 
