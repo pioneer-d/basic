@@ -393,6 +393,30 @@ Core, XML Processing, formatting, SQL, Function)
 이것을 명시하고 c로 시작하면서 태그 사용하면 된다.(Core사용 예시)
 
 
+Day12
+
+url-pattern
+
+1. 디렉토리 패턴 - 디렉토리 형태로 서버의 해당 컴포넌트(서블릿)을 찾아서 실행하는 구조
+//그동안 해오던 패턴. 여러개의 서블릿이 존재
+
+2. 확장자 형태로 서버의 해당 컴포넌트를 찾아 실행하는 구조.(동일한 서블릿으로 간다.)
+//새로운 패턴. 하나의 서블릿으로 통일.
+
+FrontController - 클라이언트의 다양한 요청을 한곳으로 집중시킴.(개발, 유지보수 효율성)
+구분하는 방식
+요청의 URI를 받아온다.	request.getRequestURI();	풀URI
+요청의 부분 Path를 받아온다	request.getContextPath();	뒷부분 제외 URI
+풀URI에서 Path를 subString한다.
+그것으로 구분하여 서블릿이 적절히 배치한다.
+
+이때 FrontController가 if(command.equals(어쩌구))이런식으로 하면 코드가 방대해진다.
+이를 방지하기 위해 interface를 사용한다.
+
+추상메소드 excute가 있는 interface를 만들고
+각각 기능이 다른 클래스들을 만들어 interface를 구현한다.(클래스에서 dao접근)
+객체타입이 같으므로 FrontController에서 통일하여 사용할 수 있다.
+
 
 
 
