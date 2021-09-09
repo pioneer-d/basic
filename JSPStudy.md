@@ -427,10 +427,41 @@ Forwarding
 	(redirect를 갖고있는 객체이다. jsp에서 내부객체)
 	즉 request에 정보를 담고 redirect로 보내면 같은 request가 아니기 때문에 정보를 받을 수 없다.
 
+MVC패턴이란
+Model View Controller를 뜻하는 개발 형태의 일종.
+Model은 데이터베이스와의 관계를 담당. 이를 Controller로 전달
+View는 클라에게 보여지는 UI화면. 주로 jsp로 작성. Controller에서 어떤 View를 보여줄지 결정.
+Controller는 클라로부터 요청을 받고, 적절히 Model과 View를 결정.
 
+Model1방식
+MVC패턴에서 View와 Controller가 같이 있는 형태.
+JSP가 View와 Controller를 담당하고 DAO가 Model을 담당
 
+Model2방식
+Model, Controller, View가 각각 모듈화 되어있는 방식.
+Servlet이 Controller를 담당, JSP가 View를 담당, command와 DAO가 Model을 담당.
 
+JSP MVC패턴 게시판 만들기
 
+게시판 DB테이블
+create table STUDY_JSP_BOARD(
+bId number(4) primary key,
+bName varchar2(20),
+bTitle varchar2(100),
+bContent varchar2(300),
+bDate date default sysdate,
+bHit number(4) default 0,
+bGroup number(4),
+bStep number(4),
+bIndent number(4)
+);
+
+시퀀스 생성
+create sequence STUDY_JSP_BOARD_seq;
+
+Dummy Data
+insert into STUDY_JSP_BOARD (bId, bName, bTitle, bContent, bHit, bGroup,bStep, bIndent)
+values (STUDY_JSP_BOARD_seq.nextval, 'abcd', 'is title', 'is content', 0, STUDY_JSP_BOARD_seq.currval, 0, 0);
 
 
 
