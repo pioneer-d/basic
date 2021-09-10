@@ -464,6 +464,16 @@ insert into STUDY_JSP_BOARD (bId, bName, bTitle, bContent, bHit, bGroup,bStep, b
 values (STUDY_JSP_BOARD_seq.nextval, 'abcd', 'is title', 'is content', 0, STUDY_JSP_BOARD_seq.currval, 0, 0);
 
 
+Day13
+BController 생성
+BCommand 생성
+BDto 생성
+
+
+
+
+
+
 
 Spring - 프레임워크 = IOC컨테이너
 
