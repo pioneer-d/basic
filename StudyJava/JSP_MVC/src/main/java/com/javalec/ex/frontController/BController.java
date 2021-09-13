@@ -45,7 +45,8 @@ public class BController extends HttpServlet {
 		
 		if(com.equals("/write_view.do")) {			//list에서 '글작성' 클릭시
 			view = "write_view.jsp";
-		}else if(com.equals("/write.do")) {
+		}else if(com.equals("/write.do")) {			//write_view에서 '완료'클릭시
+			
 			view = "list.do";
 		}else if(com.equals("/list.do")) {
 			command = new BListCommand();

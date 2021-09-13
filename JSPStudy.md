@@ -470,7 +470,9 @@ BCommand 생성
 BDto 생성
 
 
-deskTop
+Day14
+content_view부분 오류 수정 완료.
+이제 write부분 메소드 만들고, 수정, 답글 달기 하면 됨.
 
 
 
