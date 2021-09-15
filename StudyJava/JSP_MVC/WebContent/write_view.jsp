@@ -25,7 +25,7 @@
 			</tr>
 			<tr>
 				<td colspan = "2"> <input type = "submit" value = "완료"> 
-				&nbsp;&nbsp; <a href = "javascript:history.back">뒤로가기</a>
+				&nbsp;&nbsp; <a href = "list.do">뒤로가기</a>
 			</tr>					
 		</form>
 	</table>

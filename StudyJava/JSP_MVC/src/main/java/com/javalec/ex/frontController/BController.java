@@ -15,6 +15,8 @@ import com.javalec.ex.command.BDeleteCommand;
 import com.javalec.ex.command.BListCommand;
 import com.javalec.ex.command.BWriteCommand;
 import com.javalec.ex.command.BModifyCommand;
+import com.javalec.ex.command.BReplyCommand;
+import com.javalec.ex.command.BReplyViewCommand;
 
 @WebServlet("*.do")
 public class BController extends HttpServlet {
@@ -25,22 +27,19 @@ public class BController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doGet");
 		actionDo(request,response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doPost");
 		actionDo(request,response);
 	}
 	
 	private void actionDo(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		System.out.println("actionDo");
 		
 		request.setCharacterEncoding("UTF-8");		//한글 인코딩
 		
 		String view = null;		//뷰페이지 관련 변수 선언
-		BCommand command = null;	
+		BCommand command = null;	//커멘드 선언
 		
 		String uri = request.getRequestURI();
 		String conPath = request.getContextPath();
@@ -68,13 +67,13 @@ public class BController extends HttpServlet {
 			command = new BDeleteCommand();
 			command.execute(request, response);
 			view = "list.do";
-		}else if(com.equals("/reply_view.do")) {
-			
-			
+		}else if(com.equals("/reply_view.do")) {	//content_view에서 답변하기
+			command = new BReplyViewCommand();
+			command.execute(request, response);
 			view = "reply_view.jsp";
-		}else if(com.equals("/reply.do")) {
-			
-			
+		}else if(com.equals("/reply.do")) {			//reply_view.jsp에서 답변 완료
+			command = new BReplyCommand();
+			command.execute(request, response);
 			view = "list.do";
 		}
 		
