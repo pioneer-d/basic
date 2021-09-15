@@ -121,7 +121,7 @@ public class BDao {
 		return dto;
 	}
 	
-	public void write(String bName,String bTitle, String bContent) {
+	public void write(String bName,String bTitle, String bContent) {	//글작성 하기
 		
 		Connection connection = null;
 		PreparedStatement pstmt = null;
@@ -131,11 +131,6 @@ public class BDao {
 		try {
 			connection = dataSource.getConnection();
 			pstmt = connection.prepareStatement(query);
-			System.out.println("글작성 직전 데이터");
-			System.out.println(bName);
-			System.out.println(bTitle);
-			System.out.println(bContent);
-			System.out.println(new Timestamp(System.currentTimeMillis()));
 			pstmt.setString(1, bName);
 			pstmt.setString(2, bTitle);
 			pstmt.setString(3, bContent);
@@ -154,6 +149,60 @@ public class BDao {
 		
 	}
 	
+	public void modify(String bId, String bName, String bTitle, String bContent) {	//글 수정하기
+		
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		
+		String query = "update STUDY_JSP_BOARD set bName = ?, bTitle = ?, bContent = ? where bId = ?";
+		
+		try {
+			connection = dataSource.getConnection();
+			pstmt = connection.prepareStatement(query);
+			pstmt.setString(1, bName);
+			pstmt.setString(2, bTitle);
+			pstmt.setString(3, bContent);
+			pstmt.setInt(4, Integer.parseInt(bId));
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				if(pstmt != null)pstmt.close();
+				if(connection != null)connection.close();				
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+	}
+	
+	public void delete(String bId) {	//글 삭제하기
+		
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		
+		String query = "delete from STUDY_JSP_BOARD where bId = ?";
+		
+		try {
+			
+			connection = dataSource.getConnection();
+			pstmt = connection.prepareStatement(query);
+			pstmt.setInt(1, Integer.parseInt(bId));
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				if(pstmt != null)pstmt.close();
+				if(connection != null)connection.close();				
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+	}
+				
 	
 	
 	
@@ -169,4 +218,8 @@ public class BDao {
 	
 	
 	
-}
+	
+	
+	
+	
+	}

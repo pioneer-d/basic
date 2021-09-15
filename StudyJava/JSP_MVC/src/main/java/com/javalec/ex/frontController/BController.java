@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.javalec.ex.command.BCommand;
 import com.javalec.ex.command.BContentCommand;
+import com.javalec.ex.command.BDeleteCommand;
 import com.javalec.ex.command.BListCommand;
 import com.javalec.ex.command.BWriteCommand;
+import com.javalec.ex.command.BModifyCommand;
 
 @WebServlet("*.do")
 public class BController extends HttpServlet {
@@ -44,9 +46,9 @@ public class BController extends HttpServlet {
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
 		
-		if(com.equals("/write_view.do")) {			//list에서 '글작성' 클릭시
+		if(com.equals("/write_view.do")) {			//list에서 글작성하기
 			view = "write_view.jsp";
-		}else if(com.equals("/write.do")) {			//write_view에서 '완료'클릭시
+		}else if(com.equals("/write.do")) {			//write_view에서 완료하기
 			command = new BWriteCommand();
 			command.execute(request, response);
 			view = "list.do";
@@ -54,17 +56,17 @@ public class BController extends HttpServlet {
 			command = new BListCommand();
 			command.execute(request, response);			
 			view = "list.jsp";
-		}else if(com.equals("/content_view.do")) {
+		}else if(com.equals("/content_view.do")) {	//content_view 보기
 			command = new BContentCommand();
 			command.execute(request, response);
 			view = "content_view.jsp";
-		}else if(com.equals("/modify.do")) {
-			
-			
+		}else if(com.equals("/modify.do")) {		//content_view에서 수정하기
+			command = new BModifyCommand();
+			command.execute(request, response);
 			view = "list.do";
-		}else if(com.equals("/delete.do")) {
-			
-			
+		}else if(com.equals("/delete.do")) {		//content_view에서 삭제하기
+			command = new BDeleteCommand();
+			command.execute(request, response);
 			view = "list.do";
 		}else if(com.equals("/reply_view.do")) {
 			

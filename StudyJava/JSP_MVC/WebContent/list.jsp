@@ -23,7 +23,7 @@
 			<td>${dto.bName }</td>
 			<td>
 				<c:forEach begin = "1" end = "${dto.bIndent }">-</c:forEach>
-				<a href = "content_view.do?bId=${dto.bId}">${dto.bTitle }</a></td>	<!-- bId하고 띄어쓰기 해서 안넘어간것. -->
+				<a href = "content_view.do?bId=${dto.bId}">${dto.bTitle }</a></td>
 			<td>${dto.bDate }</td>
 			<td>${dto.bHit }</td>
 		</tr>
