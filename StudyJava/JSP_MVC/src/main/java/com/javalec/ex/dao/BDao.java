@@ -29,7 +29,7 @@ public class BDao {
 		}
 	}
 
-	public ArrayList<BDto> list(){
+	public ArrayList<BDto> list(){	//모든 글 띄우기
 		
 		ArrayList<BDto> dtos = new ArrayList<BDto>();
 		Connection connection = null;
@@ -75,7 +75,7 @@ public class BDao {
 		
 	}
 	
-	public BDto contentView(String SbId) {
+	public BDto contentView(String SbId) {	//글 1개 자세히 보기
 		
 		//upHit(sbId);
 		
@@ -89,9 +89,7 @@ public class BDao {
 		try {
 			connection = dataSource.getConnection();
 			pstmt = connection.prepareStatement(query);
-			System.out.println("parseInt하기 전 : " + SbId);		//null로 뜬다.
 			pstmt.setInt(1, Integer.parseInt(SbId));
-			System.out.println("parseInt후 : " + Integer.parseInt(SbId));	//마찬가지겠지
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -123,6 +121,38 @@ public class BDao {
 		return dto;
 	}
 	
+	public void write(String bName,String bTitle, String bContent) {
+		
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		
+		String query = "insert into STUDY_JSP_BOARD values (STUDY_JSP_BOARD_seq.nextval,?,?,?,?,0, STUDY_JSP_BOARD_seq.currval, 0, 0)";
+
+		try {
+			connection = dataSource.getConnection();
+			pstmt = connection.prepareStatement(query);
+			System.out.println("글작성 직전 데이터");
+			System.out.println(bName);
+			System.out.println(bTitle);
+			System.out.println(bContent);
+			System.out.println(new Timestamp(System.currentTimeMillis()));
+			pstmt.setString(1, bName);
+			pstmt.setString(2, bTitle);
+			pstmt.setString(3, bContent);
+			pstmt.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null)pstmt.close();
+				if(connection != null)connection.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+	}
 	
 	
 	

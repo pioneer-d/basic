@@ -30,7 +30,7 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td> <textarea rows = "10" name = "bContent" value = "${content_view.bContent }"></textarea></td>
+				<td> <textarea rows = "10" name = "bContent">${content_view.bContent }</textarea></td>
 			</tr>
 			<tr>
 				<td colspan = "2"> <input type = "submit" value = "수정"> 

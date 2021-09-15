@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.javalec.ex.command.BCommand;
 import com.javalec.ex.command.BContentCommand;
 import com.javalec.ex.command.BListCommand;
+import com.javalec.ex.command.BWriteCommand;
 
 @WebServlet("*.do")
 public class BController extends HttpServlet {
@@ -46,9 +47,10 @@ public class BController extends HttpServlet {
 		if(com.equals("/write_view.do")) {			//list에서 '글작성' 클릭시
 			view = "write_view.jsp";
 		}else if(com.equals("/write.do")) {			//write_view에서 '완료'클릭시
-			
+			command = new BWriteCommand();
+			command.execute(request, response);
 			view = "list.do";
-		}else if(com.equals("/list.do")) {
+		}else if(com.equals("/list.do")) {			//list로 돌아가기
 			command = new BListCommand();
 			command.execute(request, response);			
 			view = "list.jsp";
