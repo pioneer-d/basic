@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id = "calculator" class = "com.javalec.ex.Day1.Calculator"/>	<!-- 이것이 객체 생성 -->
+	
+	<bean id = "myCal" class = "com.javalec.ex.Day1.MyCalculator">
+		<property name = "calculator"><!-- 이렇게 넣는것은 해당 클래스에 setter가 있기때문. -->
+										<!-- 이때 name은 setter와 getter의 메소드명과 같아야한다.(앞 대문자 빼고) = 즉 필드명이 같아야함.
+											즉 bean의 id값과 일치! -->
+			<ref bean = "calculator"/>
+		</property>
+		<property name = "first" value = "10"/>
+		<property name = "second" value = "2"/>
+	</bean>
+
+</beans>
