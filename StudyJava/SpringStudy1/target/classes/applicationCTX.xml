@@ -3,16 +3,45 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id = "calculator" class = "com.javalec.ex.Day1.Calculator"/>	<!-- 이것이 객체 생성 -->
-	
-	<bean id = "myCal" class = "com.javalec.ex.Day1.MyCalculator">
-		<property name = "calculator"><!-- 이렇게 넣는것은 해당 클래스에 setter가 있기때문. -->
-										<!-- 이때 name은 setter와 getter의 메소드명과 같아야한다.(앞 대문자 빼고) = 즉 필드명이 같아야함.
-											즉 bean의 id값과 일치! -->
-			<ref bean = "calculator"/>
+	<bean id="calculator" class="com.javalec.ex.Day1.Calculator" />	<!-- 이것이 객체 생성 -->
+
+	<bean id="myCal" class="com.javalec.ex.Day1.MyCalculator">	<!-- setter를 통한 주입 -->
+		<property name="calculator"><!-- 이렇게 넣는것은 해당 클래스에 setter가 있기때문. -->
+			<!-- 이때 name은 setter와 getter의 메소드명과 같아야한다.(앞 대문자 빼고) = 즉 필드명이 같아야함. 즉 
+				bean의 id값과 일치! -->
+			<ref bean="calculator" />
 		</property>
-		<property name = "first" value = "10"/>
-		<property name = "second" value = "2"/>
+		<property name="first" value="10" />
+		<property name="second" value="2" />
+	</bean>
+
+	<bean id="student" class="com.javalec.ex.Day2.Student">	<!-- 생성자를 통한 주입 -->
+		<constructor-arg>
+			<value>동준영</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>24</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>3</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>2</value>
+		</constructor-arg>
+		<!-- id값 안넣고 순서대로 입력이 되나보다 -->
+	</bean>
+	
+	<bean id="student2" class="com.javalec.ex.Day2.Student">	<!-- 생성자를 통한 주입2 -->
+		<constructor-arg value = "동준영2"/>
+		<constructor-arg value = "24"/>
+		<constructor-arg value = "3"/>
+		<constructor-arg value = "3"/>
+	</bean>
+
+	<bean id="sIf" class="com.javalec.ex.Day2.StudentInfo">
+		<constructor-arg>
+			<ref bean = "student"/>
+		</constructor-arg>
 	</bean>
 
 </beans>

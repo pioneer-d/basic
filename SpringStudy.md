@@ -27,3 +27,26 @@ ex) <bean id = "calculator" class = "com.javalec.ex.Calculator"/> - 이게 생�
 
 xml생성과정 - new -> spring검색 -> spring bean configuration file(이것이 xml임)
 src/main/resource에 만든다.
+
+
+Day2
+
+xml에서 setter를 통한 주입 - property
+          생성자를 통한 주입 - constructor-args
+
+활용방법으로 
+//xml
+<bean id = "pencil" class = "com.javalec.ex.Pensil4B"/> 이렇게 xml을 설정하고
+//MainClass
+pencil pencil = ctx.getBean("pencil",Pencil.class);		이렇게 class를 설정 했을때
+이 class를 수정하지 않고 Pensil4B가 아닌 다른 클래스를 주입받고 싶으면(Pencil6B,Pencil6BWhithEraser 등)
+이 각각 다른 클래스들을 Pencil이라는 인터페이스로 묶으면 다른 클래스라고 하더라도 객체 타입이 같으므로
+xml에서 bean의 class주소값만 변경해주면 된다.
+
+
+
+
+
+
+
+
