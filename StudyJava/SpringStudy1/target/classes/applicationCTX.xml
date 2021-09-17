@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="calculator" class="com.javalec.ex.Day1.Calculator" />	<!-- 이것이 객체 생성 -->
@@ -15,7 +16,8 @@
 		<property name="second" value="2" />
 	</bean>
 
-	<bean id="student" class="com.javalec.ex.Day2.Student">	<!-- 생성자를 통한 주입 -->
+	<!-- 생성자를 통한 주입 -->
+	<bean id="student" class="com.javalec.ex.Day2.Student">
 		<constructor-arg>
 			<value>동준영</value>
 		</constructor-arg>
@@ -31,11 +33,12 @@
 		<!-- id값 안넣고 순서대로 입력이 되나보다 -->
 	</bean>
 	
-	<bean id="student2" class="com.javalec.ex.Day2.Student">	<!-- 생성자를 통한 주입2 -->
-		<constructor-arg value = "동준영2"/>
-		<constructor-arg value = "24"/>
-		<constructor-arg value = "3"/>
-		<constructor-arg value = "3"/>
+	<!-- 생성자를 통한 주입2 -->	<!-- Namespaces를 사용 -->
+	<bean id="student2" class="com.javalec.ex.Day2.Student" 
+	c:name="동주녕" 
+	c:age="24" 
+	c:gradeNum="3" 
+	c:classnum="3">
 	</bean>
 
 	<bean id="sIf" class="com.javalec.ex.Day2.StudentInfo">

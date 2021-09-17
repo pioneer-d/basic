@@ -43,10 +43,30 @@ pencil pencil = ctx.getBean("pencil",Pencil.class);		이렇게 class를 설정 �
 이 각각 다른 클래스들을 Pencil이라는 인터페이스로 묶으면 다른 클래스라고 하더라도 객체 타입이 같으므로
 xml에서 bean의 class주소값만 변경해주면 된다.
 
+xml의 Namespaces사용법 - xml우클릭 -> open with -> spring config editor선택. 그럼 사용 가능한 Namespaces를 지정할 수 있다.
+bean값에 Namespaces를 사용하면 생성자는 c:필드명=""이런식으로, setter는 p:필드명=""이런식으로 입력 가능.
+생성자가 여러개 있을때 한개만 Namespaces를 사용하는 것은 안된다. 할거면 전부 사용, 아니면 전부 미사용.
 
+GenericXmlApplicationContext이 파라미터에 여러개의 xml파일을 입력해도 된다.(단 bean의 id값이 달라야하지 않을까?)
 
+A는 xml을 통해 a객체를 주입받고, B는 xml에서 ref를 통해 a를 받은 b의 객체를 주입 받은 뒤 getter를 통해 a를 받는다
+이때 A와 B는 같은 객체인가? 맞다. 같은 객체이다.
 
+DI방법은 xml뿐 아니라 java코드로도 가능하다. annotation을 통해서 그리고 두개를 결합시켜 해도 가능하다.
 
+Java코드를 통한 DI설정방법
+class위에 @Configuration 어노테이션을 붙인다.
+Bean객체 생성시 메소드 형태를 만들고 그 위에 @Bean 어노테이션을 붙인다.
+(이때 메소드 형태에서 리턴타입은 해당 bean타입, 메소드명은 bean의 id값을 명시한다.)
+나머지는 자바코드와 동일.
+
+이를 사용하기 위해서는 pom.xml에 의존성을 추가해야 하는데,
+개발자는 프로젝트에 사용할 라이브러리를 pom.xml에 dependency로 정의만 해두면 
+메이븐이 repository에서 검색해서 자동으로 추가해준다. 심지어 참조하고있는 library까지 모두 찾아서 추가해준다. 
+이것을 '의존성 전이' 라고 한다
+이 dependency는 https://mvnrepository.com/ 여기서 버전을 확인 할 수 있다.
+6강 38:23부터
+대충 21강까지 보면 Spring 게시판 완성
 
 
 
