@@ -6533,3 +6533,15 @@ Caused by: java.lang.StringIndexOutOfBoundsException: begin 1, end 0, length 1
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2021-09-17 17:50:26.836
 !MESSAGE Using platform encoding (MS949 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-17 19:49:15.511
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.uaPQWMHO
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-17 19:49:15.512
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.uaPQWMHO
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-17 19:49:15.512
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-09-17 19:49:15.512
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.uaPQWMHO => OK
