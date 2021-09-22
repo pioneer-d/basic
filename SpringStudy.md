@@ -99,6 +99,46 @@ session: 웹 세션이 생성되고 종료될 때 까지 유지되는 스코프�
 application: 웹의 서블릿 컨텍스와 같은 범위로 유지되는 스코프이다
 
 
+Environment
+여러 환경들을 제어하고 설정하는 기능.
+내포되어 있는 property를 사용한다.
+ -property생성, 추가, 추출 등을 할 수 있다.
+ == 마치 저장소 느낌인듯 하다.
+
+Day33패키지 부분 총정리
+main에서 env생성 -> 가져오기 -> 외부 파일을 env에 proeprty로 입력 -> 이를 다른 xml객체에 입력
+-> 입력 당한 bean클래스에서 EnvironmentAware 구현 -> env입력 강제 오버라이딩
+-> InitializingBean의 오버라이딩 메소드에서 env의 개별 property가져옴(이때 xml에서 value를 입력하지 않는다)
+
+Environment의 도움없이 xml이나 java DI를 통해 properties(외부파일)을 가져올 수 있다.
+//xml
+	먼저 Namespaces에서 context를 입력한다.
+	<context:property-placeholder location = "classpath:admin.properties, classpath:sub_admin.properties"/>
+	이렇게 넣고 value는 ${admin.id} 이렇게 EL로 뽑는다.
+
+//java DI
+	@Bean어노테이션 아래에 public static PropertySouecesPlaceHolderConfigurer Properties()메소드를 만든다
+	Resource객체를 배열로 선언하여 new ClassPathResource로 외부파일을 넣고 입력한다.
+
+
+개발환경 or 실제 납풉코드 이둘을 나누어 관리할 필요가 있다.
+이때 필요한 profile - 이또한 xml과 java Di방법이 나뉜다. 
+//xml
+	schemaLocation부분에 profile = "profile명 기입" 입력해주면 된다.
+	그리고 main딴에서는 ctx.getEnvironment().setActiveProfiles("이곳에 profile명 기입");
+	그리고 ctx.load();하면 된다.
+
+//java DI
+	간단하게 annotation @Profile("profile명 기입")하면 된다
+
+지금까지
+GenericXmlApplicationContext객체 아니면 AbstractApplicationContext객체를 사용하여 config파일을 사용했는데,
+xml을 사용하면 GenericXmlApplicationContext객체가 불가피하고, java로만 하려면 AbstractApplicationContext객체로 충분.
+GenericXmlApplicationContext객체가 AbstractApplicationContext객체의 하위 객체이다.
+
+
+
+
 
 
 

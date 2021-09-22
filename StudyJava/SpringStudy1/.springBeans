@@ -9,6 +9,9 @@
 	<configs>
 		<config>src/main/resources/applicationCTX.xml</config>
 		<config>src/main/resources/applicationCTXDay3.xml</config>
+		<config>src/main/resources/applicationCTXDay33.xml</config>
+		<config>src/main/resources/applicationCTXDay33Profile.xml</config>
+		<config>src/main/resources/applicationCTXDay33Profile2.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>
