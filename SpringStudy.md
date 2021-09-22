@@ -65,10 +65,16 @@ Bean객체 생성시 메소드 형태를 만들고 그 위에 @Bean 어노테이
 메이븐이 repository에서 검색해서 자동으로 추가해준다. 심지어 참조하고있는 library까지 모두 찾아서 추가해준다. 
 이것을 '의존성 전이' 라고 한다
 이 dependency는 https://mvnrepository.com/ 여기서 버전을 확인 할 수 있다.
-6강 38:23부터
-대충 21강까지 보면 Spring 게시판 완성
 
-복습
 
-즐거운 한가위
+Day3
+
+xml과 java DI 같이 사용하기
+1. xml파일에 java DI를 포함시키는 방법
+	xml에 <context:annotation-config /> 이 태그 포함하여 
+	해당 클래스 <bean class="com.asd.asd"/> 이렇게 넣으면 포함시킬 수 있음
+
+
+
+
 
