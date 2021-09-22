@@ -74,7 +74,34 @@ xml과 java DI 같이 사용하기
 	xml에 <context:annotation-config /> 이 태그 포함하여 
 	해당 클래스 <bean class="com.asd.asd"/> 이렇게 넣으면 포함시킬 수 있음
 
+2. 반대로 java파일에 xml 포함 시키는방법
+	해당 클래스에 어노테이션 추가
+	@ImportResource("classpath:applicationCTX.xml")
+
+스프링 빈 생명주기 관리
+1. 인터페이스 구현
+implements InitializingBean, DisposableBean
+-> 빈 초기화 과정에서 호출되는 메소드, 빈 소멸 과정에서 호출되는 메소드 사용가능.
+2. 어노테이션 사용(의존성 추가해줘야 한다. annotation)
+@PostConstruct - 빈 초기화 과정에서 호출(메소드명은 사용자 정의)
+@PreDestroy - 빈 소멸시 호출
+
+
+스프링 빈 범위(Scope)
+빈은 scope를 가지고 있다. 해당 객체가 어디까지 영향을 미치는지 결정하는 것.
+싱글톤: 기본 스코프, 스프링 컨테이너의 시작과 종료까지 유지되는 가장 넓은 범위의 스코프이다.
+프로토타입: 스프링 컨테이너는 프로토타입 빈의 생성과 의존관계 주입까지만 관여하고 
+	더는 관리하지 않는 매우 짧은 범위의 스코프이다 (따라서 빈 콜백중 종료메서드가 호출이 안된다.)
+
+(웹도 스코프가 있었지?)
+request: 웹 요청이 들어오고 나갈때 까지 유지되는 스코프이다.
+session: 웹 세션이 생성되고 종료될 때 까지 유지되는 스코프이다.
+application: 웹의 서블릿 컨텍스와 같은 범위로 유지되는 스코프이다
 
 
 
 
+
+
+
+https://mvnrepository.com/
