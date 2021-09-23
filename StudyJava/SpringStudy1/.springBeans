@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beansProjectDescription>
 	<version>1</version>
-	<pluginVersion><![CDATA[3.9.16.202103111552-RELEASE]]></pluginVersion>
+	<pluginVersion><![CDATA[3.9.18.202109140629-RELEASE]]></pluginVersion>
 	<configSuffixes>
 		<configSuffix><![CDATA[xml]]></configSuffix>
 	</configSuffixes>
@@ -12,6 +12,7 @@
 		<config>src/main/resources/applicationCTXDay33.xml</config>
 		<config>src/main/resources/applicationCTXDay33Profile.xml</config>
 		<config>src/main/resources/applicationCTXDay33Profile2.xml</config>
+		<config>src/main/resources/applicationCTXDay4.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>

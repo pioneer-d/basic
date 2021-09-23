@@ -135,7 +135,54 @@ Environment의 도움없이 xml이나 java DI를 통해 properties(외부파일)
 GenericXmlApplicationContext객체 아니면 AbstractApplicationContext객체를 사용하여 config파일을 사용했는데,
 xml을 사용하면 GenericXmlApplicationContext객체가 불가피하고, java로만 하려면 AbstractApplicationContext객체로 충분.
 GenericXmlApplicationContext객체가 AbstractApplicationContext객체의 하위 객체이다.
+(물론 데이터 타입으로서 AbstractApplicationContext가 대신해도 괜찮다. 상위객체이기 때문.)
 
+
+Day4
+AOP란(Aspect Oriented Programming)(관점 지향 프로그래밍)
+상속을 통한 방법에 한계가 있어 등장.(다중상속 불가, 핵심기능 코드와 공통기능 코드가 섞여 있음.)
+공통 기능과 핵심 기능을 분리시키고, 공통기능 중 필요 부분을 핵심 부분에 적용하는 것.
+
+관련 용어
+Aspect : 공통 기능
+Advice : Aspect의 기능 자체
+Jointpoint : Advice를 적용해야 되는 부분(ex 필드, 메소드)(스프링에서는 메소드만 해당)
+Pointcut : Jointpoint의 부분으로 실제로 Advice가 적용된 부분
+Weaving : Advice를 핵심 기능에 적용 하는 행위
+
+AOP구현을 위해 proxy를 사용함.(==대신한다는 뜻)
+ex) 공통로직이 핵심로직의 시작,종료부분에 실행되어야 한다면,
+proxy를 거쳐 공통로직이 실행 -> 핵심기능 실행 -> 다시 proxy를 거쳐 공통로직 실행
+이런식으로 proxy를 거친다.
+
+작업 순서
+1. 의존 설정(pom.xml)
+2. 공통 기능의 클래스 제작(Advice역할)
+3. XML파일에 Aspect 설정(Namespaces에서 aop입력)
+(pom.xml에 설정한 라이브러리는 Maven Dependencies에 jar파일로 존재한다.)
+
+
+		<!-- Spring AOP설정 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>5.3.10</version>
+		</dependency>
+
+		<!-- aspectj weaver설정 -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.9.7</version>
+			<scope>runtime</scope>
+		</dependency>
+		
+		<!-- AspectJ 이게 AOP의존성인듯 -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
 
 
 
