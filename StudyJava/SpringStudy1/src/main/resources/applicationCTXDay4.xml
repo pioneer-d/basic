@@ -5,12 +5,12 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
-	<bean id = "logAop" class = "com.javalec.ex.Day4.LogAop"/>
+	<bean id="logAop" class="com.javalec.ex.Day4.LogAop"/>
 	  
 	<aop:config>
-		<aop:aspect id = "logger" ref = "logAop">
-			<aop:pointcut expression="within(com.javalec.ex.Day4.*)" id="publicM"/>
-			<aop:around method="loggerAop" pointcut-ref = "publicM"/>
+		<aop:aspect id ="logger" ref="logAop">
+			<aop:pointcut id="publicM" expression="within(com.javalec.ex.*)" />
+			<aop:around pointcut-ref="publicM" method="loggerAop"/>
 		</aop:aspect>
 	</aop:config>
 	
@@ -21,17 +21,17 @@
 		around - method = 적용할 메소드 입력
 	 -->
 	
-	<bean id = "student" class = "com.javalec.ex.Day4.Student">
-		<property name="name" value = "동준영"/>
-		<property name="age" value = "24"/>
-		<property name="gradeNum" value = "3"/>
-		<property name="classNum" value = "2"/>
+	<bean id="student" class="com.javalec.ex.Day4.Student">
+		<property name="name" value="동준영"/>
+		<property name="age" value="24"/>
+		<property name="gradeNum" value="3"/>
+		<property name="classNum" value="2"/>
 	</bean>
 	
-	<bean id = "worker" class = "com.javalec.ex.Day4.Worker">
-		<property name="name" value = "동동주"/>
-		<property name="age" value = "22"/>
-		<property name="job" value = "개발자"/>
+	<bean id="worker" class="com.javalec.ex.Day4.Worker">
+		<property name="name" value="동동주"/>
+		<property name="age" value="22"/>
+		<property name="job" value="개발자"/>
 	</bean>
 
 </beans>

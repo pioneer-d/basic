@@ -5,7 +5,22 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2021-09-23T06:54:20Z</updated>
+  <updated>2021-09-23T10:34:18Z</updated>
+  <entry>
+    <title>Spring Boot 2.5.5 available now</title>
+    <link rel="alternate" href="https://spring.io/blog/2021/09/23/spring-boot-2-5-5-available-now" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>St?phane Nicoll</name>
+    </author>
+    <id>tag:spring.io,2021-09-23:4554</id>
+    <updated>2021-09-23T10:34:18Z</updated>
+    <content type="html">&lt;p&gt;On behalf of the team and everyone who has contributed, I&amp;rsquo;m happy to announce that Spring Boot &lt;code&gt;2.5.5&lt;/code&gt; has been released and is now available from Maven Central.&lt;/p&gt;
+&lt;p&gt;This release includes &lt;a href="https://github.com/spring-projects/spring-boot/releases/tag/v2.5.5"&gt;41 bug fixes, documentation improvements, and dependency upgrades&lt;/a&gt;. Thanks to all those who have contributed with issue reports and pull requests.&lt;/p&gt;&lt;h3&gt;&lt;a href="#how-can-you-help" class="anchor" name="how-can-you-help"&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
+&lt;p&gt;If you&amp;rsquo;re interested in helping out, check out the &lt;a href="https://github.com/spring-projects/spring-boot/labels/status%3A%20ideal-for-contribution"&gt;&amp;ldquo;ideal for contribution&amp;rdquo; tag&lt;/a&gt; in the issue repository. If you have general questions, please ask on &lt;a href="https://stackoverflow.com"&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href="https://stackoverflow.com/tags/spring-boot"&gt;&lt;code&gt;spring-boot&lt;/code&gt; tag&lt;/a&gt; or chat with the community on &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://spring.io/projects/spring-boot/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot/issues"&gt;Issues&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-boot/docs/2.5.5/reference/html"&gt;Documentation&lt;/a&gt; | &lt;a href="https://stackoverflow.com/questions/tagged/spring-boot"&gt;Stack Overflow&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;&lt;/p&gt;
+&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
+  </entry>
   <entry>
     <title>Spring Boot 2.4.11 available now</title>
     <link rel="alternate" href="https://spring.io/blog/2021/09/22/spring-boot-2-4-11-available-now" />
@@ -1227,30 +1242,6 @@ public class GreetingController {&#xD;
 &lt;p&gt;Don&amp;rsquo;t miss the &lt;a href="https://springone.io/2021/sessions/spring-graphql"&gt;Spring GraphQL presentation at SpringOne today&lt;/a&gt;!&lt;br/&gt;This will give a nice intro to this new Spring project and you&amp;rsquo;ll get a chance to chat with the team, live and on the dedicated SpringOne Slack.&lt;/p&gt;&lt;h3&gt;&lt;a href="#how-can-you-help" class="anchor" name="how-can-you-help"&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
 &lt;p&gt;If you&amp;rsquo;re interested in helping out, you can &lt;a href="https://docs.spring.io/spring-graphql/docs/1.0.0-M2/reference/html/#boot-graphql"&gt;get started with Spring GraphQL&lt;/a&gt; and &lt;a href="https://github.com/spring-projects/spring-graphql/issues"&gt;raise issues on our GitHub project&lt;/a&gt;.&lt;br/&gt;If you have general questions, please ask on &lt;a href="https://stackoverflow.com"&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href="https://stackoverflow.com/tags/spring-graphql"&gt;&lt;code&gt;spring-graphql&lt;/code&gt; tag&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://spring.io/projects/spring-graphql/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-graphql"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-graphql/issues"&gt;Issues&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-graphql/docs/1.0.0-M2/reference/html/"&gt;Documentation&lt;/a&gt; | &lt;a href="https://stackoverflow.com/questions/tagged/spring-graphql"&gt;Stack Overflow&lt;/a&gt;&lt;/p&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>This Week in Spring - August 31st, 2021</title>
-    <link rel="alternate" href="https://spring.io/blog/2021/08/31/this-week-in-spring-august-31st-2021" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Josh Long</name>
-    </author>
-    <id>tag:spring.io,2021-09-01:4529</id>
-    <updated>2021-09-01T02:00:00Z</updated>
-    <content type="html">&lt;p&gt;Hi, Spring fans! Can you believe it? &lt;em&gt;&lt;a href="https://springone.io"&gt;SpringOne 2021&lt;/a&gt;&lt;/em&gt; kicks off in less than 24 hours! Have you registered? It&amp;rsquo;s free and it&amp;rsquo;s virtual, but the talks are live and there&amp;rsquo;ll be ample opportunity to talk to the Spring and Tanzu teams behinds the scenes. And, of course, I&amp;rsquo;ll be there. Also, don&amp;rsquo;t miss tomorrow mornings opening keynote, which I&amp;rsquo;ll be emceeing. And please don&amp;rsquo;t &lt;a href="https://springone.io/2021/sessions/rapid-development-with-azure-spring-cloud"&gt;miss my session on Azure Spring Cloud with Julien Dubois and Layla Porter&lt;/a&gt;. There are a &lt;em&gt;ton&lt;/em&gt; of great talks over the next two days. Do &lt;em&gt;not&lt;/em&gt; miss these! Alrigty my friends, we&amp;rsquo;ve got a ton of stuff to review so without further ado, let&amp;rsquo;s dive right in! &lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Hi, Spring fans! In the last week&amp;rsquo;s installment of &lt;a href="https://spring.io/blog/2021/08/26/bootiful-podcast-richard-north-and-sergei-egorov-on-testcontainers-their-new-company-atomicjar-and-more"&gt;&lt;em&gt;Bootiful Podcast&lt;/em&gt;, I talked to Richard North and Sergei Egorov on Testcontainers, their new company AtomicJar, and more&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://twitter.com/JavaAtMicrosoft/status/1430567050120859648"&gt;Get hands-on with Azure Spring Cloud in 90 minutes. Register today - space is limited! Brought to you by Microsoft and VMware&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://twitter.com/JavaAtMicrosoft/status/1430674051979120646"&gt;Are you ready to rapidly deploy and scale Spring Boot apps to Azure Spring Cloud? Register today!&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;This video seems like it&amp;rsquo;ll be worth a watch &lt;a href="https://www.youtube.com/watch?v=tljZWMreKrY"&gt;if you&amp;rsquo;re trying to learn Spring Boot&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Here&amp;rsquo;s an interesting video that looks &lt;a href="https://www.youtube.com/watch?v=_PEPaWFs064"&gt;at streaming with the reactive Spring Webflux&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;This looks interesting: a video from Manning Publications on &lt;a href="https://www.youtube.com/watch?v=9r7UxenMxuc"&gt;building and securing web applications with Spring Boot&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Have you seen the &lt;a href="https://spring.io/community"&gt;Spring.io Community page?&lt;/a&gt; It&amp;rsquo;s a great place to find out about some of the external resources and portals in the wider community.&lt;/li&gt;
-  &lt;li&gt;Instana has updated their documentation on how to &lt;a href="https://www.instana.com/docs/ecosystem/spring-boot/"&gt;monitor Spring Boot applications with their suite&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;The Baeldung article on embedding the &lt;a href="https://www.baeldung.com/keycloak-embedded-in-spring-boot-app"&gt;Keycloak authorization and authentication server in a Spring &lt;/a&gt; Boot application has been updated.&lt;/li&gt;
-  &lt;li&gt;The Baeldung article on the fundamentals &lt;a href="https://www.baeldung.com/spring-dependency-injection"&gt;of dependency injection in Spring has also been updated&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 &lt;!-- rendered by Sagan Renderer Service --&gt;</content>
   </entry>
 </feed>

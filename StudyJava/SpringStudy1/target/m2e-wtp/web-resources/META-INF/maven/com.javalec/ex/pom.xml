@@ -98,7 +98,6 @@
 			<version>${org.aspectj-version}</version>
 		</dependency>	
 
-
 		<!-- aspectj weaver설정 -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
