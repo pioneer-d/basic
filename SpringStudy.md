@@ -161,34 +161,53 @@ proxy를 거쳐 공통로직이 실행 -> 핵심기능 실행 -> 다시 proxy를
 3. XML파일에 Aspect 설정(Namespaces에서 aop입력)
 (pom.xml에 설정한 라이브러리는 Maven Dependencies에 jar파일로 존재한다.)
 
-
-		<!-- Spring AOP설정 -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aop</artifactId>
-			<version>5.3.10</version>
-		</dependency>
-
-		<!-- aspectj weaver설정 -->
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<version>1.9.7</version>
-			<scope>runtime</scope>
-		</dependency>
-		
-		<!-- AspectJ 이게 AOP의존성인듯 -->
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-			<version>${org.aspectj-version}</version>
-		</dependency>
+Advice종류
+1. <aop:before> : 메소드 실행 전에 advice실행
+2. <aop:after-returning> : 정상적으로 메소드 실행 후에 advice실행
+3. <aop:after-throwing> : 메소드 실행 중 exception발생시 advice실행
+4. <aop:after> : 메소드 실행 중 exception이 발생하더라도 advice실행
+5. <aop:around> : 메소드 실행 전/후 및 exception 발생시 advice실행 
 
 
+Day5
+@Aspect를 사용한 AOP구현
+
+순서
+0. pom.xml설정(cglib,org.aspectj)
+1. @Aspect를 이용한 Aspect클래스 제작
+2. xml에 프록시 설정(<aop:aspectj-autoproxy />)
+
+Aspect Pointcut에는 종류가 상당히 많다.(모두 메소드가 기준이다!)
+//execution
+@Pointcut("execution(public void get*(..))")
+	//public void인 모든 get메소드
+@Pointcut("execution(* com.javalec.ex.*.*())")
+	//com.javalec.ex 패키지에 파라미터가 없는 모든 메소드
+@Pointcut("execution(* com.javalec.ex..*.*())")
+	//com.javalec.ex 패키지 & com.javalec.ex 하위 패키지에 파라미터가 없는 모든 메소드
+@Pointcut("execution(* com.javalec.ex.Worker.*())")
+	//com.javalec.ex.Worker 안의 모든 메소드
+
+//within
+@Pointcut("within(com.javalec.ex.*")
+	//com.javalec.ex 패키지 안에 있는 모든 메소드
+@Pointcut("within(com.javalec.ex..*")
+	//com.javalec.ex 패키지 및 하위 패키지 안에 있는 모든 메소드
+@Pointcut("within(com.javalec.ex.Worker")
+	//con.or.sl.Worker의 모든 메소드
+@Pointcut("within(com.javalec.ex.*)")	
+	//com.javalec.ex의 모든 메소드
+	
+//bean
+@Pointcut("bean(student)")
+	//student 빈에만 적용 (얘가 빈인것은 xml이 지정해주고 있음)
+@Pointcut("bean(*ker)")
+	//~ker로 끝나는 빈에만 적용
 
 
 
 
-
-
-https://mvnrepository.com/
+https://mvnrepository.com/ - 라이브러리 버전 확인
+cglib - proxy객체 생성해주는 라이브러리
+org.aspectj - aop사용 라이브러리
+annotation - bean의 annnotation사용 라이브러리(생명주기때 사용했었음)

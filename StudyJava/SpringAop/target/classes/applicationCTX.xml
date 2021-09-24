@@ -9,8 +9,7 @@
 
 	<aop:config>
 		<aop:aspect id="logger" ref="LogAop">
-			<aop:pointcut expression="within(com.javalec.ex.*)"
-				id="publicM" />
+			<aop:pointcut expression="within(com.javalec.ex.*)" id="publicM" />
 			<aop:around method="loggerAop" pointcut-ref="publicM" />
 		</aop:aspect>
 	</aop:config>

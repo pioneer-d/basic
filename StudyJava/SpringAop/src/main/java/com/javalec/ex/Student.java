@@ -40,6 +40,10 @@ public class Student {
 		System.out.println("반 : "+getClassNum());
 	}
 	
+	public void test() {
+		System.out.println("아무런 뭔가 없는 메소드");
+	}
+	
 	
 
 }
