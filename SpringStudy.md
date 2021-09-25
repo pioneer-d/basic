@@ -204,6 +204,8 @@ Aspect Pointcut에는 종류가 상당히 많다.(모두 메소드가 기준이�
 @Pointcut("bean(*ker)")
 	//~ker로 끝나는 빈에만 적용
 
+이제 MVC로 게시판, Mybatis활용 하면 Spring 끝.
+
 
 
 
