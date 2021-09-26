@@ -178,7 +178,7 @@ Day5
 2. xml에 프록시 설정(<aop:aspectj-autoproxy />)
 
 Aspect Pointcut에는 종류가 상당히 많다.(모두 메소드가 기준이다!)
-//execution
+//execution(세부적)
 @Pointcut("execution(public void get*(..))")
 	//public void인 모든 get메소드
 @Pointcut("execution(* com.javalec.ex.*.*())")
@@ -188,7 +188,7 @@ Aspect Pointcut에는 종류가 상당히 많다.(모두 메소드가 기준이�
 @Pointcut("execution(* com.javalec.ex.Worker.*())")
 	//com.javalec.ex.Worker 안의 모든 메소드
 
-//within
+//within(포괄적)
 @Pointcut("within(com.javalec.ex.*")
 	//com.javalec.ex 패키지 안에 있는 모든 메소드
 @Pointcut("within(com.javalec.ex..*")
@@ -204,9 +204,28 @@ Aspect Pointcut에는 종류가 상당히 많다.(모두 메소드가 기준이�
 @Pointcut("bean(*ker)")
 	//~ker로 끝나는 빈에만 적용
 
-이제 MVC로 게시판, Mybatis활용 하면 Spring 끝.
 
+Day6
+Spring MVC게시판 만들때, 패키지 com.javalec.spring_project
+이때 spring_project부분이 이 프로젝트의 context명이다.
+(이는 Servers폴더의 server파일을 열어 확인 할 수 있다.)
+(최초로 Spring 프로젝트를 실행하면
+http://localhost:8181/spring_pjt/WEB-INF/classes/com/javalec/spring_pjt/HomeController.java
+이런 주소로 서버가 실행이 되는데, 이때 spring_pjt이부분이 context부분이다.)
 
+폴더구조
+1. view폴더의 위치(JSP파일 저장.)
+	src/webapp/WEB-INF/views
+2. web.xml의 위치(맵핑 등 관리, servlert-context위치 정의)
+	src/webapp/WEB-INF
+3. servlert-context파일 위치(여기서 view페이지 경로 설정, 스프링 컨테이너 설정
+	src/webapp/WEB-INF/spring/appServlet
+4. 이미지등의 파일 위치(이를 불러올때 context주소를 포함시켜야함. ex) /spring_project/resources/qwe.png)
+	src/webapp/resources(resources말고 다른 폴더를 만들경우 servlet-context에서 설정)
+
+맵핑 구조
+web.xml에서 url패턴 확인 -> param-value를 통해 servlet-context로 이동
+-> servlet-context가 설정해 놓은 패키지 탐색.
 
 
 https://mvnrepository.com/ - 라이브러리 버전 확인
