@@ -237,6 +237,9 @@ Controller생성 - 클래스에 @Controller 어노테이션을 붙여주면 끝.
 	
 	클래스 자체에 RequestMapping 어노테이션을 붙이면, 경로의 기본값이 된다.
 
+현재 스프링13강(번호 76)
+21강 까지가 Spring MVC마무리
+
 
 https://mvnrepository.com/ - 라이브러리 버전 확인
 cglib - proxy객체 생성해주는 라이브러리
