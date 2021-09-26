@@ -227,6 +227,16 @@ http://localhost:8181/spring_pjt/WEB-INF/classes/com/javalec/spring_pjt/HomeCont
 web.xml에서 url패턴 확인 -> param-value를 통해 servlet-context로 이동
 -> servlet-context가 설정해 놓은 패키지 탐색.
 
+인코딩 방식을 web.xml에 설정을 해야한다.
+
+Controller생성 - 클래스에 @Controller 어노테이션을 붙여주면 끝.
+맵핑 - @RequestMapping 어노테이션을 붙여주면 끝.(메소드 형태가 와야함.)
+	이때 기본,Model,ModelAndView가 있음. 
+	Model은 데이터만 담고있음.(반환값이 view경로)
+	ModelAndView는 데이터와 view의 정보를 담고있음.(반환값이 객체)(Model에 비해 기능이 다양)
+	
+	클래스 자체에 RequestMapping 어노테이션을 붙이면, 경로의 기본값이 된다.
+
 
 https://mvnrepository.com/ - 라이브러리 버전 확인
 cglib - proxy객체 생성해주는 라이브러리
