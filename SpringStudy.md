@@ -237,6 +237,12 @@ Controller생성 - 클래스에 @Controller 어노테이션을 붙여주면 끝.
 	
 	클래스 자체에 RequestMapping 어노테이션을 붙이면, 경로의 기본값이 된다.
 
+Day7
+(톰캣이 실행 안되고 Could not publish server configuration for Tomcat v9.0 Server at localhost. 이 에러가 뜰때.)
+서버의 Web Modules에서 지우고 다시 하면 됨.
+
+
+
 현재 스프링13강(번호 76)
 21강 까지가 Spring MVC마무리
 
