@@ -41,7 +41,7 @@ public class HomeController {
 	
 	//데이터를 담지 않고, 페이지 이동만 할 경우.
 	@RequestMapping("/board/view")	//여기서 맵핑 == 요청경로
-	public String view() {			//메소드 형태를 만들고 메소드명은 jsp명
+	public String view() {			//메소드 형태를 만들고 메소드명은 사용자정의.(같을 필요는 없다.)
 		
 		return "board/view";
 	}

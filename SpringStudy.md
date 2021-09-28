@@ -253,9 +253,22 @@ Day8
 
 3. 데이터 클래스 사용(Model객체 필요 없음, 따로set,get과정을 안해도 됨) 개사기인듯 하다.
 	(코드량 간소화 가능)
+	이때 @ModelAttribute 어노테이션을 활용하면 커멘드 객체의 이름(데이터 클래스)을 사용자 정의하여 사용가능 하다.
+	@ModelAttribute를 사용해 바꾼 이름을 jsp에서 그대로 사용할 수 있다.	
 
 4. @PathVariable사용 - Mapping경로 안에 넣어 사용.(Model객체 사용)
 	url경로에 "?key=value" 이런식이 아닌 "경로/value" 이렇게 마치 경로처럼 데이터를 입력함.
+
+@RequestMapping에서의 get방식, post방식
+ex) @RequestMapping(method = RequestMethod.GET, value = "/student")
+	이때 method가 요청방식, value가 경로
+	jsp의 form태그의 method요청방식과 같아야한다.
+	get - url에 데이터를 포함시켜 요청
+	post - 파일의 헤더에 포함시켜 요청
+	++(form태그를 사용할때 Controller에서 request를 받을땐 jsp에서 무조건 name값으로 받는다)
+	get과 post를 같이 사용하고 싶을땐 메소드명이 같아도 하나는 Model, 하나는 ModelAndView를 사용하면 됨.(리턴타입이 다르기 때문)
+
+redirect통한 페이지 이동
 
 https://mvnrepository.com/ - 라이브러리 버전 확인
 cglib - proxy객체 생성해주는 라이브러리
