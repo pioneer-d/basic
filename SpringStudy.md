@@ -242,10 +242,20 @@ Day7
 서버의 Web Modules에서 지우고 다시 하면 됨.
 
 
+Day8
 
-현재 스프링13강(번호 76)
-21강 까지가 Spring MVC마무리
+데이터 처리 방법(모두 get방식으로 데이터 입력하는데, 이때 get방식의 인코딩 해야함.)
+1. HttpServletRequest클래스 - Controller에 데이터를 받아오는 역할(Model객체 사용)
+	마치 JSP의 request,response == HttpServletRequest,Model 이렇게 대응되는듯 하다.
 
+2. @RequestParam어노테이션 사용.(Model객체 사용)
+	(요청 받는 데이터가 많아질 경우 코드량이 많아짐)
+
+3. 데이터 클래스 사용(Model객체 필요 없음, 따로set,get과정을 안해도 됨) 개사기인듯 하다.
+	(코드량 간소화 가능)
+
+4. @PathVariable사용 - Mapping경로 안에 넣어 사용.(Model객체 사용)
+	url경로에 "?key=value" 이런식이 아닌 "경로/value" 이렇게 마치 경로처럼 데이터를 입력함.
 
 https://mvnrepository.com/ - 라이브러리 버전 확인
 cglib - proxy객체 생성해주는 라이브러리
