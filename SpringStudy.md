@@ -270,6 +270,11 @@ ex) @RequestMapping(method = RequestMethod.GET, value = "/student")
 
 redirect통한 페이지 이동
 
+기존에 javascript로 했던 유효성 검사는 client측에서 하는것이였다.
+이를 server측에서 하는방법
+
+
+
 https://mvnrepository.com/ - 라이브러리 버전 확인
 cglib - proxy객체 생성해주는 라이브러리
 org.aspectj - aop사용 라이브러리
