@@ -1,4 +1,4 @@
-Day1
+Day1(SpringStudy1)
 
 마켓 플레이스에서 sts검색 후 설치
 우측 상단에서 open perspective에서 spring으로 변경했음.
@@ -29,7 +29,7 @@ xml생성과정 - new -> spring검색 -> spring bean configuration file(이것�
 src/main/resource에 만든다.
 
 
-Day2
+Day2(SpringStudy1)
 
 xml에서 setter를 통한 주입 - property
           생성자를 통한 주입 - constructor-args
@@ -67,7 +67,7 @@ Bean객체 생성시 메소드 형태를 만들고 그 위에 @Bean 어노테이
 이 dependency는 https://mvnrepository.com/ 여기서 버전을 확인 할 수 있다.
 
 
-Day3
+Day3(SpringStudy1)
 
 xml과 java DI 같이 사용하기
 1. xml파일에 java DI를 포함시키는 방법
@@ -105,7 +105,7 @@ Environment
  -property생성, 추가, 추출 등을 할 수 있다.
  == 마치 저장소 느낌인듯 하다.
 
-Day33패키지 부분 총정리
+Day33패키지 부분 총정리(SpringStudy1)
 main에서 env생성 -> 가져오기 -> 외부 파일을 env에 proeprty로 입력 -> 이를 다른 xml객체에 입력
 -> 입력 당한 bean클래스에서 EnvironmentAware 구현 -> env입력 강제 오버라이딩
 -> InitializingBean의 오버라이딩 메소드에서 env의 개별 property가져옴(이때 xml에서 value를 입력하지 않는다)
@@ -138,7 +138,7 @@ GenericXmlApplicationContext객체가 AbstractApplicationContext객체의 하위
 (물론 데이터 타입으로서 AbstractApplicationContext가 대신해도 괜찮다. 상위객체이기 때문.)
 
 
-Day4
+Day4(SpringAop)
 AOP란(Aspect Oriented Programming)(관점 지향 프로그래밍)
 상속을 통한 방법에 한계가 있어 등장.(다중상속 불가, 핵심기능 코드와 공통기능 코드가 섞여 있음.)
 공통 기능과 핵심 기능을 분리시키고, 공통기능 중 필요 부분을 핵심 부분에 적용하는 것.
@@ -169,7 +169,7 @@ Advice종류
 5. <aop:around> : 메소드 실행 전/후 및 exception 발생시 advice실행 
 
 
-Day5
+Day5(SpringAop2)
 @Aspect를 사용한 AOP구현
 
 순서
@@ -205,7 +205,7 @@ Aspect Pointcut에는 종류가 상당히 많다.(모두 메소드가 기준이�
 	//~ker로 끝나는 빈에만 적용
 
 
-Day6
+Day6(Spring_basic)
 Spring MVC게시판 만들때, 패키지 com.javalec.spring_project
 이때 spring_project부분이 이 프로젝트의 context명이다.
 (이는 Servers폴더의 server파일을 열어 확인 할 수 있다.)
@@ -242,7 +242,7 @@ Day7
 서버의 Web Modules에서 지우고 다시 하면 됨.
 
 
-Day8
+Day8(Spring_Form)
 
 데이터 처리 방법(모두 get방식으로 데이터 입력하는데, 이때 get방식의 인코딩 해야함.)
 1. HttpServletRequest클래스 - Controller에 데이터를 받아오는 역할(Model객체 사용)
@@ -270,8 +270,19 @@ ex) @RequestMapping(method = RequestMethod.GET, value = "/student")
 
 redirect통한 페이지 이동
 
+Day9
+
 기존에 javascript로 했던 유효성 검사는 client측에서 하는것이였다.
 이를 server측에서 하는방법
+
+맵핑 메소드 파라미터에 데이터 클래스와 BindingResult클래스 삽입.
+유효성 검사를 하는 클래스를 제작하고 그 클래스를 맵핑클래스에서 객체생성.
+(유효성 검사를 하는 클래스는 Validator 인터페이스를 구현하고 있음)
+(유효성 검사하는 클래스는 에러가 있을경우 Errors객체를 result에 넣어줌)
+Validator인터페이스를 사용할때 validate메소드 말고 ValidationUtils의 간편한 클래스도 있다..
+
+맵핑 메소드에서 유효성 검사를 하는 클래스를 직접 생성하지 않고 Spring으로 부터 호출하는 방법
+==@Vaild or @Validated, @InitBinder(의존 추가 해야됨)
 
 
 
@@ -279,3 +290,4 @@ https://mvnrepository.com/ - 라이브러리 버전 확인
 cglib - proxy객체 생성해주는 라이브러리
 org.aspectj - aop사용 라이브러리
 annotation - bean의 annnotation사용 라이브러리(생명주기때 사용했었음)
+org.hibernate - 유효성 검사 호출시키는 라이브러리
