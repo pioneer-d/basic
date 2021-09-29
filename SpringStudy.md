@@ -237,12 +237,11 @@ Controller생성 - 클래스에 @Controller 어노테이션을 붙여주면 끝.
 	
 	클래스 자체에 RequestMapping 어노테이션을 붙이면, 경로의 기본값이 된다.
 
-Day7
 (톰캣이 실행 안되고 Could not publish server configuration for Tomcat v9.0 Server at localhost. 이 에러가 뜰때.)
 서버의 Web Modules에서 지우고 다시 하면 됨.
 
 
-Day8(Spring_Form)
+Day7(Spring_Form)
 
 데이터 처리 방법(모두 get방식으로 데이터 입력하는데, 이때 get방식의 인코딩 해야함.)
 1. HttpServletRequest클래스 - Controller에 데이터를 받아오는 역할(Model객체 사용)
@@ -270,7 +269,7 @@ ex) @RequestMapping(method = RequestMethod.GET, value = "/student")
 
 redirect통한 페이지 이동
 
-Day9
+Day8
 
 기존에 javascript로 했던 유효성 검사는 client측에서 하는것이였다.
 이를 server측에서 하는방법
@@ -284,7 +283,33 @@ Validator인터페이스를 사용할때 validate메소드 말고 ValidationUtil
 맵핑 메소드에서 유효성 검사를 하는 클래스를 직접 생성하지 않고 Spring으로 부터 호출하는 방법
 ==@Vaild or @Validated, @InitBinder(의존 추가 해야됨)
 
+@@@@@@
+[Oracle] ORA-28001 오라클 패스워드 만료오류시
+cml창에 sqlplus 들어가서 아이디 비밀번호 입력 누르고 재생성 하면 된다.
 
+MVC패턴 게시판 만들기 준비과정
+//테이블 생성
+create table STUDY_Spring_BOARD(
+bId number(4) primary key,
+bName varchar2(20),
+bTitle varchar2(100),
+bContent varchar2(300),
+bDate date default sysdate,
+bHit number(4) default 0,
+bGroup number(4),
+bStep number(4),
+bIndent number(4)
+);
+//시퀀스 생성
+create sequence STUDY_Spring_BOARD_seq;
+//더미 데이터
+Dummy Data
+insert into STUDY_Spring_BOARD (bId, bName, bTitle, bContent, bHit, bGroup,bStep, bIndent)
+values (STUDY_Spring_BOARD_seq.nextval, 'abcd', 'is title', 'is content', 0, STUDY_Spring_BOARD_seq.currval, 0, 0);
+
+(게시판 부분 구현 후 회원가입을 따로 넣자.)
+UI도 직접 넣은 뒤 포트폴리오에 넣기
+다음 Spring boot or node.js or android or swift or another
 
 https://mvnrepository.com/ - 라이브러리 버전 확인
 cglib - proxy객체 생성해주는 라이브러리
