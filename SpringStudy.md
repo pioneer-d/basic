@@ -307,6 +307,8 @@ Dummy Data
 insert into STUDY_Spring_BOARD (bId, bName, bTitle, bContent, bHit, bGroup,bStep, bIndent)
 values (STUDY_Spring_BOARD_seq.nextval, 'abcd', 'is title', 'is content', 0, STUDY_Spring_BOARD_seq.currval, 0, 0);
 
+복습
+
 (게시판 부분 구현 후 회원가입을 따로 넣자.)
 UI도 직접 넣은 뒤 포트폴리오에 넣기
 다음 Spring boot or node.js or android or swift or another
