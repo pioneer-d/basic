@@ -15,7 +15,7 @@ public class MainClass {
 		st.getStudentInfo();	//핵심 기능
 		
 		//이 메소드는 xml의 어떤 정보값을 불러오진 않지만, xml 객체의 메소드이다.
-		st.test();	//핵심기능 아님!
+		st.test();	//핵심기능이라 인식
 		
 		//이 객체는 xml을 참조하지 않는 객체이다.
 		Student st1 = new Student();

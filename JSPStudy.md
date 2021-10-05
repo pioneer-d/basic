@@ -282,7 +282,7 @@ window -> preference -> java -> build path -> classpath variable -> JRE_LIB폴�
 
 3. SQL문 실행
 	Statement
-	PreparedStatement는 Statement의 진화버전(중복코드를 완화해준다.) - inset 어쩌구 블라블라 ?,?,?,? 이런거
+	PreparedStatement는 Statement의 진화버전(중복코드를 완화해준다.) - insert 어쩌구 블라블라 ?,?,?,? 이런거
 	connection.createStatement();
 	: Statement객체를 통해 SQL문이 실행됨.
 
@@ -426,8 +426,8 @@ Forwarding
 
 MVC패턴이란
 Model View Controller를 뜻하는 개발 형태의 일종.
-Model은 데이터베이스와의 관계를 담당. 이를 Controller로 전달
-View는 클라에게 보여지는 UI화면. 주로 jsp로 작성. Controller에서 어떤 View를 보여줄지 결정.
+Model(DAO)은 데이터베이스와의 관계를 담당. 이를 Controller로 전달
+View(JSP)는 클라에게 보여지는 UI화면. 주로 jsp로 작성. Controller에서 어떤 View를 보여줄지 결정.
 Controller는 클라로부터 요청을 받고, 적절히 Model과 View를 결정.
 
 Model1방식
