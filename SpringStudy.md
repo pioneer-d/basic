@@ -307,7 +307,19 @@ Dummy Data
 insert into STUDY_Spring_BOARD (bId, bName, bTitle, bContent, bHit, bGroup,bStep, bIndent)
 values (STUDY_Spring_BOARD_seq.nextval, 'abcd', 'is title', 'is content', 0, STUDY_Spring_BOARD_seq.currval, 0, 0);
 
-복습
+Day9,Day10
+Controller맵핑 작업
+Command 구조파악
+Dto,Dao생성
+
+dto소스입력
+dao list부분 입력.
+list.jsp생성
+
+write부분 작성 완료
+(db사용시 spring은 따로 jdbc라이브러리를 넣지 않았다.
+우리는 톰캣폴더 ilb폴더 안에 jdbc를 넣어두었고, db접속시 server의 context를 거치기 때문에 tomcat이 알아서 연결 해주는 것 같다.)
+(이방법 말고 직접 pom.xml에 oracle의 jdbc라이브러리를 넣을 수 있다.)
 
 (게시판 부분 구현 후 회원가입을 따로 넣자.)
 UI도 직접 넣은 뒤 포트폴리오에 넣기
