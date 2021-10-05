@@ -72,5 +72,33 @@ public class BDao {
 		return dtos;
 		
 	}
+	
+	public void write(String bName, String bTitle, String bContent) {	//글작성 하기
+		
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		
+		String query = "insert into STUDY_SPRING_BOARD values (STUDY_SPRING_BOARD_seq.nextval,?,?,?,?,0, STUDY_SPRING_BOARD_seq.currval, 0, 0)";
+
+		try {
+			connection = dataSource.getConnection();
+			pstmt = connection.prepareStatement(query);
+			pstmt.setString(1, bName);
+			pstmt.setString(2, bTitle);
+			pstmt.setString(3, bContent);
+			pstmt.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
+			pstmt.executeUpdate();	//db에 입력 실행
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null)pstmt.close();
+				if(connection != null)connection.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+	}
 
 }
