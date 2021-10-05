@@ -149,7 +149,6 @@ Day5
 response
 response는 내부객체.(jsp내에서 따로 객체생성 할 필요x)
 sendRedirect객체가 자주 쓰인다.(데이터와 함께 페이지 이동 가능하게 해주는.)
-(?뒤로 데이터를 넘길때 request.getParameter로 받았는데 null이 나왔다...)
 
 액션태그란?
 JSP내에서 어떤 동작을 하도록 지시하는 태그.(페이지 이동, 페이지 include등)
@@ -307,8 +306,6 @@ Day8
 
 원초적 회원가입 틀 만들어보기.
 다이어그램 만듬. 찍어서 올리기
-opgg용 이력서, 포트폴리오 만들기
-넥슨용 이력서, 포트폴리오. - 엔지니어 부문.
 https://www.saramin.co.kr/zf_user/jobs/relay/view?isMypage=no&rec_idx=40993808&recommend_ids=
 eJxNz8sRxDAIA9Bq9g4YkDinkPTfxeJMYvv4RiM%2Bo4AK6k3NHy6XChfGZhqBpkyqKDTyptWTpnrK0XUtbL
 KGYXzsbiRidRnDvEepvcyiN9%2B02xVHCiOb4yHonSwmRS0WmY6R6wx4b8rjQfZT%2B0gXmR99k82Re1GR6jXP

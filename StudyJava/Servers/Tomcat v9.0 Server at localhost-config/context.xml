@@ -23,7 +23,7 @@
     <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
    
    <!-- 이것이 커넥션풀을 위한 설정. -->
-    <Resource maxWait="-1" maxIdle="10" maxActive="20" password="hr" 
+    <Resource maxWait="-1" maxIdle="10" maxActive="20" password="1234" 
     username="hr" url="jdbc:oracle:thin:@localhost:1521:XE" 
     type="javax.sql.DataSource" driverClassName="oracle.jdbc.driver.OracleDriver" 
     auth="Container" name="jdbc/OracleDB"/>

@@ -318,3 +318,4 @@ cglib - proxy객체 생성해주는 라이브러리
 org.aspectj - aop사용 라이브러리
 annotation - bean의 annnotation사용 라이브러리(생명주기때 사용했었음)
 org.hibernate - 유효성 검사 호출시키는 라이브러리
+db 1234
