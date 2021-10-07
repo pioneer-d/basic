@@ -328,9 +328,24 @@ UI도 직접 넣은 뒤 포트폴리오에 넣기
 Day11
 JDBC Template을 사용하지 않은 Spring MVC 게시판 완성.
 
+DAO부분에서 커넥션풀 가져오고, db접속하고, 입력하고, result가져오고 이런 부분들이 반복됨.
+이 반복을 줄이기 위해 Spring Bean사용
+
+순서
+1. jdbc의존성 추가
+2. controller 필드에 JdbcTeplate변수 생성
+3. controller에 2번 변수의 setter생성(이때 이 setter는 @Autowired 어노테이션 붙음)
+4. servlet-context.xml에 빈 생성(84강 15:32부분 참고)
+5. 패키지 생성(util)후 클래스 이름 Constant생성 후 static변수 JdbcTemplate생성
+6. 3번의 setter에서 5번의 static변수 가져옴
+7. 이후 Dao에서 미친듯이 반복코드를 줄일 수 있다.
+
+
+
 https://mvnrepository.com/ - 라이브러리 버전 확인
 cglib - proxy객체 생성해주는 라이브러리
 org.aspectj - aop사용 라이브러리
 annotation - bean의 annnotation사용 라이브러리(생명주기때 사용했었음)
 org.hibernate - 유효성 검사 호출시키는 라이브러리
+org.springframework/spring-jdbc - jdbctemplate사용하는 라이브러리
 db 1234
