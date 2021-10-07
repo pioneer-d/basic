@@ -85,7 +85,7 @@ public class BController {
 		command = new BReplyCommand();
 		command.execute(model);
 		
-		return "reply";
+		return "redirect:list";
 	}
 	
 	@RequestMapping("/delete")		//글 삭제하기

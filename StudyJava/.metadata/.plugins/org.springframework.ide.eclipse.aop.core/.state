@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
+<aop-project name="Spring_basic"/>
 <aop-project name="Spring_MVC_Board"/>
 <aop-project name="Spring_Form"/>
 <aop-project name="SpringAop2">

@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.net.URL"/>
-    <fullyQualifiedTypeName name="java.net.URLConnection"/>
-    <fullyQualifiedTypeName name="java.io.FileWriter"/>
-    <fullyQualifiedTypeName name="java.net.ServerSocket"/>
-    <fullyQualifiedTypeName name="java.net.Socket"/>
-    <fullyQualifiedTypeName name="jdk.internal.org.jline.utils.InputStreamReader"/>
-    <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
-    <fullyQualifiedTypeName name="com.sun.tools.javac.launcher.Main"/>
-    <fullyQualifiedTypeName name="java.io.BufferedReader"/>
-    <fullyQualifiedTypeName name="java.util.Arrays"/>
-    <fullyQualifiedTypeName name="javax.servlet.annotation.WebInitParam"/>
     <fullyQualifiedTypeName name="java.io.PrintWriter"/>
     <fullyQualifiedTypeName name="day5.abstractTest.HeadStore"/>
     <fullyQualifiedTypeName name="javax.sql.DataSource"/>
@@ -20,7 +9,6 @@
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="com.javalec.ex.Day10.MemeberDTO"/>
-    <fullyQualifiedTypeName name="java.sql.Timestamp"/>
     <fullyQualifiedTypeName name="com.javalec.ex.Day9.MemberDTO"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="org.springframework.context.support.GenericApplicationContext"/>
@@ -28,12 +16,10 @@
     <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.AnnotationConfigApplicationContext"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.InitializingBean"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.DisposableBean"/>
     <fullyQualifiedTypeName name="javax.annotation.PostConstruct"/>
     <fullyQualifiedTypeName name="javax.annotation.PreDestroy"/>
-    <fullyQualifiedTypeName name="java.lang.Throwable"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint"/>
     <fullyQualifiedTypeName name="org.aspectj.lang.ProceedingJoinPoint"/>
@@ -43,15 +29,11 @@
     <fullyQualifiedTypeName name="org.aspectj.lang.annotation.Before"/>
     <fullyQualifiedTypeName name="org.springframework.context.support.AbstractApplicationContext"/>
     <fullyQualifiedTypeName name="org.springframework.context.support.GenericXmlApplicationContext"/>
-    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
     <fullyQualifiedTypeName name="com.javalec.ex.Member"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="org.springframework.web.servlet.ModelAndView"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
     <fullyQualifiedTypeName name="org.springframework.validation.Errors"/>
     <fullyQualifiedTypeName name="org.springframework.validation.BindingResult"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMethod"/>
@@ -60,4 +42,22 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.WebDataBinder"/>
     <fullyQualifiedTypeName name="com.javalec.ex.StudentValidator"/>
     <fullyQualifiedTypeName name="org.springframework.validation.annotation.Validated"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+    <fullyQualifiedTypeName name="com.javalec.springMVC.command.BListCommand"/>
+    <fullyQualifiedTypeName name="com.javalec.springMVC.command.BWriteCommanad"/>
+    <fullyQualifiedTypeName name="com.javalec.springMVC.command.BContentCommand"/>
+    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="com.javalec.springMVC.command.BModifyCommand"/>
+    <fullyQualifiedTypeName name="com.javalec.springMVC.command.BReplyViewCommand"/>
+    <fullyQualifiedTypeName name="com.javalec.springMVC.command.BCommand"/>
+    <fullyQualifiedTypeName name="com.javalec.springMVC.command.BReplyCommand"/>
+    <fullyQualifiedTypeName name="com.javalec.springMVC.command.BDeleteCommand"/>
+    <fullyQualifiedTypeName name="java.lang.Throwable"/>
+    <fullyQualifiedTypeName name="java.sql.Timestamp"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.javalec.springMVC.dto.BDto"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="com.javalec.springMVC.dao.BDao"/>
 </qualifiedTypeNameHistroy>

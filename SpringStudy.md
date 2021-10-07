@@ -325,6 +325,9 @@ write부분 작성 완료
 UI도 직접 넣은 뒤 포트폴리오에 넣기
 다음 Spring boot or node.js or android or swift or another
 
+Day11
+JDBC Template을 사용하지 않은 Spring MVC 게시판 완성.
+
 https://mvnrepository.com/ - 라이브러리 버전 확인
 cglib - proxy객체 생성해주는 라이브러리
 org.aspectj - aop사용 라이브러리
