@@ -6,7 +6,6 @@
     <fullyQualifiedTypeName name="javax.naming.InitialContext"/>
     <fullyQualifiedTypeName name="com.sun.tools.javac.util.Context"/>
     <fullyQualifiedTypeName name="javax.naming.Context"/>
-    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="com.javalec.ex.Day10.MemeberDTO"/>
     <fullyQualifiedTypeName name="com.javalec.ex.Day9.MemberDTO"/>
@@ -54,10 +53,11 @@
     <fullyQualifiedTypeName name="com.javalec.springMVC.command.BReplyCommand"/>
     <fullyQualifiedTypeName name="com.javalec.springMVC.command.BDeleteCommand"/>
     <fullyQualifiedTypeName name="java.lang.Throwable"/>
-    <fullyQualifiedTypeName name="java.sql.Timestamp"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="com.javalec.springMVC.dto.BDto"/>
     <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="com.javalec.springMVC.dao.BDao"/>
+    <fullyQualifiedTypeName name="java.sql.Timestamp"/>
 </qualifiedTypeNameHistroy>

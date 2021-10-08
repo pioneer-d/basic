@@ -45,6 +45,7 @@
 </aop-project>
 <aop-project name="SpringStudy1"/>
 <aop-project name="Spring_Validate"/>
+<aop-project name="Spring_MVC_Board2"/>
 <aop-project name="SpringAop">
 <aspect-definition advice-class-name="com.javalec.ex.LogAop" advice-method-name="loggerAop" advice-type="AROUND" aspect-end-line-number="13" aspect-name="LogAop" aspect-start-line-number="13" factory-id="org.springframework.ide.eclipse.aop.core.beanAspectDefinitionElementFactory" file="/SpringAop/src/main/resources/applicationCTX.xml" pointcut-expression="within(com.javalec.ex.*)" proxy-target-class="false">
 <aop-reference advice-type="AROUND" bean="1:BeansModel|2:SpringAop|3:src/main/resources/applicationCTX.xml|7:beans:6|8:student:20" bean-file="/SpringAop/src/main/resources/applicationCTX.xml" bean-start-line="20" factory-id="org.springframework.ide.eclipse.aop.core.aopReferenceElementFactory" file="/SpringAop/src/main/resources/applicationCTX.xml" source="=SpringAop/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.javalec.ex{LogAop.java[LogAop~loggerAop~QProceedingJoinPoint;" source-start-line="10" target="=SpringAop/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.javalec.ex{Student.java[Student~setGradeNum~I" target-start-line="26"/>
