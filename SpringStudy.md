@@ -355,6 +355,7 @@ aws적용하기
 
 이후 안드로이드, node.js Spring boot등 다른거 ㄲ
 
+복습 한번 쫘악
 
 
 
