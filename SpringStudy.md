@@ -307,6 +307,15 @@ Dummy Data
 insert into STUDY_Spring_BOARD (bId, bName, bTitle, bContent, bHit, bGroup,bStep, bIndent)
 values (STUDY_Spring_BOARD_seq.nextval, 'abcd', 'is title', 'is content', 0, STUDY_Spring_BOARD_seq.currval, 0, 0);
 
+1. indent = list에 나오는 -이다(몇단계의 답변인지 알게해주는)
+2. 최신 글이 위로 나오게 하도록 해주는 놈이 step.
+	답변을 달게되면 답변달 글(해당글이라 지칭)보다 step이 1증가. 
+	그리고 해당글보다 step이 높은 애들 step이 1증가
+	한글의 답변들은 모두 group이 같다. 
+	group으로 묶어 놓고 indent로 답변 계단 구분하고
+	step으로 최신글을 위로 올라오게 한다.(최신 일수록 step이 적음.)
+	답변을 달면 달수록 원래 존재하던 답변들의 step이 증가함.
+
 Day9,Day10
 Controller맵핑 작업
 Command 구조파악
