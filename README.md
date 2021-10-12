@@ -13,12 +13,13 @@ Object Oriented Program - 객체지향 언어로 개발과 유지보수면에서
 
 JAVA개발 환경설정
 JDK - JAVA개발 키트(내가 쓰고있는건 15.0.2버전)
+(JRE : Java Runtime Environment)
 (개발이 아닌 실행만 시킬거면 JRE만 있으면 된다)
 IDE - 통합 개발툴(이클립스)
 
 시스템 변수(Program파일의 java파일 참고)설정
 1. 변수 이름 :  JAVA_HOME - 변수 값 : jdk까지의 경로
-2. 변수 이름 : Path - 변수 값 : bin까지 경로>
+2. 변수 이름 : Path - 변수 값(추가) : %JAVA_HOME%\bin 입력
 
 
 github desktop 올릴때 CFLR어쩌구 에러뜰때
