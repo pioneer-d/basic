@@ -17,10 +17,10 @@ public class Variable {		//간단하게 변수종류에 대해 알아보자
 		byte b = 23;
 		short sh = 2323;
 		int i = 123123;
-		long l = 123123L;
+		long l = 123123123123L;
 		
 		//실수형
-		float f = 12.123F;
+		float f = 12.123f;
 		double d = 123.123;
 		
 		System.out.println(type);
