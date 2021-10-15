@@ -7,7 +7,7 @@ public class SuperRobot extends RobotFrame {
 	public SuperRobot() {
 		//여기서 개별기능을 default로 넣어줘도 되고
 		//setter를 통해 입력해도 된다!
-		//이 클래스만 생성자로 압력해주자.
+		//이 클래스만 생성자로 입력해주자.
 		ifly = new FlyYes();
 		imisail = new MisailYes();
 		iknife = new KnifeLazer();

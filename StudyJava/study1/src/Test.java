@@ -1,23 +1,21 @@
 
 public class Test {
 	
-	public static void main(String []args) {
+	static int a = 10;
+	
+	static class InnerClass {
 		
-		A a = new A(1);
-		A b = a;
-		
-		b.a = 2;
-		System.out.println(a.a);
-		System.out.println(System.identityHashCode(a));
-		System.out.println(System.identityHashCode(b));
+		static public void innerMethod() {
+			System.out.println("innerMethod");
+			System.out.println("outClass의 변수 가져오기 a : "+a);
+		}
 		
 	}
+	
+	InnerClass inner = new InnerClass();
 
-}
-
-class A{
-	int a;
-	public A(int a) {
-		this.a = a;
+	public static void main(String[] args) {
+		Test.InnerClass.innerMethod();
 	}
 }
+
