@@ -25,7 +25,7 @@ public class BDao {
 	
 	JdbcTemplate template = null;
 	
-	public BDao() {	//이것들 전부 필요없게됨. servlet-context에서 설정을 다 했기때문.
+	public BDao() {	//servlet-context에서 설정을 다 했음
 		// TODO Auto-generated constructor stub
 		template = Constant.template;
 	}
