@@ -400,7 +400,7 @@ Day13
 	</beans:bean>
 
 
-회원가입 -> 로그인 -> 게시판
+패키지 구성, member부분 view구성, member부분 작업중
 
 
 
