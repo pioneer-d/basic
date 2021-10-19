@@ -353,6 +353,57 @@ Day12
 JdbcTemplate를 활용한 Spring게시판 만들기 과정.
 Dao수정중
 
+
+Day13
+처음부터 끝까지 스스로 게시판만들기
+
+개발환경 setting
+1. web.xml에 한글 인코딩
+	<!-- 한글 인코딩 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>
+			org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+2. pom.xml에 jdbcTemplate의존성 추가
+	<!-- jdbcTemplate -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-jdbc</artifactId>
+		<version>${org.springframework-version}</version>
+	</dependency>
+
+3. servlet-context에 dataSource및 template빈 생성 - 객체주입
+	<beans:bean name = "dataSource" class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value = "oracle.jdbc.driver.OracleDriver"/>
+		<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+		<beans:property name="username" value = "hr"/>
+		<beans:property name="password" value = "1234"/>
+	</beans:bean>
+	
+	<beans:bean name = "template" class = "org.springframework.jdbc.core.JdbcTemplate">
+		<beans:property name="dataSource" ref="dataSource"/>
+	</beans:bean>
+
+
+회원가입 -> 로그인 -> 게시판
+
+
+
 jdbc로 프로젝트 하나 더 만들어보기.
 면접질문들 정리 싹 하기
 코드 하나씩 뜯어보기(원초적 질문)
@@ -362,9 +413,6 @@ jdbc로 프로젝트 하나 더 만들어보기.
 유튜브에 업로드하기(손코딩 녹화)
 aws적용하기
 
-이후 안드로이드, node.js Spring boot등 다른거 ㄲ
-
-복습 한번 쫘악
 
 
 
