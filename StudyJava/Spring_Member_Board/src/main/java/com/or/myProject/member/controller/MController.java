@@ -15,13 +15,13 @@ public class MController {
 	
 	MCommand command;
 	
-	public JdbcTemplate template;
-	
-	@Autowired
-	public void setTemplate(JdbcTemplate template) {
-		this.template = template;
-		Constant.template = this.template;
-	}
+//	public JdbcTemplate template;
+//	
+//	@Autowired
+//	public void setTemplate(JdbcTemplate template) {
+//		this.template = template;
+//		Constant.template = this.template;
+//	}
 
 	//로그인 페이지
 	@RequestMapping("/login")
@@ -30,11 +30,26 @@ public class MController {
 		return "/member/login";
 	}
 	
+	//로그인 검사
+	@RequestMapping("/loginConfirm")
+	public String loginConfirm(Model model) {
+		return "";
+	}
+	
 	//회원가입 페이지
 	@RequestMapping("/join")	
 	public String join(Model model) {
 		
 		return "member/join";	//회원가입 완료 후 로그인 페이지로 이동
+	}
+	
+	//회원가입 작성 후 모델
+	@RequestMapping("/joinConfirm")
+	public String joinConfirm(Model model) {
+		
+		
+		
+		return "redirect:login";
 	}
 	
 	//로그인 성공후 페이지

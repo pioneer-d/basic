@@ -1,43 +1,38 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	        #btn_group button{
-            border: 1px solid skyblue;
-            background-color: rgba(0,0,0,0);
-            color: skyblue;
-            padding: 5px;
-        }
+#btn_group button {
+	border: 1px solid skyblue;
+	background-color: rgba(0, 0, 0, 0);
+	color: skyblue;
+	padding: 5px;
+}
 </style>
 </head>
 <body>
-
-	<table border = "1" align = "center" bordercolor = "green" width = "500" heigth = "300">
-		<tr colspan = "2" border = "1" align = "center" >·Î±×ÀÎ</tr>
+<form action ="loginConfirm" method = "post">
+	<table border="1" align="center" width="300" heigth="500">
 		<tr>
-			¾ÆÀÌµğ : <input type = "text" colspan = "2" border = "1" align = "center" placeholder = "id" name = "id" >
+			<th colspan="2" border="1" align="center">ë¡œê·¸ì¸</th>
 		</tr>
 		<tr>
-			ºñ¹Ğ¹øÈ£ : <input type = "password" colspan = "2" border = "1" align = "center" placeholder = "password" name = "password" >
+			<td width="100">&nbsp ì•„ì´ë”” : &nbsp<input type="text" placeholder="id" name="id" size="20"></td>
 		</tr>
 		<tr>
-			<div id = "btn_group">
-			<td><input type = "button" onclick = "location.href = 'main'" value = "·Î±×ÀÎ"></td>
-			<td><input type = "button" onclick = "location.href = 'join'" value = "È¸¿ø°¡ÀÔ"></td>
-			</div>
+			<td width="100">ë¹„ë°€ë²ˆí˜¸ : <input type="password"placeholder="password" name="password" size="20"></td>
+		</tr>
+		<tr>
+			<td align="center" border="1">
+			<input type="submit" value="ë¡œê·¸ì¸"> &nbsp 
+			<input type="button" onclick="location.href = 'join'" value="íšŒì›ê°€ì…"></td>
 		</tr>
 	</table>
+</form>
 
-
-
-	<br>
-	<a href = "join">È¸¿ø°¡ÀÔ</a>
-	<br>
-	<a href = "main">·Î±×ÀÎ</a>
-	
 </body>
 </html>
