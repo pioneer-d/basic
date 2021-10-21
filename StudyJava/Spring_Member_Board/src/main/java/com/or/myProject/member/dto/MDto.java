@@ -10,6 +10,10 @@ public class MDto {
 	private int m_Num2;
 	private String m_Intro;
 	
+	public MDto() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public MDto(String m_ID, String m_Pwd, String m_Email, String m_Name, int m_Num1, int m_Num2, String m_Intro) {
 		this.m_Id = m_ID;
 		this.m_Pwd = m_Pwd;

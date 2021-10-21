@@ -24,7 +24,7 @@
 			<td width="100">&nbsp 아이디 : &nbsp<input type="text" placeholder="id" name="id" size="20"></td>
 		</tr>
 		<tr>
-			<td width="100">비밀번호 : <input type="password"placeholder="password" name="password" size="20"></td>
+			<td width="100">비밀번호 : <input type="password"placeholder="password" name="pwd" size="20"></td>
 		</tr>
 		<tr>
 			<td align="center" border="1">
