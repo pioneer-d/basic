@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src = "/resources/joinForm.js">
+<script type="text/javascript" src = "${pageContext.request.contextPath}/resources/js/joinForm.js">
+										<!-- 정적이 아닌 동적으로 지정하는 방법. -->
 </script>
 </head>
 <body>

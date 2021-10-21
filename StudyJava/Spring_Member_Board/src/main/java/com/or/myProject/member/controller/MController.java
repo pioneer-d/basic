@@ -1,5 +1,7 @@
 package com.or.myProject.member.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.or.myProject.Constant;
 import com.or.myProject.member.command.MCommand;
+import com.or.myProject.member.command.MJoinCommand;
 
 @Controller
 @RequestMapping("/member")	//이 클래스의 모든 맵핑 앞줄을 member로 고정.
@@ -15,13 +18,13 @@ public class MController {
 	
 	MCommand command;
 	
-//	public JdbcTemplate template;
-//	
-//	@Autowired
-//	public void setTemplate(JdbcTemplate template) {
-//		this.template = template;
-//		Constant.template = this.template;
-//	}
+	public JdbcTemplate template;
+	
+	@Autowired
+	public void setTemplate(JdbcTemplate template) {
+		this.template = template;
+		Constant.template = this.template;
+	}
 
 	//로그인 페이지
 	@RequestMapping("/login")
@@ -31,8 +34,11 @@ public class MController {
 	}
 	
 	//로그인 검사
-	@RequestMapping("/loginConfirm")
-	public String loginConfirm(Model model) {
+	@RequestMapping("/loginConfirm")		//form값을 받아오기 위해 request사용
+	public String loginConfirm(HttpServletRequest request, Model model) {
+		
+		model.addAttribute(request);
+		
 		return "";
 	}
 	
@@ -45,9 +51,11 @@ public class MController {
 	
 	//회원가입 작성 후 모델
 	@RequestMapping("/joinConfirm")
-	public String joinConfirm(Model model) {
+	public String joinConfirm(HttpServletRequest request,Model model) {
 		
-		
+		model.addAttribute("request",request);
+		command = new MJoinCommand();
+		command.execute(model);
 		
 		return "redirect:login";
 	}

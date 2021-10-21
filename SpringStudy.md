@@ -400,9 +400,21 @@ Day13
 	</beans:bean>
 
 
-패키지 구성, member부분 view구성, member부분 작업중
+Day14
+MEMBER테이블 생성, Member부분 작업
 
+create table S_MEMBER(
+m_Id varchar2(12) primary key,
+m_Pwd varchar2(12),
+m_Email varchar2(50),
+m_Name varchar2(20),
+m_Num1 num(6),
+m_Num2 num(7),
+m_Intro varchar2(100),
+m_Date timestamp
+)
 
+Board테이블은 S_BOARD로
 
 jdbc로 프로젝트 하나 더 만들어보기.
 면접질문들 정리 싹 하기
