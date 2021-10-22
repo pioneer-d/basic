@@ -414,7 +414,16 @@ m_Intro varchar2(100),
 m_Date timestamp
 )
 
+
+Day16
+사용자 정보확인 페이지 구성
+
+
+
+
 Board테이블은 S_BOARD로
+board부분 갈떄 url다시 만들고
+관리자, 사용자 main부분 해야함.
 
 
 이후 회원가입이 필요한 Spring게시판 만들기(직접)
