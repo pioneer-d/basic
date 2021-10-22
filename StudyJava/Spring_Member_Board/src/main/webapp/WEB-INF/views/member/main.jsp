@@ -9,6 +9,7 @@
 <body>
 	<%
 		String m_Id = (String)session.getAttribute("m_Id");
+		//여기에 만약 session값이 없으면 로그인 페이지로 돌아가도록 설정
 	%>
 	<%
 		if(m_Id == null){%>

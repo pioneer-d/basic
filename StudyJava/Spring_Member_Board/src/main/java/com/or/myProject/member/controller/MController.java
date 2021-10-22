@@ -88,8 +88,19 @@ public class MController {
 	
 	//개인정보 수정 페이지
 	@RequestMapping("/member/myInfoUpdate")
-	public String myInfoUpdate(Model model) {
+	public String myInfoUpdate(HttpServletRequest request, Model model) {
+		//session내용이 request에 담겨있는가?
+		model.addAttribute("request", request);	//session이 request객체에 담겨 사용되는지?
+		command = new MMyInfoCommand();
+		command.execute(model);
 		return "member/myInfoUpdate";
+	}
+	
+	//개인정보 수정 완료
+	@RequestMapping("member/myInfoConfirm")
+	public String myInfoConfirm(HttpServletRequest request, Model model) {
+		
+		return "member/main";
 	}
 	
 	//관리자의 사용자 정보 확인 페이지

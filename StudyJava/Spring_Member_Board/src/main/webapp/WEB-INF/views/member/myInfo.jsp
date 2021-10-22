@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action = "myInfoUpdate" method = "post">
 	<table width="50%" height="80" border="1" align="center"
 		cellpadding="5" cellspacing="0" bordercolor="#0872b0">
 		<tr align="center">
@@ -55,8 +54,7 @@
 		</tr>
 	</table>
 	<div align = center><a href="javascript:window.history.back();" >뒤로가기</a> &nbsp
-	<input type = "submit" value = "수정하기">
+	<a href = "myInfoUpdate">수정하기</a>
 	</div>
-	</form>
 </body>
 </html>

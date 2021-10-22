@@ -417,8 +417,11 @@ m_Date timestamp
 
 Day16
 사용자 정보확인 페이지 구성
+main.jsp에서 만약 session값이 없으면 로그인 페이지로 돌아가도록 설정해야함.
 
-
+큰일났다. 이거 update하려면 회원가입때 했던 form가져와서
+js로 유효성도 검사해야함.
+myInfoUpdate.jsp부분 join.jsp끌어와서 작업 다시 ㄱㄱ
 
 
 Board테이블은 S_BOARD로
