@@ -419,9 +419,15 @@ Day16
 사용자 정보확인 페이지 구성
 main.jsp에서 만약 session값이 없으면 로그인 페이지로 돌아가도록 설정해야함.
 
-큰일났다. 이거 update하려면 회원가입때 했던 form가져와서
-js로 유효성도 검사해야함.
-myInfoUpdate.jsp부분 join.jsp끌어와서 작업 다시 ㄱㄱ
+
+Day17
+memberInfoUpdate부분 수정
+개인정보 수정은 비밀번호 / 메일 / 자기소개부분만 수정가능
+회원탈퇴 해야함
+관리자의 사용자 관리 페이지 작성
+
+Board테이블 부분 - Member table에서 id를 외부키로 받아오고 / 이름도 받아오고 / 
+			indent이런거 수정해서 답변을 게시글이 아닌 한줄의 답변으로 수정해보기
 
 
 Board테이블은 S_BOARD로

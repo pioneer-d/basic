@@ -7,22 +7,22 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 
 import com.or.myProject.member.dao.MDao;
+import com.or.myProject.member.dto.MDto;
 
-public class MMyInfoUpdateCommand implements MCommand {
+public class MMemberInfoCommand implements MCommand {
 
 	@Override
 	public void execute(Model model) {
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		
-		String id = request.getParameter("id");
-		String pwd = request.getParameter("pwd");
-		String mail = request.getParameter("mail");
-		String intro = request.getParameter("introduce");
-		
+		String m_Id = request.getParameter("m_Id");
+		MDto dto;
 		MDao dao = new MDao();
 		
-		dao.myInfoUpdate(id, pwd, mail, intro);
+		dto = dao.myInfo(m_Id);	//일반 사용자가 가져오는 model그대로 가져다 씀
+		model.addAttribute("User", dto);
+		
 		
 	}
 

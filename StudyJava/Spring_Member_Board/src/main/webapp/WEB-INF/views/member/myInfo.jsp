@@ -49,7 +49,7 @@
 		<tr>
 			<td bgcolor="#e6e6e6" align="center"><div
 					style="font-weight: bold;">자기소개:</div></td>
-			<td><input type = "text" name = "introduce" value = "${User.m_Intro}" readonly>
+			<td><textarea cols="70" rows="7" id="introduce" name="introduce">${User.m_Intro}</textarea>
 			</td>
 		</tr>
 	</table>

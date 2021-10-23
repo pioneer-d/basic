@@ -1,11 +1,16 @@
 package com.or.myProject.member.dao;
 
+import java.lang.reflect.Array;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 
 import com.or.myProject.Constant;
 import com.or.myProject.member.dto.MDto;
@@ -39,15 +44,15 @@ public class MDao {
 			if (m_Id.equals(dto.getM_Id())) {
 				if (m_Pwd.equals(dto.getM_Pwd())) { // 아이디와 비밀번호가 모두 일치할 경우 id만 return
 					returnId = dto.getM_Id();
-					System.out.println("일치할 경우 id : " + returnId);
+					System.out.println("id와 pwd가 일치할 경우 id : " + returnId);
 				} else { // 일치하지 않을경우
 					returnId = null;
-					System.out.println("일치하지 않을 경우 id : " + returnId); // 이부분은 OK
+					System.out.println("id와 pwd가 일치하지 않을 경우"); // 이부분은 OK
 				}
 			}	
 		} catch (Exception e) {
 			returnId = null;	//값이 존재하지 않을경우
-			System.out.println("값이 존재하지 않을경우 id : " + returnId);
+			System.out.println("로그인 id 값이 존재하지 않을 경우");
 		}
 		return returnId;
 	}
@@ -58,6 +63,23 @@ public class MDao {
 		return template.queryForObject(query, new BeanPropertyRowMapper<MDto>(MDto.class));
 	}
 	
+	//개인정보 수정(비번 메일 자기소개)
+	public void myInfoUpdate(String id, final String pwd, final String mail, final String intro) {
+		String query = "update S_MEMBER set m_Pwd = ?, m_Email = ?, m_Intro = ? where m_Id ='"+id+"'";
+		template.update(query, new PreparedStatementSetter() {
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setString(1, pwd);
+				ps.setString(2,mail);
+				ps.setString(3, intro);
+			}
+		});
+	}
 	
+	//일반사용자 아이디만 출력
+	public List<String> memberList() {
+		String query = "select m_Id from S_MEMBER";
+		return template.queryForList(query, String.class);
+	}
 
 }

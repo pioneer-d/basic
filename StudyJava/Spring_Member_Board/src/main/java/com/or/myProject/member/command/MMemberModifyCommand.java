@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 
 import com.or.myProject.member.dao.MDao;
 
-public class MMyInfoUpdateCommand implements MCommand {
+public class MMemberModifyCommand implements MCommand {
 
 	@Override
 	public void execute(Model model) {
