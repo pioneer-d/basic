@@ -15,6 +15,9 @@
 </style>
 </head>
 <body>
+<%
+	session.invalidate();	//모든 세션 삭제
+%>
 <form action ="loginConfirm" method = "post">
 	<table border="1" align="center" width="300" heigth="500">
 		<tr>

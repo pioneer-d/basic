@@ -12,9 +12,11 @@ import com.or.myProject.Constant;
 import com.or.myProject.member.command.MCommand;
 import com.or.myProject.member.command.MJoinCommand;
 import com.or.myProject.member.command.MLoginCommand;
+import com.or.myProject.member.command.MMemberDeleteCommand;
 import com.or.myProject.member.command.MMemberListCommand;
 import com.or.myProject.member.command.MMemberInfoCommand;
 import com.or.myProject.member.command.MMyInfoCommand;
+import com.or.myProject.member.command.MMyInfoDelete;
 import com.or.myProject.member.command.MMyInfoUpdateCommand;
 
 @Controller
@@ -126,8 +128,30 @@ public class MController {
 	@RequestMapping("memberInfoUpdateConfirm")
 	public String memberInfoUpdateConfirm(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
+		command = new MMyInfoUpdateCommand();
+		command.execute(model);
+		return "member/main";
+	}
+	
+	//°ü¸®ÀÚ°¡ È¸¿øÅ»Åð
+	@RequestMapping("memberInfoDelete")
+	public String memberInfoDelete(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command = new MMemberDeleteCommand();
+		command.execute(model);
 		
 		return "member/main";
 	}
+	
+	//»ç¿ëÀÚ°¡ È¸¿øÅ»Åð
+	@RequestMapping("myInfoDelete")
+	public String myInfoDelete(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command = new MMyInfoDelete();
+		command.execute(model);
+		
+		return "member/login";
+	}
+	
 
 }

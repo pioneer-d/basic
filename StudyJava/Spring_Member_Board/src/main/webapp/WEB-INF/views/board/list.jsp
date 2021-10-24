@@ -11,6 +11,13 @@
 	<%
 		String m_Id = (String)session.getAttribute("m_Id");
 	%>
+	<%
+	if (m_Id == null) {%> <!-- 로그인 없이 들어오는 경우 제한 -->
+	<script>
+		alert("로그인 후 이용해 주세요")
+		history.back();
+	</script>
+	<%}%>
 	<table width="500" cellpadding="0" cellspacing="0" border="1">
 		<tr>
 			<td>번호</td>

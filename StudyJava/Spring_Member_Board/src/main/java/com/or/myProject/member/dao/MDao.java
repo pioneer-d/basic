@@ -1,6 +1,5 @@
 package com.or.myProject.member.dao;
 
-import java.lang.reflect.Array;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -80,6 +79,20 @@ public class MDao {
 	public List<String> memberList() {
 		String query = "select m_Id from S_MEMBER";
 		return template.queryForList(query, String.class);
+	}
+	
+	//사용자 탈퇴
+	public void deleteM(String id) {
+		deleteB(id);
+		String query = "delete from S_MEMBER where m_Id ='"+id+"'";
+		template.update(query);
+	}
+	
+	//게시글 삭제
+	public void deleteB(String id) {
+		String query = "delete from S_BOARD where m_Id ='"+id+"'";
+		template.update(query);
+		
 	}
 
 }

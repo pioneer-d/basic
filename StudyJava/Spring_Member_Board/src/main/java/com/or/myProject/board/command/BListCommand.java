@@ -13,7 +13,6 @@ public class BListCommand implements BCommand {
 	public void execute(Model model) {
 		BDao dao = new BDao();
 		ArrayList<BDto> dto = dao.list();
-		System.out.println(dto);
 		model.addAttribute("list", dto);
 	}
 

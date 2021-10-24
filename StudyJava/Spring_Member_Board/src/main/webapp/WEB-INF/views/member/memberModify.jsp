@@ -106,7 +106,7 @@
     </table>
 	<div align = center><a href="javascript:window.history.back();" >뒤로가기</a> &nbsp
 	<input type = "submit" value = "수정완료">
-	<a href = "myInfoDelete">회원탈퇴</a>
+	<a href = "memberInfoDelete?m_Id=${User.m_Id}">회원탈퇴</a>	
 	</div>
 	</form>
 </body>

@@ -106,7 +106,7 @@
     </table>
 	<div align = center><a href="javascript:window.history.back();" >뒤로가기</a> &nbsp
 	<input type = "submit" value = "수정완료">
-	<a href = "myInfoDelete">회원탈퇴</a>
+	<a href = "myInfoDelete">회원탈퇴</a>	<!-- 이건 세션받게하면 되고 -->
 	</div>
 	</form>
 </body>
