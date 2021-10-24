@@ -430,16 +430,43 @@ Board테이블 부분 - Member table에서 id를 외부키로 받아오고 / 이
 			indent이런거 수정해서 답변을 게시글이 아닌 한줄의 답변으로 수정해보기
 
 
-Board테이블은 S_BOARD로
-board부분 갈떄 url다시 만들고
-관리자, 사용자 main부분 해야함.
+Day18
+BOARD테이블 생성
+create table S_BOARD(
+b_Num number(4) primary key,
+m_Id varchar2(12),
+b_Title varchar2(100),
+b_Content varchar2(2000),
+b_Date date default sysdate,
+b_Hit number(4) default 0,
+b_Group number(4),
+b_Step number(4),
+b_Indent number(4),
+constraint fk_mid foreign key(m_Id) references S_MEMBER(m_Id)
+);
+시퀀스
+create sequence S_BOARD_seq;
+더미
+insert into S_BOARD(b_Num, m_Id, b_Title,b_Content,b_Hit,b_Group,b_Step,b_Indent)
+values (S_BOARD_seq.nextval, 'qwer','is title', 'is content',0,S_BOARD_seq.currval,0,0);
 
+ArrayList를 사용하는 이유는 동적배열, 데이터타입의 자유도 때문!
+
+
+@@@@@@@@@@@@@@@@@@@
+list부분 session에 없을 경우 되돌려 보내기 임시 소
+	<%
+		if(m_Id == null){%>		<!-- 로그인 없이 들어오는 경우 제한 -->
+			<script>
+				alert("로그인 후 이용해 주세요")
+				history.back();
+			</script>
+		<%}%>
 
 이후 회원가입이 필요한 Spring게시판 만들기(직접)
 다 만들고 UI적용해보기
 유튜브에 업로드하기(손코딩 녹화)
 aws적용하기
-
 
 
 

@@ -19,11 +19,11 @@
 	</script>
 	<%}else if(m_Id.equals("admin")){%>
 		<h1>관리자님 환영합니다</h1>								<%-- 관리자 로그인시 --%>
-		<a href = "board/list">게시판으로 가기</a>	<!-- 이렇게 하면 member/board/main 이렇게 되어버림. 문제발생 예상 -->
+		<a href = "../board/list">게시판으로 가기</a>	<!-- 이렇게 하면 member/board/main 이렇게 되어버림. 문제발생 예상 -->
 		<a href = "memberInfo">사용자 관리</a>
 	<%}else{%>
 		<h1><%=m_Id%>님 환영합니다</h1>							<%-- 일반사용자 로그인시 --%>
-		<a href = "board/list">게시판으로 가기</a>	<!-- 이렇게 하면 member/board/main 이렇게 되어버림. 문제발생 예상 -->
+		<a href = "../board/list">게시판으로 가기</a>	<!-- 이렇게 하면 member/board/main 이렇게 되어버림. 문제발생 예상 -->
 		<a href = "myInfo">내정보 확인</a>
 	<%}%>
 	

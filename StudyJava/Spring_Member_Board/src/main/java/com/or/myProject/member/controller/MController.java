@@ -18,6 +18,7 @@ import com.or.myProject.member.command.MMyInfoCommand;
 import com.or.myProject.member.command.MMyInfoUpdateCommand;
 
 @Controller
+@RequestMapping("/member")
 public class MController {
 	
 	MCommand command;
@@ -31,14 +32,14 @@ public class MController {
 	}
 
 	//로그인 페이지
-	@RequestMapping("/member/login")
+	@RequestMapping("login")
 	public String login(Model model) {
 		
 		return "/member/login";
 	}
 	
 	//로그인 검사
-	@RequestMapping("/member/loginConfirm")		//form값을 받아오기 위해 request사용
+	@RequestMapping("loginConfirm")		//form값을 받아오기 위해 request사용
 	public String loginConfirm(HttpServletRequest request, Model model) {
 		
 		model.addAttribute("request",request);
@@ -49,19 +50,19 @@ public class MController {
 	}
 	
 	//로그인 실패시
-	@RequestMapping("/member/loginFail")
+	@RequestMapping("loginFail")
 	public String loginFail(Model model) {
 		return "redirect:login";
 	}
 	
 	//회원가입 페이지
-	@RequestMapping("/member/join")	
+	@RequestMapping("join")	
 	public String join(Model model) {
 		return "member/join";	//회원가입 완료 후 로그인 페이지로 이동
 	}
 	
 	//회원가입 작성 후 DB입력
-	@RequestMapping("/member/joinConfirm")
+	@RequestMapping("joinConfirm")
 	public String joinConfirm(HttpServletRequest request,Model model) {
 		model.addAttribute("request",request);
 		command = new MJoinCommand();
@@ -70,13 +71,13 @@ public class MController {
 	}
 	
 	//로그인 성공후 페이지
-	@RequestMapping("/member/main")
+	@RequestMapping("main")
 	public String main(Model model) {
 		return "member/main";
 	}
 	
 	//개인정보 확인 페이지
-	@RequestMapping("/member/myInfo")
+	@RequestMapping("myInfo")
 	public String myInfo(HttpServletRequest request, Model model) {
 		//session내용이 request에 담겨있는가?
 		model.addAttribute("request", request);	//session이 request객체에 담겨 사용되는지?
@@ -86,7 +87,7 @@ public class MController {
 	}
 	
 	//개인정보 수정 페이지
-	@RequestMapping("/member/myInfoUpdate")
+	@RequestMapping("myInfoUpdate")
 	public String myInfoUpdate(HttpServletRequest request, Model model) {
 		//session내용이 request에 담겨있는가? ㅇㅇ그렇다
 		model.addAttribute("request", request);
@@ -96,7 +97,7 @@ public class MController {
 	}
 	
 	//개인정보 수정 완료
-	@RequestMapping("member/myInfoConfirm")
+	@RequestMapping("myInfoConfirm")
 	public String myInfoConfirm(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		command = new MMyInfoUpdateCommand();
@@ -105,7 +106,7 @@ public class MController {
 	}
 	
 	//관리자의 사용자 리스트 페이지
-	@RequestMapping("/member/memberInfo")
+	@RequestMapping("memberInfo")
 	public String memberInfo(Model model) {
 		command = new MMemberListCommand();
 		command.execute(model);
@@ -113,7 +114,7 @@ public class MController {
 	}
 	
 	//관리자의 사용자 수정 페이지
-	@RequestMapping("/member/memberModify")
+	@RequestMapping("memberModify")
 	public String memberModify(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		command = new MMemberInfoCommand();
@@ -122,18 +123,11 @@ public class MController {
 	}
 	
 	//관리자의 사용자 수정 완료
-	@RequestMapping("member/memberInfoUpdateConfirm")
+	@RequestMapping("memberInfoUpdateConfirm")
 	public String memberInfoUpdateConfirm(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		
 		return "member/main";
 	}
-	
-	//board로 이동
-	@RequestMapping("/member/board")
-	public String board(Model model) {
-		return "redirect:board/list";	//url다시 관리해야함 member부분 삭제해야.
-	}
-	
 
 }
