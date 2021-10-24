@@ -22,7 +22,6 @@ import com.or.two.bcommand.B_ReplyCommand;
 import com.or.two.bcommand.B_ReplyViewCommand;
 import com.or.two.bcommand.B_WriteCommand;
 
-
 @Controller
 @RequestMapping("board/")
 public class B_Controller {

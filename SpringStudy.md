@@ -454,7 +454,10 @@ ArrayList를 사용하는 이유는 동적배열, 데이터타입의 자유도 �
 
 
 @@@@@@@@@@@@@@@@@@@
-list부분 session에 없을 경우 되돌려 보내기 임시 소
+list부분 session에 없을 경우 되돌려 보내기 임시 소스
+	<%
+		String m_Id = (String)session.getAttribute("m_Id");
+	%>
 	<%
 		if(m_Id == null){%>		<!-- 로그인 없이 들어오는 경우 제한 -->
 			<script>
@@ -462,6 +465,7 @@ list부분 session에 없을 경우 되돌려 보내기 임시 소
 				history.back();
 			</script>
 		<%}%>
+
 
 이후 회원가입이 필요한 Spring게시판 만들기(직접)
 다 만들고 UI적용해보기
