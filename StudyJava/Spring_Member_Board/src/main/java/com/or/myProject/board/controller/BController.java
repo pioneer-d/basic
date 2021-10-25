@@ -46,6 +46,9 @@ public class BController {
 		return "board/viewContent";
 	}
 	
+//	@RequestMapping("modify")
+	
+	
 	//글수정
 	
 	//글삭제

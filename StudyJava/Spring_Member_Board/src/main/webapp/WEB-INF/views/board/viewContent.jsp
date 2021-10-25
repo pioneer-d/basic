@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">	<!-- 전부 readonly하고 수정은 다른 페이지로 이동 -->
+<meta charset="EUC-KR">
 <title>Insert title here</title>
 
 </head>
@@ -25,11 +25,11 @@
 			</tr>
 			<tr>
 				<td>제목</td>
-				<td><input type="text" name="b_Title" value="${data.b_Title}"></td>
+				<td><input type="text" name="b_Title" value="${data.b_Title}" readonly></td>
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><textarea rows="10" name="b_Content">${data.b_Content}</textarea></td>
+				<td><textarea rows="10" name="b_Content" readonly>${data.b_Content}</textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="수정">

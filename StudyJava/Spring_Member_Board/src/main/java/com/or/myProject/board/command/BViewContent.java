@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
+import com.or.myProject.board.dao.BDao;
+import com.or.myProject.board.dto.BDto;
+
 public class BViewContent implements BCommand {
 
 	@Override
@@ -15,7 +18,9 @@ public class BViewContent implements BCommand {
 		
 		String num = request.getParameter("b_Num");
 		
-		//여기부터 dao에서 출력문 만들어서 ㄱㄱ
+		BDao dao = new BDao();
+		BDto dto = dao.viewContent(num);
+		model.addAttribute("data", dto);
 		
 	}
 

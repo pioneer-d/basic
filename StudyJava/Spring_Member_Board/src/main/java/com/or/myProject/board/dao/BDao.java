@@ -42,7 +42,12 @@ public class BDao {
 				ps.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
 			}
 		});
+	}
+	
+	public BDto viewContent(String num){	//글 1개 자세히 보기
 		
+		String query = "select * from S_BOARD where b_Num ='"+num+"'";
+		return template.queryForObject(query, new BeanPropertyRowMapper<BDto>(BDto.class));
 	}
 	
 	

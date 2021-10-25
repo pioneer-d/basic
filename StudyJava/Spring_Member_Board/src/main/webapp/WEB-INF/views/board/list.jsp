@@ -31,7 +31,7 @@
 				<td>${dto.b_Num}</td>
 				<td>${dto.m_Id}</td>
 				<td><c:forEach begin="1" end="${dto.b_Indent}">-</c:forEach>
-					<a href="?b_Num=${dto.b_Num}">${dto.b_Title}</a></td>
+					<a href="viewContent?b_Num=${dto.b_Num}">${dto.b_Title}</a></td>
 				<td>${dto.b_Date}</td>
 				<td>${dto.b_Hit}</td>
 			</tr>
