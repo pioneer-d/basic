@@ -236,7 +236,7 @@ Controller생성 - 클래스에 @Controller 어노테이션을 붙여주면 끝.
 	ModelAndView는 데이터와 view의 정보를 담고있음.(반환값이 객체)(Model에 비해 기능이 다양)
 	
 	클래스 자체에 RequestMapping 어노테이션을 붙이면, 경로의 기본값이 된다.
-
+	
 (톰캣이 실행 안되고 Could not publish server configuration for Tomcat v9.0 Server at localhost. 이 에러가 뜰때.)
 서버의 Web Modules에서 지우고 다시 하면 됨.
 
@@ -453,18 +453,14 @@ values (S_BOARD_seq.nextval, 'qwer','is title', 'is content',0,S_BOARD_seq.currv
 ArrayList를 사용하는 이유는 동적배열, 데이터타입의 자유도 때문!
 
 
-@@@@@@@@@@@@@@@@@@@
-list부분 session에 없을 경우 되돌려 보내기 임시 소스
-	<%
-		String m_Id = (String)session.getAttribute("m_Id");
-	%>
-	<%
-		if(m_Id == null){%>		<!-- 로그인 없이 들어오는 경우 제한 -->
-			<script>
-				alert("로그인 후 이용해 주세요")
-				history.back();
-			</script>
-		<%}%>
+Day18
+(ojdbc.jar파일 톰캣 폴더에 있는 상태로 하는중)
+글자세히 보기 완료
+a태그에서 파라미터 여러개 보낼때는 &사용
+글 수정 수정중
+
+Day19
+수정부분 권한주는 부분 하는중
 
 이제	글자세히보기
 	글수정
@@ -489,5 +485,6 @@ cglib - proxy객체 생성해주는 라이브러리
 org.aspectj - aop사용 라이브러리
 annotation - bean의 annnotation사용 라이브러리(생명주기때 사용했었음)
 org.hibernate - 유효성 검사 호출시키는 라이브러리
+cos.jar - 파일 업로드 관련
+ojdbc - 오라클 jdbc
 org.springframework/spring-jdbc - jdbctemplate사용하는 라이브러리
-db 1234

@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.or.myProject.board.command.BCommand;
 import com.or.myProject.board.command.BListCommand;
-import com.or.myProject.board.command.BViewContent;
+import com.or.myProject.board.command.BViewContentCommand;
+import com.or.myProject.board.command.BViewContentCommand2;
 import com.or.myProject.board.command.BWriteCommand;
 
 @Controller
@@ -41,12 +42,19 @@ public class BController {
 	@RequestMapping("viewContent")
 	public String viewContent(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		command = new BViewContent();
+		command = new BViewContentCommand();
 		command.execute(model);
 		return "board/viewContent";
 	}
 	
-//	@RequestMapping("modify")
+	//글 수정
+	@RequestMapping("modifyConfirm")
+	public String modifyConfirm(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command = new BViewContentCommand();
+		command.execute(model);		
+		return "board/modify";
+	}
 	
 	
 	//글수정
@@ -57,4 +65,15 @@ public class BController {
 
 
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

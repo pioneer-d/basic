@@ -1,6 +1,5 @@
 package com.or.myProject.board.dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -10,7 +9,6 @@ import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 
 import com.or.myProject.Constant;
@@ -45,7 +43,6 @@ public class BDao {
 	}
 	
 	public BDto viewContent(String num){	//글 1개 자세히 보기
-		
 		String query = "select * from S_BOARD where b_Num ='"+num+"'";
 		return template.queryForObject(query, new BeanPropertyRowMapper<BDto>(BDto.class));
 	}
