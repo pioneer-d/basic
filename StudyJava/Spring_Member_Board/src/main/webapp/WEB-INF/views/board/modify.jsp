@@ -12,16 +12,16 @@
 	String session_Id = (String)session.getAttribute("m_Id");
 %>
 		<script>
-			var session_id = "<c:out value='<%=session_Id%>'/>";
-			var board_id = "<c:out value='${data.m_Id}'/>";
-			if(session_id != board_id){
-				alert("권한이 없습니다")
-				history.back();
-			}else if(session_id != "admin"){
+			var session_id = String("<c:out value='<%=session_Id%>'/>");
+			var board_id = String("<c:out value='${data.m_Id}'/>");
+			if(session_id != board_id && session_id != "admin"){
 				alert("권한이 없습니다")
 				history.back();
 			}
 		</script>
+		<h1><%=session_Id%></h1>
+		<h1>위에는 session / 아래는 게시글 Id</h1>
+		<h1><c:out value='${data.m_Id}'/></h1>
 <form action = "modify" method = "post">
 	<table width="500" cellpadding="0" cellspacing="0" border="1">
 			<input type="hidden" name="b_Num" value="${data.b_Num}">
