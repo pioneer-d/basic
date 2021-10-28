@@ -19,9 +19,6 @@
 				history.back();
 			}
 		</script>
-		<h1><%=session_Id%></h1>
-		<h1>위에는 session / 아래는 게시글 Id</h1>
-		<h1><c:out value='${data.m_Id}'/></h1>
 <form action = "modify" method = "post">
 	<table width="500" cellpadding="0" cellspacing="0" border="1">
 			<input type="hidden" name="b_Num" value="${data.b_Num}">
@@ -48,8 +45,7 @@
 			<tr>
 				<td colspan="2"><input type = "submit" value = "수정완료">
 					&nbsp;&nbsp; <a href="list">목록보기</a> &nbsp;&nbsp; 
-					<a href="delete?b_Num=${data.b_Num}&m_Id=${data.m_Id}">삭제</a> 
-					&nbsp;&nbsp; <a href="?b_Num=${data.b_Num}">답변</a></td>
+					<a href="delete?b_Num=${data.b_Num}">삭제</a> 
 			</tr>
 	</table>
 </form>

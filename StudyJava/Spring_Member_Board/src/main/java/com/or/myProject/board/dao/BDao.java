@@ -47,6 +47,25 @@ public class BDao {
 		return template.queryForObject(query, new BeanPropertyRowMapper<BDto>(BDto.class));
 	}
 	
+	public void modify(final String b_Num, final String b_Title, final String b_Content) {	//글 수정하기
+		String query = "update S_BOARD set b_Title = ?, b_Content = ? where b_Num = ?";
+		template.update(query, new PreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setString(1,b_Title);
+				ps.setString(2, b_Content);
+				ps.setInt(3, Integer.parseInt(b_Num));
+			}
+		});
+	}
+	
+	public void delete(String b_Num) {	//글 삭제하기
+		int num = Integer.parseInt(b_Num);
+		String query = "delete from S_BOARD where b_Num ='"+num+"'";
+		template.update(query);
+	}
+	
 	
 
 }
