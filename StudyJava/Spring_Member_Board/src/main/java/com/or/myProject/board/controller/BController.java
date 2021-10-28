@@ -89,6 +89,22 @@ public class BController {
 		return "redirect:list3";
 	}
 	
+	//글 답변준비
+	@RequestMapping("replyReady")
+	public String replyReady(HttpServletRequest request, Model model) {
+		model.addAttribute("request",request);
+		command = new BViewContentCommand();
+		command.execute(model);	
+		return "board/reply";
+	}
+	
+	//글 답변완료
+	@RequestMapping("reply")
+	public String reply(HttpServletRequest request, Model model) {
+		model.addAttribute("request",request);
+		
+		return "redirect:list4";
+	}
 	
 	//글답변
 	

@@ -33,7 +33,7 @@
 			<tr>
 				<td colspan="2"><a href = "modifyConfirm?b_Num=${data.b_Num}">수정</a>
 					&nbsp;&nbsp; <a href="list">목록보기</a> &nbsp;&nbsp; 
-					&nbsp;&nbsp; <a href="?b_Num=${data.b_Num}">답변</a></td>
+					&nbsp;&nbsp; <a href="replyReady?b_Num=${data.b_Num}">답변</a></td>
 			</tr>
 	</table>
 
