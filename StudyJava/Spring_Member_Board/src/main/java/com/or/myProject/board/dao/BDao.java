@@ -43,7 +43,9 @@ public class BDao {
 	}
 	
 	public BDto viewContent(String num){	//글 1개 자세히 보기
-		String query = "select * from S_BOARD where b_Num ='"+num+"'";
+		int b_Num = Integer.parseInt(num);
+		upHit(b_Num);
+		String query = "select * from S_BOARD where b_Num ='"+b_Num+"'";
 		return template.queryForObject(query, new BeanPropertyRowMapper<BDto>(BDto.class));
 	}
 	
@@ -66,6 +68,10 @@ public class BDao {
 		template.update(query);
 	}
 	
+	public void upHit(int b_Num) {	//조회수 증가
+		String query = "update S_BOARD set b_Hit = b_Hit+1 where b_Num = '"+b_Num+"'";
+		template.update(query);
+	}
 	
 
 }
