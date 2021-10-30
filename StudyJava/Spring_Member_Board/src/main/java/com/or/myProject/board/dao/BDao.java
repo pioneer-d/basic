@@ -73,5 +73,37 @@ public class BDao {
 		template.update(query);
 	}
 	
+	//답글달기
+	public void reply(final String m_Id, final String b_Title, final String b_Content, final String b_Group, final String b_Step, final String b_Indent ) {
+		reply_shape(b_Group, b_Step);
+		String query = "insert into S_BOARD values (S_BOARD_seq.nextval,?,?,?,?,0,?,?,?)";
+		template.update(query,new PreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				// TODO Auto-generated method stub
+				ps.setString(1, m_Id);
+				ps.setString(2, b_Title);
+				ps.setString(3, b_Content);
+				ps.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
+				ps.setInt(5,Integer.parseInt(b_Group));
+				ps.setInt(6,Integer.parseInt(b_Step)+1);
+				ps.setInt(7,Integer.parseInt(b_Indent)+1);
+			}
+		});
+	}
+	
+	//답글 조정
+	public void reply_shape(final String b_Group, final String b_Step) {
+		String query = "update S_BOARD set b_Step = b_Step + 1 where b_Group = ? and b_Step > ?";
+		template.update(query, new PreparedStatementSetter() {
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setInt(1, Integer.parseInt(b_Group));
+				ps.setInt(2, Integer.parseInt(b_Step));
+			}
+		});
+	}
+	
 
 }

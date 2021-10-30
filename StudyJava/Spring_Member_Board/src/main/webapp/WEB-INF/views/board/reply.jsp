@@ -13,7 +13,6 @@
 %>
 <form action = "reply" method = "post">
 	<table width="500" cellpadding="0" cellspacing="0" border="1">
-			<input type="hidden" name="b_Num" value="${data.b_Num}">
 			<input type = "hidden" name = "b_Group" value = "${data.b_Group}">
 			<input type = "hidden" name = "b_Indent" value = "${data.b_Indent}">
 			<input type = "hidden" name = "b_Step" value = "${data.b_Step}">

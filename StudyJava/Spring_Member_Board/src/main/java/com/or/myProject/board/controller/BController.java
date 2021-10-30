@@ -10,6 +10,7 @@ import com.or.myProject.board.command.BCommand;
 import com.or.myProject.board.command.BDeleteCommand;
 import com.or.myProject.board.command.BListCommand;
 import com.or.myProject.board.command.BModifyCommand;
+import com.or.myProject.board.command.BReplyCommand;
 import com.or.myProject.board.command.BViewContentCommand;
 import com.or.myProject.board.command.BWriteCommand;
 
@@ -38,6 +39,13 @@ public class BController {
 		command = new BListCommand();
 		command.execute(model);
 		return "board/list3";
+	}
+	
+	@RequestMapping("list4")	//삭제 후 리스트
+	public String list4(Model model) {
+		command = new BListCommand();
+		command.execute(model);
+		return "board/list4";
 	}
 	
 	@RequestMapping("write")	//글작성 페이지로 이동
@@ -102,10 +110,9 @@ public class BController {
 	@RequestMapping("reply")
 	public String reply(HttpServletRequest request, Model model) {
 		model.addAttribute("request",request);
-		
+		command = new BReplyCommand();
+		command.execute(model);
 		return "redirect:list4";
 	}
-	
-	//글답변
 	
 }

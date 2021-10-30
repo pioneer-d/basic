@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.springframework.context.support.GenericXmlApplicationContext"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
     <fullyQualifiedTypeName name="com.javalec.ex.Member"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="org.springframework.web.servlet.ModelAndView"/>
@@ -47,17 +45,19 @@
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.or.myProject.Constant"/>
     <fullyQualifiedTypeName name="com.or.myProject.board.command.BWriteCommand"/>
-    <fullyQualifiedTypeName name="org.springframework.jdbc.core.PreparedStatementSetter"/>
     <fullyQualifiedTypeName name="java.sql.Timestamp"/>
     <fullyQualifiedTypeName name="com.or.myProject.member.command.MCommand"/>
     <fullyQualifiedTypeName name="com.or.myProject.member.command.MMemberDeleteCommand"/>
     <fullyQualifiedTypeName name="com.or.myProject.member.dao.MDao"/>
     <fullyQualifiedTypeName name="com.or.myProject.member.command.MMyInfoDelete"/>
-    <fullyQualifiedTypeName name="java.util.Map"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="com.or.myProject.board.command.BViewContent"/>
-    <fullyQualifiedTypeName name="com.or.myProject.board.dao.BDao"/>
     <fullyQualifiedTypeName name="org.springframework.jdbc.core.BeanPropertyRowMapper"/>
     <fullyQualifiedTypeName name="com.or.myProject.board.dto.BDto"/>
+    <fullyQualifiedTypeName name="org.springframework.jdbc.core.PreparedStatementSetter"/>
+    <fullyQualifiedTypeName name="com.or.myProject.board.command.BModifyCommand"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="com.or.myProject.board.dao.BDao"/>
+    <fullyQualifiedTypeName name="com.or.myProject.board.command.BDeleteCommand"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
 </qualifiedTypeNameHistroy>
