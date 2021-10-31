@@ -474,19 +474,36 @@ Day21
 답변 달기
 게시판 완료
 
+여기부터 ㄱㄱ
+모든과정 서술해보기
+1. login.jsp
+	최초의 화면. 로그아웃, 회원가입(redirect)을 하면 이 페이지로 이동
+	스크립틀릿에 모든 세션을 삭제하는 로직 존재.
+	아이디와 비밀번호를 입력하는 text가 있음
+	로그인 버튼과 회원가입 버튼이 있음
+2. join.jsp
+	회원가입 버튼을 클릭하면 페이지 이동.
+	js파일 적용(회원가입의 정규식 적용)
+	정보 입력후 form태그를 통해 Controller -> HttpServletRequest -> Model
+	-> command로 데이터 이동. command에서 Dao객체 생성하여 db로직수행
+	template.update
+3. MLoginCommand
+	
+이런식으로
+이 파일 따로 저장하자.
+
+단어정리
+(servlet / http / sql 등등)
+Spring 구조 정리
+Spring AOP, DI 개념정리
+Jdbctemplate 구조정리
+
+
+
 이제 Spring boot에 대해 공부하기.
 IntelliJ 알아보기.
-게시판 코드 전부 동영상으로 녹화뜨기
-
-
-
 이후Spring boot알아보기
-이후 디자인 입히기
 이후 포트폴리오에 ERD, 구조 직접 써서, 설명란 따로 만들어서, 기간 입력하고 작성
-
-
-이후 회원가입이 필요한 Spring게시판 만들기(직접)
-다 만들고 UI적용해보기
 유튜브에 업로드하기(손코딩 녹화)
 aws적용하기
 
