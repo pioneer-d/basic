@@ -489,16 +489,6 @@ Day21
 	template.update
 3. MLoginCommand
 	
-이런식으로
-이 파일 따로 저장하자.
-
-단어정리
-(servlet / http / sql 등등)
-Spring 구조 정리
-Spring AOP, DI 개념정리
-Jdbctemplate 구조정리
-
-
 
 이제 Spring boot에 대해 공부하기.
 IntelliJ 알아보기.

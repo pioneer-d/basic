@@ -29,7 +29,7 @@ public class BDao {
 		return (ArrayList<BDto>)template.query(query, new BeanPropertyRowMapper<BDto>(BDto.class));
 	}
 	
-	public void write(final String id, final String title, final String content) {
+	public void write(final String id, final String title, final String content) {	//글입력하기
 		String query = "insert into S_BOARD values(S_BOARD_seq.nextval,?,?,?,?,0,S_BOARD_seq.currval,0,0)";
 		template.update(query, new PreparedStatementSetter() {
 			@Override

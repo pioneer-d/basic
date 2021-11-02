@@ -36,18 +36,15 @@ public class MController {
 	//로그인 페이지
 	@RequestMapping("login")
 	public String login(Model model) {
-		
 		return "/member/login";
 	}
 	
 	//로그인 검사
 	@RequestMapping("loginConfirm")		//form값을 받아오기 위해 request사용
 	public String loginConfirm(HttpServletRequest request, Model model) {
-		
 		model.addAttribute("request",request);
 		command = new MLoginCommand();
 		command.execute(model);
-		
 		return "member/main";
 	}
 	
