@@ -17,7 +17,7 @@ import com.or.myProject.member.dto.MDto;
 
 public class MDao {
 	
-	DataSource dataSource;
+//	DataSource dataSource;	사실 이건 필요 없음..!
 	JdbcTemplate template = null;
 	
 	public MDao() {
