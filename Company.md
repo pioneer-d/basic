@@ -38,3 +38,78 @@ cd 폴더명 : 해당 폴더 들어가기.
 1. tomcat/logs들어가기
 2. tail -f catalina.out
 
+
+
+Day2
+oracle에서 사용하는 명령어?
+
+ --1. 변수 대입 출력
+ DECLARE
+        TEST1 NUMBER;
+ BEGIN
+        DBMS_OUTPUT.PUT_LINE(TEST1);
+        TEST1 := 10;
+        DBMS_OUTPUT.PUT_LINE(TEST1);
+        TEST1 := TEST1+10;
+        DBMS_OUTPUT.PUT_LINE(TEST1);
+ END;
+
+
+ --2. 변수 기본값 설정 및 대입
+ DECLARE
+        TEST1 NUMBER DEFAULT 5;
+ BEGIN
+      DBMS_OUTPUT.PUT_LINE(TEST1);
+      TEST1 := 10;
+      DBMS_OUTPUT.PUT_LINE(TEST1);
+      TEST1 := TEST1+10;
+      DBMS_OUTPUT.PUT_LINE(TEST1);
+ END;
+
+
+ --3. TEST1값에 따른 구분 출력(IF/END IF)
+ DECLARE
+        TEST1 NUMBER DEFAULT 5;
+ BEGIN
+      DBMS_OUTPUT.PUT_LINE(TEST1);
+      IF TEST1 = 5 THEN
+         DBMS_OUTPUT.PUT_LINE('TEST1은 5 입니다');
+      END IF;
+ END;
+ 
+ 
+ --4 TEST1값에 따른 구분 출력2(IF/ELSE/END IF)
+ DECLARE
+        TEST1 NUMBER DEFAULT 10;
+ BEGIN
+      DBMS_OUTPUT.PUT_LINE(TEST1);
+      IF TEST1 = 5 THEN
+         DBMS_OUTPUT.PUT_LINE('TEST1은 5입니다');
+      ELSE
+          DBMS_OUTPUT.PUT_LINE('TEST1은 5가 아닙니다');
+      END IF;
+ END;
+ 
+ 
+ --5 TEST1값 복수 조건에 따른 구분 출력(IF/ELSIF/ELSE)
+DECLARE
+       TEST1 NUMBER DEFAULT 15;
+BEGIN
+     IF TEST1 < 10 THEN
+        DBMS_OUTPUT.PUT_LINE('TEST1은 10보다 작다');
+     ELSIF TEST1 < 20 THEN
+        DBMS_OUTPUT.PUT_LINE('TEST1은 20보다 작다');
+     ELSIF TEST1 < 30 THEN
+        DBMS_OUTPUT.PUT_LINE('TEST1은 30보다 작다');
+     END IF;
+END;
+
+
+
+
+
+
+
+
+
+
