@@ -105,6 +105,34 @@ BEGIN
 END;
 
 
+Day3
+
+게시판 중 검색기능에 필요한 함수
+오라클의 like % 함수 - 검색어와 비슷하거나 해당 검색어로 select한다.
+ex) SELECT  ID, USERNAME, HOBBY, STATUS FROM  TESTMAIN  WHERE USERNAME like '%aa%';
+
+공부해야하는 것
+javascript의 프로시저
+oracle의 명령어
+리눅스 설치방법 / 윈도우 설치방법
+cmd갖고 놀기
+복무관리 뜯어보기
+네트워크에 관하여(port / ip 등등)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

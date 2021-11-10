@@ -1,6 +1,5 @@
 INDEX VERSION 1.131+C:\GitHub\pioneer-d\StudyJava\.metadata\.plugins\org.eclipse.jdt.core
 3459279344.index
-306807016.index
 1522023493.index
 380079852.index
 3925490168.index
@@ -32,18 +31,14 @@ INDEX VERSION 1.131+C:\GitHub\pioneer-d\StudyJava\.metadata\.plugins\org.eclipse
 2632442999.index
 2708650680.index
 3643109848.index
-3424073115.index
 2598075710.index
 1132740132.index
 245729498.index
-1467024915.index
-3844832308.index
-622187199.index
 3584412697.index
+622187199.index
 3817169585.index
 855353359.index
 1943761578.index
-3668113412.index
 1594868782.index
 3068980353.index
 2839628969.index
@@ -55,8 +50,6 @@ INDEX VERSION 1.131+C:\GitHub\pioneer-d\StudyJava\.metadata\.plugins\org.eclipse
 1442458766.index
 820084027.index
 298602626.index
-484366010.index
-4134372744.index
 745117524.index
 2701144764.index
 2333419045.index
@@ -69,11 +62,9 @@ INDEX VERSION 1.131+C:\GitHub\pioneer-d\StudyJava\.metadata\.plugins\org.eclipse
 2262642867.index
 2952488648.index
 2907473905.index
-1477421366.index
 526899337.index
 1972360241.index
 3677114714.index
-52705413.index
 1819876580.index
 4242160649.index
 4172953578.index
@@ -82,7 +73,6 @@ INDEX VERSION 1.131+C:\GitHub\pioneer-d\StudyJava\.metadata\.plugins\org.eclipse
 2582553447.index
 2513746801.index
 4207075043.index
-3291496085.index
 1530340916.index
 255839088.index
 2715310064.index
@@ -93,7 +83,6 @@ INDEX VERSION 1.131+C:\GitHub\pioneer-d\StudyJava\.metadata\.plugins\org.eclipse
 2968164918.index
 3341600626.index
 2229886263.index
-3340468100.index
 3530696563.index
 4060165948.index
 2060171948.index
