@@ -111,6 +111,71 @@ Day3
 오라클의 like % 함수 - 검색어와 비슷하거나 해당 검색어로 select한다.
 ex) SELECT  ID, USERNAME, HOBBY, STATUS FROM  TESTMAIN  WHERE USERNAME like '%aa%';
 
+
+Day4
+
+오라클 명령어를 공부하는 이유 -  DB데이터 가공을 java가 아닌 oracle에서 하고 오면 부하도 덜하고 빠르다.
+
+오늘도 Oracle명령어 공부.
+
+--SELECT INTO 예시1     SELECT A INTO B = A를 추출해 B에 입력
+DECLARE
+       TESTDATE VARCHAR2(50) DEFAULT '20170101';
+BEGIN
+     DBMS_OUTPUT.PUT_LINE(TESTDATE);
+     SELECT EX_DATE INTO TESTDATE FROM TB_EXCESS_CAPS_DATA WHERE EX_DATE ='20170310' AND EX_USERNM = '정재욱';
+     DBMS_OUTPUT.PUT_LINE(TESTDATE);
+END;
+
+
+--SELECT INTO 예시2                 ||'|'||가 마치 JAVA의 +인듯?
+DECLARE
+       TESTDATE VARCHAR2(50) DEFAULT '20170101';
+       TESTUSER VARCHAR2(50) DEFAULT '홍길동';
+       TESTSTARTTIME VARCHAR2(50) DEFAULT '09:00';
+BEGIN
+     DBMS_OUTPUT.PUT_LINE(TESTDATE||'|'||TESTUSER||'|'||TESTSTARTTIME);
+     SELECT EX_DATE, EX_USERNM, EX_START_TIME2 INTO TESTDATE, TESTUSER, TESTSTARTTIME FROM TB_EXCESS_CAPS_DATA
+     WHERE EX_DATE='20170310' AND EX_USERNM='정재욱';
+     DBMS_OUTPUT.PUT_LINE(TESTDATE||'|'||TESTUSER||'|'||TESTSTARTTIME);
+END;
+
+
+
+--프로시저
+
+--프로시저 선언  
+--CREATE OR REPLACE PROCEDURE[프로시저명](정의부)
+--IS(선언부)
+--BEGIN(실행부)
+--EXCEPTION(예외처리부)
+--END[프로시저명];
+
+
+--샘플 프로시저 생성
+CREATE OR REPLACE PROCEDURE SAMPLE_JW1
+IS
+  TEST1 NUMBER := 10;
+BEGIN
+     DBMS_OUTPUT.PUT_LINE(TEST1);
+     TEST1 := TEST1+100;
+     DBMS_OUTPUT.PUT_LUNE(TEST1);
+END SAMPLE_JW1;
+
+
+--샘플 프로시저 실행
+BEGIN [SAMPLE_JW1]; END;
+
+
+
+
+
+
+
+
+
+
+Someday,,
 공부해야하는 것
 javascript의 프로시저
 oracle의 명령어
