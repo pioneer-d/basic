@@ -168,7 +168,7 @@ BEGIN [SAMPLE_JW1]; END;
 
 
 
-Day4
+Day5
 
 IP와 port에 관하여
 
@@ -200,7 +200,24 @@ DDNS는 동적DNS인데 수시로 변하는 IP를 감지하여 고정된 도메�
 IPv6는 훨씬 많은 자릿수가 있기때문에 IPv6가 같이 쓰이고 있다.
 
 
+Day5
 
+StringTokenizer에 대하여.
+(문자열 중에서 원하는 기준(문자)으로 문자열을 분리 할 수 있다.
+
+	public static void main(String[] args) {
+		String source = "100,200,300,400";
+		StringTokenizer st = new StringTokenizer(source, ",");	//여기서 String값과 기준 문자를 입력한다.
+		
+		while(st.hasMoreTokens()) {
+			System.out.println(st.nextToken());
+		}
+	}
+=console
+100
+200
+300
+400
 
 
 
