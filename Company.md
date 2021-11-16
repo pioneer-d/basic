@@ -200,7 +200,7 @@ DDNS는 동적DNS인데 수시로 변하는 IP를 감지하여 고정된 도메�
 IPv6는 훨씬 많은 자릿수가 있기때문에 IPv6가 같이 쓰이고 있다.
 
 
-Day5
+Day6
 
 StringTokenizer에 대하여.
 (문자열 중에서 원하는 기준(문자)으로 문자열을 분리 할 수 있다.
@@ -218,6 +218,18 @@ StringTokenizer에 대하여.
 200
 300
 400
+
+
+Day7
+Maria DB공부해야함.
+
+ftp / ssh란?
+
+Hiware프로그램이란?
+
+
+
+
 
 
 
