@@ -9,14 +9,19 @@ pioneer계정에는 Repository가 2개 존재합니다.
 **~~DongSeungStudy~~Repository** = 친구와 C#공부 (현재 보류중)
 
 **pioneer-d Repository**에 들어가면 폴더3개와 md파일 3개가 있습니다.
-+StudyJava(자바의 기초, JSP, Spring의 workspacee)
++StudyJava(자바의 기초, JSP, Spring의 workspace가 있는 폴더)
+	+
+	+
+	+
+	+
++StudyAlgorithm(Java Algorithm을 공부하고 있는 폴더)
+	+
+	+
 
-+StudyAlgorithm(Java Algorithm을 공부하고 있는 workspace)
 
-+md파일
-	+JavaBacis.md, JSPStudy.md, SpringStudy.md는 StudyJava폴더 참고용 md
-	+Company.md는 회사를 다니며 몰랐던 부분, 공부할 부분 정리용 md
-	+Algorithm.md는 StudyAlgorithm폴더 참고용 md
++JavaBacis.md, JSPStudy.md, SpringStudy.md는 StudyJava폴더 참고용 md
++Company.ms는 회사를 다니며 몰랐던 부분, 공부할 부분 정리용 md
+
 
 github사용 이유
 

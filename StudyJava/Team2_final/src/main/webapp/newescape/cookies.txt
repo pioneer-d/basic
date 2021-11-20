@@ -1,5 +1,0 @@
-# HTTrack Website Copier Cookie File
-# This file format is compatible with Netscape cookies
-hd.newescape.co.kr	TRUE	/	FALSE	1999999999	PHPSESSID	dbc6f0c0a2ebb45fbe65e09f85a42fc8
-hd.newescape.co.kr	TRUE	/	FALSE	1999999999	CK_SWCOUNT	1
-
