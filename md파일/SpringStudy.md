@@ -489,12 +489,6 @@ Day21
 3. MLoginCommand
 	
 
-이제 Spring boot에 대해 공부하기.
-IntelliJ 알아보기.
-이후Spring boot알아보기
-이후 포트폴리오에 ERD, 구조 직접 써서, 설명란 따로 만들어서, 기간 입력하고 작성
-유튜브에 업로드하기(손코딩 녹화)
-aws적용하기
 
 
 
