@@ -257,4 +257,23 @@ Oracle의 grant => 권한부여
 html의 frame태그
 
 
+Day10
+oracle ROUND - 소수점 반올림 관리
+oracle trunc - 나눈 몫
+oracle mod - 나눈 나머지
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
