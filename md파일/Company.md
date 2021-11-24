@@ -263,7 +263,8 @@ oracle trunc - 나눈 몫
 oracle mod - 나눈 나머지
 
 
-
+Day11
+Oracle의 decode함수 (마치 case문과 삼항 조건문을 섞어 놓은 느낌?)
 
 
 
