@@ -169,7 +169,6 @@ BEGIN [SAMPLE_JW1]; END;
 
 
 Day5
-
 IP와 port에 관하여
 
 IP - 기기가 인터넷에 접속한 곳의 네트워크상의 위치
@@ -221,6 +220,7 @@ StringTokenizer에 대하여.
 
 
 Day7
+회사 코드 분석
 Maria DB공부해야함.
 
 ftp / ssh란?
@@ -229,6 +229,7 @@ Hiware프로그램이란?
 
 
 Day8
+회사 코드 분석
 Oracle프로시저와 함수 학습.
 프로시저는 주로 SQL을 활용한 연산을 하고(많은 트랜잭션이 있을경우),
 함수는 주로 계산 연산을 한다.(함수는 SQL을 사용하지 못함.)
@@ -255,12 +256,14 @@ Oracle프로시저와 함수 학습.
 Day9
 Oracle의 grant => 권한부여
 html의 frame태그
+회사 코드 분석
 
 
 Day10
 oracle ROUND - 소수점 반올림 관리
 oracle trunc - 나눈 몫
 oracle mod - 나눈 나머지
+회사 코드 분석
 
 
 Day11
