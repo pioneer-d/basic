@@ -270,7 +270,9 @@ Day11
 Oracle의 decode함수 (마치 case문과 삼항 조건문을 섞어 놓은 느낌?)
 
 
-
+Day12
+FTP 활용 숙지
+리눅스 활용 숙지
 
 
 
