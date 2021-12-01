@@ -67,14 +67,29 @@ C언어의 컴파일러 종류
 	- IDE(통합개발환경)(컴파일러, 코드 편집기, 디버거[원래는 따로 설치해야함. / IDE를통해 한번에!])
 	https://visualstudio.microsoft.com/downloads/ => C++용 설치
 
+설치 후 프로젝트 만들어 소스추가 -> C++파일 -> 확장명을 .c로 만들기
+HelloWorld프로젝트에서 main.c라는 파일에 
+#include <stdio.h>
+int main(){
+    printf("Hello World! \n");
+    return 0;
+}
+소스 입력후 ctrl + F5 누르면 실행.
 
+소스분석
+	#include <> : 괄호안의 파일 내용을 이곳에 불러와라
+	<stdio.h> : Header파일.(Standard Input Output - 표준 입출력) 즉 입출력을 담당하는 기능들을 불러온다!
+	int main(){} : 함수이다. main함수가 C프로그램의 시작점. {} 안의 내용이 실행된다.
+		    int는 return값으로 main함수가 끝난 뒤 되돌려줄 데이터 타입.
+	printf : 화면에 출력을 하는 함수(이내용).(stdio.h파일 필요!) 
+	\n : 줄바꿈
 
-
-
-
-
-
-
+과제
+  *  
+ ***
+*****
+형태를 만들어라!
+(이때 한 프로젝트에서 main이 여러개면 충돌 날 수 있다. 그러므로 이전에 한것 속성에서 빌드에서 제외 처리를 해줘야한다.)
 
 
 
