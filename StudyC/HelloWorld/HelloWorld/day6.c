@@ -8,7 +8,14 @@ int main() {
 	printf("a : %d \n", a);
 
 	a++;	//그 뒤로 또 추가하니 음수 +1 형태로 나옴.
-	printf("a : %d ", a);
+	printf("a : %d \n", a);
+
+	unsigned int b = -1;
+	printf("b : %u \n", b);
+
+	unsigned int c = 4294967295;
+	c++;
+	printf("c : %u \n", c);
 
 	return 0;
 }
