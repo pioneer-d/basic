@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main(){
-    double celsius; //?꽠?뵪?삩?룄
+    double celsius;
 
     printf("섭씨 온도를 입력해 주세요. : ");
     scanf("%lf", &celsius);

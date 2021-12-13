@@ -255,11 +255,26 @@ printf("a의 값 : %d , a의 문자 : %c",a,a);
 scanf의 도입(입력함수)
 printf가 각 변수를 출력할 포맷(%d, %c, %f등)이 각각 다르듯,
 scanf도 각 변수의 타입마다 포맷을 달리해야함.
-double의 경우 %lf / float의 경우 %f / char형부터 정리 ㄱㄱ
 
-복습부터.
+	printf("char형 변수 입력 : ");
+	scanf("%c", &ch);
 
+	printf("short형 변수 입력 : ");
+	scanf("%hd", &sh);
 
+	printf("int형 변수 입력 : ");
+	scanf("%d", &i);
+
+	printf("long형 변수 입력 : ");
+	scanf("%ld", &lo);
+
+	printf("float형 변수 입력 : ");
+	scanf("%f", &fl);
+
+	printf("double형 변수 입력 : ");
+	scanf("%lf", &du);
+이정도는 외우는게 좋을 듯 하다.
+(scanf반환 무시 오류가 뜨면 #pragma warning(disable:4996) 추가 하여 경고 무시해도 됨.
 
 
 
