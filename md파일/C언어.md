@@ -277,7 +277,7 @@ scanf도 각 변수의 타입마다 포맷을 달리해야함.
 (scanf반환 무시 오류가 뜨면 #pragma warning(disable:4996) 추가 하여 경고 무시해도 됨.
 
 
-
+복습
 
 
 
