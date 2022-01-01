@@ -1,11 +1,11 @@
 #include <stdio.h>
 
-main(){
+main(){     //입력받는 수가 삼각형의 높이가 되는 정삼각형 만들기
     int n = 0;  //입력 받는 변수(삼각형의 행 개수를 의미)
     printf("정수를 입력하세요 : ");
     scanf("%d", &n);
 
-    for(int i = 0; i<n; i++){
+    for(int i = 0; i<n+1; i++){
         
         for(int j = 0; j<(n-i); j++){   //삼각형을 (세로로)반으로 나누어 좌측 공백 담당
             printf(" ");
