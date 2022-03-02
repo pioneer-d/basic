@@ -19,13 +19,3 @@ Spring Boot 설정하기
 	localhost:8089 브라우저에 입력하면 에러페이지 나올거임. 그럼 성공
 
 4. Spring boot가 웹서버 tomcat을 내장하고 있음.
-
-간혹 build가 자바를 통한데 아닌 
-
-
-
-
-
-추가공부
-
-Maven과 Gradle의 차이
