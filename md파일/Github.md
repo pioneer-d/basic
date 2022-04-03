@@ -25,6 +25,18 @@ https://tagilog.tistory.com/377
 
 	git add hello.html 	(커밋 할 준비를 하기위해 인덱스에 저장)
 
-	git commit -m "new file"
+	git commit -m "new file"	(인덱스에 추가 된 파일을 커밋. 커밋이란 파일이나 디렉토리 추가 또는 변경을 저장소에 기록하는 작업.)
+
+	gitstatus		(파일이 추가 되었는지 확인.)
+
+	git remote add origin https://github.com/pioneer-d/pioneer-d	(원격 저장소의 정보 추가)
+
+	git push origin master	(로컬 저장소의 변경 사항을GitHub에 있는 원격 저장소에 반영)
+
+
+	현재 토큰방식 때문에 push가 안된다. 토큰 생성방식부터 이어서 하자.
+
+https://miracleground.tistory.com/entry/GitHub-%ED%86%A0%ED%81%B0-%EC%9D%B8%EC%A6%9D-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%ED%95%98%EA%B8%B0-%EC%98%A4%EB%A5%98-%ED%95%B4%EA%B2%B0-remote-Support-for-password-authentication-was-removed-on-August-13-2021-Please-use-a-personal-access-token-instead
+
 
 
