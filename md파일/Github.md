@@ -37,6 +37,8 @@ https://tagilog.tistory.com/377
 
 	토큰 : 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
 
+	토큰(노트북) : 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
+
 	
 4. 브랜치 관련 명령어
 	
