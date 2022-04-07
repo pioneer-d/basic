@@ -108,11 +108,50 @@
 
 
 10. 상속
-	Java -> ex) Class Korea{ }	Class NamYangJu Extends Korea { }
+	Java -> ex) Class Korea{ }		Class NamYangJu Extends Korea { }
 	Kotlin -> ex) open class Korea { }	class  NamYangJu : Korea { }
 
 	Kotlin의 class는 기본적으로 final로 생성되기 때문에, 부모 class에 open을 붙여줘야함.
 	추가로 자식 클래스에서 override하여 사용할 함수에도 open을 붙여줘야 재정의를 할 수 있음.
+
+
+11. 람다(Lamda) : 마치 value처럼 다룰 수 있는 익명함수	
+	
+	1. 메소드의 파라미터로 넘겨줄 수 있음.
+	2. 메소드의 리턴 값으로 활용될 수 있음.
+
+	항상 마지막에 오는것이 return값임...! (->)
+
+	형태
+	ex) var lamdaName : Type = {argumentList -> CodeBody}	
+
+	리턴
+
+
+12. 확장함수 : 기존의 클래스를 확장하여 메소드를 만들고 싶은 경우?
+	람다를 활용해 기존의 클래스를 확장할 수 있다.
+
+	파라미터가 1개일 경우 'it'을 활용 할 수 있다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
 
 
 
