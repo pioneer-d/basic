@@ -130,22 +130,34 @@
 	독특한 표현방식
 	- 람다를 매개변수로 하는 함수에서 매개변수의 처음이자 마지막이 lamda인 경우 () 생략가능.
 	- 단, 이방식은 Java 인터페이스여야 하고, 그 인터페이스는 단 하나의 메소드만 가져야만 활용 가능하다.
+	-> 예시로 setOnclickListener이 있음..!
+
 
 12. 확장함수 : 기존의 클래스를 확장하여 메소드를 만들고 싶은 경우?
 	람다를 활용해 기존의 클래스를 확장할 수 있다.
 
 
+13. Data Class : 마치 자바의 DTO의 역할을 하는 것 같음. (차이점 더 알아보기)
+	
+	형태(이게 끝임!)
+	data class Ticket(val company : String, val name : String, var date : String, var seatNum : iInt)
+
+	기능
+	생성자, toString(), hashCode(), equals(), copy()등의 기능이 알아서 만들어짐.	
+
+	추가로 Kotlin에서는 하나의 클래스 내부에 여러개의 data class를 만들 수 있다.
 
 
+14. Companion Object : 마치 자바의 Static처럼 정적인 메소드, 정적인 변수를 활용할때 사용.
+	활용방법은, class에 private 접근제어를 넣어주고,
+	companion object안에 property(마치 자바의 필드), 메소드등을 입력한 뒤,
+	다른 곳에서 클래스를 마치 Static처럼 활용하면 됨.
+	(싱글톤 패턴과 유사.)
+
+	companion object에 이름을 부여할 수도 있고, 다른 객체를 상속할 수도 있다.
 
 
-
-
-
-
-
-
-
+15. Obejct Class : 마치 자바의 Singleton pattern
  
 
 
