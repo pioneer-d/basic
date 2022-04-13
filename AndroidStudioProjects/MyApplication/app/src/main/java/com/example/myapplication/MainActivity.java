@@ -46,6 +46,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static String activityName = "MainActivity";
+
     //권한 관련 변수
     private int REQUEST_CODE_PERMISSIONS = 1001;
     private final String[] REQUIRED_PERMISSIONS = new String[]{"android.permission.CAMERA", "android.permission.WRITE_EXTERNAL_STORAGE"};
@@ -88,12 +90,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Log.d(activityName,"onCreate 실행");
+
         textureView = (TextureView) findViewById(R.id.textureView);
         button = (Button) findViewById(R.id.button);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(activityName,"onCreate 내부 캡쳐 버튼 클릭");
                 try {
                     takePicture();
                 }catch(CameraAccessException e){
@@ -108,17 +113,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d(activityName,"onResume 실행");
+
         //카메라 관련 작업이 UI를 그리는 메인 쓰레드를 방해하지 않기 위해 새로운 Thread와 핸들러 생성.
-        //textureView초기화
         startBackgroundThread();
 
-        if (textureView.isAvailable()) {    //잠시 비활성 된경우 등(activity처음 시작이 아닌 경우)
+        if (textureView.isAvailable()) {    //잠시 비활성 된 경우 등(activity처음 시작이 아닌 경우)
             try {
+                Log.d(activityName,"onResume 내부 openCamera 실행");
                 openCamera();
             } catch (CameraAccessException e) {
                 e.printStackTrace();
             }
-        } else {    //activity 처음 시작 경우
+        } else {    //activity 처음 시작 경우 textureView 초기화
+            Log.d(activityName,"onResume 내부 activity 처음 시작으로 인한 textureView 초기화");
             textureView.setSurfaceTextureListener(textureListener);
         }
     }
@@ -127,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        Log.d(activityName,"onPause 실행");
         try {
             stopBackgroundThread();
         } catch (InterruptedException e) {
@@ -134,12 +143,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    //
     private void startBackgroundThread() {
-        Log.d("onResume ->","startBackgroundThread 실행");
+        Log.d(activityName,"onResume 내부 startBackgroundThread 실행");
         mBackgroundThread = new HandlerThread("Camera Background");
         mBackgroundThread.start();
         mBackgroundHandler = new Handler(mBackgroundThread.getLooper());
+
+        /*
+        HandlerThread 객체를 생성하고 start를 하면 Looper를 생성함.
+        HanderThread에서 Looper를 가져와 Handler를 실행.
+
+         */
     }
 
 //    //이미지 캡쳐 메소드
@@ -159,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
     private void takePicture() throws CameraAccessException {
+        Log.d(activityName,"takePicture 메소드 실행");
         if (cameraDevice == null){ return; }
 
         CameraManager manager = (CameraManager)getSystemService(Context.CAMERA_SERVICE);
@@ -202,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
         ImageReader.OnImageAvailableListener rederListener = new ImageReader.OnImageAvailableListener() {
             @Override
             public void onImageAvailable(ImageReader imageReader) {
+                Log.d(activityName,"onImageAvailable 내부 이미지 가공");
                 Image image = null;
 
                 image = imageReader.acquireLatestImage();
@@ -227,7 +244,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCaptureCompleted(@NonNull CameraCaptureSession session, @NonNull CaptureRequest request, @NonNull TotalCaptureResult result) {
                 super.onCaptureCompleted(session, request, result);
+                Log.d(activityName,"onCaptureCompleted 실행");
                 try {
+                    Log.d(activityName,"onCaptureCompleted 내부 onCaptureCompleted 실행");
                     createCameraPreview();
                 } catch (CameraAccessException e) {
                     e.printStackTrace();
@@ -255,28 +274,29 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void openCamera() throws CameraAccessException {
-        //카메라를 다루는 매니저 생성.
-        CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);   //-> getSystemService을 통해 camera2에 사용될 매니저 객체 반환.
 
-        //매니저 객체를 통해 카메라 Id List를 얻어오면, 카메라를 얻어올 수 있음.
-        //Id 배열로는 0번 후면 카메라, 1번 전면 카메라, 2번 기타 카메라
+        CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+
         cameraId = manager.getCameraIdList()[0];
-
-        //얻어온 ID로 카메라 정보를 가지는 CameraCharacteristics 객체를 반환받음.
         CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraId);
-
-        //카메라의 각종 지원 정보가 포함되어 있는 StreamConfigurationMap 객체를 얻어옴.
         StreamConfigurationMap map = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
 
         //StreamConfigurationMap의 기능 중 이미지 사이즈 얻어오는 메소드
         imageDimensions = map.getOutputSizes(SurfaceTexture.class)[0];  //-> 0은 포멧에 사용되는 인자값
 
-        //카메라 열때 다시한번 권한 확인 및 열렸을 때 CallBack
+        /*
+        CameraManager : 카메라 장치 감지 및 서비스 관리
+        CameraId : 카메라 종류 정보 배열 (0 : 후면 / 1 : 전면 / 2 : 기타)
+        StreamConfigurationMap : 캡쳐 세션을 만들기 위한 Surface를 설정하는 클래스
+        CameraCharacteristics : 카메라의 각종 기능이 포함되어 있는 객체 (Id로부터 얻어옴.)
+         */
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             manager.openCamera(cameraId, stateCallback, null);
-            // -> setUpCameraOutputs()을 수행.
-            // -> 캡쳐된 사진의 해상도, 포맷, 프리뷰 사이즈, 플래시 지원 여부 등
-
+            /*
+            CameraManager.openCamera :  지정된 Id로 카메라 연결.
+                                        카메라가 성공적으로 열리면 onOpened 호출
+            */
         } else {
             ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
         }
@@ -284,25 +304,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createCameraPreview() throws CameraAccessException {
+        Log.d(activityName,"createCameraPreview 실행");
         SurfaceTexture texture = textureView.getSurfaceTexture();
-        //버퍼 사이즈 설정(한번에 가져오는 이미지 사이즈)
         texture.setDefaultBufferSize(imageDimensions.getWidth(), imageDimensions.getHeight());
         //Surface 객체 만들기
         Surface surface = new Surface(texture);
 
-        //textureview에 이미지를 넣어주는 RequestBuilder 설정.
         captureRequestBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
-        //이미지 넣어줄 타겟으로 surface입력.
         captureRequestBuilder.addTarget(surface);
 
-        //카메라는 실시간으로 동작하는 기능.
-        //따로 실시간 동작하는 카메라 Thread에서 이미지를 받아오는데, 그러한 흐름이 바로 세션.
-        //인자값으로는 먼저 surface이미지를 출력해줄 surface를 넣어주고, 다음으로는 세션을 생성할 때에 실행되는 콜백을 넣어줌.
+        /*
+        textureView.getSurfaceTexture() : 이를 통해 camera2의 출력물로 사용될 수 있음.
+        texture.setDefaultBufferSize() : 이미지 사이즈 설정
+        CaptureRequest.Builder(captureRequestBuilder) : 캡쳐 관련 빌더
+        captureRequestBuilder.addTarget() : 얻어온 surface를 추가.
+         */
+
         cameraDevice.createCaptureSession(Arrays.asList(surface), new CameraCaptureSession.StateCallback() {
-                                                            //,imageReader.getSurface()
             //카메라 실행 준비가 되면 실행.
             @Override
             public void onConfigured(@NonNull CameraCaptureSession session) {
+                Log.d(activityName,"onConfigured 실행");
                 if (cameraDevice == null) {
                     return;
                 }
@@ -315,6 +337,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+            /*
+            CameraDevice.createCaptureSession : 캡쳐할 surface와 callback, handler를 제공하면, 카메라 세션을 생성함.
+            비동기로 작동되는 카메라 Thread에서 이미지를 받아오는데, 그러한 흐름에서 사용되는 Session.
+            --> 여기부터 다시 분석. 주석하면서 분석 다시 하고 다시 흐름 정리해보기.
+             */
+
             @Override
             public void onConfigureFailed(@NonNull CameraCaptureSession session) {
                 Toast.makeText(getApplicationContext(), "Configuration Changed", Toast.LENGTH_LONG).show();
@@ -324,6 +352,7 @@ public class MainActivity extends AppCompatActivity {
 
     //여기서 카메라 화면을 surface에 띄우고, 세션이 생성되는 시점에 생성되도록 함.
     private void updatePreview() throws CameraAccessException {
+        Log.d(activityName,"updatePreview 실행");
         if (cameraDevice == null) {
             return;
         }
@@ -336,17 +365,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void stopBackgroundThread() throws InterruptedException {
+        Log.d(activityName,"onPause 내부 stopBackgroundThread 실행");
         mBackgroundThread.quitSafely();
         mBackgroundThread.join();
         mBackgroundThread = null;
         mBackgroundHandler = null;
     }
 
-    // 리스너 콜백 함수
+    // TextureView 사용할 준비 완료 전달
     private TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
         @Override
         public void onSurfaceTextureAvailable(@NonNull SurfaceTexture surface, int width, int height) {
+            Log.d(activityName, "onSurfaceTextureAvailable 실행");
             try {
+                Log.d(activityName,"onSurfaceTextureAvailable 내부 openCamera 실행");
                 openCamera();
             } catch (CameraAccessException e) {
                 e.printStackTrace();
@@ -373,12 +405,18 @@ public class MainActivity extends AppCompatActivity {
     private final CameraDevice.StateCallback stateCallback = new CameraDevice.StateCallback() {
         @Override
         public void onOpened(@NonNull CameraDevice camera) {
+            Log.d(activityName,"onOpened 실행");
             cameraDevice = camera;
             try {
+                Log.d(activityName,"onOpened 내부 createCameraPreview 실행");
                 createCameraPreview();  //-> 텍스쳐 뷰에 화면 표현.
             } catch (CameraAccessException e) {
                 e.printStackTrace();
             }
+            /*
+            카메라 장치를 열려면 CameraDevice.StateCallback 인스턴스를 제공헤야함.
+            카메라 장치 시작, 완료, 연결해제 등의 알림 콜백.
+             */
         }
 
         @Override
@@ -400,6 +438,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void save(byte[] bytes) throws IOException{
+        Log.d(activityName,"save 실행");
         OutputStream outputStream = null;
         outputStream = new FileOutputStream(file);
         outputStream.write(bytes);
