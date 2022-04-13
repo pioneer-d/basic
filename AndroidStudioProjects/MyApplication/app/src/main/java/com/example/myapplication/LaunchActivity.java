@@ -26,14 +26,12 @@ public class LaunchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_launch);
 
         if(allPermissionsGranted()) { //권한 존재하면 Main으로 이동
-            Log.d(activityName," onCreate 권한 허용으로 인한 실행");
-        //if(true) { //권한 존재하면 Main으로 이동 test
-            Log.d(activityName," onCreate 권한 허용으로 인한 실행");
+            Log.d(activityName," 사전 권한 동의로 인한 카메라 사용 가능");
             Intent mainIntent = new Intent(LaunchActivity.this, StartButtonActivity.class);
             startActivity(mainIntent);
             finish();
         } else {
-            Log.d(activityName,"onCreate 권한 미허용으로 인한 종료");
+            Log.d(activityName,"사전 권한 동의가 없음에 따른 권한 허용 여부 물음");
             ActivityCompat.requestPermissions(this,REQUIRE_PERMISSIONS,REQUEST_CODE_PERMISSIONS);
         }
     }
@@ -43,12 +41,12 @@ public class LaunchActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
             if (allPermissionsGranted()) { //권한 허용시 Main으로 이동
-                Log.d(activityName,"최초 권한 미허용으로 인한 실행");
+                Log.d(activityName,"최초 권한 허용으로 인한 실행");
                 Intent mainIntent = new Intent(LaunchActivity.this, StartButtonActivity.class);
                 startActivity(mainIntent);
             } else {
                 Toast.makeText(this, "카메라 권한이 필요합니다.", Toast.LENGTH_SHORT).show();
-                Log.d(activityName,"최초 권한 미허용으로 인한 종료");
+                Log.d(activityName,"권한 미허용으로 인한 종료");
                 this.finish();
             }
 
@@ -57,6 +55,7 @@ public class LaunchActivity extends AppCompatActivity {
     // 이미 앱에 권한을 부여한 경우 확인.
     // checkSelfPermission의 반환값이 PERMISSION_GRANTED or PERMISSION_DENIED
     private boolean allPermissionsGranted(){
+            Log.d(activityName,"권한 체크 메소드 실행");
             if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
                 return false;
             }
