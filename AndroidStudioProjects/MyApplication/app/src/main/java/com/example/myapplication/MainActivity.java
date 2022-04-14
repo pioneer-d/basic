@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -21,6 +22,7 @@ import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.Image;
 import android.media.ImageReader;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -67,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
     //주로 무거운 또는 화면이 큰 영상을 빠르게 처리할 때 사용하는 view
     private TextureView textureView;
     private Button button;
+    private Button flash;
 
     //camera2 변수 공간
     private String cameraId;
@@ -94,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
         textureView = (TextureView) findViewById(R.id.textureView);
         button = (Button) findViewById(R.id.button);
+        flash = (Button) findViewById(R.id.flash);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +108,21 @@ public class MainActivity extends AppCompatActivity {
                 }catch(CameraAccessException e){
                     e.printStackTrace();
                 }
+            }
+        });
+
+        flash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(activityName,"플래시 버튼");
+                try {
+                    flashOn();
+                } catch (CameraAccessException e) {
+                    e.printStackTrace();
+                }
+                /*
+
+                 */
             }
         });
 
@@ -143,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //
+
     private void startBackgroundThread() {
         Log.d(activityName,"onResume 내부 startBackgroundThread 실행");
         mBackgroundThread = new HandlerThread("Camera Background");
@@ -153,7 +172,6 @@ public class MainActivity extends AppCompatActivity {
         /*
         HandlerThread 객체를 생성하고 start를 하면 Looper를 생성함.
         HanderThread에서 Looper를 가져와 Handler를 실행.
-
          */
     }
 
@@ -291,6 +309,19 @@ public class MainActivity extends AppCompatActivity {
             }
         }, mBackgroundHandler);
 
+    }
+
+    private void flashOn() throws CameraAccessException {
+        CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+        try {
+            cameraId = manager.getCameraIdList()[0];
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {   //여기부터 로그 확인하고, 플래시, 줌, 사진 확인 기능 추가하고 마무리 분석.
+                manager.setTorchMode(cameraId,true);
+
+            }
+        } catch(CameraAccessException e) {
+            e.printStackTrace();
+        }
     }
 
 

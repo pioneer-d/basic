@@ -16,14 +16,23 @@
         tools:layout_editor_absoluteX="3dp"
         tools:layout_editor_absoluteY="0dp" />
 
-    <!-- 촬영을 위한 버튼 -->
+    <!-- 이미지 캡쳐 버튼 -->
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textureView"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
         android:text="캡쳐" />
+
+    <!-- 플래시 버튼 -->
+    <Button
+        android:id="@+id/flash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textureView"
+        android:layout_marginLeft="130dp"
+        android:text="플래시" />
 
 
 </RelativeLayout>
