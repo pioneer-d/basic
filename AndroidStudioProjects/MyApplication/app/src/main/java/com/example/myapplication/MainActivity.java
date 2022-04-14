@@ -192,6 +192,11 @@ public class MainActivity extends AppCompatActivity {
             height = jpegSizes[0].getHeight();
         }
 
+        /*
+        CameraCharacteristics.get : 카메라 특성 정보 값을 가져옴.
+        CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP : 해당 카메라가 지원, 사용 가능한 스트림 구성(형식, 크기, 조합 등에 대한 프레임 지속시간 , stall 지속시간 등.)
+         */
+
         imageReader = ImageReader.newInstance(width, height, ImageFormat.JPEG, 1);
         List<Surface> outputSurfaces = new ArrayList<>(2);
         outputSurfaces.add(imageReader.getSurface());
@@ -205,23 +210,27 @@ public class MainActivity extends AppCompatActivity {
         int rotation = getWindowManager().getDefaultDisplay().getRotation();
         captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
 
+        /*
+        ImageReader : 렌더링된 이미지 데이터에 접근하는 클래스 (Image 객체에 캡슐화 됨.)
+        ImageReader.getSurface : 이미지를 생성하는데 사용될 수 있는 Surface를 얻어옴.
+        CaptureRequest.Builder : 캡쳐 요청 빌더 / CameraDevice의 템플릿 중 하나로 초기화함
+        CameraDevice.TEMPLATE_STILL_CAPTURE : 프레임 속도보다, 이미지 품질을 우선시 하는 CameraDevice의 템플릿 중 하나.
+        getWindowManager().getDefaultDisplay().getRotation() : 화면의 크기, 방향을 얻어오는 메소드 - Activity를 상속받으면 사용할 수 있음.
+         */
+
+        //파일 이름에 고유 속성 부여
         Long tsLong = System.currentTimeMillis()/1000;
         String ts = tsLong.toString();
-//
-//        //Environment.getExternalStorageDirectory() 대체한 getFilesDir
-//        file = new File(getFilesDir () + "/"+ts+".jpg");
-//        Log.d("파일 경로 : ",getFilesDir () + "/"+ts+".jpg");
-//        //  -> data/user/0/com.example.myapplication/files/...jpg
 
         file = new File(Environment.getExternalStorageDirectory()+"/DCIM/Camera", ts+".jpg");
 
         ImageReader.OnImageAvailableListener rederListener = new ImageReader.OnImageAvailableListener() {
             @Override
             public void onImageAvailable(ImageReader imageReader) {
-                Log.d(activityName,"onImageAvailable 내부 이미지 가공");
+                Log.d(activityName,"onImageAvailable 실행");
                 Image image = null;
 
-                image = imageReader.acquireLatestImage();
+                image = imageReader.acquireLatestImage();   //이 부분이 회사에서 사용되고 있는 메소드!
                 ByteBuffer buffer = image.getPlanes()[0].getBuffer();
                 byte[] bytes = new byte[buffer.capacity()];
                 buffer.get(bytes);
@@ -240,13 +249,19 @@ public class MainActivity extends AppCompatActivity {
 
         imageReader.setOnImageAvailableListener(rederListener, mBackgroundHandler);
 
+        /*
+        ImageReader.OnImageAvailableListener : 새 이미지를 사용할 수 있다는 알림을 위한 CallBack 인터페이스
+        ImageReader.acquireLatestImage() : ImageReader의 대기열에서 가장 최신의 이미지를 획득하고, 이전 이미지를 삭제함. (실시간 처리에 적합함.)
+        ImageReader.setOnImageAvailableListener() : 참조가 더이상 필요 없을때 Garbage Collecter에 의해 호출 및 Thread 관리 용도
+         */
+
         final CameraCaptureSession.CaptureCallback captureListener = new CameraCaptureSession.CaptureCallback() {
             @Override
             public void onCaptureCompleted(@NonNull CameraCaptureSession session, @NonNull CaptureRequest request, @NonNull TotalCaptureResult result) {
                 super.onCaptureCompleted(session, request, result);
                 Log.d(activityName,"onCaptureCompleted 실행");
                 try {
-                    Log.d(activityName,"onCaptureCompleted 내부 onCaptureCompleted 실행");
+                    Log.d(activityName,"onCaptureCompleted 내부 createCameraPreview 실행");
                     createCameraPreview();
                 } catch (CameraAccessException e) {
                     e.printStackTrace();
@@ -254,9 +269,15 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        /*
+        CameraCaptureSession.CaptureCallback : 카메라 장치에 제출된 캡쳐 요청의 진행률을 추적하는 CallBack 객체. 캡쳐 시작 및 완료될 때 호출됨.
+                                                이때 createCameraPreview를 호출하여 계속 카메라가 띄워지도록 하는 것 같음.
+         */
+
         cameraDevice.createCaptureSession(outputSurfaces, new CameraCaptureSession.StateCallback() {
             @Override
             public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
+                Log.d(activityName,"takePicture 내부 onConfigured 실행");
                 try {
                     cameraCaptureSession.capture(captureBuilder.build(), captureListener, mBackgroundHandler);
                 } catch (CameraAccessException e) {
@@ -324,7 +345,7 @@ public class MainActivity extends AppCompatActivity {
             //카메라 실행 준비가 되면 실행.
             @Override
             public void onConfigured(@NonNull CameraCaptureSession session) {
-                Log.d(activityName,"onConfigured 실행");
+                Log.d(activityName,"createCameraPreview 내부 onConfigured 실행");
                 if (cameraDevice == null) {
                     return;
                 }
@@ -340,7 +361,7 @@ public class MainActivity extends AppCompatActivity {
             /*
             CameraDevice.createCaptureSession : 캡쳐할 surface와 callback, handler를 제공하면, 카메라 세션을 생성함.
             비동기로 작동되는 카메라 Thread에서 이미지를 받아오는데, 그러한 흐름에서 사용되는 Session.
-            --> 여기부터 다시 분석. 주석하면서 분석 다시 하고 다시 흐름 정리해보기.
+            onConfigured : 카메라 장치의 구성을 마치고, 세션이 캡쳐 요청 처리를 시작할 수 있을때 호출 됨.
              */
 
             @Override
@@ -357,10 +378,15 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        //request세팅
         captureRequestBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
-        //반복적으로 이미지 버퍼를 얻기 위해 호출. -> 이로써 TextureView에 카메라 영상이 나옴.
         cameraCaptureSession.setRepeatingRequest(captureRequestBuilder.build(), null, mBackgroundHandler);
+
+        /*
+        CaptureRequestBuilder.set : 캡쳐 요청에 값 세팅(key, value)
+        CaptureRequest.CONTROL_MODE : 최상위 3A 제어(자동 노출, 자동 명암, 자동 초점) 컨트롤이 비활성화 됨.
+        CameraMetadata.CONTROL_MODE_AUTO : 개별 3A 루틴에 대한 설정이 비활성화 됨에 따라, 안드로이드가 컨트롤 하는 것.
+        CameraCaptureSession.setRepeatingRequest : 계속 반복되는 이미지 캡쳐를 요청하는 메소드. 여기서 BackgroundHandler가 사용됨!
+         */
 
     }
 
