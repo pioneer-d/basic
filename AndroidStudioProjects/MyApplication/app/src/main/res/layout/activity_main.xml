@@ -8,6 +8,8 @@
 
 
     <!-- 카메라 영상이 띄워질 뷰 -->
+
+    <!-- 이미지 캡쳐 버튼 -->
     <TextureView
         android:id="@+id/textureView"
         android:layout_width="match_parent"
@@ -16,13 +18,12 @@
         tools:layout_editor_absoluteX="3dp"
         tools:layout_editor_absoluteY="0dp" />
 
-    <!-- 이미지 캡쳐 버튼 -->
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textureView"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="10dp"
         android:text="캡쳐" />
 
     <!-- 플래시 버튼 -->
@@ -31,8 +32,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textureView"
-        android:layout_marginLeft="130dp"
+        android:layout_marginLeft="110dp"
         android:text="플래시" />
+
+    <!-- zoom 1배, 1.5배, 2.0배 -->
+    <Button
+        android:id="@+id/zoom1"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textureView"
+        android:layout_marginLeft="210dp"
+        android:text="1.0" />
+
+    <Button
+        android:id="@+id/zoom2"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textureView"
+        android:layout_marginLeft="280dp"
+        android:text="1.5" />
+
+    <Button
+        android:id="@+id/zoom3"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textureView"
+        android:layout_marginLeft="350dp"
+        android:text="2.0" />
 
 
 </RelativeLayout>

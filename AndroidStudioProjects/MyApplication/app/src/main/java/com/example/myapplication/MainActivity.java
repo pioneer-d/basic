@@ -71,10 +71,16 @@ public class MainActivity extends AppCompatActivity {
     private Button button;
     private Button flash;
 
+    private Button zoom1;
+    private Button zoom2;
+    private Button zoom3;
+
+
     //camera2 변수 공간
     private String cameraId;
     private CameraDevice cameraDevice;
     private CameraCaptureSession cameraCaptureSession;
+    private CameraManager manager;
     //private CaptureRequest captureRequest;
     private CaptureRequest.Builder captureRequestBuilder;
 
@@ -86,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
     //Handler관련 변수
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
+
+    //Flash, Zoom 관련 변수
+    private Boolean flashOnOff = false;
+    private Float zoomNum = 1.0f;
 
     // 액티비티 생명주기
     @Override
@@ -99,6 +109,10 @@ public class MainActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button);
         flash = (Button) findViewById(R.id.flash);
 
+        zoom1 = (Button) findViewById(R.id.zoom1);
+        zoom2 = (Button) findViewById(R.id.zoom2);
+        zoom3 = (Button) findViewById(R.id.zoom3);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,20 +125,67 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         flash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(activityName,"플래시 버튼");
+                if(flashOnOff == true) {
+                    flashOnOff = false;
+                    Log.d(activityName,"Flash Off");
+                } else {
+                    flashOnOff = true;
+                    Log.d(activityName,"Flash On");
+                }
                 try {
-                    flashOn();
+                    updatePreview();
                 } catch (CameraAccessException e) {
                     e.printStackTrace();
                 }
-                /*
 
-                 */
             }
         });
+
+
+        zoom1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(activityName,"Zoom Default");
+                zoomNum = 1.0f;
+                try {
+                    updatePreview();
+                } catch (CameraAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        //Zoom 변경 Listener
+        zoom2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(activityName,"Zoom rate 1.5");
+                zoomNum = 1.5f;
+                try {
+                    updatePreview();
+                } catch (CameraAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        zoom3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(activityName,"Zoom rate 2.0");
+                zoomNum = 2f;
+                try {
+                    updatePreview();
+                } catch (CameraAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
 
     }
 
@@ -175,27 +236,11 @@ public class MainActivity extends AppCompatActivity {
          */
     }
 
-//    //이미지 캡쳐 메소드
-//    private void startCamera() {
-//        textureView.setSurfaceTextureListener(textureListener);
-//
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                try {
-//                    takePicture();
-//                }catch(CameraAccessException e){
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//    }
-
     private void takePicture() throws CameraAccessException {
         Log.d(activityName,"takePicture 메소드 실행");
         if (cameraDevice == null){ return; }
 
-        CameraManager manager = (CameraManager)getSystemService(Context.CAMERA_SERVICE);
+        manager = (CameraManager)getSystemService(Context.CAMERA_SERVICE);
 
         CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraDevice.getId());
         Size[] jpegSizes = null;
@@ -223,7 +268,21 @@ public class MainActivity extends AppCompatActivity {
 
         final CaptureRequest.Builder captureBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
         captureBuilder.addTarget(imageReader.getSurface());
-        captureBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
+
+        if (flashOnOff == true){
+            captureBuilder.set(CaptureRequest.FLASH_MODE, CameraMetadata.CONTROL_MODE_AUTO);
+        } else {
+            captureBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
+        }
+
+        if(zoomNum != 1.0f){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                captureBuilder.set(CaptureRequest.CONTROL_ZOOM_RATIO, zoomNum);
+            }
+        }
+
+        Log.d(activityName,"Flash is : "+flashOnOff);
+        Log.d(activityName,"Zoom rate is : "+zoomNum);
 
         int rotation = getWindowManager().getDefaultDisplay().getRotation();
         captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
@@ -311,18 +370,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void flashOn() throws CameraAccessException {
-        CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-        try {
-            cameraId = manager.getCameraIdList()[0];
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {   //여기부터 로그 확인하고, 플래시, 줌, 사진 확인 기능 추가하고 마무리 분석.
-                manager.setTorchMode(cameraId,true);
-
-            }
-        } catch(CameraAccessException e) {
-            e.printStackTrace();
-        }
-    }
 
 
     private void openCamera() throws CameraAccessException {
@@ -408,6 +455,17 @@ public class MainActivity extends AppCompatActivity {
         if (cameraDevice == null) {
             return;
         }
+
+        if(flashOnOff == true){
+            captureRequestBuilder.set(CaptureRequest.FLASH_MODE,CaptureRequest.FLASH_MODE_TORCH);
+        } else {
+            captureRequestBuilder.set(CaptureRequest.FLASH_MODE,CaptureRequest.FLASH_MODE_OFF);
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) { //레드 벨벳 케이크 - 30
+            captureRequestBuilder.set(CaptureRequest.CONTROL_ZOOM_RATIO,zoomNum);
+        }
+
 
         captureRequestBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
         cameraCaptureSession.setRepeatingRequest(captureRequestBuilder.build(), null, mBackgroundHandler);
