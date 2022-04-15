@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
         textureView = (TextureView) findViewById(R.id.textureView);
         button = (Button) findViewById(R.id.button);
+
         flash = (Button) findViewById(R.id.flash);
 
         zoom1 = (Button) findViewById(R.id.zoom1);
@@ -134,13 +135,15 @@ public class MainActivity extends AppCompatActivity {
         flash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(flashOnOff == true) {
-                    flashOnOff = false;
-                    Log.d(activityName,"Flash Off");
-                } else {
-                    flashOnOff = true;
-                    Log.d(activityName,"Flash On");
-                }
+                Log.d(activityName,"Flash On or Off");
+//                if(flashOnOff == true) {
+//                    flashOnOff = false;
+//                    Log.d(activityName,"Flash Off");
+//                } else {
+//                    flashOnOff = true;
+//                    Log.d(activityName,"Flash On");
+//                }
+                flashOnOff = (flashOnOff == true) ? false : true;
                 try {
                     updatePreview();
                 } catch (CameraAccessException e) {
@@ -486,6 +489,9 @@ public class MainActivity extends AppCompatActivity {
 
     protected void stopBackgroundThread() throws InterruptedException {
         Log.d(activityName,"stopBackgroundThread 실행");
+
+        //-> Flash Off를 여기서 해야함.
+
         mBackgroundThread.quitSafely();
         mBackgroundThread.join();
         mBackgroundThread = null;
