@@ -5,9 +5,11 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
@@ -22,11 +24,13 @@ import android.hardware.camera2.TotalCaptureResult;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.Image;
 import android.media.ImageReader;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.util.Size;
 import android.util.SparseIntArray;
@@ -88,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
     private Size imageDimensions;
     private ImageReader imageReader;
     public File file;
+    private String ts = "";
 
     //Handler관련 변수
     private Handler mBackgroundHandler;
@@ -297,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
 
         //파일 이름에 고유 속성 부여
         Long tsLong = System.currentTimeMillis()/1000;
-        String ts = tsLong.toString();
+        ts = tsLong.toString();
 
         file = new File(Environment.getExternalStorageDirectory()+"/DCIM/Camera", ts+".jpg");
 
@@ -480,7 +485,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void stopBackgroundThread() throws InterruptedException {
-        Log.d(activityName,"onPause 내부 stopBackgroundThread 실행");
+        Log.d(activityName,"stopBackgroundThread 실행");
         mBackgroundThread.quitSafely();
         mBackgroundThread.join();
         mBackgroundThread = null;
@@ -558,11 +563,19 @@ public class MainActivity extends AppCompatActivity {
         outputStream = new FileOutputStream(file);
         outputStream.write(bytes);
         outputStream.close();
+        goPictureImageView();
+
+
     }
 
-
-
-
+    //=============================================================================================================================================
+    //아래로 이미지 출력
+    private void goPictureImageView(){
+        Log.d(activityName,"ImageViewActivity로 이동.");
+        Intent imageViewActivity = new Intent(MainActivity.this, ImageViewActivity.class);
+        imageViewActivity.putExtra("fileURI",Environment.getExternalStorageDirectory()+"/DCIM/Camera/"+ts+".jpg");
+        startActivity(imageViewActivity);
+    }
 
 }
 
