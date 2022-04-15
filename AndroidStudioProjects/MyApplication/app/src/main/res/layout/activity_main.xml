@@ -9,7 +9,6 @@
 
     <!-- 카메라 영상이 띄워질 뷰 -->
 
-    <!-- 이미지 캡쳐 버튼 -->
     <TextureView
         android:id="@+id/textureView"
         android:layout_width="match_parent"
@@ -18,6 +17,7 @@
         tools:layout_editor_absoluteX="3dp"
         tools:layout_editor_absoluteY="0dp" />
 
+    <!-- 이미지 캡쳐 버튼 -->
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"

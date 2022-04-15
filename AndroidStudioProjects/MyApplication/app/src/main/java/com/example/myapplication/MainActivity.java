@@ -569,7 +569,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //=============================================================================================================================================
-    //아래로 이미지 출력
+
+    //이미지 파일 경로를 포함한 Intent 이동 method.
     private void goPictureImageView(){
         Log.d(activityName,"ImageViewActivity로 이동.");
         Intent imageViewActivity = new Intent(MainActivity.this, ImageViewActivity.class);
