@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
     //카메라 기본 각도 설정 (방향 확인을 위해 장치가 어느 방향으로 회전 되어 있는가를 확인하는 상수 값.)
     //기본 ratation이 세로로 눕혀있음.
-    static {
+    static {    //why
         ORIENTATIONS.append(Surface.ROTATION_0, 90);     //정방향
         ORIENTATIONS.append(Surface.ROTATION_90, 0);     //아래로 반시계 방향 각도.
         ORIENTATIONS.append(Surface.ROTATION_180, 270);
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
 //                }
                 flashOnOff = (flashOnOff == true) ? false : true;
                 try {
-                    updatePreview();
+                    updatePreview();    //why
                 } catch (CameraAccessException e) {
                     e.printStackTrace();
                 }
@@ -204,18 +204,23 @@ public class MainActivity extends AppCompatActivity {
         Log.d(activityName,"onResume 실행");
 
         //카메라 관련 작업이 UI를 그리는 메인 쓰레드를 방해하지 않기 위해 새로운 Thread와 핸들러 생성.
-        startBackgroundThread();
+        startBackgroundThread();    //why
 
         if (textureView.isAvailable()) {    //잠시 비활성 된 경우 등(activity처음 시작이 아닌 경우)
             try {
                 Log.d(activityName,"onResume 내부 openCamera 실행");
-                openCamera();
+                openCamera();   //why
             } catch (CameraAccessException e) {
                 e.printStackTrace();
             }
         } else {    //activity 처음 시작 경우 textureView 초기화
             Log.d(activityName,"onResume 내부 activity 처음 시작으로 인한 textureView 초기화");
             textureView.setSurfaceTextureListener(textureListener);
+
+            /*
+            TextureView.setSurfaceTextureListener -> TextureView에서 Surface를 가져옴.
+            TextureView.isAvailable -> TextureView와 연결된 SurfaceTexture가 렌더링 가능하면 true 반환
+             */
         }
     }
 
@@ -225,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         Log.d(activityName,"onPause 실행");
         try {
-            stopBackgroundThread();
+            stopBackgroundThread(); //why
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -253,12 +258,13 @@ public class MainActivity extends AppCompatActivity {
         CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraDevice.getId());
         Size[] jpegSizes = null;
 
+        //why
         jpegSizes = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP).getOutputSizes(ImageFormat.JPEG);
 
-        int width = 640;
+        int width = 640;    //why
         int height = 480;
 
-        if(jpegSizes != null && jpegSizes.length>0) {
+        if(jpegSizes != null && jpegSizes.length>0) {   //why
             width = jpegSizes[0].getWidth();
             height = jpegSizes[0].getHeight();
         }
@@ -268,12 +274,14 @@ public class MainActivity extends AppCompatActivity {
         CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP : 해당 카메라가 지원, 사용 가능한 스트림 구성(형식, 크기, 조합 등에 대한 프레임 지속시간 , stall 지속시간 등.)
          */
 
+        //why
         imageReader = ImageReader.newInstance(width, height, ImageFormat.JPEG, 1);
         List<Surface> outputSurfaces = new ArrayList<>(2);
         outputSurfaces.add(imageReader.getSurface());
 
         outputSurfaces.add(new Surface(textureView.getSurfaceTexture()));
 
+        //why
         final CaptureRequest.Builder captureBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
         captureBuilder.addTarget(imageReader.getSurface());
 
@@ -292,8 +300,8 @@ public class MainActivity extends AppCompatActivity {
         Log.d(activityName,"Flash is : "+flashOnOff);
         Log.d(activityName,"Zoom rate is : "+zoomNum);
 
-        int rotation = getWindowManager().getDefaultDisplay().getRotation();
-        captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
+        int rotation = getWindowManager().getDefaultDisplay().getRotation();    //why
+        captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));    //why
 
         /*
         ImageReader : 렌더링된 이미지 데이터에 접근하는 클래스 (Image 객체에 캡슐화 됨.)
@@ -388,14 +396,19 @@ public class MainActivity extends AppCompatActivity {
         CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraId);
         StreamConfigurationMap map = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
 
-        //StreamConfigurationMap의 기능 중 이미지 사이즈 얻어오는 메소드
         imageDimensions = map.getOutputSizes(SurfaceTexture.class)[0];  //-> 0은 포멧에 사용되는 인자값
 
         /*
-        CameraManager : 카메라 장치 감지 및 서비스 관리
+        CameraManager : 카메라 장치를 감지, 연결, 특성화 하기 위한 클래스
+        getSystemService : 매개변수에 대응되는 안드로이드 시스템을 Manager 객체로 반환.
+        getCameraIdList : 연결된 카메라 장치 목록 반환
         CameraId : 카메라 종류 정보 배열 (0 : 후면 / 1 : 전면 / 2 : 기타)
+
+        CameraCharacteristics : 해당 카메라 장치의 속성. CameraManager에 의해 쿼리(?)될 수 있음.
+        CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP : 해당 카메 장치가 지원하는 스트림 구성.
+
         StreamConfigurationMap : 캡쳐 세션을 만들기 위한 Surface를 설정하는 클래스
-        CameraCharacteristics : 카메라의 각종 기능이 포함되어 있는 객체 (Id로부터 얻어옴.)
+        StreamConfigurationMap.getOutputSizes : 출력물로 사용될 클래스와 호환되는 크기 목록을 가져옴
          */
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
@@ -403,6 +416,7 @@ public class MainActivity extends AppCompatActivity {
             /*
             CameraManager.openCamera :  지정된 Id로 카메라 연결.
                                         카메라가 성공적으로 열리면 onOpened 호출
+                                        카메라 장치를 연결하기 위해 콜백 인스턴스를 꼭 제공해야 함.
             */
         } else {
             ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
@@ -410,6 +424,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //-> CallBack에 의해 실행되는데, 여기부터 분석 다시 ㄱㄱ
     private void createCameraPreview() throws CameraAccessException {
         Log.d(activityName,"createCameraPreview 실행");
         SurfaceTexture texture = textureView.getSurfaceTexture();
@@ -502,6 +517,7 @@ public class MainActivity extends AppCompatActivity {
     private TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
         @Override
         public void onSurfaceTextureAvailable(@NonNull SurfaceTexture surface, int width, int height) {
+            //TextureView의 SurfaceTexture가 사용 가능하면 호출되는 메소드.
             Log.d(activityName, "onSurfaceTextureAvailable 실행");
             try {
                 Log.d(activityName,"onSurfaceTextureAvailable 내부 openCamera 실행");
