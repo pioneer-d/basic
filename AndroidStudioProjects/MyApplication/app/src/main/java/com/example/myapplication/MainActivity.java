@@ -253,6 +253,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(activityName,"takePicture 메소드 실행");
         if (cameraDevice == null){ return; }
 
+        //이부분 주석 처리하고, openCamera에서 사용된 manager로 변경 해보기.
         manager = (CameraManager)getSystemService(Context.CAMERA_SERVICE);
 
         CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraDevice.getId());
@@ -261,10 +262,10 @@ public class MainActivity extends AppCompatActivity {
         //why
         jpegSizes = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP).getOutputSizes(ImageFormat.JPEG);
 
-        int width = 640;    //why
+        int width = 640;
         int height = 480;
 
-        if(jpegSizes != null && jpegSizes.length>0) {   //why
+        if(jpegSizes != null && jpegSizes.length>0) {
             width = jpegSizes[0].getWidth();
             height = jpegSizes[0].getHeight();
         }
@@ -274,17 +275,17 @@ public class MainActivity extends AppCompatActivity {
         CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP : 해당 카메라가 지원, 사용 가능한 스트림 구성(형식, 크기, 조합 등에 대한 프레임 지속시간 , stall 지속시간 등.)
          */
 
-        //why
         imageReader = ImageReader.newInstance(width, height, ImageFormat.JPEG, 1);
         List<Surface> outputSurfaces = new ArrayList<>(2);
         outputSurfaces.add(imageReader.getSurface());
 
         outputSurfaces.add(new Surface(textureView.getSurfaceTexture()));
 
-        //why
+        //이 변수를 captureRequestBuilder로 대체 해보기.
         final CaptureRequest.Builder captureBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
         captureBuilder.addTarget(imageReader.getSurface());
 
+        //이부분이 코드 반복 부분. 처리 다시 해보기.
         if (flashOnOff == true){
             captureBuilder.set(CaptureRequest.FLASH_MODE, CameraMetadata.CONTROL_MODE_AUTO);
         } else {
@@ -300,14 +301,18 @@ public class MainActivity extends AppCompatActivity {
         Log.d(activityName,"Flash is : "+flashOnOff);
         Log.d(activityName,"Zoom rate is : "+zoomNum);
 
-        int rotation = getWindowManager().getDefaultDisplay().getRotation();    //why
-        captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));    //why
+        int rotation = getWindowManager().getDefaultDisplay().getRotation();
+        captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
 
         /*
         ImageReader : 렌더링된 이미지 데이터에 접근하는 클래스 (Image 객체에 캡슐화 됨.)
+        ImageReader.newInstance : 원하는 크기, 형식, 동시에 획득할 수 있는 Image객체 수 설정.
         ImageReader.getSurface : 이미지를 생성하는데 사용될 수 있는 Surface를 얻어옴.
+
         CaptureRequest.Builder : 캡쳐 요청 빌더 / CameraDevice의 템플릿 중 하나로 초기화함
-        CameraDevice.TEMPLATE_STILL_CAPTURE : 프레임 속도보다, 이미지 품질을 우선시 하는 CameraDevice의 템플릿 중 하나.
+            -> createCameraPreview에서 초기화 했는데 다시 선언. 요청하는 Template 목적이 다름.
+            -> createCameraPreview => CameraDevice.TEMPLATE_PREVIEW : 카메라 미리보기에 적합한 템플릿.
+            -> takePicture => CameraDevice.TEMPLATE_STILL_CAPTURE : 정지 이미지 캡처에 적합한 요청 템플릿. 프레임 속도보다 이미지의 품질 우선.
         getWindowManager().getDefaultDisplay().getRotation() : 화면의 크기, 방향을 얻어오는 메소드 - Activity를 상속받으면 사용할 수 있음.
          */
 
@@ -345,7 +350,7 @@ public class MainActivity extends AppCompatActivity {
         /*
         ImageReader.OnImageAvailableListener : 새 이미지를 사용할 수 있다는 알림을 위한 CallBack 인터페이스
         ImageReader.acquireLatestImage() : ImageReader의 대기열에서 가장 최신의 이미지를 획득하고, 이전 이미지를 삭제함. (실시간 처리에 적합함.)
-        ImageReader.setOnImageAvailableListener() : 참조가 더이상 필요 없을때 Garbage Collecter에 의해 호출 및 Thread 관리 용도
+        ImageReader.setOnImageAvailableListener() : 새 이미지를 사용할 수 있을때 호출할 Listener 등록.
          */
 
         final CameraCaptureSession.CaptureCallback captureListener = new CameraCaptureSession.CaptureCallback() {
@@ -364,7 +369,7 @@ public class MainActivity extends AppCompatActivity {
 
         /*
         CameraCaptureSession.CaptureCallback : 카메라 장치에 제출된 캡쳐 요청의 진행률을 추적하는 CallBack 객체. 캡쳐 시작 및 완료될 때 호출됨.
-                                                이때 createCameraPreview를 호출하여 계속 카메라가 띄워지도록 하는 것 같음.
+                                                이때 createCameraPreview를 호출하여 계속 카메라가 띄워지도록 함.
          */
 
         cameraDevice.createCaptureSession(outputSurfaces, new CameraCaptureSession.StateCallback() {
@@ -383,6 +388,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }, mBackgroundHandler);
+
+        /*
+        createCameraPreview의 createCaptureSession : 반복적 캡쳐를 통한 Preview 제공.
+        takePicture의 createCaptureSession : 단일 이미지 캡쳐.
+         */
 
     }
 
@@ -424,7 +434,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //-> CallBack에 의해 실행되는데, 여기부터 분석 다시 ㄱㄱ
     private void createCameraPreview() throws CameraAccessException {
         Log.d(activityName,"createCameraPreview 실행");
         SurfaceTexture texture = textureView.getSurfaceTexture();
@@ -436,10 +445,14 @@ public class MainActivity extends AppCompatActivity {
         captureRequestBuilder.addTarget(surface);
 
         /*
-        textureView.getSurfaceTexture() : 이를 통해 camera2의 출력물로 사용될 수 있음.
-        texture.setDefaultBufferSize() : 이미지 사이즈 설정
-        CaptureRequest.Builder(captureRequestBuilder) : 캡쳐 관련 빌더
-        captureRequestBuilder.addTarget() : 얻어온 surface를 추가.
+        textureView.getSurfaceTexture() : 현재 View에 사용되고 있는 SurfaceTexture를 불러옴.
+        texture.setDefaultBufferSize() : 이미지 버퍼의 기본 크기 설정
+
+        CameraDevice.createCaptureRequest() : 해당 장치에 대한 템플릿 정의를 하고, 캡쳐 요청을 만듬. / CaptureRequest.Builder를 리턴
+        CameraDevice.TEMPLATE_PREVIEW : 카메라 미리보기에 적합한 템플릿.
+
+        CaptureRequest.Builder : 캡쳐 요청 빌더 (..!)
+        CaptureRequest.Builder.addTarget() : 캡쳐 대상(surface) 추가
          */
 
         cameraDevice.createCaptureSession(Arrays.asList(surface), new CameraCaptureSession.StateCallback() {
@@ -459,20 +472,25 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            /*
-            CameraDevice.createCaptureSession : 캡쳐할 surface와 callback, handler를 제공하면, 카메라 세션을 생성함.
-            비동기로 작동되는 카메라 Thread에서 이미지를 받아오는데, 그러한 흐름에서 사용되는 Session.
-            onConfigured : 카메라 장치의 구성을 마치고, 세션이 캡쳐 요청 처리를 시작할 수 있을때 호출 됨.
-             */
-
             @Override
             public void onConfigureFailed(@NonNull CameraCaptureSession session) {
-                Toast.makeText(getApplicationContext(), "Configuration Changed", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "카메라 장치 구성에 실패하였습니다.", Toast.LENGTH_LONG).show();
             }
         }, null);
+
+            /*
+            CameraDevice.createCaptureSession : 캡쳐할 surface와 callback, handler를 제공하면, 카메라 세션을 생성함.
+                -> (이미지 대상, 카메라 세션 호출 CallBack, 핸들러)
+            CameraCaptureSession.StateCallback() : 카메라 장치에 대해 구성된 캡처 세션. 캡쳐하는데 사용됨.
+                -> 이때 Session은 만들고 구성하는데 메모리 소요가 많기 때문에, 비동기로 수행됨.
+
+            onConfigured : 카메라 장치의 구성을 마치고, 세션이 캡쳐 요청 처리를 시작할 수 있을때 호출 됨.
+                -> 이때 setRepeatingRequest 메소드를 설정하여 미리보기를 제공함.
+            onConfigureFailed : 카메라 장치 구성에 실패할 경우 실행.
+             */
     }
 
-    //여기서 카메라 화면을 surface에 띄우고, 세션이 생성되는 시점에 생성되도록 함.
+    //캡쳐 빌드의 필드를 세팅하고, 실제 미리보기를 제공하는 메소드.
     private void updatePreview() throws CameraAccessException {
         Log.d(activityName,"updatePreview 실행");
         if (cameraDevice == null) {
@@ -494,10 +512,12 @@ public class MainActivity extends AppCompatActivity {
         cameraCaptureSession.setRepeatingRequest(captureRequestBuilder.build(), null, mBackgroundHandler);
 
         /*
-        CaptureRequestBuilder.set : 캡쳐 요청에 값 세팅(key, value)
+        CaptureRequestBuilder.set : 캡쳐 빌드의 필드 값 세팅(key, value)
         CaptureRequest.CONTROL_MODE : 최상위 3A 제어(자동 노출, 자동 명암, 자동 초점) 컨트롤이 비활성화 됨.
         CameraMetadata.CONTROL_MODE_AUTO : 개별 3A 루틴에 대한 설정이 비활성화 됨에 따라, 안드로이드가 컨트롤 하는 것.
-        CameraCaptureSession.setRepeatingRequest : 계속 반복되는 이미지 캡쳐를 요청하는 메소드. 여기서 BackgroundHandler가 사용됨!
+
+        CameraCaptureSession.setRepeatingRequest : 계속 반복되는 이미지 캡쳐를 요청하는 메소드. 최대 속도로 지속적으로 캡쳐함.
+            -> 연속적인 프레임 스트림을 유지 (여기서 BackgroundHandler가 사용됨!)
          */
 
     }
@@ -556,8 +576,11 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             /*
-            카메라 장치를 열려면 CameraDevice.StateCallback 인스턴스를 제공헤야함.
+            카메라 장치를 열려면 CameraDevice.StateCallback 인스턴스를 제공헤야함. (manager.openCamera의 매개변수로 작동)
+            현재 열린 카메라 장치를 CameraDevice에 입력.
             카메라 장치 시작, 완료, 연결해제 등의 알림 콜백.
+            이때부터 CameraDevice/createCaptureSession을 호출하여 캡쳐 세션을 설정할 수 있음.
+
              */
         }
 
