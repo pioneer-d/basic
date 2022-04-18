@@ -11,6 +11,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Camera;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
@@ -79,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
     private Button zoom2;
     private Button zoom3;
 
+    private Button effect;
+    private Button lens_filter;
+
 
     //camera2 변수 공간
     private String cameraId;
@@ -102,6 +106,10 @@ public class MainActivity extends AppCompatActivity {
     private Boolean flashOnOff = false;
     private Float zoomNum = 1.0f;
 
+    //test관련 변수
+    private int effectInt = 0;
+    private float lens_filterF = 0;
+
     // 액티비티 생명주기
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +126,10 @@ public class MainActivity extends AppCompatActivity {
         zoom1 = (Button) findViewById(R.id.zoom1);
         zoom2 = (Button) findViewById(R.id.zoom2);
         zoom3 = (Button) findViewById(R.id.zoom3);
+
+        effect = (Button) findViewById(R.id.effect);
+        lens_filter = (Button) findViewById(R.id.lens_filter);
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,16 +148,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d(activityName,"Flash On or Off");
-//                if(flashOnOff == true) {
-//                    flashOnOff = false;
-//                    Log.d(activityName,"Flash Off");
-//                } else {
-//                    flashOnOff = true;
-//                    Log.d(activityName,"Flash On");
-//                }
                 flashOnOff = (flashOnOff == true) ? false : true;
                 try {
-                    updatePreview();    //why
+                    updatePreview();
                 } catch (CameraAccessException e) {
                     e.printStackTrace();
                 }
@@ -194,6 +199,35 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //effect 클릭
+        effect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(activityName,"effect click");
+                effectInt++;
+                if(effectInt == 9) {effectInt = 0;}
+                try {
+                    updatePreview();
+                } catch (CameraAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        //aperture 클릭
+        lens_filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(activityName,"aperture click");
+                lens_filterF++;
+                if(lens_filterF == 11) {lens_filterF = 0;}
+                try {
+                    updatePreview();
+                } catch (CameraAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
 
@@ -253,13 +287,10 @@ public class MainActivity extends AppCompatActivity {
         Log.d(activityName,"takePicture 메소드 실행");
         if (cameraDevice == null){ return; }
 
-        //이부분 주석 처리하고, openCamera에서 사용된 manager로 변경 해보기.
-        manager = (CameraManager)getSystemService(Context.CAMERA_SERVICE);
-
+        //manager = (CameraManager)getSystemService(Context.CAMERA_SERVICE);
         CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraDevice.getId());
         Size[] jpegSizes = null;
 
-        //why
         jpegSizes = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP).getOutputSizes(ImageFormat.JPEG);
 
         int width = 640;
@@ -281,28 +312,53 @@ public class MainActivity extends AppCompatActivity {
 
         outputSurfaces.add(new Surface(textureView.getSurfaceTexture()));
 
-        //이 변수를 captureRequestBuilder로 대체 해보기.
-        final CaptureRequest.Builder captureBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
-        captureBuilder.addTarget(imageReader.getSurface());
 
-        //이부분이 코드 반복 부분. 처리 다시 해보기.
+        captureRequestBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
+        captureRequestBuilder.addTarget(imageReader.getSurface());
+
+        //FLASH
         if (flashOnOff == true){
-            captureBuilder.set(CaptureRequest.FLASH_MODE, CameraMetadata.CONTROL_MODE_AUTO);
+            captureRequestBuilder.set(CaptureRequest.FLASH_MODE, CameraMetadata.CONTROL_MODE_AUTO);
         } else {
-            captureBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
+            captureRequestBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
         }
 
+        //CONTROL_ZOOM
         if(zoomNum != 1.0f){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                captureBuilder.set(CaptureRequest.CONTROL_ZOOM_RATIO, zoomNum);
+                captureRequestBuilder.set(CaptureRequest.CONTROL_ZOOM_RATIO, zoomNum);
             }
+        }
+
+        //CONTROL_EFFECT
+        Log.d(activityName,"testInt : "+Integer.toString(effectInt));
+        switch (effectInt){
+            case 0 : captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE, 0);   //OFF
+                break;
+            case 1 : captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE, 1);   //MONO
+                break;
+            case 2 : captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE, 2);   //NEGATIVE
+                break;
+            case 3 : captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE, 3);   //SOLARIZE
+                break;
+            case 4 : captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE, 4);   //SEPIA
+                break;
+            case 5 : captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE, 5);   //POSTERIZE
+                break;
+            case 6 : captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE, 6);   //WHITEBOARD
+                break;
+            case 7 : captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE, 7);   //BLACKBOARD
+                break;
+            case 8 : captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE, 8);   //AQUA
+                break;
         }
 
         Log.d(activityName,"Flash is : "+flashOnOff);
         Log.d(activityName,"Zoom rate is : "+zoomNum);
 
         int rotation = getWindowManager().getDefaultDisplay().getRotation();
-        captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
+        captureRequestBuilder.set(CaptureRequest.JPEG_ORIENTATION,ORIENTATIONS.get(rotation));
+//        captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
 
         /*
         ImageReader : 렌더링된 이미지 데이터에 접근하는 클래스 (Image 객체에 캡슐화 됨.)
@@ -312,7 +368,7 @@ public class MainActivity extends AppCompatActivity {
         CaptureRequest.Builder : 캡쳐 요청 빌더 / CameraDevice의 템플릿 중 하나로 초기화함
             -> createCameraPreview에서 초기화 했는데 다시 선언. 요청하는 Template 목적이 다름.
             -> createCameraPreview => CameraDevice.TEMPLATE_PREVIEW : 카메라 미리보기에 적합한 템플릿.
-            -> takePicture => CameraDevice.TEMPLATE_STILL_CAPTURE : 정지 이미지 캡처에 적합한 요청 템플릿. 프레임 속도보다 이미지의 품질 우선.
+            -> takePicture => CameraDevice.TEMPLATE_STILL_CAPTURE : 정지 이미지 캡처에 적합한 요청 템플릿. 프레임 속도보다                                                                                        이미지의 품질 우선.
         getWindowManager().getDefaultDisplay().getRotation() : 화면의 크기, 방향을 얻어오는 메소드 - Activity를 상속받으면 사용할 수 있음.
          */
 
@@ -377,7 +433,7 @@ public class MainActivity extends AppCompatActivity {
             public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
                 Log.d(activityName,"takePicture 내부 onConfigured 실행");
                 try {
-                    cameraCaptureSession.capture(captureBuilder.build(), captureListener, mBackgroundHandler);
+                    cameraCaptureSession.capture(captureRequestBuilder.build(), captureListener, mBackgroundHandler);
                 } catch (CameraAccessException e) {
                     e.printStackTrace();
                 }
@@ -400,7 +456,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void openCamera() throws CameraAccessException {
 
-        CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+        //CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+        manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
 
         cameraId = manager.getCameraIdList()[0];
         CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraId);
@@ -497,24 +554,55 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        //FLASH
         if(flashOnOff == true){
-            captureRequestBuilder.set(CaptureRequest.FLASH_MODE,CaptureRequest.FLASH_MODE_TORCH);
+            //captureRequestBuilder.set(CaptureRequest.FLASH_MODE,CaptureRequest.FLASH_MODE_TORCH);
+            captureRequestBuilder.set(CaptureRequest.FLASH_MODE,CameraCharacteristics.FLASH_MODE_TORCH);
+            // 여기부터 매개변수 확인하고, 기능 확인 해보고, 뭐가 다른건지 CaptureRequest <-> CameraCharacteristic
         } else {
-            captureRequestBuilder.set(CaptureRequest.FLASH_MODE,CaptureRequest.FLASH_MODE_OFF);
+            //captureRequestBuilder.set(CaptureRequest.FLASH_MODE,CaptureRequest.FLASH_MODE_OFF);
+            captureRequestBuilder.set(CaptureRequest.FLASH_MODE,CameraCharacteristics.FLASH_MODE_OFF);
         }
 
+        //CONTROL_ZOOM
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) { //레드 벨벳 케이크 - 30
             captureRequestBuilder.set(CaptureRequest.CONTROL_ZOOM_RATIO,zoomNum);
         }
 
+        //CONTROL_EFFECT
+        Log.d(activityName,"testInt : "+Integer.toString(effectInt));
+        switch (effectInt){
+            case 0 : captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE, 0);   //OFF
+                break;
+            case 1 : captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE, 1);   //MONO
+                break;
+            case 2 : captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE, 2);   //NEGATIVE
+                break;
+            case 3 : captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE, 3);   //SOLARIZE
+                break;
+            case 4 : captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE, 4);   //SEPIA
+                break;
+            case 5 : captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE, 5);   //POSTERIZE
+                break;
+            case 6 : captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE, 6);   //WHITEBOARD
+                break;
+            case 7 : captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE, 7);   //BLACKBOARD
+                break;
+            case 8 : captureRequestBuilder.set(CaptureRequest.CONTROL_EFFECT_MODE, 8);   //AQUA
+                break;
+        }
 
-        captureRequestBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
+        //LENS_FILTER_DENSITY   --> 여기부터 이것저것 테스트 하면 됨.
+        Log.d(activityName,"apertureF : "+Float.toString(lens_filterF));
+        captureRequestBuilder.set(CaptureRequest.LENS_FILTER_DENSITY,lens_filterF);
+
+        //captureRequestBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
         cameraCaptureSession.setRepeatingRequest(captureRequestBuilder.build(), null, mBackgroundHandler);
 
         /*
         CaptureRequestBuilder.set : 캡쳐 빌드의 필드 값 세팅(key, value)
-        CaptureRequest.CONTROL_MODE : 최상위 3A 제어(자동 노출, 자동 명암, 자동 초점) 컨트롤이 비활성화 됨.
-        CameraMetadata.CONTROL_MODE_AUTO : 개별 3A 루틴에 대한 설정이 비활성화 됨에 따라, 안드로이드가 컨트롤 하는 것.
+            -> 이를 통해 CameraMetadata의 필드 값을 설정하여 카메라 컨트롤을 함.
+        CaptureRequest <-> CameraCharacteristic 둘다 CameraMetadata를 갖고있음.
 
         CameraCaptureSession.setRepeatingRequest : 계속 반복되는 이미지 캡쳐를 요청하는 메소드. 최대 속도로 지속적으로 캡쳐함.
             -> 연속적인 프레임 스트림을 유지 (여기서 BackgroundHandler가 사용됨!)
@@ -525,7 +613,7 @@ public class MainActivity extends AppCompatActivity {
     protected void stopBackgroundThread() throws InterruptedException {
         Log.d(activityName,"stopBackgroundThread 실행");
 
-        //-> Flash Off를 여기서 해야함.
+
 
         mBackgroundThread.quitSafely();
         mBackgroundThread.join();
