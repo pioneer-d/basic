@@ -612,9 +612,6 @@ public class MainActivity extends AppCompatActivity {
 
     protected void stopBackgroundThread() throws InterruptedException {
         Log.d(activityName,"stopBackgroundThread 실행");
-
-
-
         mBackgroundThread.quitSafely();
         mBackgroundThread.join();
         mBackgroundThread = null;
