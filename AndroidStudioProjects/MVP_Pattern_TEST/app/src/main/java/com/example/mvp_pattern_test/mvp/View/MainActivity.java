@@ -3,6 +3,7 @@ package com.example.mvp_pattern_test.mvp.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,8 @@ import com.example.mvp_pattern_test.mvp.Presenter.MainPresenter;
 
 public class MainActivity extends AppCompatActivity implements Contract.View {
 
+    static String thisName = "MainActivity";
+
     private EditText number1;
     private EditText number2;
     private Button sumButton;
@@ -22,12 +25,14 @@ public class MainActivity extends AppCompatActivity implements Contract.View {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(thisName,"onCreate 호출");
         setContentView(R.layout.activity_main);
         presenter = new MainPresenter(this);
         init();
     }
 
     private void init(){
+        Log.d(thisName,"init() 실행");
         sumButton = (Button) findViewById(R.id.sum);
         number1 = (EditText) findViewById(R.id.number1);
         number2 = (EditText) findViewById(R.id.number2);
@@ -42,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements Contract.View {
 
     @Override
     public void showResult(int answer) {
+        Log.d(thisName,"showResult() 실행");
         ((TextView)findViewById(R.id.result)).setText(Integer.toString(answer));
     }
 }

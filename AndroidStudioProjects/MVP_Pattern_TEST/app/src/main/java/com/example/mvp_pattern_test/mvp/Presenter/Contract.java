@@ -2,6 +2,8 @@ package com.example.mvp_pattern_test.mvp.Presenter;
 
 public interface Contract {
 
+    static String thisName = "Contract";
+
     interface View {
         void showResult(int answer);        // 값을 보여줄 view 메소드 선언
     }
