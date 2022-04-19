@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
             Log.d(activityName,"get JSON");
             url = new URL(urlStr);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
             conn.connect();
 
             BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
