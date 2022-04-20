@@ -5,7 +5,7 @@ import android.content.Context;
 public interface SplashContract {
 
     interface View {
-        void startMain();
+        void checkCameraRight();
         void finishApp();
     }
 
