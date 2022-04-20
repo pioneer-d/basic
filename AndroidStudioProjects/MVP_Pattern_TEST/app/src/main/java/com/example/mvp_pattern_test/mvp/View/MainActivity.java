@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements Contract.View {
         super.onCreate(savedInstanceState);
         Log.d(thisName,"onCreate 호출");
         setContentView(R.layout.activity_main);
-        presenter = new MainPresenter(this);
+        presenter = new MainPresenter(this);    //Presenter에 View를 지정 및 Presenter 객체 생성.
         init();
     }
 
