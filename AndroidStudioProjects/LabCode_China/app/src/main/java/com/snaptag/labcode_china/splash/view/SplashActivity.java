@@ -10,6 +10,7 @@ import android.os.Handler;
 
 import com.snaptag.labcode_china.MainActivity;
 import com.snaptag.labcode_china.R;
+import com.snaptag.labcode_china.accessRight.view.AccessRightActivity;
 import com.snaptag.labcode_china.splash.presenter.SplashContract;
 import com.snaptag.labcode_china.splash.presenter.SplashPresenter;
 
@@ -32,7 +33,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
 
     @Override
     public void startMain() {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(), AccessRightActivity.class);
         startActivity(intent);
         finish();
     }
