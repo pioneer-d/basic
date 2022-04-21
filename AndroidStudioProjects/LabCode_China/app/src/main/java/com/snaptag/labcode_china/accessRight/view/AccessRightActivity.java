@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.snaptag.labcode_china.MainActivity;
+import com.snaptag.labcode_china.main.view.MainActivity;
 import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.accessRight.presenter.AccessRightContract;
 import com.snaptag.labcode_china.accessRight.presenter.AccessRightPresenter;
@@ -39,7 +39,6 @@ public class AccessRightActivity extends AppCompatActivity implements AccessRigh
 
     @Override
     public void alertCheckRight() {
-        //ActivityCompat.shouldShowRequestPermissionRationale(AccessRightActivity.this,"앱을 사용하기 위해 카메라 권한이 필요합니다.");
         imageButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {

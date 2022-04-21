@@ -6,9 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 
-import com.snaptag.labcode_china.MainActivity;
 import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.accessRight.view.AccessRightActivity;
 import com.snaptag.labcode_china.splash.presenter.SplashContract;
