@@ -1,4 +1,4 @@
-package com.snaptag.labcode_china.navigation.more;
+package com.snaptag.labcode_china.navigation.more.view;
 
 import android.os.Bundle;
 

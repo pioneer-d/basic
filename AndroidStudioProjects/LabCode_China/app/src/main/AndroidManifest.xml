@@ -30,7 +30,7 @@
             android:name=".accessRight.view.AccessRightActivity"
             android:exported="true" />
         <activity
-            android:name=".main.view.MainActivity"
+            android:name=".navigation.MainActivity"
             android:exported="true"></activity>
     </application>
 
