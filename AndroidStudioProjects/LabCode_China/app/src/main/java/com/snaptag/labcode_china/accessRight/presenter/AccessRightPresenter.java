@@ -22,20 +22,22 @@ public class AccessRightPresenter implements AccessRightContract.Presenter {
     }
 
     @Override
-    public void checkRight() {
-        Boolean check = allPermissionsGranted();
+    public void controlCheck() {
+        Boolean check = rightConfirm();
         if (check){
             view.goMain();
         } else {
-            view.alertCheckRight(); // --> 여기부터 view로 넘어갔다가 다시 presenter로 오는 구조로 이어서 만들기.
+            view.alertCheckRight();
         }
     }
 
-    //최초 권한 확인
-    private boolean allPermissionsGranted(){
+    @Override
+    public boolean rightConfirm() {
         if(ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
             return false;
         }
         return true;
     }
+
+
 }

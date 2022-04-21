@@ -9,6 +9,7 @@ public interface AccessRightContract {
     }
 
     interface Presenter{
-        void checkRight();
+        void controlCheck();
+        boolean rightConfirm();
     }
 }

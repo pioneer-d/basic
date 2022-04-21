@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="130dp"
         android:src="@drawable/ic_guide_title" />
 
     <!-- top margin : 372 -->
@@ -19,16 +19,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_camera"
-        android:layout_marginTop="372dp"
+        android:layout_marginTop="300dp"
         android:layout_centerHorizontal="true" />
 
     <!-- Bottom margin : 34 -->
     <ImageButton
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="600dp"
-        android:src="@drawable/ic_resource_default" />
+        android:src="@drawable/ic_resource_confirm"
+        android:background="@android:color/transparent"
+        />
 
 
 </RelativeLayout>
