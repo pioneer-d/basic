@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.snaptag.labcode_china.R;
-import com.snaptag.labcode_china.navigation.list.ListFragment;
+import com.snaptag.labcode_china.navigation.list.view.ListFragment;
 import com.snaptag.labcode_china.navigation.more.MoreFragment;
 import com.snaptag.labcode_china.navigation.scan.ScanFragment;
 
