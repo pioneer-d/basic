@@ -6,21 +6,6 @@
     tools:context=".navigation.list.view.ListControlFragment"
     android:id="@+id/child_content">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="110dp"
-        android:layout_marginTop="258dp"
-        android:src="@drawable/ic_box" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="94dp"
-        android:layout_marginTop="472dp"
-        android:src="@drawable/ic_list_guide" />
 
 
 </FrameLayout>
