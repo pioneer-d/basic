@@ -23,7 +23,7 @@ import com.snaptag.labcode_china.navigation.list.view.ListControlFragment;
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 
 
-    private Fragment scanFragment, listFragment, moreFragment;
+    private Fragment scanControlFragment, listControlFragment, moreControlFragment;
     private MainContract.Presenter presenter;
 
     private FrameLayout frameLayout;
@@ -42,15 +42,15 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         presenter = new MainPresenter(this);
 
-        scanFragment = ScanControlFragment.newInstance();
-        listFragment = ListControlFragment.newInstance();
-        moreFragment = MoreControlFragment.newInstance();
+        scanControlFragment = ScanControlFragment.newInstance();
+        listControlFragment = ListControlFragment.newInstance();
+        moreControlFragment = MoreControlFragment.newInstance();
 
         textView = (TextView) findViewById(R.id.topTitle);
         frameLayout = findViewById(R.id.main_content);
         bottomNavigationView = findViewById(R.id.bottom_nav);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, scanFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, scanControlFragment).commit();
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -80,19 +80,20 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void callScan() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, scanFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, scanControlFragment).commit();
         textView.setText("");
     }
 
     @Override
     public void callList() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, listFragment).commit();
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, listControlFragment).commit();
         textView.setText("인증내역");
     }
 
     @Override
     public void callMore() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, moreFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, moreControlFragment).commit();
         textView.setText("더보기");
     }
 }

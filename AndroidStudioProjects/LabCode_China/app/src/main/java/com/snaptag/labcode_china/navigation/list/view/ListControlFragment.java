@@ -1,16 +1,17 @@
 package com.snaptag.labcode_china.navigation.list.view;
 
-;
-import android.annotation.SuppressLint;
+
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+
 
 
 import com.snaptag.labcode_china.R;
-import com.snaptag.labcode_china.main.view.MainActivity;
+
 import com.snaptag.labcode_china.navigation.list.fag.BlankFragment;
 import com.snaptag.labcode_china.navigation.list.presenter.ListContract;
 import com.snaptag.labcode_china.navigation.list.presenter.ListPresenter;
@@ -22,8 +23,6 @@ public class ListControlFragment extends Fragment implements ListContract.View {
 
     //fragment 종류
     private Fragment blankFragment;
-    private FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-    private FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
     private static ListControlFragment instance;
     private ListControlFragment() { }
@@ -53,16 +52,16 @@ public class ListControlFragment extends Fragment implements ListContract.View {
         presenter.checkListData();
     }
 
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        return inflater.inflate(R.layout.fragment_control_list, container, false);
-//    }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_control_list, container, false);
+    }
 
     @Override
     public void goBlank() {
         blankFragment = new BlankFragment();
-        fragmentTransaction.replace(R.id.main_content,blankFragment).commit();
+        getChildFragmentManager().beginTransaction().replace(R.id.child_content,blankFragment).commit();
         //addToBackStack 고려해야함.
     }
 
