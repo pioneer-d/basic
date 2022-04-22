@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.snaptag.labcode_china.navigation.MainActivity;
+import com.snaptag.labcode_china.main.view.MainActivity;
 import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.accessRight.presenter.AccessRightContract;
 import com.snaptag.labcode_china.accessRight.presenter.AccessRightPresenter;

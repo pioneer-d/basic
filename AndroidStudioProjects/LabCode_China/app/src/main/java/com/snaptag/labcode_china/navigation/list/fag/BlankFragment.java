@@ -1,4 +1,4 @@
-package com.snaptag.labcode_china.navigation.list.view;
+package com.snaptag.labcode_china.navigation.list.fag;
 
 import android.os.Bundle;
 
@@ -10,11 +10,22 @@ import android.view.ViewGroup;
 
 import com.snaptag.labcode_china.R;
 
+public class BlankFragment extends Fragment {
 
-public class ListBlankFragment extends Fragment{
 
-    public ListBlankFragment() {
+
+    public BlankFragment() {
         // Required empty public constructor
+    }
+
+
+    // TODO: Rename and change types and number of parameters
+    public static BlankFragment newInstance(String param1, String param2) {
+        BlankFragment fragment = new BlankFragment();
+        Bundle args = new Bundle();
+
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -28,7 +39,7 @@ public class ListBlankFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_list_blank, container, false);
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_blank, container, false);
     }
-
 }

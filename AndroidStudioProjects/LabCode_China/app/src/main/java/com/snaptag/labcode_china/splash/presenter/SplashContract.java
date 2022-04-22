@@ -6,12 +6,11 @@ public interface SplashContract {
 
     interface View {
         void checkCameraRight();
-        void finishApp();
+        void networkError();
     }
 
     interface Presenter{
         void splashHandler(int sec, Context context);
-        boolean confirmNetwork(Context context);
     }
 
 

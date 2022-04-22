@@ -1,40 +1,35 @@
-package com.snaptag.labcode_china.splash.presenter;
+package com.snaptag.labcode_china.main.presenter;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
-import android.os.Handler;
-import android.util.Log;
 
 import com.snaptag.labcode_china.network.NetworkCheck;
-import com.snaptag.labcode_china.splash.model.SplashModel;
+import com.snaptag.labcode_china.R;
+import com.snaptag.labcode_china.main.model.MainModel;
 
-public class SplashPresenter implements SplashContract.Presenter, NetworkCheck.Presenter {
+public class MainPresenter implements MainContract.Presenter, NetworkCheck.Presenter {
 
-    static String thisName = "SplashPresenter";
+    MainModel model;
+    MainContract.View view;
 
-    SplashContract.View view;
-    SplashModel model;
-
-    public SplashPresenter(SplashContract.View view){
+    public MainPresenter(MainContract.View view){
         this.view = view;
-        model = new SplashModel(this);
+        model = new MainModel(this);
     }
 
     @Override
-    public void splashHandler(int sec, Context context) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (confirmNetwork(context)){
-                    view.checkCameraRight();
-                }
-                else {
-                    view.networkError();
-                }
+    public void controlFragment(int item, Context context) {
+        if (confirmNetwork(context)){
+            switch (item){
+                case R.id.page_scan : view.callScan(); break;
+                case R.id.page_list : view.callList(); break;
+                case R.id.page_more : view.callMore(); break;
             }
-        }, 1000 * sec);
+        } else {
+            view.networkError();
+        }
     }
 
     @Override
@@ -58,9 +53,6 @@ public class SplashPresenter implements SplashContract.Presenter, NetworkCheck.P
             }
         }
 
-        Log.d(thisName,"confirm value : "+Boolean.toString(confirm));
-
         return confirm;
     }
-
 }

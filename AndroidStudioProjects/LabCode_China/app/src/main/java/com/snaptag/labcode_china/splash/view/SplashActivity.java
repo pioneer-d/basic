@@ -12,7 +12,7 @@ import com.snaptag.labcode_china.accessRight.view.AccessRightActivity;
 import com.snaptag.labcode_china.splash.presenter.SplashContract;
 import com.snaptag.labcode_china.splash.presenter.SplashPresenter;
 
-public class SplashActivity extends AppCompatActivity implements SplashContract.View {
+public class SplashActivity extends AppCompatActivity implements SplashContract.View{
 
     SplashContract.Presenter presenter;
 
@@ -26,7 +26,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
     }
 
     private void init(){
-        presenter.splashHandler(2,SplashActivity.this);
+        presenter.splashHandler(1,SplashActivity.this);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
     }
 
     @Override
-    public void finishApp() {
+    public void networkError() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("네트워크 연결 오류");
         builder.setMessage("네트워크 연결이 원활하지 않습니다. \n 연결상태를 확인하고 다시 시도해주세요");
