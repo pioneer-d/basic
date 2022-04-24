@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".navigation.list.view.ListControlFragment"
-    android:id="@+id/child_content">
+    android:id="@+id/list_child_content">
 
 
 

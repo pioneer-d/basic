@@ -66,14 +66,14 @@ public class ListControlFragment extends Fragment implements ListContract.View {
     @Override
     public void goBlank() {
         blankFragment = new BlankFragment();
-        getChildFragmentManager().beginTransaction().replace(R.id.child_content,blankFragment).commit();
+        getChildFragmentManager().beginTransaction().replace(R.id.list_child_content,blankFragment).commit();
         //addToBackStack 고려해야함.
     }
 
     @Override
     public void goList() {
         listFragment = new ListFragment();
-        getChildFragmentManager().beginTransaction().replace(R.id.child_content,listFragment).commit();
+        getChildFragmentManager().beginTransaction().replace(R.id.list_child_content,listFragment).commit();
         //Bundle 통해서 값 넘겨주면 될듯.
     }
 
