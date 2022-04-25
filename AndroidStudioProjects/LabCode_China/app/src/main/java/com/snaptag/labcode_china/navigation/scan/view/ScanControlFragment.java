@@ -32,11 +32,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.snaptag.labcode_china.R;
+import com.snaptag.labcode_china.navigation.scan.presenter.ScanContract;
+import com.snaptag.labcode_china.navigation.scan.presenter.ScanPresenter;
 
 import java.util.Arrays;
 
 
-public class ScanControlFragment extends Fragment {
+public class ScanControlFragment extends Fragment implements ScanContract.View {
 
     private static String thisName = "ScanControlFragment";
 
@@ -44,32 +46,10 @@ public class ScanControlFragment extends Fragment {
     private ScanControlFragment() {
     }
 
-    private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
-    static {
-        ORIENTATIONS.append(Surface.ROTATION_0, 90);     //정방향
-        ORIENTATIONS.append(Surface.ROTATION_90, 0);     //아래로 반시계 방향 각도.
-        ORIENTATIONS.append(Surface.ROTATION_180, 270);
-        ORIENTATIONS.append(Surface.ROTATION_270, 180);
-    }
-
-    private int REQUEST_CODE_PERMISSIONS = 1001;
-    private final String[] REQUIRED_PERMISSIONS = new String[]{"android.permission.CAMERA", "android.permission.WRITE_EXTERNAL_STORAGE"};
+    private ScanContract.Presenter presenter;
 
     private View view;
-
-    private Size imageDimensions;
     private TextureView textureView;
-
-
-    private String cameraId;
-    private CameraDevice cameraDevice;
-    private CameraManager manager;
-    private CaptureRequest.Builder captureRequestBuilder;
-    private CameraCaptureSession cameraCaptureSession;
-
-
-    private Handler backgroundHandler;
-    private HandlerThread backgroundThread;
 
     public static ScanControlFragment newInstance() {
         if(instance == null){
@@ -82,19 +62,12 @@ public class ScanControlFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_control_scan, container, false);
         textureView = view.findViewById(R.id.textureView);
+        presenter = new ScanPresenter(this,getActivity(),textureView);
 
         return view;
     }
@@ -104,12 +77,12 @@ public class ScanControlFragment extends Fragment {
         super.onResume();
 
         Log.d(thisName,"onResume()");
-        startBackgroundThread();
+        presenter.startBackgroundThread();
 
         if (textureView.isAvailable()){
             try {
                 Log.d(thisName,"onResume() -> openCamera()");
-                openCamera();
+                presenter.openCamera();
             } catch (CameraAccessException e){
                 e.printStackTrace();
             }
@@ -124,24 +97,20 @@ public class ScanControlFragment extends Fragment {
         super.onPause();
         Log.d(thisName,"onPause()");
         try {
-            stopBackgroundThread();
+            presenter.stopBackgroundThread();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    private void startBackgroundThread(){
-        backgroundThread = new HandlerThread("Camera Background");
-        backgroundThread.start();
-        backgroundHandler = new Handler(backgroundThread.getLooper());
-    }
+
 
 
     private TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
         @Override
         public void onSurfaceTextureAvailable(@NonNull SurfaceTexture surface, int width, int height) {
             try {
-                openCamera();
+                presenter.openCamera();
             } catch (CameraAccessException e) {
                 e.printStackTrace();
             }
@@ -164,102 +133,14 @@ public class ScanControlFragment extends Fragment {
     };
 
 
-        private void openCamera() throws CameraAccessException{
-            Log.d(thisName,"openCamera()");
-            manager = (CameraManager) getActivity().getSystemService(Context.CAMERA_SERVICE);
-
-            cameraId = manager.getCameraIdList()[0];
-            Log.d("cameraId? : ",cameraId);
-            CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraId);
-            StreamConfigurationMap map = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
-
-            //이부분으로 해상도 변경
-            //imageDimensions = map.getOutputSizes(SurfaceTexture.class)[0];
-
-            if(ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                manager.openCamera(cameraId, stateCallback, null);
-            } else {
-                ActivityCompat.requestPermissions(getActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
-            }
-
-        }
-
-        private final CameraDevice.StateCallback stateCallback = new CameraDevice.StateCallback() {
-            @Override
-            public void onOpened(@NonNull CameraDevice camera) {
-                Log.d(thisName,"onOpened()");
-                cameraDevice = camera;
-                try {
-                    Log.d(thisName,"onOpened() -> createCameraPreview()");
-                    createCameraPreview();  //-> 텍스쳐 뷰에 화면 표현.
-                } catch (CameraAccessException e) {
-                    e.printStackTrace();
-                }
-            }
-
-
-            @Override
-            public void onDisconnected(@NonNull CameraDevice cameraDevice) {
-
-            }
-
-            @Override
-            public void onError(@NonNull CameraDevice cameraDevice, int i) {
-
-            }
-        };
-
-    private void createCameraPreview() throws CameraAccessException{
-        Log.d(thisName,"createCameraPreview");
-        SurfaceTexture texture = textureView.getSurfaceTexture();
-        texture.setDefaultBufferSize(1280, 720);
-
-        Surface surface = new Surface(texture);
-
-        captureRequestBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
-        captureRequestBuilder.addTarget(surface);
-
-        cameraDevice.createCaptureSession(Arrays.asList(surface), new CameraCaptureSession.StateCallback() {
-            @Override
-            public void onConfigured(@NonNull CameraCaptureSession session) {
-                if (cameraDevice == null){
-                    return;
-                }
-                cameraCaptureSession = session;
-                try {
-                    Log.d(thisName,"createCameraPreview() -> updatePreview()");
-                    updatePreview();
-                } catch (CameraAccessException e){
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onConfigureFailed(@NonNull CameraCaptureSession cameraCaptureSession) {
-                Toast.makeText(getActivity().getApplicationContext(), "카메라 장치 구성에 실패하였습니다.", Toast.LENGTH_LONG).show();
-            }
-        }, null);
-
-
-    }
-
-    private void updatePreview() throws CameraAccessException{
+    public void updatePreview(CameraDevice device, CaptureRequest.Builder builder, CameraCaptureSession captureSession, Handler handler) throws CameraAccessException{
         Log.d(thisName,"updatePreview");
-        if (cameraDevice == null){
+        if (device == null){
             return;
         }
-        captureRequestBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
-        cameraCaptureSession.setRepeatingRequest(captureRequestBuilder.build(), null, backgroundHandler);
-    }
-
-    protected void stopBackgroundThread() throws InterruptedException {
-        backgroundThread.quitSafely();
-        backgroundThread.join();
-        backgroundThread = null;
-        backgroundHandler = null;
+        builder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
+        captureSession.setRepeatingRequest(builder.build(), null, handler);
     }
 
 
-
-
-    }
+}
