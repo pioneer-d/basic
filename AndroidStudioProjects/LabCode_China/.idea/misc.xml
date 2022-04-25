@@ -8,7 +8,12 @@
         <entry key="app/src/main/res/drawable/ic_access_rights.xml" value="0.2395" />
         <entry key="app/src/main/res/drawable/ic_box.xml" value="0.2735" />
         <entry key="app/src/main/res/drawable/ic_camera.xml" value="0.29" />
+        <entry key="app/src/main/res/drawable/ic_camera_dot.xml" value="0.237" />
+        <entry key="app/src/main/res/drawable/ic_camera_setting.xml" value="0.237" />
         <entry key="app/src/main/res/drawable/ic_ellipse_10.xml" value="0.347" />
+        <entry key="app/src/main/res/drawable/ic_flash.xml" value="0.237" />
+        <entry key="app/src/main/res/drawable/ic_flash2.xml" value="0.352" />
+        <entry key="app/src/main/res/drawable/ic_guide_title.xml" value="0.352" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2395" />
         <entry key="app/src/main/res/drawable/ic_list.xml" value="0.2645" />
         <entry key="app/src/main/res/drawable/ic_more.xml" value="0.2645" />
@@ -17,6 +22,7 @@
         <entry key="app/src/main/res/drawable/ic_scan.xml" value="0.29" />
         <entry key="app/src/main/res/drawable/ic_sp_01.xml" value="0.2395" />
         <entry key="app/src/main/res/drawable/ic_test_list.xml" value="0.2675" />
+        <entry key="app/src/main/res/drawable/ic_zoom.xml" value="0.237" />
         <entry key="app/src/main/res/layout/activity_access_right.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.335" />
