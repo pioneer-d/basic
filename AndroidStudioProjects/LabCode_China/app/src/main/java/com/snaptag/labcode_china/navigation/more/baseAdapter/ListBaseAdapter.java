@@ -50,8 +50,12 @@ public class ListBaseAdapter extends BaseAdapter {
         ImageView image = convertView.findViewById(R.id.image);
         TextView version = convertView.findViewById(R.id.version);
 
+        ViewGroup.LayoutParams layoutParams = convertView.getLayoutParams();
+        layoutParams.height = 200;
+        convertView.setLayoutParams(layoutParams);
+
         categoryName.setText(itemData.getCategoryName());
-        //image.setImageV;
+        image.setImageResource(itemData.getImageView());
         version.setText(itemData.getVersion());
 
 
@@ -59,6 +63,6 @@ public class ListBaseAdapter extends BaseAdapter {
     }
 
     public void addItem(ItemData item){
-        //item.add  여기부터 다시 정리하면서 ㄱㄱ
+        listItem.add(item);
     }
 }

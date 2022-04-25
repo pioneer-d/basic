@@ -7,11 +7,21 @@ public class ItemData {
     private String CategoryName;
     private String version;
 
-    private ImageView imageView;
+    private int imageView;
 
-    public ItemData(String name, String version, ImageView image){
+    public ItemData(String name, String version, int image){
         this.CategoryName = name;
         this.version = version;
+        this.imageView = image;
+    }
+
+    public ItemData(String name, String version){
+        this.CategoryName = name;
+        this.version = version;
+    }
+
+    public ItemData(String name, int image){
+        this.CategoryName = name;
         this.imageView = image;
     }
 
@@ -31,11 +41,11 @@ public class ItemData {
         this.version = version;
     }
 
-    public ImageView getImageView() {
+    public int getImageView() {
         return imageView;
     }
 
-    public void setImageView(ImageView imageView) {
+    public void setImageView(int imageView) {
         this.imageView = imageView;
     }
 
