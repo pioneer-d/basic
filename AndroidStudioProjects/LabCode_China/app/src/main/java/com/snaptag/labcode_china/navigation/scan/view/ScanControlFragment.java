@@ -1,14 +1,21 @@
 package com.snaptag.labcode_china.navigation.scan.view;
 
 
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CaptureRequest;
+import android.location.GnssStatus;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -18,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.navigation.scan.model.CameraData;
@@ -38,15 +46,13 @@ public class ScanControlFragment extends Fragment implements ScanContract.View, 
 
     private View view;
     private TextureView textureView;
-    private ImageButton flashButton;
-    private ImageButton flashButton2;
+    private ImageButton flashButton, flashButton2, zoom, zoom_more, zoom_1_0, zoom_1_5, zoom_2_0;
     private FrameLayout zoomBox;
-    private ImageButton zoom;
-    private ImageButton zoom_more;
-    private ImageButton zoom_1_0;
-    private ImageButton zoom_1_5;
-    private ImageButton zoom_2_0;
+
     private boolean zoomClick = false;
+
+//    //여기부터 GPS
+//    private LocationManager locationManager;
 
     public static ScanControlFragment newInstance() {
         if(instance == null){
@@ -57,6 +63,25 @@ public class ScanControlFragment extends Fragment implements ScanContract.View, 
         instance.setArguments(args);
         return instance;
     }
+
+//    @Override
+//    public void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        //  longtitude = 127.12355855, latitude = 37.38772617
+//        if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+//                && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            //권한이 없을 경우 최초 권한 요청 또는 사용자에 의한 재요청 확인
+//            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) &&
+//                    ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION)) {
+//                // 권한 재요청
+//                ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
+//                return;
+//            } else {
+//                ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
+//                return;
+//            }
+//        }
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,6 +106,20 @@ public class ScanControlFragment extends Fragment implements ScanContract.View, 
         zoom_1_0.setOnClickListener(this);  zoom_1_0.setBackgroundResource(R.drawable.ic_black_box);
         zoom_1_5.setOnClickListener(this);
         zoom_2_0.setOnClickListener(this);
+
+//        //여기부터 GPS
+//        //권한 체크
+//        if (ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//
+//        }
+//        locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
+//        Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//        if (lastKnownLocation != null) {
+//            double lng = lastKnownLocation.getLongitude();
+//            double lat = lastKnownLocation.getLatitude();
+//            Log.d(thisName, "longtitude=" + lng + ", latitude=" + lat);
+//
+//        }
 
 
         data = CameraData.getInstance();
@@ -114,45 +153,32 @@ public class ScanControlFragment extends Fragment implements ScanContract.View, 
         int getId = view.getId();
         switch (getId){
             case R.id.flash : case R.id.flash2 :
-                try {
-                    Log.d(thisName,"onClick 실행");
-                    presenter.controlSetting(getId); }
-                catch (CameraAccessException e) { e.printStackTrace(); } break;
+                break;
             case R.id.zoom: case R.id.zoom_more: zoomClick = (zoomClick == true) ? false : true;
                 if (zoomClick == true) {
                     zoom.setImageResource(R.drawable.ic_filled_circle);
                     zoomBox.setVisibility(View.VISIBLE);
-                }
-                else {
+                } else {
                     zoom.setImageResource(R.drawable.ic_blanked_circle);
                     zoomBox.setVisibility(View.INVISIBLE);
                 } break;
             case R.id.zoom_1_0: zoom_1_0.setBackgroundResource(R.drawable.ic_black_box);
                                 zoom_1_5.setBackgroundResource(R.drawable.ic_gray_box);
                                 zoom_2_0.setBackgroundResource(R.drawable.ic_gray_box);
-                                try {
-                                    presenter.controlSetting(getId);
-                                } catch (CameraAccessException e) {
-                                    e.printStackTrace();
-                                } break;
+                                break;
             case R.id.zoom_1_5: zoom_1_5.setBackgroundResource(R.drawable.ic_black_box);
                                 zoom_1_0.setBackgroundResource(R.drawable.ic_gray_box);
                                 zoom_2_0.setBackgroundResource(R.drawable.ic_gray_box);
-                                try {
-                                    presenter.controlSetting(getId);
-                                } catch (CameraAccessException e) {
-                                    e.printStackTrace();
-                                } break;
+                                break;
             case R.id.zoom_2_0: zoom_2_0.setBackgroundResource(R.drawable.ic_black_box);
                                 zoom_1_0.setBackgroundResource(R.drawable.ic_gray_box);
                                 zoom_1_5.setBackgroundResource(R.drawable.ic_gray_box);
-                                try {
-                                    presenter.controlSetting(getId);
-                                } catch (CameraAccessException e) {
-                                    e.printStackTrace();
-                                } break;
-
+                                break;
         }
+        try {
+            Log.d(thisName,"onClick 실행");
+            presenter.controlSetting(getId); }
+        catch (CameraAccessException e) { e.printStackTrace(); }
     }
 
     @Override
