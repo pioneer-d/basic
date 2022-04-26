@@ -32,14 +32,16 @@
             android:src="@drawable/ic_camera_setting" />
 
         <ImageButton
+            android:id="@+id/flash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="179dp"
             android:layout_marginTop="144dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_flash" />
+            android:src="@drawable/ic_flash_off" />
 
         <ImageButton
+            android:id="@+id/flash2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="195dp"
@@ -48,6 +50,7 @@
             android:src="@drawable/ic_flash2" />
 
         <ImageButton
+            android:id="@+id/zoom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="259dp"

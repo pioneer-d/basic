@@ -9,6 +9,7 @@ import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
+import android.hardware.camera2.CameraMetadata;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.os.Handler;
@@ -17,20 +18,26 @@ import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.Surface;
 import android.view.TextureView;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import com.snaptag.labcode_china.R;
+import com.snaptag.labcode_china.navigation.scan.model.CameraData;
 import com.snaptag.labcode_china.navigation.scan.model.ScanModel;
 
 import java.util.Arrays;
 
 public class ScanPresenter implements ScanContract.Presenter{
 
+    private static String thisName = "ScanPresenter";
+
     ScanContract.View view;
     ScanModel model;
+    CameraData data;
 
     //권한 관련
     private int REQUEST_CODE_PERMISSIONS = 1001;
@@ -57,11 +64,23 @@ public class ScanPresenter implements ScanContract.Presenter{
     private Handler backgroundHandler;
     private HandlerThread backgroundThread;
 
+
+
     public ScanPresenter(ScanContract.View view, FragmentActivity activity, TextureView textureView){
         this.view = view;
         this.model = new ScanModel(this);
         this.activity = activity;
         this.textureView = textureView;
+    }
+
+    @Override
+    public void controlSetting(int getId) throws CameraAccessException {  //인자값을 받아와.
+        Log.d(thisName,"controlSetting 실행");
+        switch (getId){
+            case R.id.flash: case R.id.flash2:
+                data.setFlashOnOff((data.isFlashOnOff() == true) ? false : true);
+                 view.updatePreview(data); break;
+        }
     }
 
 
@@ -113,8 +132,15 @@ public class ScanPresenter implements ScanContract.Presenter{
                     return;
                 }
                 cameraCaptureSession = session;
+
+                data = CameraData.getInstance();
+                data.setDevice(cameraDevice);
+                data.setBuilder(captureRequestBuilder);
+                data.setSession(cameraCaptureSession);
+                data.setHandler(backgroundHandler);
+
                 try {
-                    view.updatePreview(cameraDevice, captureRequestBuilder, cameraCaptureSession, backgroundHandler);
+                    view.updatePreview(data);
                 } catch (CameraAccessException e) {
                     e.printStackTrace();
                 }
@@ -127,10 +153,6 @@ public class ScanPresenter implements ScanContract.Presenter{
         }, null);
     }   //Add 'CameraAccessException' to 'Presenter.createCameraPreview' throws list
 
-    @Override
-    public void controlSetting() {
-
-    }
 
     @Override
     public void takePicture() {
@@ -142,7 +164,7 @@ public class ScanPresenter implements ScanContract.Presenter{
         public void onOpened(@NonNull CameraDevice camera) {
             cameraDevice = camera;
             try {
-                createCameraPreview();  //-> 텍스쳐 뷰에 화면 표현.
+                createCameraPreview();
             } catch (CameraAccessException e) {
                 e.printStackTrace();
             }
@@ -159,6 +181,8 @@ public class ScanPresenter implements ScanContract.Presenter{
 
         }
     };
+
+
 
 
 }
