@@ -38,7 +38,7 @@
             android:layout_marginLeft="179dp"
             android:layout_marginTop="144dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_flash_off" />
+            android:src="@drawable/ic_blanked_circle" />
 
         <ImageButton
             android:id="@+id/flash2"
@@ -57,6 +57,55 @@
             android:layout_marginTop="144dp"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_zoom" />
+
+        <ImageButton
+            android:id="@+id/zoom_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="275dp"
+            android:layout_marginTop="160dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_zoom_more" />
+
+        <FrameLayout
+            android:id="@+id/zoom_box"
+            android:layout_width="176dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="244dp"
+            android:layout_marginLeft="179dp"
+            android:background="#0D101A4D"
+            android:visibility="invisible">
+
+            <ImageButton
+                android:id="@+id/zoom_1_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/round"
+                android:src="@drawable/ic_zoom_1_0" />
+
+            <ImageButton
+                android:id="@+id/zoom_1_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="62.5dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/round"
+                android:src="@drawable/ic_zoom_1_5"
+                />
+            <ImageButton
+                android:id="@+id/zoom_2_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="121.5dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/round"
+                android:src="@drawable/ic_zoom_2_0" />
+
+
+        </FrameLayout>
+
 
         <ImageView
             android:layout_width="wrap_content"

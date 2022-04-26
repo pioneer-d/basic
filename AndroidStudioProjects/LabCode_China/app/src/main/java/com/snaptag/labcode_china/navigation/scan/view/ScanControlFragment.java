@@ -3,10 +3,7 @@ package com.snaptag.labcode_china.navigation.scan.view;
 
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
-import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCharacteristics;
-import android.hardware.camera2.CameraDevice;
-import android.hardware.camera2.CameraMetadata;
 import android.hardware.camera2.CaptureRequest;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,12 +11,12 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
 import com.snaptag.labcode_china.R;
@@ -43,7 +40,13 @@ public class ScanControlFragment extends Fragment implements ScanContract.View, 
     private TextureView textureView;
     private ImageButton flashButton;
     private ImageButton flashButton2;
+    private FrameLayout zoomBox;
     private ImageButton zoom;
+    private ImageButton zoom_more;
+    private ImageButton zoom_1_0;
+    private ImageButton zoom_1_5;
+    private ImageButton zoom_2_0;
+    private boolean zoomClick = false;
 
     public static ScanControlFragment newInstance() {
         if(instance == null){
@@ -61,13 +64,24 @@ public class ScanControlFragment extends Fragment implements ScanContract.View, 
 
         view = inflater.inflate(R.layout.fragment_control_scan, container, false);
         textureView = view.findViewById(R.id.textureView);
+
         flashButton = view.findViewById(R.id.flash);
         flashButton2 = view.findViewById(R.id.flash2);
         zoom = view.findViewById(R.id.zoom);
+        zoom_more = view.findViewById(R.id.zoom_more);
+        zoomBox = view.findViewById(R.id.zoom_box);
+        zoom_1_0 = view.findViewById(R.id.zoom_1_0);
+        zoom_1_5 = view.findViewById(R.id.zoom_1_5);
+        zoom_2_0 = view.findViewById(R.id.zoom_2_0);
 
         flashButton.setOnClickListener(this);
         flashButton2.setOnClickListener(this);
         zoom.setOnClickListener(this);
+        zoom_more.setOnClickListener(this);
+        zoom_1_0.setOnClickListener(this);  zoom_1_0.setBackgroundResource(R.drawable.ic_black_box);
+        zoom_1_5.setOnClickListener(this);
+        zoom_2_0.setOnClickListener(this);
+
 
         data = CameraData.getInstance();
         presenter = new ScanPresenter(this,getActivity(),textureView);
@@ -104,6 +118,40 @@ public class ScanControlFragment extends Fragment implements ScanContract.View, 
                     Log.d(thisName,"onClick 실행");
                     presenter.controlSetting(getId); }
                 catch (CameraAccessException e) { e.printStackTrace(); } break;
+            case R.id.zoom: case R.id.zoom_more: zoomClick = (zoomClick == true) ? false : true;
+                if (zoomClick == true) {
+                    zoom.setImageResource(R.drawable.ic_filled_circle);
+                    zoomBox.setVisibility(View.VISIBLE);
+                }
+                else {
+                    zoom.setImageResource(R.drawable.ic_blanked_circle);
+                    zoomBox.setVisibility(View.INVISIBLE);
+                } break;
+            case R.id.zoom_1_0: zoom_1_0.setBackgroundResource(R.drawable.ic_black_box);
+                                zoom_1_5.setBackgroundResource(R.drawable.ic_gray_box);
+                                zoom_2_0.setBackgroundResource(R.drawable.ic_gray_box);
+                                try {
+                                    presenter.controlSetting(getId);
+                                } catch (CameraAccessException e) {
+                                    e.printStackTrace();
+                                } break;
+            case R.id.zoom_1_5: zoom_1_5.setBackgroundResource(R.drawable.ic_black_box);
+                                zoom_1_0.setBackgroundResource(R.drawable.ic_gray_box);
+                                zoom_2_0.setBackgroundResource(R.drawable.ic_gray_box);
+                                try {
+                                    presenter.controlSetting(getId);
+                                } catch (CameraAccessException e) {
+                                    e.printStackTrace();
+                                } break;
+            case R.id.zoom_2_0: zoom_2_0.setBackgroundResource(R.drawable.ic_black_box);
+                                zoom_1_0.setBackgroundResource(R.drawable.ic_gray_box);
+                                zoom_1_5.setBackgroundResource(R.drawable.ic_gray_box);
+                                try {
+                                    presenter.controlSetting(getId);
+                                } catch (CameraAccessException e) {
+                                    e.printStackTrace();
+                                } break;
+
         }
     }
 
@@ -160,10 +208,10 @@ public class ScanControlFragment extends Fragment implements ScanContract.View, 
         //FLASH
         if(data.isFlashOnOff()){
             data.getBuilder().set(CaptureRequest.FLASH_MODE, CameraCharacteristics.FLASH_MODE_TORCH);
-            flashButton.setImageResource(R.drawable.ic_flash_on);
+            flashButton.setImageResource(R.drawable.ic_filled_circle);
         } else {
             data.getBuilder().set(CaptureRequest.FLASH_MODE,CameraCharacteristics.FLASH_MODE_OFF);
-            flashButton.setImageResource(R.drawable.ic_flash_off);
+            flashButton.setImageResource(R.drawable.ic_blanked_circle);
         }
 
         //CONTROL_ZOOM

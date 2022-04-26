@@ -80,6 +80,15 @@ public class ScanPresenter implements ScanContract.Presenter{
             case R.id.flash: case R.id.flash2:
                 data.setFlashOnOff((data.isFlashOnOff() == true) ? false : true);
                  view.updatePreview(data); break;
+            case R.id.zoom_1_0:
+                data.setZoomRate(1.0f);
+                view.updatePreview(data); break;
+            case R.id.zoom_1_5:
+                data.setZoomRate(1.5f);
+                view.updatePreview(data); break;
+            case R.id.zoom_2_0:
+                data.setZoomRate(2.0f);
+                view.updatePreview(data); break;
         }
     }
 
