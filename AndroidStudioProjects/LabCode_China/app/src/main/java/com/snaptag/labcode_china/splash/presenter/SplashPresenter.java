@@ -1,18 +1,14 @@
 package com.snaptag.labcode_china.splash.presenter;
 
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkCapabilities;
-import android.net.NetworkInfo;
 import android.os.Handler;
-import android.util.Log;
-
-import com.snaptag.labcode_china.network.NetworkCheck;
+import com.snaptag.labcode_china.network.NetworkConfirm;
 import com.snaptag.labcode_china.splash.model.SplashModel;
 
-public class SplashPresenter implements SplashContract.Presenter, NetworkCheck.Presenter {
+public class SplashPresenter implements SplashContract.Presenter {
 
     static String thisName = "SplashPresenter";
+    NetworkConfirm confirm = NetworkConfirm.getInstance();
 
     SplashContract.View view;
     SplashModel model;
@@ -27,7 +23,7 @@ public class SplashPresenter implements SplashContract.Presenter, NetworkCheck.P
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (confirmNetwork(context)){
+                if (confirm.confirmNetwork(context)){
                     view.checkCameraRight();
                 }
                 else {
@@ -37,30 +33,6 @@ public class SplashPresenter implements SplashContract.Presenter, NetworkCheck.P
         }, 1000 * sec);
     }
 
-    @Override
-    public boolean confirmNetwork(Context context) {
 
-        boolean confirm = false;
-        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            if (manager != null) {
-                NetworkCapabilities capabilities = manager.getNetworkCapabilities(manager.getActiveNetwork());
-                if (capabilities != null) {
-                    confirm = capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) || capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR);
-                }
-            }
-        } else {
-            NetworkInfo networkInfo = manager.getActiveNetworkInfo();   //getActiveNetworkInfo는 29버전부터 deplecated.
-            if (networkInfo != null) {
-                confirm = (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) || (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE);
-                // TYPE_WIFI, TYPE_MOBILE는 28버전부터 deplecated.
-            }
-        }
-
-        Log.d(thisName,"confirm value : "+Boolean.toString(confirm));
-
-        return confirm;
-    }
 
 }

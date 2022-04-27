@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.TextureView;
@@ -51,8 +52,9 @@ public class ScanControlFragment extends Fragment implements ScanContract.View, 
 
     private boolean zoomClick = false;
 
-//    //여기부터 GPS
-//    private LocationManager locationManager;
+    //여기부터 GPS
+    public static final Parcelable.Creator<GnssStatus> CREATOR = null;
+    private LocationManager locationManager;
 
     public static ScanControlFragment newInstance() {
         if(instance == null){
@@ -64,24 +66,24 @@ public class ScanControlFragment extends Fragment implements ScanContract.View, 
         return instance;
     }
 
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        //  longtitude = 127.12355855, latitude = 37.38772617
-//        if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-//                && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            //권한이 없을 경우 최초 권한 요청 또는 사용자에 의한 재요청 확인
-//            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) &&
-//                    ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION)) {
-//                // 권한 재요청
-//                ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
-//                return;
-//            } else {
-//                ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
-//                return;
-//            }
-//        }
-//    }
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //  longtitude = 127.12355855, latitude = 37.38772617
+        if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            //권한이 없을 경우 최초 권한 요청 또는 사용자에 의한 재요청 확인
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) &&
+                    ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                // 권한 재요청
+                ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
+                return;
+            } else {
+                ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
+                return;
+            }
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -107,19 +109,20 @@ public class ScanControlFragment extends Fragment implements ScanContract.View, 
         zoom_1_5.setOnClickListener(this);
         zoom_2_0.setOnClickListener(this);
 
-//        //여기부터 GPS
-//        //권한 체크
-//        if (ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//
-//        }
-//        locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
-//        Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-//        if (lastKnownLocation != null) {
-//            double lng = lastKnownLocation.getLongitude();
-//            double lat = lastKnownLocation.getLatitude();
-//            Log.d(thisName, "longtitude=" + lng + ", latitude=" + lat);
-//
-//        }
+        //여기부터 GPS
+        //권한 체크
+        if (ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+        }
+        locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
+        //locationManager.
+        Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (lastKnownLocation != null) {
+            double lng = lastKnownLocation.getLongitude();
+            double lat = lastKnownLocation.getLatitude();
+            Log.d(thisName, "longtitude=" + lng + ", latitude=" + lat);
+
+        }
 
 
         data = CameraData.getInstance();
