@@ -109,6 +109,15 @@ public class ScanControlFragment extends Fragment implements ScanContract.View, 
         zoom_1_5.setOnClickListener(this);
         zoom_2_0.setOnClickListener(this);
 
+        data = CameraData.getInstance();
+        presenter = new ScanPresenter(this,getActivity(),textureView);
+
+        init();
+
+        return view;
+    }
+
+    private void init(){
         //여기부터 GPS
         //권한 체크
         if (ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -123,12 +132,6 @@ public class ScanControlFragment extends Fragment implements ScanContract.View, 
             Log.d(thisName, "longtitude=" + lng + ", latitude=" + lat);
 
         }
-
-
-        data = CameraData.getInstance();
-        presenter = new ScanPresenter(this,getActivity(),textureView);
-
-        return view;
     }
 
     @Override
@@ -196,8 +199,6 @@ public class ScanControlFragment extends Fragment implements ScanContract.View, 
     }
 
 
-
-
     private TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
         @Override
         public void onSurfaceTextureAvailable(@NonNull SurfaceTexture surface, int width, int height) {
@@ -207,21 +208,12 @@ public class ScanControlFragment extends Fragment implements ScanContract.View, 
                 e.printStackTrace();
             }
         }
-
         @Override
-        public void onSurfaceTextureSizeChanged(@NonNull SurfaceTexture surfaceTexture, int i, int i1) {
-
-        }
-
+        public void onSurfaceTextureSizeChanged(@NonNull SurfaceTexture surfaceTexture, int i, int i1) { }
         @Override
-        public boolean onSurfaceTextureDestroyed(@NonNull SurfaceTexture surfaceTexture) {
-            return false;
-        }
-
+        public boolean onSurfaceTextureDestroyed(@NonNull SurfaceTexture surfaceTexture) { return false; }
         @Override
-        public void onSurfaceTextureUpdated(@NonNull SurfaceTexture surfaceTexture) {
-
-        }
+        public void onSurfaceTextureUpdated(@NonNull SurfaceTexture surfaceTexture) { }
     };
 
 
@@ -230,9 +222,6 @@ public class ScanControlFragment extends Fragment implements ScanContract.View, 
         if (data.getDevice() == null){
             return;
         }
-
-        Log.d(thisName, "flashOnOff : "+Boolean.toString(data.isFlashOnOff()));
-        Log.d(thisName,"zoomRate : "+Float.toString(data.getZoomRate()));
 
         //FLASH
         if(data.isFlashOnOff()){

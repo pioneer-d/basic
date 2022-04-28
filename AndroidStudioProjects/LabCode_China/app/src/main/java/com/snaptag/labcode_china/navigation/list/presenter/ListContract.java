@@ -11,7 +11,7 @@ public interface ListContract {
     }
 
     interface Presenter{
-        void checkListData();
+        void controlView();
     }
 
 }

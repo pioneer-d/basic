@@ -30,7 +30,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
     }
 
     @Override
-    public void checkCameraRight() {
+    public void goCameraAccessRight() {
         Intent intent = new Intent(getApplicationContext(), AccessRightActivity.class);
         startActivity(intent);
         finish();

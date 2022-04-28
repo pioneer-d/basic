@@ -32,7 +32,7 @@ public class AccessRightPresenter implements AccessRightContract.Presenter {
     }
 
     @Override
-    public boolean rightConfirm() {
+    public boolean rightConfirm() {     //사전 권한 여부 확인
         if(ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
             return false;
         }

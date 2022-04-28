@@ -46,16 +46,16 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         listControlFragment = ListControlFragment.newInstance();
         moreControlFragment = MoreControlFragment.newInstance();
 
-        textView = (TextView) findViewById(R.id.topTitle);
-        frameLayout = findViewById(R.id.main_content);
+        textView = findViewById(R.id.topTitle);
+        frameLayout = findViewById(R.id.main_content);      //fragment 변경될 공간
         bottomNavigationView = findViewById(R.id.bottom_nav);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, scanControlFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, scanControlFragment).commit();    //최초 fragment
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                presenter.controlFragment(item.getItemId(),MainActivity.this);
+                presenter.controlNavigation(item.getItemId(),MainActivity.this);
                 return true;
             }
         });
@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void callList() {
-
         getSupportFragmentManager().beginTransaction().replace(R.id.main_content, listControlFragment).commit();
         textView.setText("인증내역");
     }

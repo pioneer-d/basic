@@ -54,7 +54,7 @@ public class ListControlFragment extends Fragment implements ListContract.View {
 
 
     private void init(){
-        presenter.checkListData();
+        presenter.controlView();
     }
 
     @Override

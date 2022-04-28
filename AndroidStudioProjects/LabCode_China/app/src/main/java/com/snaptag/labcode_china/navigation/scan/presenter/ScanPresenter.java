@@ -74,7 +74,7 @@ public class ScanPresenter implements ScanContract.Presenter{
     }
 
     @Override
-    public void controlSetting(int getId) throws CameraAccessException {  //인자값을 받아와.
+    public void controlSetting(int getId) throws CameraAccessException {
         Log.d(thisName,"controlSetting 실행");
         switch (getId){
             case R.id.flash: case R.id.flash2:

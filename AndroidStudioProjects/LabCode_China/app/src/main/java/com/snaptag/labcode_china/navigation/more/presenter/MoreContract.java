@@ -9,6 +9,6 @@ public interface MoreContract {
     }
 
     interface Presenter{
-        void controlInfo();
+        void controlView();
     }
 }

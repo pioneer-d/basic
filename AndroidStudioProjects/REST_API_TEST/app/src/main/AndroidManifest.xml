@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.REST_API_TEST">
         <activity
-            android:name=".MainActivity"
+            android:name=".HttpURLConnection.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -13,7 +13,7 @@ public class MorePresenter implements MoreContract.Presenter {
 
     }
     @Override
-    public void controlInfo() {
+    public void controlView() {
         //-> 파라미터, 버튼 받아서 fragment이동 하면 될듯
     }
 }

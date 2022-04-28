@@ -17,7 +17,7 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public void controlFragment(int item, Context context) {
+    public void controlNavigation(int item, Context context) {
         if (confirm.confirmNetwork(context)){
             switch (item){
                 case R.id.page_scan : view.callScan(); break;

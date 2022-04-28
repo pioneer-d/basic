@@ -24,7 +24,7 @@ public class SplashPresenter implements SplashContract.Presenter {
             @Override
             public void run() {
                 if (confirm.confirmNetwork(context)){
-                    view.checkCameraRight();
+                    view.goCameraAccessRight();
                 }
                 else {
                     view.networkError();

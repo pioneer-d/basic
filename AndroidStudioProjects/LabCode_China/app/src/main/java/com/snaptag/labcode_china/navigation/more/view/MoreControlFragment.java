@@ -40,9 +40,11 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             presenter = new MorePresenter(this);
-            presenter.controlInfo();
+            init();
         }
     }
+
+    private void init(){ presenter.controlView(); }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -1,7 +1,5 @@
 package com.snaptag.labcode_china.navigation.more.data;
 
-import android.widget.ImageView;
-
 public class ItemData {
 
     private String CategoryName;

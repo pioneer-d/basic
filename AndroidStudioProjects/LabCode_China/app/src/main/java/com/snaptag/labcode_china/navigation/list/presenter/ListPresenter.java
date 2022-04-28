@@ -15,11 +15,12 @@ public class ListPresenter implements ListContract.Presenter{
 
 
     @Override
-    public void checkListData() {
+    public void controlView() {
         if (model.getList()){ view.goList(); }
         else { view.goBlank(); }
 
         }
 
-    }
+
+}
 

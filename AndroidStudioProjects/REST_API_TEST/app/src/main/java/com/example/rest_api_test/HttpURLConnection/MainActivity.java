@@ -1,4 +1,4 @@
-package com.example.rest_api_test;
+package com.example.rest_api_test.HttpURLConnection;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.rest_api_test.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,7 +23,7 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {   //HttpURLConnection 방식
 
     static String activityName = "MainActivity";
 
@@ -67,6 +69,25 @@ public class MainActivity extends AppCompatActivity {
             Log.d(activityName,"get JSON");
             url = new URL(urlStr);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            /*
+            conn.setRequestProperty();    --> 요청 헤더 추가 (key, data)
+            conn.getResponseCode();       --> 유효한 응답 있는지 확인. ==(200 or 301...)
+
+            http method 기본적으로 get method를 사용하기에, get은 명시하지 않아도 됨.
+            conn.setRequestMethod();      --> method 변경 ("POST ...")
+            conn.setDoOutput(true);       --> POST 사용시 호출해야하는 메소드.
+
+            key, value를 서버에 보내는 과정
+            String testData = "message=Test";
+            conn.setDoOutPut(true);
+            coon.getOutputStream().write(testData.getBytes());
+
+            캐싱
+            HttpResponseCache cache = HttpResponseCache.install(getCacheDir(),100000L); --> 100,000 바이트인 캐시 설치
+            -> 설치하면 HttpURLConnection 클래스가 캐시를 자동으로 사용함.
+            if(cache.getHitCount() > 0){--> 캐시가 작동중임!}
+
+             */
             conn.connect();
 
             BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));

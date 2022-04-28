@@ -8,13 +8,13 @@ import androidx.annotation.NonNull;
 public interface MainContract {
 
     interface View{
-        void networkError();
         void callScan();
         void callList();
         void callMore();
+        void networkError();
     }
 
     interface Presenter{
-        void controlFragment(int item, Context context);
+        void controlNavigation(int item, Context context);
     }
 }

@@ -5,7 +5,7 @@ import android.content.Context;
 public interface SplashContract {
 
     interface View {
-        void checkCameraRight();
+        void goCameraAccessRight();
         void networkError();
     }
 
