@@ -26,14 +26,24 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.snaptag.labcode_china.R;
+import com.snaptag.labcode_china.api.Post;
+import com.snaptag.labcode_china.api.SnaptagAPI;
 import com.snaptag.labcode_china.navigation.scan.model.CameraData;
 import com.snaptag.labcode_china.navigation.scan.model.ScanModel;
 
 import java.util.Arrays;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ScanPresenter implements ScanContract.Presenter{
 
     private static String thisName = "ScanPresenter";
+    static String BASEURL = "https://admin.labcode.kr/";
 
     ScanContract.View view;
     ScanModel model;
@@ -68,7 +78,7 @@ public class ScanPresenter implements ScanContract.Presenter{
 
     public ScanPresenter(ScanContract.View view, FragmentActivity activity, TextureView textureView){
         this.view = view;
-        this.model = new ScanModel(this);
+        this.model = new ScanModel(this,activity);
         this.activity = activity;
         this.textureView = textureView;
     }
@@ -90,6 +100,48 @@ public class ScanPresenter implements ScanContract.Presenter{
                 data.setZoomRate(2.0f);
                 view.updatePreview(data); break;
         }
+    }
+
+    @Override
+    public void testAPI() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASEURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        SnaptagAPI retrofitAPI = retrofit.create(SnaptagAPI.class);
+
+        HashMap<String, Object> input = new HashMap<>();
+        input.put("versionKey",2);
+        input.put("countryKey",0);
+        input.put("industryKey",0);
+        input.put("teamKey",0);
+        input.put("mainCategoryKey",0);
+        input.put("subCategoryKey",0);
+        input.put("projectKey",0);
+        input.put("productKey",0);
+        input.put("isVariable",false);
+        input.put("isAdminOnly",false);
+        input.put("isDigital",false);
+        input.put("deviceId", model.getUuid());
+        input.put("deviceInfo","");
+
+        retrofitAPI.postData(input).enqueue(new Callback<Post>() {
+            @Override
+            public void onResponse(Call<Post> call, Response<Post> response) {
+                Log.d("onResponse 실행","성공");
+                if (response.isSuccessful()){
+                    Post data = response.body();
+                    Log.d("data : ", String.valueOf(response.body()));
+                    Log.d("data : ", data.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Post> call, Throwable t) {
+                Log.d("onFailure","onFailure 실행, 실패");
+            }
+        });
     }
 
 

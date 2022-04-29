@@ -16,6 +16,7 @@ public interface ScanContract {
         void openCamera() throws CameraAccessException;
         void createCameraPreview() throws CameraAccessException;
         void controlSetting(int getId) throws CameraAccessException;
+        void testAPI();
         void takePicture();
     }
 }

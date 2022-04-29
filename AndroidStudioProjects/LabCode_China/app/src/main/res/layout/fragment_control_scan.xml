@@ -113,6 +113,13 @@
             android:layout_gravity="center"
             android:src="@drawable/ic_camera_dot" />
 
+        <Button
+            android:id="@+id/testButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test"
+            android:layout_marginTop="700dp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="52dp"
