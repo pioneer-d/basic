@@ -1,22 +1,50 @@
 package com.example.rest_api_test.Retrofit;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Post {
 
-    /*
-    {
-      "versionKey": 2,
-      "countryKey": 0,
-      "industryKey": 0,
-      "teamKey": 0,
-      "mainCategoryKey": 0,
-      "subCategoryKey": 0,
-      "projectKey": 0,
-      "productKey": 0,
-      "isVariable": false,
-      "isAdminOnly": false,
-      "isDigital": false,
-      "deviceId": "",
-      "deviceInfo": {}
+    @SerializedName("userId")
+    private int userId;
+
+    @SerializedName("id")
+    private int id;
+
+    @SerializedName("title")
+    private String title;
+
+    @SerializedName("body")
+    private String body;
+
+    public int getUserId() {
+        return userId;
     }
-     */
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
 }
