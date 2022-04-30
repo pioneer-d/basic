@@ -126,19 +126,31 @@ public class ScanPresenter implements ScanContract.Presenter{
         input.put("deviceId", model.getUuid());
         input.put("deviceInfo","");
 
+        Log.d("getUUID : ",model.getUuid());
+
         retrofitAPI.postData(input).enqueue(new Callback<Post>() {
             @Override
             public void onResponse(Call<Post> call, Response<Post> response) {
                 Log.d("onResponse 실행","성공");
                 if (response.isSuccessful()){
                     Post data = response.body();
-                    Log.d("data : ", String.valueOf(response.body()));
-                    Log.d("data : ", data.getMessage());
+                    Log.d("response.body() : ", String.valueOf(response.body()));
+                    Log.d("message : ", data.getMessage());
+
+                    Log.d("getTitle",data.getData().getTitle());
+                    Log.d("getDescription",data.getData().getDescription());
+                    Log.d("getSourceImage",data.getData().getSourceImage());
+                    Log.d("getUrlCustom",data.getData().getUrlCustom());
+
+
+
                 }
             }
 
             @Override
             public void onFailure(Call<Post> call, Throwable t) {
+                t.printStackTrace();
+                t.getCause();
                 Log.d("onFailure","onFailure 실행, 실패");
             }
         });
