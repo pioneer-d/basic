@@ -4,22 +4,21 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Post {
+public class Get {
+
     @SerializedName("message")
     private String message;
 
     @SerializedName("data")
     @Expose
-    public Data data = new Data();
+    public ArrayList<Data> data;
 
-    public Data getData() {
+    public ArrayList<Data> getData() {
         return data;
     }
 
     public String getMessage() {
         return message;
     }
-
 }

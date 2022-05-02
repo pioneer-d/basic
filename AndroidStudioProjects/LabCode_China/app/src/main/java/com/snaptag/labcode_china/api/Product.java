@@ -2,8 +2,7 @@ package com.snaptag.labcode_china.api;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Data {
-
+public class Product {
 
     @SerializedName("title")
     public String title;
@@ -16,13 +15,6 @@ public class Data {
 
     @SerializedName("urlCustom")
     public String urlCustom;
-
-    @SerializedName("product")
-    public Product product;
-
-    public Product getProduct() {
-        return product;
-    }
 
     public String getTitle() {
         return title;

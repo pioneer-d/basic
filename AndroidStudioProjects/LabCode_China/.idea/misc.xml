@@ -37,10 +37,13 @@
         <entry key="app/src/main/res/layout/fragment_control_more.xml" value="0.18333333333333332" />
         <entry key="app/src/main/res/layout/fragment_control_scan.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.2864583333333333" />
-        <entry key="app/src/main/res/layout/fragment_list.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_list.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_more.xml" value="0.275" />
+        <entry key="app/src/main/res/layout/fragment_my_list.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/fragment_scan.xml" value="0.275" />
         <entry key="app/src/main/res/layout/listview_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/listview_list_item.xml" value="0.23645833333333333" />
+        <entry key="app/src/main/res/layout/listview_more_item.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/menu/menu_bottom_nav.xml" value="0.2609375" />
       </map>
     </option>

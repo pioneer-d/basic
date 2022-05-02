@@ -9,13 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.snaptag.labcode_china.R;
-import com.snaptag.labcode_china.navigation.more.data.ItemData;
+import com.snaptag.labcode_china.navigation.more.data.MoreItemData;
 
 import java.util.ArrayList;
 
-public class ListBaseAdapter extends BaseAdapter {
+public class MoreBaseAdapter extends BaseAdapter {
 
-    ArrayList<ItemData> listItem = new ArrayList<ItemData>();
+    ArrayList<MoreItemData> listItem = new ArrayList<MoreItemData>();
     Context context;
 
     //리스트 개수
@@ -40,11 +40,11 @@ public class ListBaseAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         context = parent.getContext();
-        ItemData itemData = listItem.get(position);
+        MoreItemData itemData = listItem.get(position);
 
         if (convertView == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.listview_item,parent,false);
+            convertView = inflater.inflate(R.layout.listview_more_item,parent,false);
         }
         TextView categoryName = convertView.findViewById(R.id.categoryName);
         ImageView image = convertView.findViewById(R.id.image);
@@ -62,7 +62,7 @@ public class ListBaseAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public void addItem(ItemData item){
+    public void addItem(MoreItemData item){
         listItem.add(item);
     }
 }
