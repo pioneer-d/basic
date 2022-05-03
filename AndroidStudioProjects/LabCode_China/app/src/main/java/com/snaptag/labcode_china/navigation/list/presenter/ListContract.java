@@ -13,6 +13,8 @@ public interface ListContract {
 
     interface Presenter{
         void controlView();
+        void testView();
+        void testView2();
     }
 
 }

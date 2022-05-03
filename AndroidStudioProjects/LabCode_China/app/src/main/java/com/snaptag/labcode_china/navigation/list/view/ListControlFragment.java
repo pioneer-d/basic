@@ -64,7 +64,7 @@ public class ListControlFragment extends Fragment implements ListContract.View {
 
     private void init(){
         presenter.controlView();
-    }   //-> 여기부터 진행
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

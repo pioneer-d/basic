@@ -11,7 +11,7 @@ import java.util.UUID;
 public class ScanModel {
 
     ScanContract.Presenter presenter;
-    Activity activity;
+    static Activity activity;
 
     public ScanModel(ScanContract.Presenter presenter, Activity activity){
         this.presenter = presenter;
@@ -28,12 +28,12 @@ public class ScanModel {
         if (uuid == null) {
             uuid = UUID.randomUUID().toString();
 
-            mPref.edit().putString("KEY_UUID", uuid).apply();
+            mPref.edit().putString("KEY_UUID", uuid + "5").apply();
         }
     }
 
     //UUID 조회
-    public String getUuid() {
+    public static String getUuid() {
         SharedPreferences mPref = activity.getSharedPreferences("KEY_PREF", activity.MODE_PRIVATE);
         return mPref.getString("KEY_UUID", null);
     }

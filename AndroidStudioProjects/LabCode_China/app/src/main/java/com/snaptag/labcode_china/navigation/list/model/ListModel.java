@@ -15,9 +15,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ListModel {
 
+    static String thisName = "ListModel";
+
     ListContract.Presenter presenter;
     static String BASEURL = "https://admin.labcode.kr/";
     private ListItemData itemData;
+    public static boolean test = true;
 
     String image;
     String genre;
@@ -30,27 +33,32 @@ public class ListModel {
 
     //-> 이걸 여기서 받으니까 자꾸 못받아옴. 다른 방법 생각하거나, ListFragment나 ControlFragment에서 받아와야 할 것 같음..!
 
+    static void changeBoolean(){
+        Log.d(thisName,"changeBoolean() 실행");
+        test = (test == true) ? false : true;
+    }
+
 
     //실제 적용시 JSON이나 Map으로 반환하고, Presenter에서 null로 체크해야할 듯.
-    public boolean getList(){
-//      public ListItemData getList(){
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(BASEURL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        SnaptagAPI retrofitAPI = retrofit.create(SnaptagAPI.class);
-//
-//
-//        retrofitAPI.getData(1).enqueue(new Callback<Get>() {
-//            @Override
-//            public void onResponse(Call<Get> call, Response<Get> response) {
-//                Log.d("onResponse 실행","성공");
-//                if (response.isSuccessful()){
-//
-//                    Get data = response.body();
-//                    Log.d("response.body() : ", String.valueOf(response.body()));
-//                    Log.d("message : ", data.getMessage());
+    public void getList(){
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASEURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        SnaptagAPI retrofitAPI = retrofit.create(SnaptagAPI.class);
+
+
+        retrofitAPI.getData(1).enqueue(new Callback<Get>() {
+            @Override
+            public void onResponse(Call<Get> call, Response<Get> response) {
+                Log.d("onResponse 실행","성공");
+                if (response.isSuccessful()){
+
+                    Get data = response.body();
+                    Log.d("response.body() : ", String.valueOf(response.body()));
+                    Log.d("message : ", data.getMessage());
 //                    Log.d("sourceImage : ",String.valueOf(data.getData().get(0).getProduct().getSourceImage()));
 //                    Log.d("genre : ",data.getData().get(0).getProduct().getTitle());
 //                    Log.d("product : ",data.getData().get(0).getProduct().getDescription());
@@ -60,20 +68,27 @@ public class ListModel {
 //                    genre = data.getData().get(0).getProduct().getTitle();
 //                    product = data.getData().get(0).getProduct().getDescription();
 //                    brand = data.getData().get(0).getProduct().getUrlCustom();
-//                    itemData = new ListItemData(image,genre,product,brand);
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Get> call, Throwable t) {
-//                t.printStackTrace();
-//                t.getCause();
-//                Log.d("onFailure","onFailure 실행, 실패");
-//            }
-//        });
 
-        return true;
+                    Log.d("isEmpty() : ",String.valueOf(data.getData().isEmpty()));
+                    if(data.getData().isEmpty()){
+                        presenter.testView2();
+                    } else{
+                        presenter.testView();
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Get> call, Throwable t) {
+                t.printStackTrace();
+                t.getCause();
+                Log.d("onFailure","onFailure 실행, 실패");
+            }
+        });
+        Log.d(thisName,"test : "+String.valueOf(test));
+
     }
 
 }

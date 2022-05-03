@@ -1,5 +1,7 @@
 package com.snaptag.labcode_china.api;
 
+import android.content.SharedPreferences;
+
 import java.util.HashMap;
 
 import retrofit2.Call;

@@ -16,11 +16,17 @@ public class ListPresenter implements ListContract.Presenter{
 
     @Override
     public void controlView() {
-        if (!model.getList()){ view.goBlank(); }
-        else { view.goList(); }
+        model.getList();
+    }
+    @Override
+    public void testView(){
+        view.goList();
+    }
+    @Override
+    public void testView2(){
+        view.goBlank();
+    }
 
-
-        }
 
 
 }

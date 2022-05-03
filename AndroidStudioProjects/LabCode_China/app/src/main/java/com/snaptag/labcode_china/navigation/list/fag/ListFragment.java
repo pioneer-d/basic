@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ListView;
 
 import com.snaptag.labcode_china.R;
@@ -41,6 +42,9 @@ public class ListFragment extends Fragment {
     String product;
     String brand;
 
+    //page 1당 20개
+    int page = 1;
+
     static String BASEURL = "https://admin.labcode.kr/";
 
     private ListBaseAdapter adapter;
@@ -53,6 +57,11 @@ public class ListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        init();
+    }
+
+    private void init(){
+        Log.d(thisName,"init() 실행");
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASEURL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -60,9 +69,7 @@ public class ListFragment extends Fragment {
 
         SnaptagAPI retrofitAPI = retrofit.create(SnaptagAPI.class);
 
-
-
-        retrofitAPI.getData(1).enqueue(new Callback<Get>() {
+        retrofitAPI.getData(page).enqueue(new Callback<Get>() {
             @Override
             public void onResponse(Call<Get> call, Response<Get> response) {
                 Log.d(thisName,"onResponse 실행");
@@ -70,18 +77,20 @@ public class ListFragment extends Fragment {
 
                     Get data = response.body();
 
+                    if (!data.getData().isEmpty()) {
 
-                    itemData = new ListItemData(data.getData().get(0).getProduct().getSourceImage(),
-                            data.getData().get(0).getProduct().getTitle(),
-                            data.getData().get(0).getProduct().getDescription(),
-                            data.getData().get(0).getProduct().getUrlCustom());
+                        for (int i = 0; i < data.getData().size(); i++) {
+                            image = data.getData().get(i).getProduct().getSourceImage();
+                            genre = data.getData().get(i).getProduct().getTitle();
+                            product = data.getData().get(i).getProduct().getDescription();
+                            brand = data.getData().get(i).getProduct().getUrlCustom();
 
-                    image = data.getData().get(0).getProduct().getSourceImage();
-                    genre = data.getData().get(0).getProduct().getTitle();
-                    product = data.getData().get(0).getProduct().getDescription();
-                    brand = data.getData().get(0).getProduct().getUrlCustom();
+                            itemData = new ListItemData(image, genre, product, brand);
 
-                    adapter.addItem(itemData);
+                            adapter.addItem(itemData);
+                        }
+                    }
+
 
                 }
             }
@@ -93,55 +102,6 @@ public class ListFragment extends Fragment {
                 Log.d("onFailure","onFailure 실행, 실패");
             }
         });
-    }
-
-    private void init(){
-        Log.d(thisName,"init() 실행");
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(BASEURL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        SnaptagAPI retrofitAPI = retrofit.create(SnaptagAPI.class);
-//
-//
-//        retrofitAPI.getData(1).enqueue(new Callback<Get>() {
-//            @Override
-//            public void onResponse(Call<Get> call, Response<Get> response) {
-//                Log.d(thisName,"onResponse 실행");
-//                if (response.isSuccessful()){
-//
-//                    Get data = response.body();
-//                    Log.d("response.body() : ", String.valueOf(response.body()));
-//                    Log.d("message : ", data.getMessage());
-//                    Log.d("sourceImage : ",String.valueOf(data.getData().get(0).getProduct().getSourceImage()));
-//                    Log.d("genre : ",data.getData().get(0).getProduct().getTitle());
-//                    Log.d("product : ",data.getData().get(0).getProduct().getDescription());
-//                    Log.d("brand : ",data.getData().get(0).getProduct().getUrlCustom());
-//
-//                    itemData = new ListItemData(data.getData().get(0).getProduct().getSourceImage(),
-//                            data.getData().get(0).getProduct().getTitle(),
-//                            data.getData().get(0).getProduct().getDescription(),
-//                            data.getData().get(0).getProduct().getUrlCustom());
-//
-//                    image = data.getData().get(0).getProduct().getSourceImage();
-//                    genre = data.getData().get(0).getProduct().getTitle();
-//                    product = data.getData().get(0).getProduct().getDescription();
-//                    brand = data.getData().get(0).getProduct().getUrlCustom();
-//
-//                    adapter = new ListBaseAdapter();
-//                    adapter.addItem(itemData);
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Get> call, Throwable t) {
-//                t.printStackTrace();
-//                t.getCause();
-//                Log.d("onFailure","onFailure 실행, 실패");
-//            }
-//        });
 
     }
 
@@ -149,8 +109,6 @@ public class ListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-        if (image == null) {init();}
         Log.d(thisName,"onCreateView() 실행");
         Log.d(thisName,"\nimage : "+  image + "\ngenre : " + genre + "\nproduct : " + product + "\nbrand : " + brand);
 
@@ -161,8 +119,31 @@ public class ListFragment extends Fragment {
         ListView listView = (ListView) thisView.findViewById(R.id.item_my_list);
         listView.setAdapter(adapter);
 
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, value);
+        //이부분은 스크롤 관리
+        listView.setOnScrollListener(new AbsListView.OnScrollListener(){
 
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+                if (listView.canScrollVertically(-1)){
+                    Log.d(thisName,"스크롤 최하단");
+                    //최상단일 경우
+               } else if (listView.canScrollVertically(1)){
+                    Log.d(thisName,"스크롤 최상단");
+                    page++;
+                    Log.d(thisName,"page : "+String.valueOf(page));
+                    init();
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+
+            }
+        });
+
+
+
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, value);
 
         return thisView;
     }
