@@ -6,12 +6,7 @@
     tools:context=".navigation.list.view.ListControlFragment"
     android:id="@+id/list_child_content">
 
-<!--    <ListView-->
-<!--        android:id="@+id/item_my_list"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="130dp"-->
-<!--        android:scrollbars="none"/>-->
+
 
 
 </FrameLayout>

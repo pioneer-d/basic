@@ -7,7 +7,7 @@ public interface ListContract {
 
     interface View{
         void goBlank();
-        void goList(ListItemData data);
+        void goList();
         void goDetail();
     }
 

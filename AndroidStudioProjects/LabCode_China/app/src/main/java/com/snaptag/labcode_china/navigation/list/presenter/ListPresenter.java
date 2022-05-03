@@ -16,9 +16,9 @@ public class ListPresenter implements ListContract.Presenter{
 
     @Override
     public void controlView() {
-        //if (model.getList() == null){ view.goBlank(); }
-        //else { view.goList(model.getList()); }
-        view.goList(model.getList());
+        if (!model.getList()){ view.goBlank(); }
+        else { view.goList(); }
+
 
         }
 

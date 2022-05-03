@@ -21,6 +21,8 @@ import java.util.ArrayList;
 
 public class ListBaseAdapter extends BaseAdapter {
 
+    static String thisName = "ListBaseAdapter";
+
     ArrayList<ListItemData> listItem = new ArrayList<ListItemData>();
     Context context;
 
@@ -32,6 +34,7 @@ public class ListBaseAdapter extends BaseAdapter {
     @Override
     public Object getItem(int position) {
         return listItem.get(position);
+
     }
 
     @Override
@@ -42,13 +45,15 @@ public class ListBaseAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        Log.d(thisName,String.valueOf(parent.getContext()));
+
         context = parent.getContext();
         ListItemData itemData = listItem.get(position);
 
-        if(convertView == null){
+        //if(convertView == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.listview_list_item,parent,false);
-        }
+        //}
         ImageView sourceImage = convertView.findViewById(R.id.sourceImage);
         TextView productGenre = convertView.findViewById(R.id.productGenre);
         TextView productName = convertView.findViewById(R.id.productName);
@@ -64,6 +69,8 @@ public class ListBaseAdapter extends BaseAdapter {
         productName.setText(itemData.getProductName());
         brandName.setText(itemData.getBrandName());
 
+        Log.d(thisName,String.valueOf(context));
+
         Log.d("sourceImage 어뎁터 : ",String.valueOf(itemData.getSourceImage()));
         Log.d("productGenre 어뎁터 : ",itemData.getProductGenre());
         Log.d("productName 어뎁터 : ",itemData.getProductName());
@@ -74,5 +81,8 @@ public class ListBaseAdapter extends BaseAdapter {
 
     public void addItem(ListItemData item){
         listItem.add(item);
+
+        //어댑터에게 값의 변화를 알리는 메소드
+       notifyDataSetChanged();
     }
 }

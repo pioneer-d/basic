@@ -29,8 +29,6 @@ public class ListControlFragment extends Fragment implements ListContract.View {
     ListContract.Presenter presenter;
     View view;
 
-    static String BASEURL = "https://admin.labcode.kr/";
-
     String image = "test1";
     String genre = "test2";
     String product = "test3";
@@ -82,26 +80,13 @@ public class ListControlFragment extends Fragment implements ListContract.View {
     }
 
     @Override
-    public void goList(ListItemData itemData) {
+    public void goList() {
         listFragment = new ListFragment();
 
-        image = (itemData.getSourceImage() == null) ? "test" : itemData.getSourceImage();
-        genre = (itemData.getProductGenre() == null) ? "test2" : itemData.getProductGenre();
-        product = (itemData.getProductName() == null) ? "test3" : itemData.getProductName();
-        brand = (itemData.getBrandName() == null) ? "test4" : itemData.getBrandName();
-
-
         Bundle bundle = new Bundle();
-        bundle.putString("image",image);
-        bundle.putString("genre",genre);
-        bundle.putString("product",product);
-        bundle.putString("brand",brand);
         listFragment.setArguments(bundle);
 
-        getChildFragmentManager().beginTransaction().replace(R.id.list_child_content, listFragment).commit();
-
-
-
+        getChildFragmentManager().beginTransaction().replace(R.id.list_child_content, listFragment).addToBackStack(null).commit();
 
     }
 
