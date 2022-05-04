@@ -71,10 +71,10 @@ public class ListBaseAdapter extends BaseAdapter {
 
         Log.d(thisName,String.valueOf(context));
 
-        Log.d("sourceImage 어뎁터 : ",String.valueOf(itemData.getSourceImage()));
-        Log.d("productGenre 어뎁터 : ",itemData.getProductGenre());
-        Log.d("productName 어뎁터 : ",itemData.getProductName());
-        Log.d("brandName 어뎁터 : ",itemData.getProductName());
+//        Log.d("sourceImage 어뎁터 : ",String.valueOf(itemData.getSourceImage()));
+//        Log.d("productGenre 어뎁터 : ",itemData.getProductGenre());
+//        Log.d("productName 어뎁터 : ",itemData.getProductName());
+//        Log.d("brandName 어뎁터 : ",itemData.getProductName());
 
         return convertView;
     }

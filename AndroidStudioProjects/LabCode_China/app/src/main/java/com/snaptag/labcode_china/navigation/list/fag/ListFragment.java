@@ -44,6 +44,7 @@ public class ListFragment extends Fragment {
 
     //page 1당 20개
     int page = 1;
+    private boolean lastItemFlag = false;
 
     static String BASEURL = "https://admin.labcode.kr/";
 
@@ -123,21 +124,23 @@ public class ListFragment extends Fragment {
         listView.setOnScrollListener(new AbsListView.OnScrollListener(){
 
             @Override
-            public void onScrollStateChanged(AbsListView absListView, int i) {
-                if (listView.canScrollVertically(-1)){
+            public void onScrollStateChanged(AbsListView absListView, int scrollState) {
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && lastItemFlag){
                     Log.d(thisName,"스크롤 최하단");
-                    //최상단일 경우
-               } else if (listView.canScrollVertically(1)){
-                    Log.d(thisName,"스크롤 최상단");
                     page++;
                     Log.d(thisName,"page : "+String.valueOf(page));
                     init();
+                //최상단일 경우
                 }
+//               else if (listView.canScrollVertically(1)){
+//                    Log.d(thisName,"스크롤 최상단");
+//
+//                }
             }
 
             @Override
-            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
-
+            public void onScroll(AbsListView absListView, int firstItemNum, int visibleItemCount, int totalItemCount) {
+                lastItemFlag = (totalItemCount > 0) && (firstItemNum + visibleItemCount >= totalItemCount);
             }
         });
 
