@@ -1,25 +1,17 @@
 package com.snaptag.labcode_china.navigation.scan.view;
 
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
+
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CaptureRequest;
-import android.location.GnssStatus;
-import android.location.Location;
-import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.TextureView;
@@ -56,9 +48,6 @@ public class ScanControlFragment extends Fragment implements ScanContract.View, 
 
     private boolean zoomClick = false;
 
-//    //여기부터 GPS
-//    public static final Parcelable.Creator<GnssStatus> CREATOR = null;
-//    private LocationManager locationManager;
 
     public static ScanControlFragment newInstance() {
         if(instance == null){
@@ -75,20 +64,7 @@ public class ScanControlFragment extends Fragment implements ScanContract.View, 
         super.onCreate(savedInstanceState);
 
 
-//  longtitude = 127.12355855, latitude = 37.38772617
-//        if (ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-//                && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            //권한이 없을 경우 최초 권한 요청 또는 사용자에 의한 재요청 확인
-//            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) &&
-//                    ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION)) {
-//                // 권한 재요청
-//                ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
-//                return;
-//            } else {
-//                ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
-//                return;
-//            }
-//        }
+
     }
 
     @Override
@@ -114,7 +90,8 @@ public class ScanControlFragment extends Fragment implements ScanContract.View, 
         flashButton2.setOnClickListener(this);
         zoom.setOnClickListener(this);
         zoom_more.setOnClickListener(this);
-        zoom_1_0.setOnClickListener(this);  zoom_1_0.setBackgroundResource(R.drawable.ic_black_box);
+        zoom_1_0.setOnClickListener(this);
+        zoom_1_0.setBackgroundResource(R.drawable.ic_black_box);
         zoom_1_5.setOnClickListener(this);
         zoom_2_0.setOnClickListener(this);
         testButton.setOnClickListener(this);
@@ -128,20 +105,7 @@ public class ScanControlFragment extends Fragment implements ScanContract.View, 
     }
 
     private void init(){
-//        //여기부터 GPS
-//        //권한 체크
-//        if (ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//
-//        }
-//        locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
-//        //locationManager.
-//        Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-//        if (lastKnownLocation != null) {
-//            double lng = lastKnownLocation.getLongitude();
-//            double lat = lastKnownLocation.getLatitude();
-//            Log.d(thisName, "longtitude=" + lng + ", latitude=" + lat);
-//
-//        }
+
     }
 
     @Override

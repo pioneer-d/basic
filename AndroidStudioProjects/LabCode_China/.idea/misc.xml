@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../../../layout/custom_preview.xml" value="0.353125" />
         <entry key="../../../../../Library/Android/sdk/platforms/android-32/data/res/layout/simple_expandable_list_item_1.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2395" />
         <entry key="app/src/main/res/drawable/ic_access_rights.xml" value="0.2395" />
@@ -41,6 +42,7 @@
         <entry key="app/src/main/res/layout/fragment_more.xml" value="0.275" />
         <entry key="app/src/main/res/layout/fragment_my_list.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/fragment_scan.xml" value="0.275" />
+        <entry key="app/src/main/res/layout/fragment_scan_control__test.xml" value="0.165" />
         <entry key="app/src/main/res/layout/listview_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/listview_list_item.xml" value="0.23645833333333333" />
         <entry key="app/src/main/res/layout/listview_more_item.xml" value="0.25052083333333336" />

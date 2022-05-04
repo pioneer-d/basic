@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".navigation.scan.view.ScanControlFragment_Test">
+
+    <com.snaptag.cameramodule.STCameraView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/st_camera" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="99dp"
+            android:layout_marginTop="144dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_camera_setting" />
+
+        <ImageButton
+            android:id="@+id/flash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="179dp"
+            android:layout_marginTop="144dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_blanked_circle" />
+
+        <ImageButton
+            android:id="@+id/flash2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="195dp"
+            android:layout_marginTop="158dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_flash2" />
+
+        <ImageButton
+            android:id="@+id/zoom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="259dp"
+            android:layout_marginTop="144dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_zoom" />
+
+        <ImageButton
+            android:id="@+id/zoom_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="275dp"
+            android:layout_marginTop="160dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_zoom_more" />
+
+        <FrameLayout
+            android:id="@+id/zoom_box"
+            android:layout_width="176dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="244dp"
+            android:layout_marginLeft="179dp"
+            android:background="#0D101A4D"
+            android:visibility="invisible">
+
+            <ImageButton
+                android:id="@+id/zoom_1_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/round"
+                android:src="@drawable/ic_zoom_1_0" />
+
+            <ImageButton
+                android:id="@+id/zoom_1_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="62.5dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/round"
+                android:src="@drawable/ic_zoom_1_5"
+                />
+            <ImageButton
+                android:id="@+id/zoom_2_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="121.5dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/round"
+                android:src="@drawable/ic_zoom_2_0" />
+
+
+        </FrameLayout>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_camera_dot" />
+
+        <Button
+            android:id="@+id/testButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test"
+            android:layout_marginTop="700dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="750dp"
+            android:gravity="center"
+            android:text="너무 가깝거나 먼 거리에서는 인식률이 떨어질 수 있어요"
+            android:textColor="@color/white"
+            android:background="#735138E5"
+            android:textAlignment="center" />
+
+
+    </FrameLayout>
+
+</FrameLayout>

@@ -10,7 +10,12 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+
     }
 }
+
+
+
 rootProject.name = "LabCode_China"
 include ':app'
+include ':sdk'

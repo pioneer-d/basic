@@ -36,6 +36,7 @@
             android:exported="true" />
         <activity
             android:name=".main.view.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true"></activity>
     </application>
 
