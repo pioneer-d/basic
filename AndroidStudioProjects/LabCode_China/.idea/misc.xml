@@ -24,6 +24,7 @@
         <entry key="app/src/main/res/drawable/ic_resource_default.xml" value="0.2395" />
         <entry key="app/src/main/res/drawable/ic_scan.xml" value="0.29" />
         <entry key="app/src/main/res/drawable/ic_sp_01.xml" value="0.2395" />
+        <entry key="app/src/main/res/drawable/ic_success_text.xml" value="0.409" />
         <entry key="app/src/main/res/drawable/ic_test_list.xml" value="0.2675" />
         <entry key="app/src/main/res/drawable/ic_zoom.xml" value="0.237" />
         <entry key="app/src/main/res/drawable/ic_zoom_1_0.xml" value="0.2815" />
@@ -43,6 +44,7 @@
         <entry key="app/src/main/res/layout/fragment_my_list.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/fragment_scan.xml" value="0.275" />
         <entry key="app/src/main/res/layout/fragment_scan_control__test.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_scan_success.xml" value="0.25" />
         <entry key="app/src/main/res/layout/listview_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/listview_list_item.xml" value="0.23645833333333333" />
         <entry key="app/src/main/res/layout/listview_more_item.xml" value="0.25052083333333336" />

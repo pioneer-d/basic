@@ -20,6 +20,17 @@ public class Data {
     @SerializedName("product")
     public Product product;
 
+    @SerializedName("project")
+    public Project project;
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
     public Product getProduct() {
         return product;
     }

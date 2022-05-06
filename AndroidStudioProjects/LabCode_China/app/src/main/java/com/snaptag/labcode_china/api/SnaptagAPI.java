@@ -17,7 +17,7 @@ public interface SnaptagAPI {
     @POST("adm/v1/products/scan")
     Call<Post> postData(@FieldMap HashMap<String, Object>param);
 
-    @GET("adm/v1/products/scan/3a52aed2-a50a-41f0-8721-dd3dd5828066")   //일단 하드코딩
+    @GET("adm/v1/products/scan/6f223174-10df-4227-addf-bb68de568e55")   //일단 하드코딩
     Call<Get> getData(@Query("page") int page);
 
 

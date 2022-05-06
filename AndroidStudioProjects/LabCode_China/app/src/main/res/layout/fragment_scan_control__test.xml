@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".navigation.scan.view.ScanControlFragment_Test">
+    tools:context=".navigation.scan.view.ScanControlFragment_Test"
+    android:id="@+id/scan_child_content">
 
     <com.snaptag.cameramodule.STCameraView
         android:layout_width="match_parent"

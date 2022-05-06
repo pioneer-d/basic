@@ -1,27 +1,15 @@
 package com.snaptag.labcode_china.navigation.list.view;
 
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import com.snaptag.labcode_china.R;
-import com.snaptag.labcode_china.api.Get;
-import com.snaptag.labcode_china.api.SnaptagAPI;
-import com.snaptag.labcode_china.navigation.list.data.ListItemData;
-import com.snaptag.labcode_china.navigation.list.fag.BlankFragment;
-import com.snaptag.labcode_china.navigation.list.fag.ListFragment;
+import com.snaptag.labcode_china.navigation.list.frg.BlankFragment;
+import com.snaptag.labcode_china.navigation.list.frg.ListFragment;
 import com.snaptag.labcode_china.navigation.list.presenter.ListContract;
 import com.snaptag.labcode_china.navigation.list.presenter.ListPresenter;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class ListControlFragment extends Fragment implements ListContract.View {

@@ -1,11 +1,8 @@
-package com.snaptag.labcode_china.navigation.list.fag;
+package com.snaptag.labcode_china.navigation.list.frg;
 
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,15 +13,9 @@ import android.widget.ListView;
 
 import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.api.Get;
-import com.snaptag.labcode_china.api.Post;
 import com.snaptag.labcode_china.api.SnaptagAPI;
 import com.snaptag.labcode_china.navigation.list.baseAdapter.ListBaseAdapter;
 import com.snaptag.labcode_china.navigation.list.data.ListItemData;
-import com.snaptag.labcode_china.navigation.list.view.ListControlFragment;
-import com.snaptag.labcode_china.navigation.more.baseAdapter.MoreBaseAdapter;
-import com.snaptag.labcode_china.navigation.more.data.MoreItemData;
-
-import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -81,9 +72,9 @@ public class ListFragment extends Fragment {
                     if (!data.getData().isEmpty()) {
 
                         for (int i = 0; i < data.getData().size(); i++) {
-                            image = data.getData().get(i).getProduct().getSourceImage();
-                            genre = data.getData().get(i).getProduct().getTitle();
-                            product = data.getData().get(i).getProduct().getDescription();
+                            image = data.getData().get(i).getProject().getBannerImage();
+                            genre = data.getData().get(i).getProduct().getDescription();
+                            product = data.getData().get(i).getProduct().getTitle();
                             brand = data.getData().get(i).getProduct().getUrlCustom();
 
                             itemData = new ListItemData(image, genre, product, brand);

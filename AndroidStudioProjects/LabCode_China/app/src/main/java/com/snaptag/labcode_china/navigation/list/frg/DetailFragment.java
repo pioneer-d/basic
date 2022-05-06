@@ -1,4 +1,4 @@
-package com.snaptag.labcode_china.navigation.list.fag;
+package com.snaptag.labcode_china.navigation.list.frg;
 
 import android.os.Bundle;
 
