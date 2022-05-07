@@ -113,6 +113,7 @@
             android:layout_marginTop="700dp" />
 
         <TextView
+            android:id="@+id/guideText"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="750dp"

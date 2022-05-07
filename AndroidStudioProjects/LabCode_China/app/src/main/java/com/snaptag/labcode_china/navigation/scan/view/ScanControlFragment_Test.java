@@ -1,12 +1,17 @@
 package com.snaptag.labcode_china.navigation.scan.view;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.hardware.camera2.CameraAccessException;
+import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
 
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.TextureView;
@@ -15,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.google.gson.JsonObject;
 import com.snaptag.cameramodule.STCameraView;
@@ -22,11 +28,13 @@ import com.snaptag.cameramodule.model.DetectResult;
 import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.api.Post;
 import com.snaptag.labcode_china.api.SnaptagAPI;
-import com.snaptag.labcode_china.navigation.scan.Sound.BeepSound;
+import com.snaptag.labcode_china.navigation.scan.frg.AlertTimeFragment;
 import com.snaptag.labcode_china.navigation.scan.frg.ScanSuccessFragment;
 import com.snaptag.labcode_china.navigation.scan.model.CameraData;
 import com.snaptag.labcode_china.navigation.scan.presenter.ScanContract;
 import com.snaptag.labcode_china.navigation.scan.presenter.ScanPresenter;
+
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Timer;
@@ -49,10 +57,22 @@ public class ScanControlFragment_Test extends Fragment implements View.OnClickLi
     private View view;
     private STCameraView stCameraView = null;
     private ImageButton flashButton, flashButton2, zoom, zoom_more, zoom_1_0, zoom_1_5, zoom_2_0;
+    private TextView guideText;
 
     //Timer 관련
-    private Timer timer = null;
+    private Timer timer;
+    private TimerTask task;
+    int defaultSecond = 30;
+    int onGoingTime = 0;
     private boolean isCancel = false;
+
+    //sound관련
+    SoundPool soundPool;
+    private int soundManage;
+
+    //vibrate 관련
+    Vibrator vibrator;
+
 
     //API 관련
     private Button testButton;
@@ -62,6 +82,7 @@ public class ScanControlFragment_Test extends Fragment implements View.OnClickLi
 
     //page이동
     private Fragment successFragment;
+    private Fragment alertTimeFragment;
 
     private boolean flashClick = false;
     private boolean zoomClick = false;
@@ -108,6 +129,7 @@ public class ScanControlFragment_Test extends Fragment implements View.OnClickLi
 
         //API 관련
         testButton = view.findViewById(R.id.testButton);
+        guideText = view.findViewById(R.id.guideText);
 
         flashButton.setOnClickListener(this);
         flashButton2.setOnClickListener(this);
@@ -119,7 +141,7 @@ public class ScanControlFragment_Test extends Fragment implements View.OnClickLi
         zoom_2_0.setOnClickListener(this);
         testButton.setOnClickListener(this);
 
-        BeepSound.initSounds(getContext());
+        //BeepSound.initSounds(getContext());
 
         data = CameraData.getInstance();
         //presenter = new ScanPresenter(this,getActivity(),textureView);
@@ -185,7 +207,7 @@ public class ScanControlFragment_Test extends Fragment implements View.OnClickLi
             Log.d(thisName,"stDetectStart() 실행직전");
             stCameraView.stDetectStart();
         }
-        //stratTimer();
+        startTimer();
     }
 
     @Override
@@ -193,6 +215,26 @@ public class ScanControlFragment_Test extends Fragment implements View.OnClickLi
         super.onPause();
         Log.d(thisName,"onPause() 실행");
         stCameraView.stDetectStop();
+    }
+
+    //-> go to presenter
+    private void startTimer(){
+        timer = new Timer();
+        task = new TimerTask() {
+            @Override
+            public void run() {
+                onGoingTime++;
+                if (onGoingTime <= 10){
+                    guideText.setText(R.string.txt_scan_guide_first);
+                } else if (10 < onGoingTime && onGoingTime  <= 20){
+                    guideText.setText(R.string.txt_scan_guide_second);
+                } else if (20 < onGoingTime && onGoingTime < 30){
+                    guideText.setText(R.string.txt_scan_guide_third);
+                } else if (onGoingTime == 30){
+                    goAlertTime();
+                }
+            }
+        };
     }
 
     @Override
@@ -264,10 +306,11 @@ public class ScanControlFragment_Test extends Fragment implements View.OnClickLi
                     Log.d(thisName,"getUrlCustom() : "+data.getData().getUrlCustom());
 
                     onPause();
-                    BeepSound.beepPlay();
-                    successFragment = new ScanSuccessFragment();
-                    getChildFragmentManager().beginTransaction().replace(R.id.scan_child_content,successFragment).addToBackStack(null).commit();
+                    playSoundAndVibrate();
+                    stopSound();
 
+                    //이부분 메소드 처리
+                    goSuccessScan();
                 }
             }
 
@@ -281,40 +324,54 @@ public class ScanControlFragment_Test extends Fragment implements View.OnClickLi
 
     }
 
+    private void goSuccessScan(){
+        successFragment = new ScanSuccessFragment();
+        getChildFragmentManager().beginTransaction().replace(R.id.scan_child_content,successFragment).addToBackStack(null).commit();
+    }
+
+    private void goAlertTime(){
+        onPause();
+        alertTimeFragment = new AlertTimeFragment();
+        getChildFragmentManager().beginTransaction().replace(R.id.scan_child_content,alertTimeFragment).addToBackStack(null).commit();
+    }
+
+    //-> go to Model
     public String getUuid() {
         SharedPreferences mPref = getActivity().getSharedPreferences("KEY_PREF", getActivity().MODE_PRIVATE);
         return mPref.getString("KEY_UUID", null);
     }
 
+    //-> go to presenter
+    public void playSoundAndVibrate(){
+        Log.d(thisName,"playSound() 실행");
+        soundPool = new SoundPool.Builder().build();
+        soundPool.load(getContext(),R.raw.beep,1);
+
+        soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                soundManage = soundPool.play(sampleId,1.0f,1.0f,1,-1,1.0f);
+            }
+        });
+
+        vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {   // -> version 26이상
+            vibrator.vibrate(VibrationEffect.createOneShot(1000, VibrationEffect.DEFAULT_AMPLITUDE));
+            //시간, 세기
+        } else {
+            vibrator.vibrate(1000);
+        }
+    }
+
+    //-> go to presenter
+    public void stopSound(){
+        Log.d(thisName,"stopSound() 실행");
+        soundPool.stop(soundManage);
+    }
+
+
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

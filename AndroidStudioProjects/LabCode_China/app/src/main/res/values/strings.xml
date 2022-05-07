@@ -2,4 +2,7 @@
     <string name="app_name">LabCode_China</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_scan_guide_first">너무 너무 가깝거나 먼거리에서는 인식률이 떨어질 수 있어요.</string>
+    <string name="txt_scan_guide_second">스마트폰을 인식하고자 하는 대상과 평행을 유지해주세요.</string>
+    <string name="txt_scan_guide_third">플래시나 확대 버튼을 사용하면 인식률을 높일 수 있어요.</string>
 </resources>
