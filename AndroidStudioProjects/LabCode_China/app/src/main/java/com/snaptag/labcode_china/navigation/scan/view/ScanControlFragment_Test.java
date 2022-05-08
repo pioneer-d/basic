@@ -3,6 +3,7 @@ package com.snaptag.labcode_china.navigation.scan.view;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.hardware.camera2.CameraAccessException;
+import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
 import android.os.Bundle;
@@ -62,7 +63,6 @@ public class ScanControlFragment_Test extends Fragment implements View.OnClickLi
     //Timer 관련
     private Timer timer;
     private TimerTask task;
-    int defaultSecond = 30;
     int onGoingTime = 0;
     private boolean isCancel = false;
 
@@ -207,6 +207,7 @@ public class ScanControlFragment_Test extends Fragment implements View.OnClickLi
             Log.d(thisName,"stDetectStart() 실행직전");
             stCameraView.stDetectStart();
         }
+        onGoingTime = 0;
         startTimer();
     }
 
@@ -217,24 +218,46 @@ public class ScanControlFragment_Test extends Fragment implements View.OnClickLi
         stCameraView.stDetectStop();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(thisName,"onDestroy() 실행");
+        stopTimer();
+    }
+
     //-> go to presenter
     private void startTimer(){
+        Log.d(thisName,"startTimer() 실행");
+
         timer = new Timer();
         task = new TimerTask() {
             @Override
             public void run() {
                 onGoingTime++;
-                if (onGoingTime <= 10){
+                Log.d(thisName,"onGoingTime : "+String.valueOf(onGoingTime));
+
+                if (onGoingTime % 9 == 0){
                     guideText.setText(R.string.txt_scan_guide_first);
-                } else if (10 < onGoingTime && onGoingTime  <= 20){
+                } else if (onGoingTime % 9 == 3){
                     guideText.setText(R.string.txt_scan_guide_second);
-                } else if (20 < onGoingTime && onGoingTime < 30){
+                } else if (onGoingTime % 9 == 6){
                     guideText.setText(R.string.txt_scan_guide_third);
-                } else if (onGoingTime == 30){
-                    goAlertTime();
                 }
+                if (onGoingTime == 5){
+                    stopTimer();
+                }
+
             }
         };
+        timer.schedule(task,0,1000);
+    }
+
+    private void stopTimer(){
+        Log.d(thisName,"stopTimer() 실행");
+        timer.cancel();
+        if (onGoingTime == 5){
+            goAlertTime();
+        }
     }
 
     @Override
@@ -307,7 +330,6 @@ public class ScanControlFragment_Test extends Fragment implements View.OnClickLi
 
                     onPause();
                     playSoundAndVibrate();
-                    stopSound();
 
                     //이부분 메소드 처리
                     goSuccessScan();
@@ -326,13 +348,12 @@ public class ScanControlFragment_Test extends Fragment implements View.OnClickLi
 
     private void goSuccessScan(){
         successFragment = new ScanSuccessFragment();
-        getChildFragmentManager().beginTransaction().replace(R.id.scan_child_content,successFragment).addToBackStack(null).commit();
+        getChildFragmentManager().beginTransaction().replace(R.id.scan_child_content,successFragment).commit();
     }
 
     private void goAlertTime(){
-        onPause();
-        alertTimeFragment = new AlertTimeFragment();
-        getChildFragmentManager().beginTransaction().replace(R.id.scan_child_content,alertTimeFragment).addToBackStack(null).commit();
+        alertTimeFragment = new AlertTimeFragment(this);
+        getChildFragmentManager().beginTransaction().add(R.id.scan_child_content,alertTimeFragment).commitAllowingStateLoss();
     }
 
     //-> go to Model
@@ -350,25 +371,25 @@ public class ScanControlFragment_Test extends Fragment implements View.OnClickLi
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
             public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
-                soundManage = soundPool.play(sampleId,1.0f,1.0f,1,-1,1.0f);
+                AudioManager mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+                float currentVolumeIndex = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+                float maxVolumeIndex = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+                float volume = currentVolumeIndex / maxVolumeIndex;
+                Log.d(thisName,"volume : "+String.valueOf(volume));
+                soundManage = soundPool.play(sampleId,volume,volume,1,0,1.0f);
             }
         });
 
         vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {   // -> version 26이상
-            vibrator.vibrate(VibrationEffect.createOneShot(1000, VibrationEffect.DEFAULT_AMPLITUDE));
+            vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE));
             //시간, 세기
         } else {
             vibrator.vibrate(1000);
         }
     }
 
-    //-> go to presenter
-    public void stopSound(){
-        Log.d(thisName,"stopSound() 실행");
-        soundPool.stop(soundManage);
-    }
 
 
 

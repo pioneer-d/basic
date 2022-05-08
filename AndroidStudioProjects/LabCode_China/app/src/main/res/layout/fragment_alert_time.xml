@@ -3,13 +3,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".navigation.scan.frg.AlertTimeFragment">
+    tools:context=".navigation.scan.frg.AlertTimeFragment"
+    android:background="#FF808080">
 
-<ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/ic_clock"
-    android:layout_marginTop="200dp"
-    android:layout_marginLeft="45dp"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:layout_width="335dp"
+            android:layout_height="332dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="200dp"
+            android:src="@drawable/ic_aler_time_whitebox" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_alert_time_text"
+            android:layout_marginTop="400dp"
+            android:layout_marginLeft="60dp"/>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_clock"
+            android:layout_marginTop="200dp"
+            android:layout_marginLeft="45dp"/>
+
+        <ImageButton
+            android:id="@+id/backScanButton"
+            android:layout_width="331dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="530dp"
+            android:src="@drawable/ic_alert_confirm" />
+
+    </FrameLayout>
+
 
 </FrameLayout>

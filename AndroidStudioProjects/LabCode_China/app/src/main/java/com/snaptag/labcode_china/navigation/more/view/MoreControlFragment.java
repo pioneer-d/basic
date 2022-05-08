@@ -4,9 +4,11 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.snaptag.labcode_china.R;
@@ -18,6 +20,7 @@ import com.snaptag.labcode_china.navigation.more.presenter.MorePresenter;
 
 public class MoreControlFragment extends Fragment implements MoreContract.View {
 
+    private static String thisName = "MoreControlFragment";
     private MoreContract.Presenter presenter;
     private MoreBaseAdapter adapter;
 
@@ -62,6 +65,16 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
 
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, value);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                String item = String.valueOf(adapterView.getItemAtPosition(position));
+                Log.d(thisName,"선택한 item : "+item);
+
+                //-> 여기서 분기처리하면 될듯.
+            }
+        });
 
         return thisView;
 

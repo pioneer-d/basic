@@ -46,6 +46,7 @@
         <entry key="app/src/main/res/layout/fragment_scan.xml" value="0.275" />
         <entry key="app/src/main/res/layout/fragment_scan_control__test.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_scan_success.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_term_of_service.xml" value="0.16614583333333333" />
         <entry key="app/src/main/res/layout/listview_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/listview_list_item.xml" value="0.23645833333333333" />
         <entry key="app/src/main/res/layout/listview_more_item.xml" value="0.25052083333333336" />
