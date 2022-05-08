@@ -243,7 +243,7 @@ public class ScanControlFragment_Test extends Fragment implements View.OnClickLi
                 } else if (onGoingTime % 9 == 6){
                     guideText.setText(R.string.txt_scan_guide_third);
                 }
-                if (onGoingTime == 5){
+                if (onGoingTime == 30){
                     stopTimer();
                 }
 
@@ -255,7 +255,7 @@ public class ScanControlFragment_Test extends Fragment implements View.OnClickLi
     private void stopTimer(){
         Log.d(thisName,"stopTimer() 실행");
         timer.cancel();
-        if (onGoingTime == 5){
+        if (onGoingTime == 30){
             goAlertTime();
         }
     }
