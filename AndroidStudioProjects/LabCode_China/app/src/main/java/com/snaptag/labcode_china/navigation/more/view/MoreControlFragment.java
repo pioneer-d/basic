@@ -14,6 +14,7 @@ import android.widget.ListView;
 import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.navigation.more.baseAdapter.MoreBaseAdapter;
 import com.snaptag.labcode_china.navigation.more.data.MoreItemData;
+import com.snaptag.labcode_china.navigation.more.frg.TermOfServiceFragment;
 import com.snaptag.labcode_china.navigation.more.presenter.MoreContract;
 import com.snaptag.labcode_china.navigation.more.presenter.MorePresenter;
 
@@ -23,6 +24,9 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
     private static String thisName = "MoreControlFragment";
     private MoreContract.Presenter presenter;
     private MoreBaseAdapter adapter;
+
+    Fragment frequentQuestionFragment, tosFragment, scanGuideFragment;
+    MoreItemData frequentQuestion, termOfService, scanGuide, appVersion;
 
     private static MoreControlFragment instance;
     private MoreControlFragment() {}
@@ -54,25 +58,38 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
 
         View thisView = inflater.inflate(R.layout.fragment_control_more, container, false);
 
-        //String[] value = new String[] {"자주 묻는 질문","이용약관","스캔가이드","앱 정보"};
         ListView listView = (ListView) thisView.findViewById(R.id.item_list);
         adapter = new MoreBaseAdapter();
 
-        adapter.addItem(new MoreItemData("자주 묻는 질문",R.drawable.ic_arrow));
-        adapter.addItem(new MoreItemData("이용약관",R.drawable.ic_arrow));
-        adapter.addItem(new MoreItemData("스캔가이드",R.drawable.ic_arrow));
-        adapter.addItem(new MoreItemData("앱 정보","0.0.0"));   //이부분은 Model에서 뽑아오면 될 듯.
+        frequentQuestion = new MoreItemData("자주 묻는 질문",R.drawable.ic_arrow);
+        termOfService = new MoreItemData("이용약관",R.drawable.ic_arrow);
+        scanGuide = new MoreItemData("스캔가이드",R.drawable.ic_arrow);
+        appVersion = new MoreItemData("앱 정보","0.0.0");
 
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, value);
+        adapter.addItem(frequentQuestion);
+        adapter.addItem(termOfService);
+        adapter.addItem(scanGuide);
+        adapter.addItem(appVersion);   //이부분은 Model에서 뽑아오면 될 듯.
+
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                String item = String.valueOf(adapterView.getItemAtPosition(position));
-                Log.d(thisName,"선택한 item : "+item);
+                Object item = adapterView.getItemAtPosition(position);
+                Log.d(thisName,"Click Item : "+item);
 
-                //-> 여기서 분기처리하면 될듯.
+                if (item == frequentQuestion){
+                    Log.d(thisName,"goFrequentQuestion()");
+                    goFrequentQuestion();
+                } else if (item == termOfService){
+                    Log.d(thisName,"goTos()");
+                    goTos();
+                } else if (item == scanGuide){
+                    Log.d(thisName,"goScanGuide()");
+                    goScanGuide();
+                }
+
             }
         });
 
@@ -82,11 +99,13 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
 
     @Override
     public void goFrequentQuestion() {
-
+        //getChildFragmentManager().beginTransaction().replace(R.id.more_child_content,);
     }
 
     @Override
     public void goTos() {
+        tosFragment = new TermOfServiceFragment();
+        getChildFragmentManager().beginTransaction().add(R.id.more_child_content,tosFragment).commitAllowingStateLoss();
 
     }
 

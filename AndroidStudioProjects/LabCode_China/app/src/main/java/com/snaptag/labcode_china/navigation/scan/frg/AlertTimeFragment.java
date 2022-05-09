@@ -43,7 +43,6 @@ public class AlertTimeFragment extends Fragment{
             public void onClick(View view) {
                 scanControlFragment.onResume();
                 getParentFragmentManager().beginTransaction().remove(AlertTimeFragment.this).commit();
-                //getParentFragmentManager().beginTransaction().replace(R.id.scan_child_content,scanControlFragment).commit();
 
             }
         });

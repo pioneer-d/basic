@@ -6,8 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
-
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
@@ -21,7 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LabCode_China"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".beidou.LocationManager_Sample_Activity"
+            android:exported="false" />
         <!-- Splash -->
         <activity
             android:name=".splash.view.SplashActivity"
@@ -37,8 +38,8 @@
             android:exported="true" />
         <activity
             android:name=".main.view.MainActivity"
-            android:screenOrientation="portrait"
-            android:exported="true"></activity>
+            android:exported="true"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

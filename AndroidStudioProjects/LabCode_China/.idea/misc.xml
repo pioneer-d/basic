@@ -32,6 +32,7 @@
         <entry key="app/src/main/res/drawable/ic_zoom_gray.xml" value="0.2815" />
         <entry key="app/src/main/res/drawable/ic_zoom_more.xml" value="0.2775" />
         <entry key="app/src/main/res/layout/activity_access_right.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_locationmanager.xml" value="0.19701086956521738" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_alert_time.xml" value="0.25" />

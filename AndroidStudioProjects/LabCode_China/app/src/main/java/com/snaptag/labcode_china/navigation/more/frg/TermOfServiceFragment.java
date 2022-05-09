@@ -7,11 +7,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.snaptag.labcode_china.R;
 
 
 public class TermOfServiceFragment extends Fragment {
+
+    ImageButton backButton;
+    View view;
 
     public TermOfServiceFragment() {
         // Required empty public constructor
@@ -37,7 +41,14 @@ public class TermOfServiceFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.fragment_term_of_service, container, false);
+        view = inflater.inflate(R.layout.fragment_term_of_service, container, false);
+        backButton = view.findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getParentFragmentManager().beginTransaction().remove(TermOfServiceFragment.this).commit();
+            }
+        });
+        return view;
     }
 }
