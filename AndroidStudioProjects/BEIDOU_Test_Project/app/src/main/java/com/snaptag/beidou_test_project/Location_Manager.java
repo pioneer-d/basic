@@ -94,6 +94,7 @@ import androidx.annotation.RequiresApi;
  * @author abyser
  */
 public class Location_Manager {
+    private static String proccess = "InnerLocationNougat";
 
     /**
      * 로그 태그
@@ -999,6 +1000,7 @@ public class Location_Manager {
         private boolean mIsGpsIng;
 
         public InnerLocationNougat(Context context) {
+            Log.d(proccess,"InnerLocationNougat() 생성자 호출");
 
             this.mContext = context;
 
@@ -1010,6 +1012,7 @@ public class Location_Manager {
          * 초기 값 설정.
          */
         private void initValue() {
+            Log.d(proccess,"initValue() 실행");
 
             this.mLocationListenerList = new ArrayList<ILocationListener>();
             this.mSatelliteListenerList = new ArrayList<ISatelliteListener>();
@@ -1025,6 +1028,7 @@ public class Location_Manager {
          * @param isUseLog true : 로그 사용, false : 로그 사용 안함
          */
         public void setUseLog(boolean isUseLog) {
+            Log.d(proccess,"setUseLog() 실행");
             this.mIsUseLog = isUseLog;
         }
 
@@ -1032,6 +1036,7 @@ public class Location_Manager {
          * GPS 시작.
          */
         public void start() {
+            Log.d(proccess,"start() 실행");
 
             if (this.mIsGpsIng) {
                 Log.e(LOG_TAG, "Can not start gps. Cause gps already started.");
@@ -1058,6 +1063,7 @@ public class Location_Manager {
                 return;
             }
 
+            Log.d(proccess,"requestLocationUpdates() 실행직전");
             this.mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, InnerLocationNougat.this);
             this.mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, InnerLocationNougat.this);
 
@@ -1065,8 +1071,10 @@ public class Location_Manager {
                 Log.i(LOG_TAG, "START GPS");
             }
 
+            Log.d(proccess,"addNmeaListener(), registerGnssStatusCallback() 실행");
             this.mLocationManager.addNmeaListener(this);
             this.mLocationManager.registerGnssStatusCallback(this);
+            //-> 다음 onStarted() 실행
 
             this.mIsGpsIng = true;
 
@@ -1076,6 +1084,7 @@ public class Location_Manager {
          * GPS 중지.
          */
         public void stop() {
+            Log.d(proccess,"stop() 실행");
 
             if(!this.mIsGpsIng){
                 Log.e(LOG_TAG, "Can not stop gps. Cause gps already stopped.");
@@ -1112,6 +1121,7 @@ public class Location_Manager {
          * @param listener {@link ILocationListener}
          */
         public void addLocationListener(ILocationListener listener){
+            Log.d(proccess,"addLocationListener() 실행");
 
             if(listener == null){
                 Log.e(LOG_TAG, "Can not add " + ILocationListener.class.getSimpleName() + ". Cause listener parameter is null.");
@@ -1127,7 +1137,7 @@ public class Location_Manager {
          * @param listener {@link ISatelliteListener}
          */
         public void addSatelliteListener(ISatelliteListener listener){
-
+            Log.d(proccess,"addStatelliteListener() 실행");
             if(listener == null){
                 Log.e(LOG_TAG, "Can not add " + ISatelliteListener.class.getSimpleName() + ". Cause listener parameter is null.");
                 return;
@@ -1142,7 +1152,7 @@ public class Location_Manager {
          * @param listener {@link INmeaListener}
          */
         public void addNmeaListener(INmeaListener listener){
-
+            Log.d(proccess,"addNmeaListener() 실행");
             if(listener == null){
                 Log.e(LOG_TAG, "Can not add " + INmeaListener.class.getSimpleName() + ". Cause listener parameter is null.");
                 return;
@@ -1252,7 +1262,7 @@ public class Location_Manager {
         //////////////////////
         @Override
         public void onLocationChanged(Location location) {
-
+            Log.d(proccess,"onLocationChanged() 실행");
             if (this.mIsUseLog) {
                 Log.i(LOG_TAG, "LOCATION CHANGED : " + "[" + location.getProvider() + "] " + location.toString());
             }
@@ -1276,7 +1286,7 @@ public class Location_Manager {
 
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
-
+            Log.d(proccess,"onStatusChanged() 실행");
             String state = "";
             switch (status) {
                 case LocationProvider.AVAILABLE: // GPS 사용 가능
@@ -1289,6 +1299,7 @@ public class Location_Manager {
                     state = "TEMPORARILY UNAVAILABLE";
                     break;
             }
+            Log.d(proccess,"GPS state : "+state);
 
             if (this.mIsUseLog) {
                 Log.i(LOG_TAG, "'" + provider + "' PROVIDER STATE CHANGED : " + state);
@@ -1298,7 +1309,7 @@ public class Location_Manager {
 
         @Override
         public void onProviderEnabled(String provider) {
-
+            Log.d(proccess,"onProviderEnabled() 실행");
             if (this.mIsUseLog) {
                 Log.i(LOG_TAG, provider + " PROVIDER ENABLED");
             }
@@ -1307,7 +1318,7 @@ public class Location_Manager {
 
         @Override
         public void onProviderDisabled(String provider) {
-
+            Log.d(proccess,"onProviderDisabled() 실행");
             if (this.mIsUseLog) {
                 Log.i(LOG_TAG, provider + " PROVIDER DISABLED");
             }
@@ -1321,9 +1332,11 @@ public class Location_Manager {
         public void onStarted() {
             super.onStarted();
 
+            Log.d(proccess,"onStarted() 실행");
             if(this.mIsUseLog){
                 Log.i(LOG_TAG, "GPS STATUS CHANGED : GPS STARTED");
             }
+            //-> 다음 onSatelliteStatusChanged() 실행
 
         }
 
@@ -1331,6 +1344,7 @@ public class Location_Manager {
         public void onStopped() {
             super.onStopped();
 
+            Log.d(proccess,"onStopped() 실행");
             if(this.mIsUseLog){
                 Log.i(LOG_TAG, "GPS STATUS CHANGED : GPS STOPPED");
             }
@@ -1341,6 +1355,7 @@ public class Location_Manager {
         public void onFirstFix(int ttffMillis) {
             super.onFirstFix(ttffMillis);
 
+            Log.d(proccess,"onFirstFix() 실행");
             if(this.mIsUseLog){
                 Log.i(LOG_TAG, "GPS STATUS CHANGED : GPS FIRST FIX(" + String.valueOf(ttffMillis) + ")");
             }
@@ -1350,6 +1365,7 @@ public class Location_Manager {
         @Override
         public void onSatelliteStatusChanged(GnssStatus status) {
             super.onSatelliteStatusChanged(status);
+            Log.d(proccess,"onSatelliteStatusChanged() 실행");
 
             ArrayList<Satellite> arrayGnss = new ArrayList<Satellite>();
             int findSat = status.getSatelliteCount();
@@ -1411,8 +1427,10 @@ public class Location_Manager {
             }
 
             if (this.mSatelliteListenerList != null && this.mSatelliteListenerList.size() > 0) {
-
+                Log.d(proccess,"onSatelliteStatusChanged() 내부, \n " +
+                                    "this.mSatelliteListenerList != null && this.mSatelliteListenerList.size() > 0 경우");
                 for (ISatelliteListener listener : this.mSatelliteListenerList) {
+                    Log.d(proccess,"onSatellite() 호출.");
                     listener.onSatellite(findSat, arrayGnss);
                 }
 
@@ -1426,7 +1444,6 @@ public class Location_Manager {
      * 위치 정보 전달 인터페이스.
      */
     public interface ILocationListener{
-
         public static final int PROVIDER_UNKNOWN = -1;
         public static final int PROVIDER_GPS = 1;
         public static final int PROVIDER_NETWORK = 2;
@@ -1611,6 +1628,7 @@ public class Location_Manager {
 
         @Override
         public String toString() {
+            Log.d(proccess,"toString() 실행");
 
             StringBuilder sb = new StringBuilder();
             sb.append("Gnss satellite[");
