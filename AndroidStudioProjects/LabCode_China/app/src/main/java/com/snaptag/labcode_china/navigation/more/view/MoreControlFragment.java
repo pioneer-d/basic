@@ -14,6 +14,7 @@ import android.widget.ListView;
 import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.navigation.more.baseAdapter.MoreBaseAdapter;
 import com.snaptag.labcode_china.navigation.more.data.MoreItemData;
+import com.snaptag.labcode_china.navigation.more.frg.FrequentQuestionFragment;
 import com.snaptag.labcode_china.navigation.more.frg.TermOfServiceFragment;
 import com.snaptag.labcode_china.navigation.more.presenter.MoreContract;
 import com.snaptag.labcode_china.navigation.more.presenter.MorePresenter;
@@ -24,6 +25,7 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
     private static String thisName = "MoreControlFragment";
     private MoreContract.Presenter presenter;
     private MoreBaseAdapter adapter;
+    View view;
 
     Fragment frequentQuestionFragment, tosFragment, scanGuideFragment;
     MoreItemData frequentQuestion, termOfService, scanGuide, appVersion;
@@ -56,9 +58,9 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View thisView = inflater.inflate(R.layout.fragment_control_more, container, false);
+        view = inflater.inflate(R.layout.fragment_control_more, container, false);
 
-        ListView listView = (ListView) thisView.findViewById(R.id.item_list);
+        ListView listView = (ListView) view.findViewById(R.id.item_list);
         adapter = new MoreBaseAdapter();
 
         frequentQuestion = new MoreItemData("자주 묻는 질문",R.drawable.ic_arrow);
@@ -90,17 +92,21 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
                     goScanGuide();
                 }
 
+
             }
         });
 
-        return thisView;
+        return view;
 
     }
 
     @Override
     public void goFrequentQuestion() {
-        //getChildFragmentManager().beginTransaction().replace(R.id.more_child_content,);
+        frequentQuestionFragment = new FrequentQuestionFragment();
+        getChildFragmentManager().beginTransaction().add(R.id.more_child_content,frequentQuestionFragment).commitAllowingStateLoss();
     }
+
+    //-> a에서 b를 생성하니까 a Fragment가 눌림! 이부분 해결해야함.
 
     @Override
     public void goTos() {
