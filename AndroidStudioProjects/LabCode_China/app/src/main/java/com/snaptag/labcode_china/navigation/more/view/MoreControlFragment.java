@@ -104,9 +104,13 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
     public void goFrequentQuestion() {
         frequentQuestionFragment = new FrequentQuestionFragment();
         getChildFragmentManager().beginTransaction().add(R.id.more_child_content,frequentQuestionFragment).commitAllowingStateLoss();
+
+
+        if (tosFragment != null){ getChildFragmentManager().beginTransaction().hide(tosFragment).commit(); }
     }
 
     //-> a에서 b를 생성하니까 a Fragment가 눌림! 이부분 해결해야함.
+    //hide, show, add, commit 테스트 해보고, 생명주기 로깅.
 
     @Override
     public void goTos() {
@@ -117,6 +121,12 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
 
     @Override
     public void goScanGuide() {
+        //scanGuide
+    }
 
+    public void manageChildFragment(Fragment main, Fragment sub1, Fragment sub2){
+        if (main != null) {getChildFragmentManager().beginTransaction().show(main).commit();}
+        if (sub1 != null) {getChildFragmentManager().beginTransaction().hide(sub1).commit();}
+        if (sub2 != null) {getChildFragmentManager().beginTransaction().hide(sub2).commit();}
     }
 }
