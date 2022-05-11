@@ -169,8 +169,20 @@ public class LocationManager_Sample_Activity extends Activity implements View.On
     public void onLocation(int provider, Location location) {
 
         tv_location.setText("onLocation" + (location.isFromMockProvider() ? "[mock]" : "[" + location.getProvider()) + "]\n");
-        tv_location.append(location.toString());
-        Log.d("qweqwe Location : ",location.toString());
+        try{
+            tv_location.append(location.toString());
+            location.getLatitude();
+            location.getLongitude();
+            Log.d("위도 경도 : ",location.getLatitude() +","+ String.valueOf(location.getLongitude()));
+            Log.d("qqqqq","test");
+            Log.d("qweqwe Location : ",location.toString());
+        }catch (Exception e){
+            Log.e("Location : ","지금");
+            e.printStackTrace();
+            e.getMessage();
+        }
+//        tv_location.append(location.toString());
+//        Log.d("qweqwe Location : ",location.toString());
 
     }
 

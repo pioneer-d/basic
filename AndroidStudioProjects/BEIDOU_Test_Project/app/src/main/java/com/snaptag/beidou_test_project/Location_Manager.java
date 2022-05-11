@@ -619,6 +619,7 @@ public class Location_Manager {
 
             }
 
+            //주석해도 되네
             this.mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, InnerLocationKitkat.this);
             this.mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, InnerLocationKitkat.this);
 
@@ -1338,6 +1339,7 @@ public class Location_Manager {
             }
             //-> 다음 onSatelliteStatusChanged() 실행
 
+
         }
 
         @Override
@@ -1628,7 +1630,7 @@ public class Location_Manager {
 
         @Override
         public String toString() {
-            Log.d(proccess,"toString() 실행");
+            //Log.d(proccess,"toString() 실행");
 
             StringBuilder sb = new StringBuilder();
             sb.append("Gnss satellite[");
