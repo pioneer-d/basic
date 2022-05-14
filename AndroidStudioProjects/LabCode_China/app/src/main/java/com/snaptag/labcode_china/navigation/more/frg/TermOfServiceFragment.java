@@ -10,12 +10,14 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.snaptag.labcode_china.R;
+import com.snaptag.labcode_china.navigation.more.view.MoreControlFragment;
 
 
 public class TermOfServiceFragment extends Fragment {
 
     ImageButton backButton;
     View view;
+    Fragment moreControlFragment;
 
     public TermOfServiceFragment() {
         // Required empty public constructor
@@ -47,6 +49,8 @@ public class TermOfServiceFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getParentFragmentManager().beginTransaction().remove(TermOfServiceFragment.this).commit();
+                moreControlFragment = MoreControlFragment.newInstance();
+                getParentFragmentManager().beginTransaction().show(moreControlFragment).commit();
             }
         });
         return view;

@@ -15,6 +15,7 @@ import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.navigation.more.baseAdapter.MoreBaseAdapter;
 import com.snaptag.labcode_china.navigation.more.data.MoreItemData;
 import com.snaptag.labcode_china.navigation.more.frg.FrequentQuestionFragment;
+import com.snaptag.labcode_china.navigation.more.frg.ScanGuideFragment;
 import com.snaptag.labcode_china.navigation.more.frg.TermOfServiceFragment;
 import com.snaptag.labcode_china.navigation.more.presenter.MoreContract;
 import com.snaptag.labcode_china.navigation.more.presenter.MorePresenter;
@@ -103,30 +104,26 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
     @Override
     public void goFrequentQuestion() {
         frequentQuestionFragment = new FrequentQuestionFragment();
-        getChildFragmentManager().beginTransaction().add(R.id.more_child_content,frequentQuestionFragment).commitAllowingStateLoss();
+        manageChildFragment(frequentQuestionFragment,this);
 
-
-        if (tosFragment != null){ getChildFragmentManager().beginTransaction().hide(tosFragment).commit(); }
     }
 
-    //-> a에서 b를 생성하니까 a Fragment가 눌림! 이부분 해결해야함.
-    //hide, show, add, commit 테스트 해보고, 생명주기 로깅.
 
     @Override
     public void goTos() {
         tosFragment = new TermOfServiceFragment();
-        getChildFragmentManager().beginTransaction().add(R.id.more_child_content,tosFragment).commitAllowingStateLoss();
+        manageChildFragment(tosFragment,this);
 
     }
 
     @Override
     public void goScanGuide() {
-        //scanGuide
+        scanGuideFragment = new ScanGuideFragment();
+        manageChildFragment(scanGuideFragment,this);
     }
 
-    public void manageChildFragment(Fragment main, Fragment sub1, Fragment sub2){
-        if (main != null) {getChildFragmentManager().beginTransaction().show(main).commit();}
-        if (sub1 != null) {getChildFragmentManager().beginTransaction().hide(sub1).commit();}
-        if (sub2 != null) {getChildFragmentManager().beginTransaction().hide(sub2).commit();}
+    public void manageChildFragment(Fragment main, Fragment sub){
+        if (main != null) {getParentFragmentManager().beginTransaction().add(R.id.main_content,main).show(main).commit();}
+        if (sub != null) {getParentFragmentManager().beginTransaction().hide(sub).commit();}
     }
 }

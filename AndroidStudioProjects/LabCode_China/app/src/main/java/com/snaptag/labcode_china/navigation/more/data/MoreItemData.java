@@ -4,7 +4,6 @@ public class MoreItemData {
 
     private String CategoryName;
     private String version;
-
     private int imageView;
 
     public MoreItemData(String name, String version, int image){
