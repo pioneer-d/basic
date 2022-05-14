@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.snaptag.labcode_china.navigation.more.view.MoreControlFragment;
 
 public class FrequentQuestionFragment extends Fragment implements View.OnClickListener {
 
+    static String thisName = "FrequentQuestionFragment";
     ImageButton backButton, allButton, howToUseButton, techButton;
     View view;
     Fragment moreControlFragment;
@@ -92,6 +94,7 @@ public class FrequentQuestionFragment extends Fragment implements View.OnClickLi
                 //howToUse1, howToUse2, howToUse3, tech1, tech2;
 
                 if (item == howToUse1){
+                    Log.d(thisName,"onItemClick() 내부 howToUse1 선택");
                     adapter.rotateArrow(howToUse1);
                 }
             }
