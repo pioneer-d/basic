@@ -29,6 +29,8 @@ public class FrequentQuestionFragment extends Fragment implements View.OnClickLi
     Fragment moreControlFragment;
     ListView listView;
 
+    Animation rotate_button;
+
 
 
     private FrequentQuestionAdapter adapter;
@@ -65,6 +67,7 @@ public class FrequentQuestionFragment extends Fragment implements View.OnClickLi
         allButton = view.findViewById(R.id.allQuestion);
         howToUseButton = view.findViewById(R.id.howToUseQuestion);
         techButton = view.findViewById(R.id.techQuestion);
+        rotate_button = AnimationUtils.loadAnimation(getContext(),R.anim.rotation_arrow);
 
 
         adapter = new FrequentQuestionAdapter();
@@ -95,7 +98,7 @@ public class FrequentQuestionFragment extends Fragment implements View.OnClickLi
 
                 if (item == howToUse1){
                     Log.d(thisName,"onItemClick() 내부 howToUse1 선택");
-                    adapter.rotateArrow(howToUse1);
+                    adapterView.findViewById(R.id.arrowImage).startAnimation(rotate_button);
                 }
             }
         });

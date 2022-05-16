@@ -22,7 +22,6 @@ public class FrequentQuestionAdapter extends BaseAdapter {
 
     ArrayList<QuestionData> listItem = new ArrayList<QuestionData>();
     Context context;
-    Animation rotate_button;
 
     ImageView questionImage;
     TextView questionText;
@@ -44,7 +43,6 @@ public class FrequentQuestionAdapter extends BaseAdapter {
         QuestionData itemData = listItem.get(position);
         Log.d(thisName,"position : "+String.valueOf(position));
 
-        rotate_button = AnimationUtils.loadAnimation(context,R.anim.rotation_arrow);
 
         if (convertView == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -70,11 +68,6 @@ public class FrequentQuestionAdapter extends BaseAdapter {
         listItem.add(item);
     }
 
-    public void rotateArrow(QuestionData item){
-        Log.d(thisName,"rotateArrow() 내부, arrowImage : "+String.valueOf(arrowImage));
-        arrowImage.startAnimation(rotate_button);
-        //마지막게 돌아간다. 돌아가게 하는 posion을 캐치하고 해당 imageView를 돌려야됨.
-    }
 
     public void clearItem(){
         listItem.clear();

@@ -32,7 +32,7 @@ public class AccessRightActivity extends AppCompatActivity implements AccessRigh
     }
 
     private void init(){
-        presenter = new AccessRightPresenter(this,this);
+        presenter = new AccessRightPresenter(this,this, this);
         imageButton = (ImageButton) findViewById(R.id.button);
         presenter.controlCheck();
     }
@@ -50,7 +50,7 @@ public class AccessRightActivity extends AppCompatActivity implements AccessRigh
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(presenter.rightConfirm()){
+        if(presenter.cameraRightConfirm()){
             goMain();
         } else {
             Toast.makeText(this, "해당 앱은 카메라 권한이 필요합니다.", Toast.LENGTH_SHORT).show();

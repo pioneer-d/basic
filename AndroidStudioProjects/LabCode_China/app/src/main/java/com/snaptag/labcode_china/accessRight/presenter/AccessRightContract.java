@@ -10,6 +10,7 @@ public interface AccessRightContract {
 
     interface Presenter{
         void controlCheck();
-        boolean rightConfirm();
+        boolean cameraRightConfirm();
+        boolean gpsRightConfirm();
     }
 }
