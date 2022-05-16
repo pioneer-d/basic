@@ -20,5 +20,4 @@ public interface SnaptagAPI {
     @GET("adm/v1/products/scan/6f223174-10df-4227-addf-bb68de568e55")   //일단 하드코딩
     Call<Get> getData(@Query("page") int page);
 
-
 }

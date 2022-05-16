@@ -49,6 +49,7 @@ import org.w3c.dom.Text;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.UUID;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -131,6 +132,7 @@ public class ScanControlFragment_Test extends Fragment implements View.OnClickLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_scan_control__test, container, false);
+        initUuid();
 
         presenter = new ScanPresenter_Test();
 
@@ -232,6 +234,7 @@ public class ScanControlFragment_Test extends Fragment implements View.OnClickLi
     public void onResume() {
         super.onResume();
         Log.d(thisName, "onResume() 실행");
+        Log.d(thisName,"getUUID : "+getUuid());
         getLocation();
 //        if (stCameraView != null) {
 //            stCameraView.setStartZoom(1.0f);
@@ -471,6 +474,18 @@ public class ScanControlFragment_Test extends Fragment implements View.OnClickLi
     public void stopLocation(){
         Log.d(thisName,"stopLocation() 실행");
         locationManager.removeUpdates(gpsLocationListener);
+    }
+
+
+    private void initUuid() {
+        Log.d(thisName,"initUuid() 실행");
+        SharedPreferences mPref = getActivity().getSharedPreferences("KEY_PREF", getActivity().MODE_PRIVATE);
+        String uuid = mPref.getString("KEY_UUID", null);
+        if (uuid == null) {
+            uuid = UUID.randomUUID().toString();
+
+            mPref.edit().putString("KEY_UUID", uuid + "5").apply();
+        }
     }
 
 }
