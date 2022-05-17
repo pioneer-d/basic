@@ -5,8 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,7 +44,7 @@ public class FrequentQuestionAdapter extends BaseAdapter {
 
         if (convertView == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.listview_more_frequent,parent,false);
+            convertView = inflater.inflate(R.layout.listview_more_frequent_parent,parent,false);
         }
         questionImage = convertView.findViewById(R.id.questionImage);
         questionText = convertView.findViewById(R.id.questionText);

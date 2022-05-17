@@ -55,6 +55,7 @@
         <entry key="app/src/main/res/layout/listview_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/listview_list_item.xml" value="0.23645833333333333" />
         <entry key="app/src/main/res/layout/listview_more_frequent.xml" value="0.18659420289855072" />
+        <entry key="app/src/main/res/layout/listview_more_frequent_child.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/listview_more_item.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/menu/menu_bottom_nav.xml" value="0.2609375" />
       </map>
