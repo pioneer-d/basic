@@ -16,9 +16,8 @@ import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.main.presenter.MainContract;
 import com.snaptag.labcode_china.main.presenter.MainPresenter;
 import com.snaptag.labcode_china.navigation.more.view.MoreControlFragment;
-import com.snaptag.labcode_china.navigation.scan.view.ScanControlFragment;
 import com.snaptag.labcode_china.navigation.list.view.ListControlFragment;
-import com.snaptag.labcode_china.navigation.scan.view.ScanControlFragment_Test;
+import com.snaptag.labcode_china.navigation.scan.view.ScanControlFragment;
 
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         presenter = new MainPresenter(this);
 
         //scanControlFragment = ScanControlFragment.newInstance();
-        scanControlFragment = ScanControlFragment_Test.newInstance();
+        scanControlFragment = ScanControlFragment.newInstance();
         listControlFragment = ListControlFragment.newInstance();
         moreControlFragment = MoreControlFragment.newInstance();
 

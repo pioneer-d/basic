@@ -87,7 +87,7 @@ public class ScanPresenter implements ScanContract.Presenter{
     public void controlSetting(int getId) throws CameraAccessException {
         Log.d(thisName,"controlSetting 실행");
         switch (getId){
-            case R.id.flash: case R.id.flash2:
+            case R.id.flash:
                 data.setFlashOnOff((data.isFlashOnOff() == true) ? false : true);
                  view.updatePreview(data); break;
             case R.id.zoom_1_0:

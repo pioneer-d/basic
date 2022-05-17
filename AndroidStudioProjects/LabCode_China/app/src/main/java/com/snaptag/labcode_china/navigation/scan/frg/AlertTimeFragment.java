@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.snaptag.labcode_china.R;
-import com.snaptag.labcode_china.navigation.scan.view.ScanControlFragment_Test;
 
 
 public class AlertTimeFragment extends Fragment{
