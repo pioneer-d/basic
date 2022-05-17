@@ -7,6 +7,8 @@
         <entry key="../../../../../Library/Android/sdk/platforms/android-32/data/res/layout/simple_expandable_list_item_1.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2395" />
         <entry key="app/src/main/res/drawable/ic_access_rights.xml" value="0.2395" />
+        <entry key="app/src/main/res/drawable/ic_aler_time_whitebox.xml" value="0.296" />
+        <entry key="app/src/main/res/drawable/ic_alert_time_text.xml" value="0.296" />
         <entry key="app/src/main/res/drawable/ic_black_box.xml" value="0.284" />
         <entry key="app/src/main/res/drawable/ic_blanked_circle.xml" value="0.296" />
         <entry key="app/src/main/res/drawable/ic_bottomarrow.xml" value="0.162" />
@@ -14,6 +16,7 @@
         <entry key="app/src/main/res/drawable/ic_camera.xml" value="0.29" />
         <entry key="app/src/main/res/drawable/ic_camera_dot.xml" value="0.237" />
         <entry key="app/src/main/res/drawable/ic_camera_setting.xml" value="0.237" />
+        <entry key="app/src/main/res/drawable/ic_clock.xml" value="0.296" />
         <entry key="app/src/main/res/drawable/ic_ellipse_10.xml" value="0.347" />
         <entry key="app/src/main/res/drawable/ic_filled_circle.xml" value="0.296" />
         <entry key="app/src/main/res/drawable/ic_flash.xml" value="0.237" />
@@ -35,6 +38,7 @@
         <entry key="app/src/main/res/drawable/ic_zoom_1_5.xml" value="0.2815" />
         <entry key="app/src/main/res/drawable/ic_zoom_gray.xml" value="0.2815" />
         <entry key="app/src/main/res/drawable/ic_zoom_more.xml" value="0.2775" />
+        <entry key="app/src/main/res/drawable/radius_8.xml" value="0.35" />
         <entry key="app/src/main/res/layout/activity_access_right.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_locationmanager.xml" value="0.19701086956521738" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -50,12 +54,13 @@
         <entry key="app/src/main/res/layout/fragment_more.xml" value="0.275" />
         <entry key="app/src/main/res/layout/fragment_my_list.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/fragment_scan.xml" value="0.275" />
+        <entry key="app/src/main/res/layout/fragment_scan_control.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_scan_control__test.xml" value="0.503052503052503" />
         <entry key="app/src/main/res/layout/fragment_scan_guide.xml" value="0.22826086956521738" />
         <entry key="app/src/main/res/layout/fragment_scan_success.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_term_of_service.xml" value="0.16614583333333333" />
         <entry key="app/src/main/res/layout/listview_item.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/listview_list_item.xml" value="0.23645833333333333" />
+        <entry key="app/src/main/res/layout/listview_list_item.xml" value="0.375" />
         <entry key="app/src/main/res/layout/listview_more_frequent.xml" value="0.18659420289855072" />
         <entry key="app/src/main/res/layout/listview_more_frequent_child.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/listview_more_item.xml" value="0.25052083333333336" />

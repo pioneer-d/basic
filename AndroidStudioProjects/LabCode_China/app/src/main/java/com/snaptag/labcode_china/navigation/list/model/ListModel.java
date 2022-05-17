@@ -19,25 +19,11 @@ public class ListModel {
 
     ListContract.Presenter presenter;
     static String BASEURL = "https://admin.labcode.kr/";
-    private ListItemData itemData;
-    public static boolean test = true;
 
-    String image;
-    String genre;
-    String product;
-    String brand;
 
     public ListModel(ListContract.Presenter presenter){
         this.presenter = presenter;
     }
-
-    //-> 이걸 여기서 받으니까 자꾸 못받아옴. 다른 방법 생각하거나, ListFragment나 ControlFragment에서 받아와야 할 것 같음..!
-
-    static void changeBoolean(){
-        Log.d(thisName,"changeBoolean() 실행");
-        test = (test == true) ? false : true;
-    }
-
 
     //실제 적용시 JSON이나 Map으로 반환하고, Presenter에서 null로 체크해야할 듯.
     public void getList(){
@@ -71,9 +57,9 @@ public class ListModel {
 
                     Log.d("isEmpty() : ",String.valueOf(data.getData().isEmpty()));
                     if(data.getData().isEmpty()){
-                        presenter.testView2();
+                        presenter.notExist();
                     } else{
-                        presenter.testView();
+                        presenter.exist();
                     }
 
 
@@ -87,7 +73,6 @@ public class ListModel {
                 Log.d("onFailure","onFailure 실행, 실패");
             }
         });
-        Log.d(thisName,"test : "+String.valueOf(test));
 
     }
 

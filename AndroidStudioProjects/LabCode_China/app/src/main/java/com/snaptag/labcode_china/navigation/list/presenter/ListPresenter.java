@@ -19,11 +19,11 @@ public class ListPresenter implements ListContract.Presenter{
         model.getList();
     }
     @Override
-    public void testView(){
+    public void exist(){
         view.goList();
     }
     @Override
-    public void testView2(){
+    public void notExist(){
         view.goBlank();
     }
 
