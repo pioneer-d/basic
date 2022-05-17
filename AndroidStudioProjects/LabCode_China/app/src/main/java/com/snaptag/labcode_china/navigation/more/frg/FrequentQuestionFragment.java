@@ -4,22 +4,17 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
-import android.widget.ListView;
 
 import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.navigation.more.baseAdapter.FrequentQuestionAdapter;
-import com.snaptag.labcode_china.navigation.more.baseAdapter.FrequentQuestionAdapter_Test;
-import com.snaptag.labcode_china.navigation.more.data.QuestionData;
 import com.snaptag.labcode_china.navigation.more.view.MoreControlFragment;
 
 import java.util.ArrayList;
@@ -37,11 +32,9 @@ public class FrequentQuestionFragment extends Fragment implements View.OnClickLi
     ExpandableListView expandableListView;
 
     Animation rotate_button;
+    Animation slide_down;
 
-    //private FrequentQuestionAdapter adapter;
-    private FrequentQuestionAdapter_Test adapter;
-    //QuestionData howToUse1, howToUse2, howToUse3, tech1, tech2;
-
+    private FrequentQuestionAdapter adapter;
 
 
     private List<String> mGroup = new ArrayList<String>();
@@ -81,6 +74,7 @@ public class FrequentQuestionFragment extends Fragment implements View.OnClickLi
         howToUseButton = view.findViewById(R.id.howToUseQuestion);
         techButton = view.findViewById(R.id.techQuestion);
         rotate_button = AnimationUtils.loadAnimation(getContext(),R.anim.rotation_arrow);
+        slide_down = AnimationUtils.loadAnimation(getContext(),R.anim.slide_down);
 
         init();
         initView();
@@ -94,6 +88,9 @@ public class FrequentQuestionFragment extends Fragment implements View.OnClickLi
     }
 
     private void init(){
+
+        mGroup.clear();
+        mChild.clear();
 
         mGroup.add( "LABCODE 사용법은 어떻게 되나요?" );
         mGroup.add( "정품 여부를 어떻게 확인할 수 있나요?" );
@@ -121,12 +118,53 @@ public class FrequentQuestionFragment extends Fragment implements View.OnClickLi
         tech2.add( R.string.txt_frequent_tech2 );
         mChild.put( "LACODE는 무엇인가요?", tech2 );
 
+    }
+
+    private void showUse(){
+
+        mGroup.clear();
+        mChild.clear();
+
+        mGroup.add( "LABCODE 사용법은 어떻게 되나요?" );
+        mGroup.add( "정품 여부를 어떻게 확인할 수 있나요?" );
+        mGroup.add( "LABCODE를 적용은 어떻게 하나요?" );
+
+        List<Integer> use1 = new ArrayList<Integer>();
+        use1.add( R.string.txt_frequent_use1 );
+        mChild.put( "LABCODE 사용법은 어떻게 되나요?", use1 );
+
+        List<Integer> use2 = new ArrayList<Integer>();
+        use2.add( R.string.txt_frequent_use2 );
+        mChild.put( "정품 여부를 어떻게 확인할 수 있나요?", use2 );
+
+        List<Integer> use3 = new ArrayList<Integer>();
+        use3.add( R.string.txt_frequent_use3 );
+        mChild.put( "LABCODE를 적용은 어떻게 하나요?", use3 );
+
+    }
+
+    private void showTech(){
+
+        mGroup.clear();
+        mChild.clear();
+
+        mGroup.add( "LABCODE는 어떤 서비스인가요?" );
+        mGroup.add( "LACODE는 무엇인가요?" );
+
+        List<Integer> tech1 = new ArrayList<Integer>();
+        tech1.add( R.string.txt_frequent_tech1 );
+        mChild.put( "LABCODE는 어떤 서비스인가요?", tech1 );
+
+        List<Integer> tech2 = new ArrayList<Integer>();
+        tech2.add( R.string.txt_frequent_tech2 );
+        mChild.put( "LACODE는 무엇인가요?", tech2 );
 
     }
 
     private void initView(){
-        ExpandableListAdapter adapter = new FrequentQuestionAdapter_Test(getActivity(),mGroup,mChild);
 
+        ExpandableListAdapter adapter = new FrequentQuestionAdapter(getActivity(),mGroup,mChild);
+        expandableListView.setIndicatorBounds(view.getWidth()+950,view.getWidth());
         expandableListView.setAdapter( adapter );
         expandableListView.setOnChildClickListener( new ExpandableListView.OnChildClickListener() {
             @Override
@@ -169,35 +207,22 @@ public class FrequentQuestionFragment extends Fragment implements View.OnClickLi
                 allButton.setImageResource(R.drawable.ic_more_all_click);
                 howToUseButton.setImageResource(R.drawable.ic_more_use_non_click);
                 techButton.setImageResource(R.drawable.ic_more_tech_non_click);
-//                adapter.clearItem();
-//                adapter.addItem(howToUse1);
-//                adapter.addItem(howToUse2);
-//                adapter.addItem(howToUse3);
-//                adapter.addItem(tech1);
-//                adapter.addItem(tech2);
-//                adapter.notifyDataSetChanged();
-//                listView.setAdapter(adapter);
+                init();
+                initView();
                 break;
             case R.id.howToUseQuestion:
                 howToUseButton.setImageResource(R.drawable.ic_more_use_click);
                 allButton.setImageResource(R.drawable.ic_more_all_non_click);
                 techButton.setImageResource(R.drawable.ic_more_tech_non_click);
-//                adapter.clearItem();
-//                adapter.addItem(howToUse1);
-//                adapter.addItem(howToUse2);
-//                adapter.addItem(howToUse3);
-//                adapter.notifyDataSetChanged();
-//                listView.setAdapter(adapter);
+                showUse();
+                initView();
                 break;
             case R.id.techQuestion:
                 techButton.setImageResource(R.drawable.ic_more_tech_click);
                 allButton.setImageResource(R.drawable.ic_more_all_non_click);
                 howToUseButton.setImageResource(R.drawable.ic_more_use_non_click);
-//                adapter.clearItem();
-//                adapter.addItem(tech1);
-//                adapter.addItem(tech2);
-//                adapter.notifyDataSetChanged();
-//                listView.setAdapter(adapter);
+                showTech();
+                initView();
                 break;
         }
     }
