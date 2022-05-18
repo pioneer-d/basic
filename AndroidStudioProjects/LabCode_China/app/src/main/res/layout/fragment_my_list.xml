@@ -13,10 +13,13 @@
     <ListView
         android:id="@+id/item_my_list"
         android:layout_width="335dp"
-        android:layout_height="600dp"
+        android:layout_height="match_parent"
         android:scrollbars="none"
         android:layout_marginTop="128dp"
+        android:dividerHeight="24dp"
+        android:divider="#00000000"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 

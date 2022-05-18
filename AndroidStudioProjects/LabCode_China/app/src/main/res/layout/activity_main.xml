@@ -7,7 +7,7 @@
     tools:context=".main.view.MainActivity">
 
     <TextView
-        android:layout_width="84dp"
+        android:layout_width="100dp"
         android:layout_height="32dp"
         android:id="@+id/topTitle"
         android:textSize="24dp"

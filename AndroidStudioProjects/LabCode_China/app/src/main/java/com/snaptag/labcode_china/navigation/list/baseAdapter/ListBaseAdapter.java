@@ -59,11 +59,6 @@ public class ListBaseAdapter extends BaseAdapter {
         TextView productName = convertView.findViewById(R.id.productName);
         TextView brandName = convertView.findViewById(R.id.brandName);
 
-        ViewGroup.LayoutParams layoutParams = convertView.getLayoutParams();
-        layoutParams.height = 200;
-        convertView.setLayoutParams(layoutParams);
-
-        //sourceImage.setImageURI(Uri.parse(itemData.getSourceImage()));
         Glide.with(convertView).load(itemData.getSourceImage()).into(sourceImage);
         productGenre.setText(itemData.getProductGenre());
         productName.setText(itemData.getProductName());
@@ -71,10 +66,6 @@ public class ListBaseAdapter extends BaseAdapter {
 
         Log.d(thisName,String.valueOf(context));
 
-//        Log.d("sourceImage 어뎁터 : ",String.valueOf(itemData.getSourceImage()));
-//        Log.d("productGenre 어뎁터 : ",itemData.getProductGenre());
-//        Log.d("productName 어뎁터 : ",itemData.getProductName());
-//        Log.d("brandName 어뎁터 : ",itemData.getProductName());
 
         return convertView;
     }
