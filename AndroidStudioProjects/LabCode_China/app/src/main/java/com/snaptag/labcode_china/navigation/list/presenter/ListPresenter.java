@@ -1,16 +1,20 @@
 package com.snaptag.labcode_china.navigation.list.presenter;
 
 
+import android.app.Activity;
+
 import com.snaptag.labcode_china.navigation.list.model.ListModel;
 
 public class ListPresenter implements ListContract.Presenter{
 
     ListContract.View view;
     ListModel model;
+    Activity activity;
 
-    public ListPresenter(ListContract.View view){
+    public ListPresenter(ListContract.View view, Activity activity){
         this.view = view;
-        model = new ListModel(this);
+        this.activity = activity;
+        model = new ListModel(this,activity);
     }
 
 

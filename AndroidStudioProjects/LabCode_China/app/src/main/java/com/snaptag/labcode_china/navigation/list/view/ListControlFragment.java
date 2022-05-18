@@ -43,7 +43,7 @@ public class ListControlFragment extends Fragment implements ListContract.View {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            presenter = new ListPresenter(this);
+            presenter = new ListPresenter(this,this.getActivity());
             init();
 
         }

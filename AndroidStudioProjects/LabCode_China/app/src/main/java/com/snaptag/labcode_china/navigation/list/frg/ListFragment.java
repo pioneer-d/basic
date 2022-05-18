@@ -1,5 +1,6 @@
 package com.snaptag.labcode_china.navigation.list.frg;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -61,7 +62,9 @@ public class ListFragment extends Fragment {
 
         SnaptagAPI retrofitAPI = retrofit.create(SnaptagAPI.class);
 
-        retrofitAPI.getData(page).enqueue(new Callback<Get>() {
+        Log.d(thisName,"getUuid() : "+getUuid());
+
+        retrofitAPI.getData(getUuid(),page).enqueue(new Callback<Get>() {
             @Override
             public void onResponse(Call<Get> call, Response<Get> response) {
                 Log.d(thisName,"onResponse 실행");
@@ -137,12 +140,17 @@ public class ListFragment extends Fragment {
 
 
 
+
+
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, value);
 
         return thisView;
     }
 
-
+    public String getUuid() {
+        SharedPreferences mPref = getActivity().getSharedPreferences("KEY_PREF", getActivity().MODE_PRIVATE);
+        return mPref.getString("KEY_UUID", null);
+    }
 
 
 }

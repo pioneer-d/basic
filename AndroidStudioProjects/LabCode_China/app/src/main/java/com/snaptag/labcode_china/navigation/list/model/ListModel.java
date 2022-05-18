@@ -1,5 +1,7 @@
 package com.snaptag.labcode_china.navigation.list.model;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.snaptag.labcode_china.api.Get;
@@ -19,10 +21,12 @@ public class ListModel {
 
     ListContract.Presenter presenter;
     static String BASEURL = "https://admin.labcode.kr/";
+    Activity activity;
 
 
-    public ListModel(ListContract.Presenter presenter){
+    public ListModel(ListContract.Presenter presenter, Activity activity){
         this.presenter = presenter;
+        this.activity = activity;
     }
 
     //실제 적용시 JSON이나 Map으로 반환하고, Presenter에서 null로 체크해야할 듯.
@@ -36,7 +40,7 @@ public class ListModel {
         SnaptagAPI retrofitAPI = retrofit.create(SnaptagAPI.class);
 
 
-        retrofitAPI.getData(1).enqueue(new Callback<Get>() {
+        retrofitAPI.getData(getUuid(),1).enqueue(new Callback<Get>() {
             @Override
             public void onResponse(Call<Get> call, Response<Get> response) {
                 Log.d("onResponse 실행","성공");
@@ -74,6 +78,10 @@ public class ListModel {
             }
         });
 
+    }
+    public String getUuid() {
+        SharedPreferences mPref = activity.getSharedPreferences("KEY_PREF", activity.MODE_PRIVATE);
+        return mPref.getString("KEY_UUID", null);
     }
 
 }

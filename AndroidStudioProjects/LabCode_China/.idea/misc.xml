@@ -58,12 +58,12 @@
         <entry key="app/src/main/res/layout/fragment_scan_control__test.xml" value="0.503052503052503" />
         <entry key="app/src/main/res/layout/fragment_scan_guide.xml" value="0.22826086956521738" />
         <entry key="app/src/main/res/layout/fragment_scan_success.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_term_of_service.xml" value="0.16614583333333333" />
+        <entry key="app/src/main/res/layout/fragment_term_of_service.xml" value="0.2895480225988701" />
         <entry key="app/src/main/res/layout/listview_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/listview_list_item.xml" value="0.375" />
         <entry key="app/src/main/res/layout/listview_more_frequent.xml" value="0.18659420289855072" />
         <entry key="app/src/main/res/layout/listview_more_frequent_child.xml" value="0.35260416666666666" />
-        <entry key="app/src/main/res/layout/listview_more_item.xml" value="0.25052083333333336" />
+        <entry key="app/src/main/res/layout/listview_more_item.xml" value="0.5" />
         <entry key="app/src/main/res/menu/menu_bottom_nav.xml" value="0.2609375" />
       </map>
     </option>

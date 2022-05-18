@@ -122,6 +122,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_scan_control, container, false);
         initUuid();
+        Log.d(thisName,"getUuid() : "+getUuid());
 
         presenter = new ScanPresenter_Test();
 
