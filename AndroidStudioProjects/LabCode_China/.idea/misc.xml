@@ -26,6 +26,8 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2395" />
         <entry key="app/src/main/res/drawable/ic_list.xml" value="0.2645" />
         <entry key="app/src/main/res/drawable/ic_more.xml" value="0.2645" />
+        <entry key="app/src/main/res/drawable/ic_more_all_click.xml" value="0.41" />
+        <entry key="app/src/main/res/drawable/ic_more_use_non_click.xml" value="0.41" />
         <entry key="app/src/main/res/drawable/ic_question_image.xml" value="0.162" />
         <entry key="app/src/main/res/drawable/ic_resource_confirm.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/ic_resource_default.xml" value="0.2395" />
@@ -46,7 +48,7 @@
         <entry key="app/src/main/res/layout/fragment_alert_time.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_control_list.xml" value="0.18072916666666666" />
-        <entry key="app/src/main/res/layout/fragment_control_more.xml" value="0.18333333333333332" />
+        <entry key="app/src/main/res/layout/fragment_control_more.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_control_scan.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/fragment_frequent_question.xml" value="0.25" />
@@ -57,12 +59,16 @@
         <entry key="app/src/main/res/layout/fragment_scan_control.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_scan_control__test.xml" value="0.503052503052503" />
         <entry key="app/src/main/res/layout/fragment_scan_guide.xml" value="0.22826086956521738" />
+        <entry key="app/src/main/res/layout/fragment_scan_guide_page_1.xml" value="0.4109375" />
+        <entry key="app/src/main/res/layout/fragment_scan_guide_page_2.xml" value="0.4109375" />
+        <entry key="app/src/main/res/layout/fragment_scan_guide_page_3.xml" value="0.38645833333333335" />
         <entry key="app/src/main/res/layout/fragment_scan_success.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_term_of_service.xml" value="0.2895480225988701" />
         <entry key="app/src/main/res/layout/listview_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/listview_list_item.xml" value="0.375" />
         <entry key="app/src/main/res/layout/listview_more_frequent.xml" value="0.18659420289855072" />
         <entry key="app/src/main/res/layout/listview_more_frequent_child.xml" value="0.35260416666666666" />
+        <entry key="app/src/main/res/layout/listview_more_frequent_parent.xml" value="0.4109375" />
         <entry key="app/src/main/res/layout/listview_more_item.xml" value="0.5" />
         <entry key="app/src/main/res/menu/menu_bottom_nav.xml" value="0.2609375" />
       </map>

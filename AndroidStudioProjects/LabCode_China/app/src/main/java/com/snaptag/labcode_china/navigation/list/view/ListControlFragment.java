@@ -74,12 +74,12 @@ public class ListControlFragment extends Fragment implements ListContract.View {
         Bundle bundle = new Bundle();
         listFragment.setArguments(bundle);
 
-        getChildFragmentManager().beginTransaction().replace(R.id.list_child_content, listFragment).addToBackStack(null).commit();
+        getChildFragmentManager().beginTransaction().replace(R.id.list_child_content, listFragment).commit();
 
     }
 
     @Override
     public void goDetail() {
-
+        //웹뷰 처리 해야됨.
     }
 }

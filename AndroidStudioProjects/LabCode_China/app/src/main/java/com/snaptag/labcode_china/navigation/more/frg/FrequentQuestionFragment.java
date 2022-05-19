@@ -34,9 +34,6 @@ public class FrequentQuestionFragment extends Fragment implements View.OnClickLi
     Animation rotate_button;
     Animation slide_down;
 
-    private FrequentQuestionAdapter adapter;
-
-
     private List<String> mGroup = new ArrayList<String>();
     private Map<String, List<Integer>> mChild = new HashMap<>();
 

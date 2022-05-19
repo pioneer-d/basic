@@ -87,7 +87,7 @@ public class FrequentQuestionAdapter extends BaseExpandableListAdapter {
             convertView = LayoutInflater.from( activity ).inflate( R.layout.listview_more_frequent_parent, null );
 
         ((TextView)convertView.findViewById( R.id.questionText )).setText( mGroup.get(groupPosition));
-        ((ImageView)convertView.findViewById( R.id.questionImage )).setImageResource(R.drawable.ic_question_image);
+        //((ImageView)convertView.findViewById( R.id.questionImage )).setImageResource(R.drawable.ic_question_image);
         //((ImageView)convertView.findViewById( R.id.arrowImage )).setImageResource(R.drawable.ic_bottomarrow);
 
         return convertView;
