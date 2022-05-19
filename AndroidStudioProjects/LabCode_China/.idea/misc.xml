@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/drawable/ic_camera.xml" value="0.29" />
         <entry key="app/src/main/res/drawable/ic_camera_dot.xml" value="0.237" />
         <entry key="app/src/main/res/drawable/ic_camera_setting.xml" value="0.237" />
+        <entry key="app/src/main/res/drawable/ic_cancel_button.xml" value="0.3675" />
         <entry key="app/src/main/res/drawable/ic_clock.xml" value="0.296" />
         <entry key="app/src/main/res/drawable/ic_ellipse_10.xml" value="0.347" />
         <entry key="app/src/main/res/drawable/ic_filled_circle.xml" value="0.296" />
@@ -33,6 +34,7 @@
         <entry key="app/src/main/res/drawable/ic_resource_default.xml" value="0.2395" />
         <entry key="app/src/main/res/drawable/ic_scan.xml" value="0.29" />
         <entry key="app/src/main/res/drawable/ic_sp_01.xml" value="0.2395" />
+        <entry key="app/src/main/res/drawable/ic_success_image.xml" value="0.3675" />
         <entry key="app/src/main/res/drawable/ic_success_text.xml" value="0.409" />
         <entry key="app/src/main/res/drawable/ic_test_list.xml" value="0.2675" />
         <entry key="app/src/main/res/drawable/ic_zoom.xml" value="0.237" />
@@ -62,7 +64,7 @@
         <entry key="app/src/main/res/layout/fragment_scan_guide_page_1.xml" value="0.4109375" />
         <entry key="app/src/main/res/layout/fragment_scan_guide_page_2.xml" value="0.4109375" />
         <entry key="app/src/main/res/layout/fragment_scan_guide_page_3.xml" value="0.38645833333333335" />
-        <entry key="app/src/main/res/layout/fragment_scan_success.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_scan_success.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_term_of_service.xml" value="0.2895480225988701" />
         <entry key="app/src/main/res/layout/listview_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/listview_list_item.xml" value="0.375" />

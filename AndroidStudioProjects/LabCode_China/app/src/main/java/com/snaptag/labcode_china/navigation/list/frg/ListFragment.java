@@ -150,8 +150,6 @@ public class ListFragment extends Fragment {
                     Log.d("onFailure", "onFailure 실행, 실패");
                 }
             });
-
-
     }
 
     @Override

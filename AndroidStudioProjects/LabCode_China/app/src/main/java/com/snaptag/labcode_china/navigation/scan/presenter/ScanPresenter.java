@@ -135,10 +135,10 @@ public class ScanPresenter implements ScanContract.Presenter{
                     Log.d("response.body() : ", String.valueOf(response.body()));
                     Log.d("message : ", data.getMessage());
 
-                    Log.d("getTitle",data.getData().getTitle());
-                    Log.d("getDescription",data.getData().getDescription());
-                    Log.d("getSourceImage",data.getData().getSourceImage());
-                    Log.d("getUrlCustom",data.getData().getUrlCustom());
+//                    Log.d("getTitle",data.getData().getTitle());
+//                    Log.d("getDescription",data.getData().getDescription());
+//                    Log.d("getSourceImage",data.getData().getSourceImage());
+//                    Log.d("getUrlCustom",data.getData().getUrlCustom());
 
 
 

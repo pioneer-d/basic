@@ -236,6 +236,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
     public void onPause() {
         super.onPause();
         Log.d(thisName, "onPause() 실행");
+        stopTimer();
         stCameraView.stDetectStop();
     }
 
@@ -339,19 +340,41 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
             @Override
             public void onResponse(Call<Post> call, Response<Post> response) {
                 if (response.isSuccessful()) {
+                    playSoundAndVibrate();
+
                     Post data = response.body();
                     Log.d(thisName, "onResponse() 실행");
                     Log.d(thisName, "response.body() : " + String.valueOf(response.body()));
                     Log.d(thisName, "data.getMessage() : " + data.getMessage());
 
-                    Log.d(thisName, "getTitle() : " + data.getData().getTitle());
-                    Log.d(thisName, "getDescription() : " + data.getData().getDescription());
-                    Log.d(thisName, "getSourceImage() : " + data.getData().getSourceImage());
-                    Log.d(thisName, "getUrlCustom() : " + data.getData().getUrlCustom());
 
+//                    Log.d(thisName, "getTitle() : " + data.getData().getTitle());
+//                    Log.d(thisName, "getDescription() : " + data.getData().getDescription());
+//                    Log.d(thisName, "getSourceImage() : " + data.getData().getSourceImage());
+//                    Log.d(thisName, "getUrlCustom() : " + data.getData().getUrlCustom());
+
+                    String checkIndustry = data.getData().getProject().getIndustry().getKey();
+                    String url = data.getData().getUrl();
+                    Log.d(thisName,"checkIndustry : "+checkIndustry);
+
+                    if (checkIndustry.equals("0")){
+                        Log.d(thisName,"checkIndustry == \"0\"인 경우");
+                        String image = data.getData().getProject().getBannerImage();
+                        String genre = data.getData().getProject().getIndustry().getTitle();
+                        if (genre == null){genre = "Test";}
+                        String product = data.getData().getProject().getTitle();
+                        if (product == null){product = "SnapTag";}
+                        String brand = data.getData().getProject().getTeam().getTitle();
+                        if (brand == null){brand = "SnapTag";}
+
+                        goSuccessScan(image,genre,product,brand,url);
+                        //이때 데이터도 같이 보내야 될 듯 함.
+                    } else{
+                        Log.d(thisName,"checkIndustry == \"0\"이 아닌 경우");
+                        goWebBrowser(url);
+                    }
                     onPause();
-                    playSoundAndVibrate();
-                    //goWebBrowser();
+
 
                     //goSuccessScan(); -> industry가 0번일때만 이동.
                 }
@@ -366,14 +389,16 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         });
     }
 
-    private void goSuccessScan() {
-        successFragment = new ScanSuccessFragment();
-        getChildFragmentManager().beginTransaction().replace(R.id.scan_child_content, successFragment).commit();
+    private void goSuccessScan(String image, String genre, String product, String brand,String url) {
+        successFragment = new ScanSuccessFragment(image,genre,product,brand,url);
+        getChildFragmentManager().beginTransaction().add(R.id.scan_child_content, successFragment).commitAllowingStateLoss();
+        onPause();
     }
 
     private void goAlertTime() {
         alertTimeFragment = new AlertTimeFragment(this);
         getChildFragmentManager().beginTransaction().add(R.id.scan_child_content, alertTimeFragment).commitAllowingStateLoss();
+        onPause();
     }
 
     //-> go to Model
@@ -413,22 +438,18 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
     public void getLocation() {
         try {
             dialog.show();
-            if (Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 0);
-            } else {
-//                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, // 등록할 위치제공자
-//                        30000, // 통지사이의 최소 시간간격 (miliSecond)
-//                        10, // 통지사이의 최소 변경거리 (m)
-//                        gpsLocationListener);
-                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, // 등록할 위치제공자
-                        30000, // 통지사이의 최소 시간간격 (miliSecond)
-                        10, // 통지사이의 최소 변경거리 (m)
-                        gpsLocationListener);
-//                locationManager.requestLocationUpdates(LocationManager.PASSIVE_PROVIDER, // 등록할 위치제공자
-//                        30000, // 통지사이의 최소 시간간격 (miliSecond)
-//                        10, // 통지사이의 최소 변경거리 (m)
-//                        gpsLocationListener);
-            }
+//            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, // 등록할 위치제공자
+//                    30000, // 통지사이의 최소 시간간격 (miliSecond)
+//                    10, // 통지사이의 최소 변경거리 (m)
+//                    gpsLocationListener);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, // 등록할 위치제공자
+                    30000, // 통지사이의 최소 시간간격 (miliSecond)
+                    10, // 통지사이의 최소 변경거리 (m)
+                    gpsLocationListener);
+//            locationManager.requestLocationUpdates(LocationManager.PASSIVE_PROVIDER, // 등록할 위치제공자
+//                    30000, // 통지사이의 최소 시간간격 (miliSecond)
+//                    10, // 통지사이의 최소 변경거리 (m)
+//                    gpsLocationListener);
         } catch (SecurityException e) {
             e.printStackTrace();
             e.getMessage();

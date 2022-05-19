@@ -29,10 +29,11 @@ public class AccessRightPresenter implements AccessRightContract.Presenter {
     @Override
     public void controlCheck() {
         boolean checkCamera = cameraRightConfirm();
-        if (checkCamera){
+        boolean checkCameraGps = gpsRightConfirm();
+        if (checkCamera && checkCameraGps){
             view.goMain();
         } else {
-            view.alertCheckRight();
+            view.alertCheckRight(checkCamera,checkCameraGps);
         }
 
     }
@@ -47,10 +48,14 @@ public class AccessRightPresenter implements AccessRightContract.Presenter {
 
     @Override
     public boolean gpsRightConfirm() {
-        if(Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 0);
+        if(ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            return false;
         }
         return true;
+//        if(Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(activity, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 0);
+//        }
+//        return true;
     }
 
 

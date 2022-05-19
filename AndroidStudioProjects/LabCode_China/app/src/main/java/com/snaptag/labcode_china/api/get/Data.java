@@ -4,21 +4,24 @@ import com.google.gson.annotations.SerializedName;
 
 public class Data {
 
+    @SerializedName("url")
+    public String url;
+
     @SerializedName("title")
     public String title;
 
-    @SerializedName("description")
-    public String description;
+    public String getUrl() {
+        return url;
+    }
 
-    @SerializedName("sourceImage")
-    public String sourceImage;
+    public String getTitle() {
+        return title;
+    }
+    //위로 Post
 
-    @SerializedName("urlCustom")
-    public String urlCustom;
 
 
-    //일단 아래로 get에 필요한 데이터
-
+    //아래로 Gep
 
     @SerializedName("product")
     public Product product;
@@ -32,22 +35,6 @@ public class Data {
     @SerializedName("team")
     public Team team;
 
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getSourceImage() {
-        return sourceImage;
-    }
-
-    public String getUrlCustom() {
-        return urlCustom;
-    }
 
     public Product getProduct() {
         return product;

@@ -18,7 +18,8 @@ import com.snaptag.labcode_china.accessRight.presenter.AccessRightPresenter;
 public class AccessRightActivity extends AppCompatActivity implements AccessRightContract.View {
 
     AccessRightContract.Presenter presenter;
-    private final String[] REQUIRE_PERMISSIONS = new String[]{"android.permission.CAMERA", "android.permission.WRITE_EXTERNAL_STORAGE"};
+    private final String[] REQUIRE_PERMISSIONS_1 = new String[]{"android.permission.CAMERA", "android.permission.WRITE_EXTERNAL_STORAGE"};
+    private final String[] REQUIRE_PERMISSIONS_2 = new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION};
     private int REQUEST_CODE_PERMISSIONS = 1001;
 
     ImageButton imageButton;
@@ -38,11 +39,12 @@ public class AccessRightActivity extends AppCompatActivity implements AccessRigh
     }
 
     @Override
-    public void alertCheckRight() {
+    public void alertCheckRight(boolean camera, boolean location) {
         imageButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                ActivityCompat.requestPermissions(AccessRightActivity.this,REQUIRE_PERMISSIONS,REQUEST_CODE_PERMISSIONS);
+                if (camera == false) { ActivityCompat.requestPermissions(AccessRightActivity.this,REQUIRE_PERMISSIONS_1,REQUEST_CODE_PERMISSIONS); }
+                if (location == false) { ActivityCompat.requestPermissions(AccessRightActivity.this, REQUIRE_PERMISSIONS_2,0); }
             }
         });
     }
@@ -50,10 +52,14 @@ public class AccessRightActivity extends AppCompatActivity implements AccessRigh
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(presenter.cameraRightConfirm()){
+        if(presenter.cameraRightConfirm() && presenter.gpsRightConfirm()){
             goMain();
+        } else if (!presenter.cameraRightConfirm()){
+            alertCheckRight(presenter.cameraRightConfirm(),presenter.gpsRightConfirm());
+        } else if (!presenter.gpsRightConfirm()){
+            alertCheckRight(presenter.cameraRightConfirm(),presenter.gpsRightConfirm());
         } else {
-            Toast.makeText(this, "해당 앱은 카메라 권한이 필요합니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "해당 앱은 카메라,위치 권한이 필요합니다.", Toast.LENGTH_SHORT).show();
             notAllowed();
         }
     }
