@@ -1,5 +1,8 @@
 package com.snaptag.labcode_china.api;
 
+import com.snaptag.labcode_china.api.get.Get;
+import com.snaptag.labcode_china.api.post.Post;
+
 import java.util.HashMap;
 
 import retrofit2.Call;

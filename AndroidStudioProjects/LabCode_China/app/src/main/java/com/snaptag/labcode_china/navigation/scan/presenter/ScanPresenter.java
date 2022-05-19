@@ -9,7 +9,6 @@ import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
-import android.hardware.camera2.CameraMetadata;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.os.Handler;
@@ -18,7 +17,6 @@ import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.Surface;
 import android.view.TextureView;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,7 +24,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.snaptag.labcode_china.R;
-import com.snaptag.labcode_china.api.Post;
+import com.snaptag.labcode_china.api.post.Post;
 import com.snaptag.labcode_china.api.SnaptagAPI;
 import com.snaptag.labcode_china.navigation.scan.model.CameraData;
 import com.snaptag.labcode_china.navigation.scan.model.ScanModel;

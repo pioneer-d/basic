@@ -1,10 +1,8 @@
-package com.snaptag.labcode_china.api;
+package com.snaptag.labcode_china.api.post;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.snaptag.labcode_china.api.get.Data;
 
 public class Post {
     @SerializedName("message")

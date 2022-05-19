@@ -1,9 +1,8 @@
-package com.snaptag.labcode_china.api;
+package com.snaptag.labcode_china.api.get;
 
 import com.google.gson.annotations.SerializedName;
 
 public class Data {
-
 
     @SerializedName("title")
     public String title;
@@ -17,23 +16,22 @@ public class Data {
     @SerializedName("urlCustom")
     public String urlCustom;
 
+
+    //일단 아래로 get에 필요한 데이터
+
+
     @SerializedName("product")
     public Product product;
 
     @SerializedName("project")
     public Project project;
 
-    public Project getProject() {
-        return project;
-    }
+    @SerializedName("industry")
+    public Industry industry;
 
-    public void setProject(Project project) {
-        this.project = project;
-    }
+    @SerializedName("team")
+    public Team team;
 
-    public Product getProduct() {
-        return product;
-    }
 
     public String getTitle() {
         return title;
@@ -49,5 +47,21 @@ public class Data {
 
     public String getUrlCustom() {
         return urlCustom;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public Industry getIndustry() {
+        return industry;
+    }
+
+    public Team getTeam() {
+        return team;
     }
 }

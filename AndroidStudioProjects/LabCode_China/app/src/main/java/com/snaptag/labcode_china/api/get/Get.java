@@ -1,11 +1,11 @@
-package com.snaptag.labcode_china.api;
+package com.snaptag.labcode_china.api.get;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class Get {
+public class  Get {
 
     @SerializedName("message")
     private String message;

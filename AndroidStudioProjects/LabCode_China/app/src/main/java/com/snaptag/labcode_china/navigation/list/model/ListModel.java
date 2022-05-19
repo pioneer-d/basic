@@ -4,9 +4,8 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.snaptag.labcode_china.api.Get;
+import com.snaptag.labcode_china.api.get.Get;
 import com.snaptag.labcode_china.api.SnaptagAPI;
-import com.snaptag.labcode_china.navigation.list.data.ListItemData;
 import com.snaptag.labcode_china.navigation.list.presenter.ListContract;
 
 import retrofit2.Call;

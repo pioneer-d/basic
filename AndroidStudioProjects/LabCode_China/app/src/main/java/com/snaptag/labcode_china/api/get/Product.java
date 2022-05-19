@@ -1,4 +1,4 @@
-package com.snaptag.labcode_china.api;
+package com.snaptag.labcode_china.api.get;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -7,28 +7,28 @@ public class Product {
     @SerializedName("title")
     public String title;
 
-    @SerializedName("description")
-    public String description;
+    @SerializedName("bannerImageUrl")
+    public String bannerImageUrl;
 
     @SerializedName("sourceImage")
     public String sourceImage;
 
-    @SerializedName("urlCustom")
-    public String urlCustom;
+    @SerializedName("url")
+    public String url;
 
     public String getTitle() {
         return title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getBannerImageUrl() {
+        return bannerImageUrl;
     }
 
     public String getSourceImage() {
         return sourceImage;
     }
 
-    public String getUrlCustom() {
-        return urlCustom;
+    public String getUrl() {
+        return url;
     }
 }

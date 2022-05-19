@@ -2,6 +2,7 @@ package com.snaptag.labcode_china.navigation.scan.view;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -9,6 +10,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -24,6 +26,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.URLUtil;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -31,7 +34,7 @@ import com.google.gson.JsonObject;
 import com.snaptag.cameramodule.STCameraView;
 import com.snaptag.cameramodule.model.DetectResult;
 import com.snaptag.labcode_china.R;
-import com.snaptag.labcode_china.api.Post;
+import com.snaptag.labcode_china.api.post.Post;
 import com.snaptag.labcode_china.api.SnaptagAPI;
 import com.snaptag.labcode_china.navigation.scan.frg.AlertTimeFragment;
 import com.snaptag.labcode_china.navigation.scan.frg.ScanSuccessFragment;
@@ -348,9 +351,9 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
 
                     onPause();
                     playSoundAndVibrate();
+                    //goWebBrowser();
 
-                    //이부분 메소드 처리
-                    goSuccessScan();
+                    //goSuccessScan(); -> industry가 0번일때만 이동.
                 }
             }
 
@@ -469,6 +472,27 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
 
             mPref.edit().putString("KEY_UUID", uuid + "5").apply();
         }
+    }
+
+    /*
+                                    url = data.getData().get(i).getProduct().getUrl();
+                                if (!URLUtil.isValidUrl(url)){
+                                    url = "http://snaptag.com.cn";
+                                }
+
+                                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(testUrl));
+                getActivity().startActivity(intent);
+     */
+
+    private void goWebBrowser(String url){
+        String confirmUrl = url;
+        if (!URLUtil.isValidUrl(confirmUrl)) {
+            confirmUrl = "http://snaptag.com.cn";
+        }
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(confirmUrl));
+        getActivity().startActivity(intent);
     }
 
 }

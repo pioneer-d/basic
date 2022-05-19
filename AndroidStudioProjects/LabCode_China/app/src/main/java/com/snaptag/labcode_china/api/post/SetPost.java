@@ -1,4 +1,4 @@
-package com.snaptag.labcode_china.api;
+package com.snaptag.labcode_china.api.post;
 
 import android.app.Activity;
 import android.content.SharedPreferences;

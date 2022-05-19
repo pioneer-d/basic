@@ -60,6 +60,9 @@ public class ListBaseAdapter extends BaseAdapter {
         TextView brandName = convertView.findViewById(R.id.brandName);
 
         Glide.with(convertView).load(itemData.getSourceImage()).into(sourceImage);
+        if (itemData.getSourceImage() == null){
+            sourceImage.setImageResource(R.drawable.ic_logo);
+        }
         productGenre.setText(itemData.getProductGenre());
         productName.setText(itemData.getProductName());
         brandName.setText(itemData.getBrandName());
