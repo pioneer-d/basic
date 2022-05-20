@@ -40,6 +40,7 @@ import com.snaptag.labcode_china.navigation.scan.frg.AlertTimeFragment;
 import com.snaptag.labcode_china.navigation.scan.frg.ScanSuccessFragment;
 import com.snaptag.labcode_china.navigation.scan.presenter.ScanContract_Test;
 import com.snaptag.labcode_china.navigation.scan.presenter.ScanPresenter_Test;
+import com.snaptag.labcode_china.network.GetLocation;
 
 import java.util.HashMap;
 import java.util.Timer;
@@ -88,6 +89,11 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
     //로딩
     ProgressDialog dialog;
 
+    //리뉴얼 Location Data
+    String getLocationData;
+    double longitude;
+    double latitude;
+
 
     //API 관련
     private ConstraintLayout zoomBox;
@@ -116,7 +122,8 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-
+            GetLocation locationManager = new GetLocation(getActivity());
+            locationManager.callLocation();
         }
     }
 
@@ -221,7 +228,29 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         super.onResume();
         Log.d(thisName, "onResume() 실행");
         Log.d(thisName,"getUUID : "+getUuid());
-        getLocation();
+
+        //getLocation();
+        getLocationData = getGps();
+
+        if (getLocationData == null){
+            dialog.show();
+            while (getLocationData != null){
+                Log.d(thisName,"null로 인한 getGps() 반복 실행");
+                getLocationData = getGps();
+            }
+        } else{
+
+            Log.d(thisName,"getLocationData : "+getLocationData);
+
+            dialog.cancel();
+            if (stCameraView != null) {
+                stCameraView.setStartZoom(1.0f);
+                stCameraView.setFlash(false);
+                Log.d(thisName, "stDetectStart() 실행직전");
+                stCameraView.stDetectStart();
+            }
+        }
+
 //        if (stCameraView != null) {
 //            stCameraView.setStartZoom(1.0f);
 //            stCameraView.setFlash(false);
@@ -309,17 +338,8 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
                 .build();
         SnaptagAPI retrofitAPI = retrofit.create(SnaptagAPI.class);
         HashMap<String, Object> input = new HashMap<>();
-        Log.d(thisName, "detectResult.getVersion()" + detectResult.getVersion());
-        Log.d(thisName, "detectResult.getCountry()" + detectResult.getCountry());
-        Log.d(thisName, "detectResult.getIndustry()" + detectResult.getIndustry());
-        Log.d(thisName, "detectResult.getCustomer()" + detectResult.getCustomer());
-        Log.d(thisName, "detectResult.getMainCategory()" + detectResult.getMainCategory());
-        Log.d(thisName, "detectResult.getSubCategory()" + detectResult.getSubCategory());
-        Log.d(thisName, "detectResult.getProduct()" + detectResult.getProduct());
-        Log.d(thisName, "detectResult.getSeq()" + detectResult.getSeq());
-        Log.d(thisName, "detectResult.getIsVariable()" + detectResult.getIsVariable());
-        Log.d(thisName, "detectResult.getIsAdmin()" + detectResult.getIsAdmin());
-        Log.d(thisName, "detectResult.getIsDigital()" + detectResult.getIsDigital());
+
+        Log.d(thisName,"스캔 성공시 getLocationData : "+getGps());
 
         input.put("versionKey", detectResult.getVersion());
         input.put("countryKey", detectResult.getCountry());
@@ -334,7 +354,6 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         input.put("isDigital", false);
         input.put("deviceId", getUuid());
         input.put("deviceInfo", "");
-
 
         retrofitAPI.postData(input).enqueue(new Callback<Post>() {
             @Override
@@ -438,10 +457,10 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
     public void getLocation() {
         try {
             dialog.show();
-//            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, // 등록할 위치제공자
-//                    30000, // 통지사이의 최소 시간간격 (miliSecond)
-//                    10, // 통지사이의 최소 변경거리 (m)
-//                    gpsLocationListener);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, // 등록할 위치제공자
+                    30000, // 통지사이의 최소 시간간격 (miliSecond)
+                    10, // 통지사이의 최소 변경거리 (m)
+                    gpsLocationListener);
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, // 등록할 위치제공자
                     30000, // 통지사이의 최소 시간간격 (miliSecond)
                     10, // 통지사이의 최소 변경거리 (m)
@@ -466,7 +485,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
             double accuracy = location.getAccuracy();
             Log.d(thisName,"위치정보 : " + provider + "\n" + "위도 : " + longitude + "\n" + "경도 : " + latitude + "\n" + "고도 : " + altitude + "\n" + "정확도 : " + accuracy);
 
-            stopLocation();
+            //stopLocation();
             dialog.cancel();
 
             if (stCameraView != null) {
@@ -495,16 +514,6 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         }
     }
 
-    /*
-                                    url = data.getData().get(i).getProduct().getUrl();
-                                if (!URLUtil.isValidUrl(url)){
-                                    url = "http://snaptag.com.cn";
-                                }
-
-                                                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(testUrl));
-                getActivity().startActivity(intent);
-     */
 
     private void goWebBrowser(String url){
         String confirmUrl = url;
@@ -514,6 +523,12 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(confirmUrl));
         getActivity().startActivity(intent);
+    }
+
+    public String getGps(){
+        SharedPreferences mPref = getActivity().getSharedPreferences("LOCATION_PREF", getActivity().MODE_PRIVATE);
+        String getLocationData = mPref.getString("LOCATION_PREF", null);
+        return getLocationData;
     }
 
 }
