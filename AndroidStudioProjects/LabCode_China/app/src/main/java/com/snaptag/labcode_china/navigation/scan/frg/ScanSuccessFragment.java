@@ -76,7 +76,6 @@ public class ScanSuccessFragment extends Fragment {
                 ScanControlFragment scanControlFragment = ScanControlFragment.newInstance();
                 getParentFragmentManager().beginTransaction().remove(ScanSuccessFragment.this).commit();
                 scanControlFragment.onResume();
-
             }
         });
 

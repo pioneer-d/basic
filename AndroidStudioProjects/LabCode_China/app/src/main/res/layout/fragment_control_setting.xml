@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".navigation.scan.frg.ControlSettingFragment"
+    android:background="#FF808080">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" >
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_cancel_button_2"
+            android:background="@android:color/transparent"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/setting_frame"
+            app:layout_constraintRight_toRightOf="@+id/setting_frame" />
+
+        <ImageView
+            android:id="@+id/setting_frame"
+            android:layout_width="312dp"
+            android:layout_height="201dp"
+            android:src="@drawable/ic_setting_frame"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/camera_setting_text"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:textSize="18dp"
+            android:textColor="#303538"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="@+id/setting_frame"
+            app:layout_constraintLeft_toLeftOf="@+id/setting_frame"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="28dp" />
+
+        <ImageView
+            android:layout_width="264dp"
+            android:layout_height="1dp"
+            android:src="@drawable/ic_setting_line"
+            android:layout_marginTop="64dp"
+            app:layout_constraintTop_toTopOf="@+id/setting_frame"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            android:id="@+id/sound"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginTop="89dp"
+            android:layout_marginLeft="24dp"
+            android:textSize="16dp"
+            android:textColor="#303538"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="@+id/setting_frame"
+            app:layout_constraintLeft_toLeftOf="@+id/setting_frame" />
+
+        <TextView
+            android:id="@+id/vibrate"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:textSize="16dp"
+            android:textColor="#303538"
+            android:textStyle="bold"
+            android:layout_marginTop="145dp"
+            android:layout_marginLeft="24dp"
+            app:layout_constraintTop_toTopOf="@+id/setting_frame"
+            app:layout_constraintLeft_toLeftOf="@+id/setting_frame" />
+
+        <TextView
+            android:id="@+id/soundOnOff"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:textColor="#9EA7AD"
+            android:textSize="16dp"
+            android:layout_marginTop="89dp"
+            android:layout_marginRight="92dp"
+            app:layout_constraintTop_toTopOf="@+id/setting_frame"
+            app:layout_constraintRight_toRightOf="@+id/setting_frame" />
+
+        <TextView
+            android:id="@+id/vibrateOnOff"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:textColor="#9EA7AD"
+            android:textSize="16dp"
+            android:layout_marginTop="145dp"
+            android:layout_marginRight="92dp"
+            app:layout_constraintTop_toTopOf="@+id/setting_frame"
+            app:layout_constraintRight_toRightOf="@+id/setting_frame" />
+        
+        <ImageButton
+            android:id="@+id/soundOnOff_button"
+            android:layout_width="52dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_setting_button_frame"
+            android:layout_marginTop="89dp"
+            android:layout_marginRight="24dp"
+            app:layout_constraintTop_toTopOf="@+id/setting_frame"
+            app:layout_constraintRight_toRightOf="@+id/setting_frame" />
+
+        <ImageButton
+            android:id="@+id/vibrateOnOff_button"
+            android:layout_width="52dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_setting_button_frame"
+            android:layout_marginTop="141dp"
+            android:layout_marginRight="24dp"
+            app:layout_constraintTop_toTopOf="@+id/setting_frame"
+            app:layout_constraintRight_toRightOf="@+id/setting_frame" />
+
+
+
+
+
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

@@ -37,6 +37,7 @@ import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.api.post.Post;
 import com.snaptag.labcode_china.api.SnaptagAPI;
 import com.snaptag.labcode_china.navigation.scan.frg.AlertTimeFragment;
+import com.snaptag.labcode_china.navigation.scan.frg.ControlSettingFragment;
 import com.snaptag.labcode_china.navigation.scan.frg.ScanSuccessFragment;
 import com.snaptag.labcode_china.navigation.scan.presenter.ScanContract_Test;
 import com.snaptag.labcode_china.navigation.scan.presenter.ScanPresenter_Test;
@@ -67,7 +68,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
 
     private View view;
     private STCameraView stCameraView = null;
-    private ImageButton flashButton, flash2, zoom, zoomMore, zoom_1_0, zoom_1_5, zoom_2_0;
+    private ImageButton cameraSetting, flashButton, flash2, zoom, zoomMore, zoom_1_0, zoom_1_5, zoom_2_0;
     private TextView guideText;
 
     //Timer 관련
@@ -137,6 +138,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         presenter = new ScanPresenter_Test();
 
         stCameraView = (STCameraView) view.findViewById(R.id.st_camera);
+        cameraSetting = view.findViewById(R.id.camera_setting);
         flashButton = view.findViewById(R.id.flash);
         flash2 = view.findViewById(R.id.flash2_frame).findViewById(R.id.flash2);
         zoom = view.findViewById(R.id.zoom);
@@ -153,6 +155,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         //위치 정보 관련
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
+        cameraSetting.setOnClickListener(this);
         flashButton.setOnClickListener(this);
         flash2.setOnClickListener(this);
         zoom.setOnClickListener(this);
@@ -175,6 +178,9 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
     public void onClick(View view) {
         int getId = view.getId();
         switch (getId) {
+            case R.id.camera_setting:
+                goCameraSetting();
+                break;
             case R.id.flash: case R.id.flash2:
                 flashClick = (flashClick == true) ? false : true;
                 if (flashClick == true) {
@@ -229,7 +235,8 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         Log.d(thisName, "onResume() 실행");
         Log.d(thisName,"getUUID : "+getUuid());
 
-        //getLocation();
+        clearFlashZoom();
+
         getLocationData = getGps();
 
         if (getLocationData == null){
@@ -387,7 +394,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
                         if (brand == null){brand = "SnapTag";}
 
                         goSuccessScan(image,genre,product,brand,url);
-                        //이때 데이터도 같이 보내야 될 듯 함.
+
                     } else{
                         Log.d(thisName,"checkIndustry == \"0\"이 아닌 경우");
                         goWebBrowser(url);
@@ -414,10 +421,15 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         onPause();
     }
 
+    private void goCameraSetting(){
+        ControlSettingFragment controlSettingFragment = new ControlSettingFragment();
+        getChildFragmentManager().beginTransaction().add(R.id.scan_child_content, controlSettingFragment).commitAllowingStateLoss();
+        onPause();
+    }
+
     private void goAlertTime() {
         alertTimeFragment = new AlertTimeFragment(this);
         getChildFragmentManager().beginTransaction().add(R.id.scan_child_content, alertTimeFragment).commitAllowingStateLoss();
-        onPause();
     }
 
     //-> go to Model
@@ -454,26 +466,6 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         }
     }
 
-    public void getLocation() {
-        try {
-            dialog.show();
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, // 등록할 위치제공자
-                    30000, // 통지사이의 최소 시간간격 (miliSecond)
-                    10, // 통지사이의 최소 변경거리 (m)
-                    gpsLocationListener);
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, // 등록할 위치제공자
-                    30000, // 통지사이의 최소 시간간격 (miliSecond)
-                    10, // 통지사이의 최소 변경거리 (m)
-                    gpsLocationListener);
-//            locationManager.requestLocationUpdates(LocationManager.PASSIVE_PROVIDER, // 등록할 위치제공자
-//                    30000, // 통지사이의 최소 시간간격 (miliSecond)
-//                    10, // 통지사이의 최소 변경거리 (m)
-//                    gpsLocationListener);
-        } catch (SecurityException e) {
-            e.printStackTrace();
-            e.getMessage();
-        }
-    }
 
     final LocationListener gpsLocationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
@@ -529,6 +521,17 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         SharedPreferences mPref = getActivity().getSharedPreferences("LOCATION_PREF", getActivity().MODE_PRIVATE);
         String getLocationData = mPref.getString("LOCATION_PREF", null);
         return getLocationData;
+    }
+
+    public void clearFlashZoom(){
+        flashClick = false;
+        zoomClick = false;
+        flashButton.setImageResource(R.drawable.ic_blanked_circle);
+        zoomBox.setVisibility(View.INVISIBLE);
+        zoom.setImageResource(R.drawable.ic_blanked_circle);
+        zoom_1_0.setBackgroundResource(R.drawable.ic_black_box);
+        zoom_1_5.setBackgroundResource(R.drawable.ic_gray_box);
+        zoom_2_0.setBackgroundResource(R.drawable.ic_gray_box);
     }
 
 }

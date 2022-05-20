@@ -30,11 +30,11 @@ public class GetLocation {
         //1분, 1km 마다 update
         try{
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, // 등록할 위치제공자
-                    3000, // 통지사이의 최소 시간간격 (miliSecond)
+                    1000, // 통지사이의 최소 시간간격 (miliSecond)
                     100, // 통지사이의 최소 변경거리 (m)
                     gpsLocationListener);
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, // 등록할 위치제공자
-                    3000, // 통지사이의 최소 시간간격 (miliSecond)
+                    1000, // 통지사이의 최소 시간간격 (miliSecond)
                     100, // 통지사이의 최소 변경거리 (m)
                     gpsLocationListener);
         }catch (Exception e){

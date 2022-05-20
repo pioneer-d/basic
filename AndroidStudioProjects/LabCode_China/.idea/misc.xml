@@ -52,13 +52,14 @@
         <entry key="app/src/main/res/layout/fragment_control_list.xml" value="0.18072916666666666" />
         <entry key="app/src/main/res/layout/fragment_control_more.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_control_scan.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_control_setting.xml" value="0.33835616438356164" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/fragment_frequent_question.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_more.xml" value="0.275" />
         <entry key="app/src/main/res/layout/fragment_my_list.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/fragment_scan.xml" value="0.275" />
-        <entry key="app/src/main/res/layout/fragment_scan_control.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_scan_control.xml" value="0.45" />
         <entry key="app/src/main/res/layout/fragment_scan_control__test.xml" value="0.503052503052503" />
         <entry key="app/src/main/res/layout/fragment_scan_guide.xml" value="0.22826086956521738" />
         <entry key="app/src/main/res/layout/fragment_scan_guide_page_1.xml" value="0.4109375" />

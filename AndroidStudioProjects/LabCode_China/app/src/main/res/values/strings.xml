@@ -173,5 +173,25 @@ NAT 서비스가 어떻게 사용되는지 분석하는 데 도움이 됩니다.
         LABCODE는 제품 패키지에 들어가는 디자인에 보이지 않는 데이터를 적용하고, 카메라를 이용해 데이터를 읽는 기술이에요. 국내 유일한 솔루션이며, 더 자세한 내용이 궁금하다면 LABCODE 소개 보기를 통해 확인해 주세요.
     </string>
 
+    <string name="txt_camera_setting_text">
+        카메라 설정
+    </string>
+
+    <string name="txt_sound">
+        소리
+    </string>
+
+    <string name="txt_vibrate">
+        진동
+    </string>
+
+    <string name="txt_on">
+        ON
+    </string>
+
+    <string name="txt_off">
+        OFF
+    </string>
+
 
 </resources>
