@@ -277,7 +277,6 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         super.onDestroy();
         Log.d(thisName, "onDestroy() 실행");
         stopTimer();
-        stCameraView.stDetectStop();
     }
 
     //-> go to presenter

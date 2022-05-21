@@ -1,5 +1,7 @@
 package com.snaptag.labcode_china.navigation.more.view;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -27,6 +29,10 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
     private MoreContract.Presenter presenter;
     private MoreBaseAdapter adapter;
     View view;
+
+    //app version
+    String thisVersion;
+    String latestVersion;
 
     Fragment frequentQuestionFragment, tosFragment, scanGuideFragment;
     MoreItemData frequentQuestion, termOfService, scanGuide, appVersion;
@@ -59,6 +65,8 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        getVersionInfo();
+
         view = inflater.inflate(R.layout.fragment_control_more, container, false);
 
         ListView listView = (ListView) view.findViewById(R.id.item_list);
@@ -67,12 +75,14 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
         frequentQuestion = new MoreItemData("자주 묻는 질문",R.drawable.ic_arrow);
         termOfService = new MoreItemData("이용약관",R.drawable.ic_arrow);
         scanGuide = new MoreItemData("스캔가이드",R.drawable.ic_arrow);
-        appVersion = new MoreItemData("앱 정보","0.0.0");
+
+        //여기에 넣으면 됨.
+        appVersion = new MoreItemData("앱 정보",thisVersion);
 
         adapter.addItem(frequentQuestion);
         adapter.addItem(termOfService);
         adapter.addItem(scanGuide);
-        adapter.addItem(appVersion);   //이부분은 Model에서 뽑아오면 될 듯.
+        adapter.addItem(appVersion);
 
         listView.setAdapter(adapter);
 
@@ -92,12 +102,16 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
                     Log.d(thisName,"goScanGuide()");
                     goScanGuide();
                 }
-
-
             }
         });
-
         return view;
+    }
+
+    public void getVersionInfo(){
+        try {
+            PackageInfo packageInfo = getContext().getPackageManager().getPackageInfo(getContext().getPackageName(), 0);
+            thisVersion = packageInfo.versionName + "";
+        } catch(PackageManager.NameNotFoundException e) { }
 
     }
 
@@ -124,6 +138,6 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
 
     public void manageChildFragment(Fragment main, Fragment sub){
         if (main != null) {getParentFragmentManager().beginTransaction().add(R.id.main_content,main).show(main).commit();}
-        if (sub != null) {getParentFragmentManager().beginTransaction().hide(sub).commit();}
+        if (sub != null) {getParentFragmentManager().beginTransaction().hide(sub).addToBackStack(null).commit();}
     }
 }
