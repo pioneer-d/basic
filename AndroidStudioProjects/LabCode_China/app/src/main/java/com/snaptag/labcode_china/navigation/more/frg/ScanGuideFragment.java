@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.navigation.more.baseAdapter.ScreeSlidePagerAdapter;
 import com.snaptag.labcode_china.navigation.more.view.MoreControlFragment;
+import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 public class ScanGuideFragment extends Fragment {
 
@@ -22,6 +23,7 @@ public class ScanGuideFragment extends Fragment {
     private ViewPager2 pager;
     private FragmentStateAdapter pagerAdapter;
     private ViewGroup viewGroup;
+    DotsIndicator dotsIndicator;
 
     ImageButton backButton;
     Fragment moreControlFragment;
@@ -53,6 +55,8 @@ public class ScanGuideFragment extends Fragment {
         pager.setAdapter(pagerAdapter);
         pager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         pager.setCurrentItem(0);
+        dotsIndicator = viewGroup.findViewById(R.id.dotIndicator);
+        dotsIndicator.setViewPager2(pager);
 
         backButton = viewGroup.findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
