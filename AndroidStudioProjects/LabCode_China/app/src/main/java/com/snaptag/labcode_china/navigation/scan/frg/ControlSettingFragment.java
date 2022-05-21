@@ -1,5 +1,6 @@
 package com.snaptag.labcode_china.navigation.scan.frg;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
@@ -26,6 +27,7 @@ public class ControlSettingFragment extends Fragment {
 
     View view;
     ImageButton backButton;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     Switch soundOnOff_button, vibrateOnOff_button;
     TextView camera_setting_text, sound, vibrate, soundOnOff, vibrateOnOff;
     ScanControlFragment scanControlFragment;
@@ -61,7 +63,7 @@ public class ControlSettingFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_control_setting, container, false);
 
-        //settingSoundVibrate();
+        settingSoundVibrate();
 
         backButton = view.findViewById(R.id.backButton);
         soundOnOff_button = view.findViewById(R.id.soundOnOff_button);
@@ -138,23 +140,27 @@ public class ControlSettingFragment extends Fragment {
         Log.d(thisName,"soundSet 설정");
         mPref = getActivity().getSharedPreferences("SOUND_PREF", getActivity().MODE_PRIVATE);
         boolean sound = onOff;
-        mPref.edit().putString("LOCATION_PREF", String.valueOf(sound)).apply();
+        mPref.edit().putString("SOUND_PREF", String.valueOf(sound)).apply();
     }
 
     public void vibrateSet(boolean onOff){
         Log.d(thisName,"vibrateSet 설정");
         mPref = getActivity().getSharedPreferences("VIBRATE_PREF", getActivity().MODE_PRIVATE);
         boolean vibrate = onOff;
-        mPref.edit().putString("VIBRATE_SET", String.valueOf(vibrate)).apply();
+        mPref.edit().putString("VIBRATE_PREF", String.valueOf(vibrate)).apply();
     }
 
     public void settingSoundVibrate(){
         Log.d(thisName,"settingSoundVibrate() 실행");
         mPref = getActivity().getSharedPreferences("SOUND_PREF", getActivity().MODE_PRIVATE);
-        soundDegree = Boolean.valueOf(mPref.getString("SOUND_PREF", null));
+        Log.d(thisName,"SharedPreferences에서 추출한 값 : "+String.valueOf(mPref.getString("SOUND_PREF", null)));
+        soundDegree = Boolean.parseBoolean(mPref.getString("SOUND_PREF", null));
 
-        mPref = getActivity().getSharedPreferences("LOCATION_PREF", getActivity().MODE_PRIVATE);
-        vibrateDegree = Boolean.valueOf(mPref.getString("LOCATION_PREF", null));
+        mPref = getActivity().getSharedPreferences("VIBRATE_PREF", getActivity().MODE_PRIVATE);
+        vibrateDegree = Boolean.parseBoolean(mPref.getString("VIBRATE_PREF", null));
+
+        Log.d(thisName,"soundDegree : "+String.valueOf(soundDegree));
+        Log.d(thisName,"vibrateDegree : "+String.valueOf(vibrateDegree));
     }
 
 }
