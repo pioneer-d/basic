@@ -72,12 +72,10 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
         ListView listView = (ListView) view.findViewById(R.id.item_list);
         adapter = new MoreBaseAdapter();
 
-        frequentQuestion = new MoreItemData("자주 묻는 질문",R.drawable.ic_arrow);
-        termOfService = new MoreItemData("이용약관",R.drawable.ic_arrow);
-        scanGuide = new MoreItemData("스캔가이드",R.drawable.ic_arrow);
-
-        //여기에 넣으면 됨.
-        appVersion = new MoreItemData("앱 정보",thisVersion);
+        frequentQuestion = new MoreItemData(R.string.txt_frequent_quest_title,R.drawable.ic_arrow);
+        termOfService = new MoreItemData(R.string.txt_tos_title,R.drawable.ic_arrow);
+        scanGuide = new MoreItemData(R.string.txt_scanGuide_title,R.drawable.ic_arrow);
+        appVersion = new MoreItemData(R.string.txt_app_version_title,thisVersion);
 
         adapter.addItem(frequentQuestion);
         adapter.addItem(termOfService);
@@ -119,15 +117,12 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
     public void goFrequentQuestion() {
         frequentQuestionFragment = new FrequentQuestionFragment();
         manageChildFragment(frequentQuestionFragment,this);
-
     }
-
 
     @Override
     public void goTos() {
         tosFragment = new TermOfServiceFragment();
         manageChildFragment(tosFragment,this);
-
     }
 
     @Override

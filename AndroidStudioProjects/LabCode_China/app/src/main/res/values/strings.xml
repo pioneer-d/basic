@@ -6,6 +6,28 @@
     <string name="txt_scan_guide_second">스마트폰을 인식하고자 하는 대상과 평행을 유지해주세요.</string>
     <string name="txt_scan_guide_third">플래시나 확대 버튼을 사용하면 인식률을 높일 수 있어요.</string>
 
+    <string name="txt_network_error">네트워크 연결 오류</string>
+    <string name="txt_network_try_again">네트워크 연결이 원활하지 않습니다.
+ 연결상태를 확인하고 다시 시도해주세요</string>
+    <string name="txt_agree">확인</string>
+
+    <string name="txt_scan">스캔</string>
+    <string name="txt_list">인증내역</string>
+    <string name="txt_more">더보기</string>
+
+    <string name="txt_frequent_quest_title">자주묻는질문</string>
+    <string name="txt_tos_title">이용약관</string>
+    <string name="txt_scanGuide_title">스캔가이드</string>
+    <string name="txt_app_version_title">앱 정보</string>
+
+    <string name="txt_use_1">LABCODE 사용법은 어떻게 되나요?</string>
+    <string name="txt_use_2">정품 여부를 어떻게 확인할 수 있나요?</string>
+    <string name="txt_use_3">LABCODE를 적용은 어떻게 하나요?</string>
+    <string name="txt_tech_1">LABCODE는 어떤 서비스인가요?</string>
+    <string name="txt_tech_2">LACODE는 무엇인가요?</string>
+
+
+
     <!-- 이용약관 -->
     <string name="txt_terms_title">이용약관</string>
     <string name="txt_terms">

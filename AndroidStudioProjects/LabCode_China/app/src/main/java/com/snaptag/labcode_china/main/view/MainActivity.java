@@ -65,13 +65,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void networkError() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("네트워크 연결 오류");
-        builder.setMessage("네트워크 연결이 원활하지 않습니다. \n 연결상태를 확인하고 다시 시도해주세요");
-        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.txt_network_error);
+        builder.setMessage(R.string.txt_network_try_again);
+        builder.setPositiveButton(R.string.txt_agree, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 finish();
-                //onDestroy();
             }
         });
 
@@ -88,12 +87,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void callList() {
         getSupportFragmentManager().beginTransaction().replace(R.id.main_content, listControlFragment).commit();
-        textView.setText("인증내역");
+        textView.setText(R.string.txt_list);
     }
 
     @Override
     public void callMore() {
         getSupportFragmentManager().beginTransaction().replace(R.id.main_content, moreControlFragment).commit();
-        textView.setText("더보기");
+        textView.setText(R.string.txt_more);
     }
 }

@@ -34,22 +34,21 @@ public class FrequentQuestionFragment extends Fragment implements View.OnClickLi
     Animation rotate_button;
     Animation slide_down;
 
-    private List<String> mGroup = new ArrayList<String>();
-    private Map<String, List<Integer>> mChild = new HashMap<>();
+    int indicatorLocation;
+
+    private List<Integer> mGroup = new ArrayList<Integer>();
+    private Map<Integer, List<Integer>> mChild = new HashMap<>();
+
+    int use_1 = R.string.txt_use_1;
+    int use_2 = R.string.txt_use_2;
+    int use_3 = R.string.txt_use_3;
+    int tech_1 = R.string.txt_tech_1;
+    int tech_2 = R.string.txt_tech_2;
 
 
 
     public FrequentQuestionFragment() {
         // Required empty public constructor
-    }
-
-
-    public static FrequentQuestionFragment newInstance(String param1, String param2) {
-        FrequentQuestionFragment fragment = new FrequentQuestionFragment();
-        Bundle args = new Bundle();
-
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -64,6 +63,7 @@ public class FrequentQuestionFragment extends Fragment implements View.OnClickLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_frequent_question, container, false);
+        indicatorLocation = view.getWidth()+950;
 
         expandableListView = (ExpandableListView) view.findViewById(R.id.question_list);
         backButton = view.findViewById(R.id.backButton);
@@ -72,6 +72,7 @@ public class FrequentQuestionFragment extends Fragment implements View.OnClickLi
         techButton = view.findViewById(R.id.techQuestion);
         rotate_button = AnimationUtils.loadAnimation(getContext(),R.anim.rotation_arrow);
         slide_down = AnimationUtils.loadAnimation(getContext(),R.anim.slide_down);
+
 
         init();
         initView();
@@ -89,31 +90,31 @@ public class FrequentQuestionFragment extends Fragment implements View.OnClickLi
         mGroup.clear();
         mChild.clear();
 
-        mGroup.add( "LABCODE 사용법은 어떻게 되나요?" );
-        mGroup.add( "정품 여부를 어떻게 확인할 수 있나요?" );
-        mGroup.add( "LABCODE를 적용은 어떻게 하나요?" );
-        mGroup.add( "LABCODE는 어떤 서비스인가요?" );
-        mGroup.add( "LACODE는 무엇인가요?" );
+        mGroup.add(use_1);
+        mGroup.add(use_2);
+        mGroup.add(use_3);
+        mGroup.add(tech_1);
+        mGroup.add(tech_2);
 
-        List<Integer> use1 = new ArrayList<Integer>();
-        use1.add( R.string.txt_frequent_use1 );
-        mChild.put( "LABCODE 사용법은 어떻게 되나요?", use1 );
+        List<Integer> list_use1 = new ArrayList<Integer>();
+        list_use1.add( R.string.txt_frequent_use1 );
+        mChild.put( use_1, list_use1 );
 
-        List<Integer> use2 = new ArrayList<Integer>();
-        use2.add( R.string.txt_frequent_use2 );
-        mChild.put( "정품 여부를 어떻게 확인할 수 있나요?", use2 );
+        List<Integer> list_use2 = new ArrayList<Integer>();
+        list_use2.add( R.string.txt_frequent_use2 );
+        mChild.put( use_2, list_use2 );
 
-        List<Integer> use3 = new ArrayList<Integer>();
-        use3.add( R.string.txt_frequent_use3 );
-        mChild.put( "LABCODE를 적용은 어떻게 하나요?", use3 );
+        List<Integer> list_use3 = new ArrayList<Integer>();
+        list_use3.add( R.string.txt_frequent_use3 );
+        mChild.put( use_3, list_use3 );
 
-        List<Integer> tech1 = new ArrayList<Integer>();
-        tech1.add( R.string.txt_frequent_tech1 );
-        mChild.put( "LABCODE는 어떤 서비스인가요?", tech1 );
+        List<Integer> list_tech1 = new ArrayList<Integer>();
+        list_tech1.add( R.string.txt_frequent_tech1 );
+        mChild.put( tech_1, list_tech1 );
 
-        List<Integer> tech2 = new ArrayList<Integer>();
-        tech2.add( R.string.txt_frequent_tech2 );
-        mChild.put( "LACODE는 무엇인가요?", tech2 );
+        List<Integer> list_tech2 = new ArrayList<Integer>();
+        list_tech2.add( R.string.txt_frequent_tech2 );
+        mChild.put( tech_2, list_tech2 );
 
     }
 
@@ -122,21 +123,21 @@ public class FrequentQuestionFragment extends Fragment implements View.OnClickLi
         mGroup.clear();
         mChild.clear();
 
-        mGroup.add( "LABCODE 사용법은 어떻게 되나요?" );
-        mGroup.add( "정품 여부를 어떻게 확인할 수 있나요?" );
-        mGroup.add( "LABCODE를 적용은 어떻게 하나요?" );
+        mGroup.add(use_1);
+        mGroup.add(use_2);
+        mGroup.add(use_3);
 
-        List<Integer> use1 = new ArrayList<Integer>();
-        use1.add( R.string.txt_frequent_use1 );
-        mChild.put( "LABCODE 사용법은 어떻게 되나요?", use1 );
+        List<Integer> list_use1 = new ArrayList<Integer>();
+        list_use1.add( R.string.txt_frequent_use1 );
+        mChild.put( use_1, list_use1 );
 
-        List<Integer> use2 = new ArrayList<Integer>();
-        use2.add( R.string.txt_frequent_use2 );
-        mChild.put( "정품 여부를 어떻게 확인할 수 있나요?", use2 );
+        List<Integer> list_use2 = new ArrayList<Integer>();
+        list_use2.add( R.string.txt_frequent_use2 );
+        mChild.put( use_2, list_use2 );
 
-        List<Integer> use3 = new ArrayList<Integer>();
-        use3.add( R.string.txt_frequent_use3 );
-        mChild.put( "LABCODE를 적용은 어떻게 하나요?", use3 );
+        List<Integer> list_use3 = new ArrayList<Integer>();
+        list_use3.add( R.string.txt_frequent_use3 );
+        mChild.put( use_3, list_use3 );
 
     }
 
@@ -145,23 +146,23 @@ public class FrequentQuestionFragment extends Fragment implements View.OnClickLi
         mGroup.clear();
         mChild.clear();
 
-        mGroup.add( "LABCODE는 어떤 서비스인가요?" );
-        mGroup.add( "LACODE는 무엇인가요?" );
+        mGroup.add(tech_1);
+        mGroup.add(tech_2);
 
-        List<Integer> tech1 = new ArrayList<Integer>();
-        tech1.add( R.string.txt_frequent_tech1 );
-        mChild.put( "LABCODE는 어떤 서비스인가요?", tech1 );
+        List<Integer> list_tech1 = new ArrayList<Integer>();
+        list_tech1.add( R.string.txt_frequent_tech1 );
+        mChild.put( tech_1, list_tech1 );
 
-        List<Integer> tech2 = new ArrayList<Integer>();
-        tech2.add( R.string.txt_frequent_tech2 );
-        mChild.put( "LACODE는 무엇인가요?", tech2 );
+        List<Integer> list_tech2 = new ArrayList<Integer>();
+        list_tech2.add( R.string.txt_frequent_tech2 );
+        mChild.put( tech_2, list_tech2 );
 
     }
 
     private void initView(){
 
         ExpandableListAdapter adapter = new FrequentQuestionAdapter(getActivity(),mGroup,mChild);
-        expandableListView.setIndicatorBounds(view.getWidth()+950,view.getWidth());
+        expandableListView.setIndicatorBounds(indicatorLocation,view.getWidth());
         expandableListView.setAdapter( adapter );
         expandableListView.setOnChildClickListener( new ExpandableListView.OnChildClickListener() {
             @Override

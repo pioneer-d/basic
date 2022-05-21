@@ -20,14 +20,14 @@ public class FrequentQuestionAdapter extends BaseExpandableListAdapter {
 
     static String thisName = "FrequentQuestionAdapter_Test";
     Activity activity;
-    private List<String> mGroup;
-    private Map<String, List<Integer>> mChild;
+    private List<Integer> mGroup;
+    private Map<Integer, List<Integer>> mChild;
 
     TextView childText;
 
     Animation slide_down;
 
-    public FrequentQuestionAdapter(Activity activity, List<String> mGroup, Map<String, List<Integer>> mChild){
+    public FrequentQuestionAdapter(Activity activity, List<Integer> mGroup, Map<Integer, List<Integer>> mChild){
         this.activity = activity;
         this.mGroup = mGroup;
         this.mChild = mChild;
@@ -87,8 +87,6 @@ public class FrequentQuestionAdapter extends BaseExpandableListAdapter {
             convertView = LayoutInflater.from( activity ).inflate( R.layout.listview_more_frequent_parent, null );
 
         ((TextView)convertView.findViewById( R.id.questionText )).setText( mGroup.get(groupPosition));
-        //((ImageView)convertView.findViewById( R.id.questionImage )).setImageResource(R.drawable.ic_question_image);
-        //((ImageView)convertView.findViewById( R.id.arrowImage )).setImageResource(R.drawable.ic_bottomarrow);
 
         return convertView;
 

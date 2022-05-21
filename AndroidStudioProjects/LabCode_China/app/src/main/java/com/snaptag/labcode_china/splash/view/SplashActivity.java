@@ -44,9 +44,9 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
     @Override
     public void networkError() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("네트워크 연결 오류");
-        builder.setMessage("네트워크 연결이 원활하지 않습니다. \n 연결상태를 확인하고 다시 시도해주세요");
-        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.txt_network_error);
+        builder.setMessage(R.string.txt_network_try_again);
+        builder.setPositiveButton(R.string.txt_agree, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 finish();

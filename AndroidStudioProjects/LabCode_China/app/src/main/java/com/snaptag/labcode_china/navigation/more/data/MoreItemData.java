@@ -2,31 +2,31 @@ package com.snaptag.labcode_china.navigation.more.data;
 
 public class MoreItemData {
 
-    private String CategoryName;
+    private int CategoryName;
     private String version;
     private int imageView;
 
-    public MoreItemData(String name, String version, int image){
+    public MoreItemData(int name, String version, int image){
         this.CategoryName = name;
         this.version = version;
         this.imageView = image;
     }
 
-    public MoreItemData(String name, String version){
+    public MoreItemData(int name, String version){
         this.CategoryName = name;
         this.version = version;
     }
 
-    public MoreItemData(String name, int image){
+    public MoreItemData(int name, int image){
         this.CategoryName = name;
         this.imageView = image;
     }
 
-    public String getCategoryName() {
+    public int getCategoryName() {
         return CategoryName;
     }
 
-    public void setCategoryName(String categoryName) {
+    public void setCategoryName(int categoryName) {
         CategoryName = categoryName;
     }
 
