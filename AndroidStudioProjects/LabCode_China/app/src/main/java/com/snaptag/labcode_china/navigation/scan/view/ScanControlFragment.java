@@ -70,6 +70,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
     private STCameraView stCameraView = null;
     private ImageButton cameraSetting, flashButton, flash2, zoom, zoomMore, zoom_1_0, zoom_1_5, zoom_2_0;
     private TextView guideText;
+    SharedPreferences mPref;
 
     //Timer 관련
     private Timer timer;
@@ -80,9 +81,11 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
     //sound관련
     SoundPool soundPool;
     private int soundManage;
+    //private boolean soundDegree;
 
     //vibrate 관련
     Vibrator vibrator;
+    //private boolean vibrateDegree;
 
     //위치 정보 관련
     LocationManager locationManager;
@@ -94,7 +97,6 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
     String getLocationData;
     double longitude;
     double latitude;
-
 
     //API 관련
     private ConstraintLayout zoomBox;
@@ -170,6 +172,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setMessage("GPS 얻어오는 중...");
 
+        //settingSoundVibrate();
         initCameraModule();
         return view;
     }
@@ -233,7 +236,6 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
     public void onResume() {
         super.onResume();
         Log.d(thisName, "onResume() 실행");
-        Log.d(thisName,"getUUID : "+getUuid());
 
         clearFlashZoom();
 
@@ -434,7 +436,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
 
     //-> go to Model
     public String getUuid() {
-        SharedPreferences mPref = getActivity().getSharedPreferences("KEY_PREF", getActivity().MODE_PRIVATE);
+        mPref = getActivity().getSharedPreferences("KEY_PREF", getActivity().MODE_PRIVATE);
         return mPref.getString("KEY_UUID", null);
     }
 
@@ -444,26 +446,31 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         soundPool = new SoundPool.Builder().build();
         soundPool.load(getContext(), R.raw.beep, 1);
 
-        soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
-            @Override
-            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
-                AudioManager mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
-                float currentVolumeIndex = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-                float maxVolumeIndex = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-                float volume = currentVolumeIndex / maxVolumeIndex;
-                Log.d(thisName, "volume : " + String.valueOf(volume));
-                soundManage = soundPool.play(sampleId, volume, volume, 1, 0, 1.0f);
+        //if (soundDegree) {
+            soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+                @Override
+                public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                    AudioManager mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+                    float currentVolumeIndex = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+                    float maxVolumeIndex = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+                    float volume = currentVolumeIndex / maxVolumeIndex;
+                    Log.d(thisName, "SoundVolume : " + String.valueOf(volume));
+                    soundManage = soundPool.play(sampleId, volume, volume, 1, 0, 1.0f);
+                }
+            });
+        //}
+
+        //if (vibrateDegree) {
+            vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+            int vibrateVolume = VibrationEffect.DEFAULT_AMPLITUDE;
+            Log.d(thisName, "VibrateVolume : " + String.valueOf(vibrateVolume));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {   // -> version 26이상
+                vibrator.vibrate(VibrationEffect.createOneShot(200, vibrateVolume));
+                //시간, 세기
+            } else {
+                vibrator.vibrate(1000);
             }
-        });
-
-        vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {   // -> version 26이상
-            vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE));
-            //시간, 세기
-        } else {
-            vibrator.vibrate(1000);
-        }
+        //}
     }
 
 
@@ -489,15 +496,10 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         }
     };
 
-    public void stopLocation(){
-        Log.d(thisName,"stopLocation() 실행");
-        locationManager.removeUpdates(gpsLocationListener);
-    }
-
 
     private void initUuid() {
         Log.d(thisName,"initUuid() 실행");
-        SharedPreferences mPref = getActivity().getSharedPreferences("KEY_PREF", getActivity().MODE_PRIVATE);
+        mPref = getActivity().getSharedPreferences("KEY_PREF", getActivity().MODE_PRIVATE);
         String uuid = mPref.getString("KEY_UUID", null);
         if (uuid == null) {
             uuid = UUID.randomUUID().toString();
@@ -518,7 +520,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
     }
 
     public String getGps(){
-        SharedPreferences mPref = getActivity().getSharedPreferences("LOCATION_PREF", getActivity().MODE_PRIVATE);
+        mPref = getActivity().getSharedPreferences("LOCATION_PREF", getActivity().MODE_PRIVATE);
         String getLocationData = mPref.getString("LOCATION_PREF", null);
         return getLocationData;
     }
@@ -533,6 +535,17 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         zoom_1_5.setBackgroundResource(R.drawable.ic_gray_box);
         zoom_2_0.setBackgroundResource(R.drawable.ic_gray_box);
     }
+
+//    public void settingSoundVibrate(){
+//        Log.d(thisName,"settingSoundVibrate() 실행");
+//        mPref = getActivity().getSharedPreferences("SOUND_PREF", getActivity().MODE_PRIVATE);
+//        soundDegree = Boolean.valueOf(mPref.getString("SOUND_PREF", null));
+//        Log.d(thisName,"soundDegree : "+String.valueOf(soundDegree));
+//
+//        mPref = getActivity().getSharedPreferences("LOCATION_PREF", getActivity().MODE_PRIVATE);
+//        vibrateDegree = Boolean.valueOf(mPref.getString("LOCATION_PREF", null));
+//        Log.d(thisName,"vibrateDegree : "+String.valueOf(vibrateDegree));
+//    }
 
 }
 

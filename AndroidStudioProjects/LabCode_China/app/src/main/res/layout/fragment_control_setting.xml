@@ -98,35 +98,30 @@
             android:layout_marginRight="92dp"
             app:layout_constraintTop_toTopOf="@+id/setting_frame"
             app:layout_constraintRight_toRightOf="@+id/setting_frame" />
-        
-        <ImageButton
+
+        <Switch
             android:id="@+id/soundOnOff_button"
-            android:layout_width="52dp"
+            android:layout_width="60dp"
             android:layout_height="32dp"
-            android:src="@drawable/ic_setting_button_frame"
+            android:track="@drawable/switch_selector"
+            android:thumb="@drawable/switch_thumb"
             android:layout_marginTop="89dp"
             android:layout_marginRight="24dp"
             app:layout_constraintTop_toTopOf="@+id/setting_frame"
-            app:layout_constraintRight_toRightOf="@+id/setting_frame" />
+            app:layout_constraintRight_toRightOf="@+id/setting_frame"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
 
-        <ImageButton
+        <Switch
             android:id="@+id/vibrateOnOff_button"
-            android:layout_width="52dp"
+            android:layout_width="60dp"
             android:layout_height="32dp"
-            android:src="@drawable/ic_setting_button_frame"
+            android:track="@drawable/switch_selector"
+            android:thumb="@drawable/switch_thumb"
             android:layout_marginTop="141dp"
             android:layout_marginRight="24dp"
             app:layout_constraintTop_toTopOf="@+id/setting_frame"
-            app:layout_constraintRight_toRightOf="@+id/setting_frame" />
-
-
-
-
-
-
-
-
-
+            app:layout_constraintRight_toRightOf="@+id/setting_frame"
+            tools:ignore="UseSwitchCompatOrMaterialXml"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

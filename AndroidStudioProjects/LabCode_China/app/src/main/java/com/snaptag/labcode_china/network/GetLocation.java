@@ -1,7 +1,5 @@
 package com.snaptag.labcode_china.network;
 
-
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,8 +7,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.util.Log;
-
-import androidx.core.app.ActivityCompat;
 
 public class GetLocation {
 
@@ -59,22 +55,5 @@ public class GetLocation {
 
         }
     };
-
-    /*
-        private void initUuid() {
-        Log.d(thisName,"initUuid() 실행");
-        SharedPreferences mPref = getActivity().getSharedPreferences("KEY_PREF", getActivity().MODE_PRIVATE);
-        String uuid = mPref.getString("KEY_UUID", null);
-        if (uuid == null) {
-            uuid = UUID.randomUUID().toString();
-
-            mPref.edit().putString("KEY_UUID", uuid + "5").apply();
-        }
-    }
-     */
-
-
-
-
 
 }

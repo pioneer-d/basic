@@ -27,16 +27,8 @@ public class ScanGuideFragment extends Fragment {
     Fragment moreControlFragment;
 
     public ScanGuideFragment() {
+        Log.d(thisName, "ScanGuideFragment 생성자 호출");
         // Required empty public constructor
-    }
-
-
-    public static ScanGuideFragment newInstance(String param1, String param2) {
-        ScanGuideFragment fragment = new ScanGuideFragment();
-        Bundle args = new Bundle();
-
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -53,6 +45,15 @@ public class ScanGuideFragment extends Fragment {
         Log.d(thisName,"onCreateView() 실행");
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_scan_guide, container, false);
 
+        pager = (ViewPager2) viewGroup.findViewById(R.id.sliderViewPager);
+        //pagerAdapter = new ScreeSlidePagerAdapter(getActivity());
+        //pagerAdapter = new ScreeSlidePagerAdapter(getChildFragmentManager(),getLifecycle());
+        //pagerAdapter = new ScreeSlidePagerAdapter(getParentFragment());
+        pagerAdapter = new ScreeSlidePagerAdapter(this);
+        pager.setAdapter(pagerAdapter);
+        pager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
+        pager.setCurrentItem(0);
+
         backButton = viewGroup.findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,13 +63,6 @@ public class ScanGuideFragment extends Fragment {
                 getParentFragmentManager().beginTransaction().show(moreControlFragment).commit();
             }
         });
-
-        pager = viewGroup.findViewById(R.id.sliderViewPager);
-
-        pagerAdapter = new ScreeSlidePagerAdapter(getActivity());
-        pager.setAdapter(pagerAdapter);
-        pager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
-        pager.setCurrentItem(0);
 
         return viewGroup;
     }

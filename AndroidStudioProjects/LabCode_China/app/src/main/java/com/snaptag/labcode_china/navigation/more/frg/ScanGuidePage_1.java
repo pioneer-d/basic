@@ -8,13 +8,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.snaptag.labcode_china.R;
+
+import org.w3c.dom.Text;
 
 
 public class ScanGuidePage_1 extends Fragment {
 
     static String thisName = "ScanGuidePage_1";
+    TextView test;
+    View view;
 
     public ScanGuidePage_1() {
         Log.d(thisName,"ScanGuidePage_1 생성자 호출 ");
@@ -31,7 +36,10 @@ public class ScanGuidePage_1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_scan_guide_page_1, container, false);
+        test = view.findViewById(R.id.testText);
+        test.setText("test");
 
-        return inflater.inflate(R.layout.fragment_scan_guide_page_1, container, false);
+        return view;
     }
 }

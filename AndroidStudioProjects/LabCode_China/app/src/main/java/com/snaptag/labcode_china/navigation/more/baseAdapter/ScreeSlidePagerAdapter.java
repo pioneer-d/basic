@@ -16,6 +16,12 @@ import com.snaptag.labcode_china.navigation.more.frg.ScanGuidePage_3;
 public class ScreeSlidePagerAdapter extends FragmentStateAdapter {
 
     static String thisName = "ScreeSlidePagerAdapter";
+    static int screenPage = 3;
+
+    public ScreeSlidePagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+        super(fragmentManager, lifecycle);
+        Log.d(thisName,"ScreeSlidePagerAdapter() 생성자 호출");
+    }
 
     public ScreeSlidePagerAdapter(@NonNull Fragment fragment) {
         super(fragment);
@@ -24,23 +30,26 @@ public class ScreeSlidePagerAdapter extends FragmentStateAdapter {
 
     public ScreeSlidePagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
-
         Log.d(thisName,"ScreeSlidePagerAdapter() 생성자 호출");
     }
+
 
     @NonNull
     @Override
     public Fragment createFragment(int position) {
         Log.d(thisName,"createFragment() position : "+String.valueOf(position));
-        if (position == 0) {
-            Log.d(thisName,"position == 0인 경우");
-            return new ScanGuidePage_1();}
-        else if (position == 1) {return new ScanGuidePage_2();}
-        else return new ScanGuidePage_3();
+
+        switch (position){
+            default :
+            case 0 : return new ScanGuidePage_1();
+            case 1 : return new ScanGuidePage_2();
+            case 2 : return new ScanGuidePage_3();
+
+        }
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return screenPage;
     }
 }
