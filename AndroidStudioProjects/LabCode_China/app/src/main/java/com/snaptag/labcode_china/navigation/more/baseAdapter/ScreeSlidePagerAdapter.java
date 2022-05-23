@@ -9,9 +9,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.snaptag.labcode_china.navigation.more.frg.ScanGuidePage_1;
-import com.snaptag.labcode_china.navigation.more.frg.ScanGuidePage_2;
-import com.snaptag.labcode_china.navigation.more.frg.ScanGuidePage_3;
+import com.snaptag.labcode_china.navigation.more.page.ScanGuidePage_1;
+import com.snaptag.labcode_china.navigation.more.page.ScanGuidePage_2;
+import com.snaptag.labcode_china.navigation.more.page.ScanGuidePage_3;
 
 public class ScreeSlidePagerAdapter extends FragmentStateAdapter {
 

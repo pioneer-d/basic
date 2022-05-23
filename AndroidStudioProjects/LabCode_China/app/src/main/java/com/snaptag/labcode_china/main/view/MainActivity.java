@@ -1,5 +1,6 @@
 package com.snaptag.labcode_china.main.view;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private FrameLayout frameLayout;
     private BottomNavigationView bottomNavigationView;
     private TextView textView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,4 +97,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         getSupportFragmentManager().beginTransaction().replace(R.id.main_content, moreControlFragment).commit();
         textView.setText(R.string.txt_more);
     }
+
+
 }

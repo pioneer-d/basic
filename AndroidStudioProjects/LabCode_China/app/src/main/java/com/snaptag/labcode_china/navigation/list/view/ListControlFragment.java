@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import com.snaptag.labcode_china.R;
-import com.snaptag.labcode_china.navigation.list.frg.BlankFragment;
-import com.snaptag.labcode_china.navigation.list.frg.ListFragment;
+import com.snaptag.labcode_china.navigation.list.page.BlankFragment;
+import com.snaptag.labcode_china.navigation.list.page.ListFragment;
 import com.snaptag.labcode_china.navigation.list.presenter.ListContract;
 import com.snaptag.labcode_china.navigation.list.presenter.ListPresenter;
 

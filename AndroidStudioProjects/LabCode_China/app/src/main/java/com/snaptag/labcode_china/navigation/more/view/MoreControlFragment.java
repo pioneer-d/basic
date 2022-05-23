@@ -16,9 +16,9 @@ import android.widget.ListView;
 import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.navigation.more.baseAdapter.MoreBaseAdapter;
 import com.snaptag.labcode_china.navigation.more.data.MoreItemData;
-import com.snaptag.labcode_china.navigation.more.frg.FrequentQuestionFragment;
-import com.snaptag.labcode_china.navigation.more.frg.ScanGuideFragment;
-import com.snaptag.labcode_china.navigation.more.frg.TermOfServiceFragment;
+import com.snaptag.labcode_china.navigation.more.page.FrequentQuestionFragment;
+import com.snaptag.labcode_china.navigation.more.page.ScanGuideFragment;
+import com.snaptag.labcode_china.navigation.more.page.TermOfServiceFragment;
 import com.snaptag.labcode_china.navigation.more.presenter.MoreContract;
 import com.snaptag.labcode_china.navigation.more.presenter.MorePresenter;
 
@@ -132,7 +132,12 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
     }
 
     public void manageChildFragment(Fragment main, Fragment sub){
+        //getChildFragmentManager().beginTransaction().replace(R.id.main_content,main).addToBackStack(null).commit();
         if (main != null) {getParentFragmentManager().beginTransaction().add(R.id.main_content,main).show(main).commit();}
-        if (sub != null) {getParentFragmentManager().beginTransaction().hide(sub).addToBackStack(null).commit();}
+        if (sub != null) {
+            getParentFragmentManager().beginTransaction().hide(sub).commit();
+        }
     }
+
+
 }
