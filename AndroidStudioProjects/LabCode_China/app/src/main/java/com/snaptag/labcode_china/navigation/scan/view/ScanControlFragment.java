@@ -36,8 +36,6 @@ import com.snaptag.labcode_china.api.SnaptagAPI;
 import com.snaptag.labcode_china.navigation.scan.page.AlertTimeFragment;
 import com.snaptag.labcode_china.navigation.scan.page.ControlSettingFragment;
 import com.snaptag.labcode_china.navigation.scan.page.ScanSuccessActivity;
-import com.snaptag.labcode_china.navigation.scan.presenter.ScanContract_Test;
-import com.snaptag.labcode_china.navigation.scan.presenter.ScanPresenter_Test;
 import com.snaptag.labcode_china.network.GetLocation;
 
 import java.util.HashMap;
@@ -45,6 +43,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.functions.Consumer;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -59,9 +62,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
     private ScanControlFragment() {
     }
 
-    private ScanContract_Test.Presenter presenter;
-
-    private static String thisName = "ScanControlFragment_Test";
+    private static String thisName = "ScanControlFragment";
 
     private View view;
     private STCameraView stCameraView = null;
@@ -89,6 +90,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
 
     //로딩
     ProgressDialog dialog;
+    Disposable backgroundTask;
 
     //리뉴얼 Location Data
     String getLocationData;
@@ -119,8 +121,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            GetLocation locationManager = new GetLocation(getActivity());
-            locationManager.callLocation();
+            Log.d(thisName,"onCreate() 실행");
         }
     }
 
@@ -130,8 +131,6 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         view = inflater.inflate(R.layout.fragment_scan_control, container, false);
         initUuid();
         Log.d(thisName,"getUuid() : "+getUuid());
-
-        presenter = new ScanPresenter_Test();
 
         stCameraView = (STCameraView) view.findViewById(R.id.st_camera);
         cameraSetting = view.findViewById(R.id.camera_setting);
@@ -230,29 +229,34 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         super.onResume();
         Log.d(thisName, "onResume() 실행");
 
+        //여기서 먼저 호출하고
+        GetLocation locationManager = new GetLocation(getActivity());
+        locationManager.callLocation();
+
         clearFlashZoom();
         settingSoundVibrate();
 
         getLocationData = getGps();
+        setLocation();
+        //if (getLocationData == null){
+         //   dialog.show();
+//            while (getLocationData == null){
+//                Log.d(thisName,"null로 인한 getGps() 반복 실행");
+//                getLocationData = getGps();
+            //코루틴이나 RxJava 활용해야할 듯 함.
+//            }
+        //} else{
 
-        if (getLocationData == null){
-            dialog.show();
-            while (getLocationData != null){
-                Log.d(thisName,"null로 인한 getGps() 반복 실행");
-                getLocationData = getGps();
-            }
-        } else{
+        Log.d(thisName,"getLocationData : "+getLocationData);
 
-            Log.d(thisName,"getLocationData : "+getLocationData);
-
-            dialog.cancel();
-            if (stCameraView != null) {
-                stCameraView.setStartZoom(1.0f);
-                stCameraView.setFlash(false);
-                Log.d(thisName, "stDetectStart() 실행직전");
-                stCameraView.stDetectStart();
-            }
-        }
+        //이게 여기 있으면 gps 못받아와도 카메라가 실행되니까 순서 다시 봐야함.
+//        if (stCameraView != null) {
+//            stCameraView.setStartZoom(1.0f);
+//            stCameraView.setFlash(false);
+//            Log.d(thisName, "stDetectStart() 실행직전");
+//            stCameraView.stDetectStart();
+//            }
+        //}
 
         onGoingTime = 0;
         startTimer();
@@ -533,14 +537,59 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
     public void settingSoundVibrate(){
         Log.d(thisName,"settingSoundVibrate() 실행");
         mPref = getActivity().getSharedPreferences("SOUND_PREF", getActivity().MODE_PRIVATE);
-        soundDegree = Boolean.valueOf(mPref.getString("SOUND_PREF", null));
+        if (mPref.getString("SOUND_PREF", null) == null){
+            soundDegree = true;
+        }else {
+            soundDegree = Boolean.valueOf(mPref.getString("SOUND_PREF", null));
+        }
         Log.d(thisName,"soundDegree : "+String.valueOf(soundDegree));
 
         mPref = getActivity().getSharedPreferences("VIBRATE_PREF", getActivity().MODE_PRIVATE);
-        vibrateDegree = Boolean.valueOf(mPref.getString("VIBRATE_PREF", null));
+        if (mPref.getString("VIBRATE_PREF", null) == null){
+            vibrateDegree = true;
+        } else {
+            vibrateDegree = Boolean.valueOf(mPref.getString("VIBRATE_PREF", null));
+        }
         Log.d(thisName,"vibrateDegree : "+String.valueOf(vibrateDegree));
     }
 
+//    public void setLocation(){
+//        GetLocation locationManager = new GetLocation(getActivity());
+//        locationManager.callLocation();
+//    }
+
+    private void setLocation() {
+        // task에서 반환할 Hashmap
+        Log.d(thisName,"setLocation() 실행");
+        HashMap<String, String> map = new HashMap<>();
+        dialog.show();
+        //onPreExecute(task 시작 전 실행될 코드 여기에 작성)
+
+        backgroundTask = Observable.fromCallable(() -> {
+            //doInBackground(task에서 실행할 코드 여기에 작성)
+            Log.d(thisName,"getGps 실행()");
+            getLocationData = getGps();
+
+            return map;
+
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<HashMap<String, String>>() {
+            @Override
+            public void accept(HashMap<String, String> map) {
+                //onPostExecute(task 끝난 후 실행될 코드 여기에 작성)
+                Log.d(thisName,"getLocationData 받아온 경우");
+                Log.d(thisName,"getLocationData : "+getLocationData);
+                dialog.cancel();
+                if (stCameraView != null) {
+                    stCameraView.setStartZoom(1.0f);
+                    stCameraView.setFlash(false);
+                    Log.d(thisName, "stDetectStart() 실행직전");
+                    stCameraView.stDetectStart();
+                }
+
+                backgroundTask.dispose();
+            }
+        });
+    }
 }
 
 

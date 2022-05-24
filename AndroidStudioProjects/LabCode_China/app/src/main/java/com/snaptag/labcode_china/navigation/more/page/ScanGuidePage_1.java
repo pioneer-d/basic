@@ -16,7 +16,6 @@ import com.snaptag.labcode_china.R;
 public class ScanGuidePage_1 extends Fragment {
 
     static String thisName = "ScanGuidePage_1";
-    TextView test;
     View view;
 
     public ScanGuidePage_1() {
@@ -35,8 +34,6 @@ public class ScanGuidePage_1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_scan_guide_page_1, container, false);
-        test = view.findViewById(R.id.testText);
-        test.setText("test");
 
         return view;
     }

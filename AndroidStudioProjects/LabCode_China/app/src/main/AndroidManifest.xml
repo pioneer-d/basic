@@ -21,6 +21,12 @@
         android:theme="@style/Theme.LabCode_China"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".navigation.more.page.ScanGuideActivity"
+            android:exported="false" />
+        <activity
+            android:name=".navigation.more.page.TermOfServiceActivity"
+            android:exported="false" />
+        <activity
             android:name=".navigation.more.page.FrequentQuestionActivity"
             android:exported="false" />
         <activity

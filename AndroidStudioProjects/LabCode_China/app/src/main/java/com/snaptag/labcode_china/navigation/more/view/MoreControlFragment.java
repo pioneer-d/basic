@@ -18,11 +18,12 @@ import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.navigation.more.baseAdapter.MoreBaseAdapter;
 import com.snaptag.labcode_china.navigation.more.data.MoreItemData;
 import com.snaptag.labcode_china.navigation.more.page.FrequentQuestionActivity;
-import com.snaptag.labcode_china.navigation.more.page.FrequentQuestionFragment;
+import com.snaptag.labcode_china.navigation.more.page.ScanGuideActivity;
 import com.snaptag.labcode_china.navigation.more.page.ScanGuideFragment;
-import com.snaptag.labcode_china.navigation.more.page.TermOfServiceFragment;
+import com.snaptag.labcode_china.navigation.more.page.TermOfServiceActivity;
 import com.snaptag.labcode_china.navigation.more.presenter.MoreContract;
 import com.snaptag.labcode_china.navigation.more.presenter.MorePresenter;
+import com.snaptag.labcode_china.navigation.scan.page.ScanSuccessActivity;
 
 
 public class MoreControlFragment extends Fragment implements MoreContract.View {
@@ -127,14 +128,18 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
 
     @Override
     public void goTos() {
-        tosFragment = new TermOfServiceFragment();
-        manageChildFragment(tosFragment,this);
+//        tosFragment = new TermOfServiceFragment();
+//        manageChildFragment(tosFragment,this);
+        Intent intent = new Intent(getActivity(), TermOfServiceActivity.class);
+        startActivity(intent);
     }
 
     @Override
     public void goScanGuide() {
-        scanGuideFragment = new ScanGuideFragment();
-        manageChildFragment(scanGuideFragment,this);
+//        scanGuideFragment = new ScanGuideFragment();
+//        manageChildFragment(scanGuideFragment,this);
+        Intent intent = new Intent(getActivity(), ScanGuideActivity.class);
+        startActivity(intent);
     }
 
     public void manageChildFragment(Fragment main, Fragment sub){
