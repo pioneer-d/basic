@@ -61,7 +61,6 @@ public class AccessRightPresenter implements AccessRightContract.Presenter {
         if (!permissionList.isEmpty()){
             return false;
         }
-        view.goMain();
         return true;
     }
 

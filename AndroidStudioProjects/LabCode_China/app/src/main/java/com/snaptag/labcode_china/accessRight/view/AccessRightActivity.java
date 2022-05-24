@@ -38,7 +38,15 @@ public class AccessRightActivity extends AppCompatActivity implements AccessRigh
     private void init(){
         presenter = new AccessRightPresenter(this,this, this);
         imageButton = (ImageButton) findViewById(R.id.button);
-        permissionCheck();
+        if (presenter.checkPermission()){
+            goMain();
+        }
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                permissionCheck();
+            }
+        });
     }
 
 
