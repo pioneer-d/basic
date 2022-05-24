@@ -1,5 +1,6 @@
 package com.snaptag.labcode_china.navigation.more.view;
 
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.ListView;
 import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.navigation.more.baseAdapter.MoreBaseAdapter;
 import com.snaptag.labcode_china.navigation.more.data.MoreItemData;
+import com.snaptag.labcode_china.navigation.more.page.FrequentQuestionActivity;
 import com.snaptag.labcode_china.navigation.more.page.FrequentQuestionFragment;
 import com.snaptag.labcode_china.navigation.more.page.ScanGuideFragment;
 import com.snaptag.labcode_china.navigation.more.page.TermOfServiceFragment;
@@ -115,8 +117,12 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
 
     @Override
     public void goFrequentQuestion() {
-        frequentQuestionFragment = new FrequentQuestionFragment();
-        manageChildFragment(frequentQuestionFragment,this);
+//        frequentQuestionFragment = new FrequentQuestionFragment();
+//        manageChildFragment(frequentQuestionFragment,this);
+
+        Intent intent = new Intent(getActivity(), FrequentQuestionActivity.class);
+        startActivity(intent);
+
     }
 
     @Override

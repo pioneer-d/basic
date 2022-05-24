@@ -1,12 +1,10 @@
 package com.snaptag.labcode_china.navigation.more.page;
 
-import android.os.Bundle;
-
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
+import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ExpandableListAdapter;
@@ -22,10 +20,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+public class FrequentQuestionActivity extends AppCompatActivity implements View.OnClickListener {
 
-public class FrequentQuestionFragment extends Fragment implements View.OnClickListener {
-
-    static String thisName = "FrequentQuestionFragment";
     ImageButton backButton, allButton, howToUseButton, techButton;
     View view;
     Fragment moreControlFragment;
@@ -45,33 +41,22 @@ public class FrequentQuestionFragment extends Fragment implements View.OnClickLi
     int tech_1 = R.string.txt_tech_1;
     int tech_2 = R.string.txt_tech_2;
 
-
-
-    public FrequentQuestionFragment() {
-        // Required empty public constructor
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+        view = getLayoutInflater().from(this).inflate(R.layout.activity_frequent_question,null);
 
-        }
-    }
+        setContentView(view);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_frequent_question, container, false);
         indicatorLocation = view.getWidth()+950;
 
-        expandableListView = (ExpandableListView) view.findViewById(R.id.question_list);
-        backButton = view.findViewById(R.id.backButton);
-        allButton = view.findViewById(R.id.allQuestion);
-        howToUseButton = view.findViewById(R.id.howToUseQuestion);
-        techButton = view.findViewById(R.id.techQuestion);
-        rotate_button = AnimationUtils.loadAnimation(getContext(),R.anim.rotation_arrow);
-        slide_down = AnimationUtils.loadAnimation(getContext(),R.anim.slide_down);
+        expandableListView = (ExpandableListView) findViewById(R.id.question_list);
+        backButton = findViewById(R.id.backButton);
+        allButton = findViewById(R.id.allQuestion);
+        howToUseButton = findViewById(R.id.howToUseQuestion);
+        techButton = findViewById(R.id.techQuestion);
+        rotate_button = AnimationUtils.loadAnimation(this,R.anim.rotation_arrow);
+
 
 
         init();
@@ -81,8 +66,36 @@ public class FrequentQuestionFragment extends Fragment implements View.OnClickLi
         allButton.setOnClickListener(this);
         howToUseButton.setOnClickListener(this);
         techButton.setOnClickListener(this);
+    }
 
-        return view;
+    @Override
+    public void onClick(View view) {
+        int getId = view.getId();
+        switch (getId){
+            case R.id.backButton : onBackPressed();
+                break;
+            case R.id.allQuestion:
+                allButton.setImageResource(R.drawable.ic_more_all_click);
+                howToUseButton.setImageResource(R.drawable.ic_more_use_non_click);
+                techButton.setImageResource(R.drawable.ic_more_tech_non_click);
+                init();
+                initView();
+                break;
+            case R.id.howToUseQuestion:
+                howToUseButton.setImageResource(R.drawable.ic_more_use_click);
+                allButton.setImageResource(R.drawable.ic_more_all_non_click);
+                techButton.setImageResource(R.drawable.ic_more_tech_non_click);
+                showUse();
+                initView();
+                break;
+            case R.id.techQuestion:
+                techButton.setImageResource(R.drawable.ic_more_tech_click);
+                allButton.setImageResource(R.drawable.ic_more_all_non_click);
+                howToUseButton.setImageResource(R.drawable.ic_more_use_non_click);
+                showTech();
+                initView();
+                break;
+        }
     }
 
     private void init(){
@@ -161,7 +174,7 @@ public class FrequentQuestionFragment extends Fragment implements View.OnClickLi
 
     private void initView(){
 
-        ExpandableListAdapter adapter = new FrequentQuestionAdapter(getActivity(),mGroup,mChild);
+        ExpandableListAdapter adapter = new FrequentQuestionAdapter(this,mGroup,mChild);
         expandableListView.setIndicatorBounds(indicatorLocation,view.getWidth());
         expandableListView.setAdapter( adapter );
         expandableListView.setOnChildClickListener( new ExpandableListView.OnChildClickListener() {
@@ -190,39 +203,4 @@ public class FrequentQuestionFragment extends Fragment implements View.OnClickLi
             }
         });
     }
-
-
-    @Override
-    public void onClick(View view) {
-        int getId = view.getId();
-        switch (getId){
-            case R.id.backButton : getParentFragmentManager().beginTransaction().remove(FrequentQuestionFragment.this).commit();
-                moreControlFragment = MoreControlFragment.newInstance();
-                //remove 해야됨.
-                getParentFragmentManager().beginTransaction().show(moreControlFragment).commit();
-                break;
-            case R.id.allQuestion:
-                allButton.setImageResource(R.drawable.ic_more_all_click);
-                howToUseButton.setImageResource(R.drawable.ic_more_use_non_click);
-                techButton.setImageResource(R.drawable.ic_more_tech_non_click);
-                init();
-                initView();
-                break;
-            case R.id.howToUseQuestion:
-                howToUseButton.setImageResource(R.drawable.ic_more_use_click);
-                allButton.setImageResource(R.drawable.ic_more_all_non_click);
-                techButton.setImageResource(R.drawable.ic_more_tech_non_click);
-                showUse();
-                initView();
-                break;
-            case R.id.techQuestion:
-                techButton.setImageResource(R.drawable.ic_more_tech_click);
-                allButton.setImageResource(R.drawable.ic_more_all_non_click);
-                howToUseButton.setImageResource(R.drawable.ic_more_use_non_click);
-                showTech();
-                initView();
-                break;
-        }
-    }
-
 }

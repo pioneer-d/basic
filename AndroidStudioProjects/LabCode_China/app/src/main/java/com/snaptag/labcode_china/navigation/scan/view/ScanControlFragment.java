@@ -35,7 +35,7 @@ import com.snaptag.labcode_china.api.post.Post;
 import com.snaptag.labcode_china.api.SnaptagAPI;
 import com.snaptag.labcode_china.navigation.scan.page.AlertTimeFragment;
 import com.snaptag.labcode_china.navigation.scan.page.ControlSettingFragment;
-import com.snaptag.labcode_china.navigation.scan.page.ScanSuccessFragment;
+import com.snaptag.labcode_china.navigation.scan.page.ScanSuccessActivity;
 import com.snaptag.labcode_china.navigation.scan.presenter.ScanContract_Test;
 import com.snaptag.labcode_china.navigation.scan.presenter.ScanPresenter_Test;
 import com.snaptag.labcode_china.network.GetLocation;
@@ -111,9 +111,6 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         if (instance == null) {
             instance = new ScanControlFragment();
         }
-        Bundle args = new Bundle();
-
-        instance.setArguments(args);
         return instance;
     }
 
@@ -386,7 +383,16 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
                         String brand = data.getData().getProject().getTeam().getTitle();
                         if (brand == null){brand = "SnapTag";}
 
-                        goSuccessScan(image,genre,product,brand,url);
+                        //여기서 activity로 변환.
+                        //goSuccessScan(image,genre,product,brand,url);
+                        Intent intent = new Intent(getActivity(), ScanSuccessActivity.class);
+                        intent.putExtra("image",image);
+                        intent.putExtra("genre",genre);
+                        intent.putExtra("product",product);
+                        intent.putExtra("brand",brand);
+                        intent.putExtra("url",url);
+                        startActivity(intent);
+
 
                     } else{
                         Log.d(thisName,"checkIndustry == \"0\"이 아닌 경우");
@@ -406,12 +412,6 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
                 Log.d(thisName, "onFailure 실행");
             }
         });
-    }
-
-    private void goSuccessScan(String image, String genre, String product, String brand,String url) {
-        successFragment = new ScanSuccessFragment(image,genre,product,brand,url);
-        getChildFragmentManager().beginTransaction().add(R.id.scan_child_content, successFragment).commitAllowingStateLoss();
-        onPause();
     }
 
     private void goCameraSetting(){
