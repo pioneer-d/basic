@@ -140,6 +140,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         zoomMore = view.findViewById(R.id.zoom_more_frame).findViewById(R.id.zoom_more);
 
         zoomBox = view.findViewById(R.id.zoom_box);
+        zoomBox.setBackgroundResource(R.drawable.ic_gray_box);
         zoom_1_0 = view.findViewById(R.id.zoom_1_0);
         zoom_1_5 = view.findViewById(R.id.zoom_1_5);
         zoom_2_0 = view.findViewById(R.id.zoom_2_0);
@@ -198,20 +199,20 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
                 break;
             case R.id.zoom_1_0:
                 zoom_1_0.setBackgroundResource(R.drawable.ic_black_box);
-                zoom_1_5.setBackgroundResource(R.drawable.ic_gray_box);
-                zoom_2_0.setBackgroundResource(R.drawable.ic_gray_box);
+                zoom_1_5.setBackgroundResource(R.drawable.ic_transparent_box);
+                zoom_2_0.setBackgroundResource(R.drawable.ic_transparent_box);
                 stCameraView.setZoom(1.0f);
                 break;
             case R.id.zoom_1_5:
                 zoom_1_5.setBackgroundResource(R.drawable.ic_black_box);
-                zoom_1_0.setBackgroundResource(R.drawable.ic_gray_box);
-                zoom_2_0.setBackgroundResource(R.drawable.ic_gray_box);
+                zoom_1_0.setBackgroundResource(R.drawable.ic_transparent_box);
+                zoom_2_0.setBackgroundResource(R.drawable.ic_transparent_box);
                 stCameraView.setZoom(1.5f);
                 break;
             case R.id.zoom_2_0:
                 zoom_2_0.setBackgroundResource(R.drawable.ic_black_box);
-                zoom_1_0.setBackgroundResource(R.drawable.ic_gray_box);
-                zoom_1_5.setBackgroundResource(R.drawable.ic_gray_box);
+                zoom_1_0.setBackgroundResource(R.drawable.ic_transparent_box);
+                zoom_1_5.setBackgroundResource(R.drawable.ic_transparent_box);
                 stCameraView.setZoom(2.0f);
                 break;
         }
@@ -530,8 +531,8 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         zoomBox.setVisibility(View.INVISIBLE);
         zoom.setImageResource(R.drawable.ic_blanked_circle);
         zoom_1_0.setBackgroundResource(R.drawable.ic_black_box);
-        zoom_1_5.setBackgroundResource(R.drawable.ic_gray_box);
-        zoom_2_0.setBackgroundResource(R.drawable.ic_gray_box);
+        zoom_1_5.setBackgroundResource(R.drawable.ic_transparent_box);
+        zoom_2_0.setBackgroundResource(R.drawable.ic_transparent_box);
     }
 
     public void settingSoundVibrate(){

@@ -19,7 +19,6 @@ import com.snaptag.labcode_china.navigation.more.baseAdapter.MoreBaseAdapter;
 import com.snaptag.labcode_china.navigation.more.data.MoreItemData;
 import com.snaptag.labcode_china.navigation.more.page.FrequentQuestionActivity;
 import com.snaptag.labcode_china.navigation.more.page.ScanGuideActivity;
-import com.snaptag.labcode_china.navigation.more.page.ScanGuideFragment;
 import com.snaptag.labcode_china.navigation.more.page.TermOfServiceActivity;
 import com.snaptag.labcode_china.navigation.more.presenter.MoreContract;
 import com.snaptag.labcode_china.navigation.more.presenter.MorePresenter;

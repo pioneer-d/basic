@@ -8,9 +8,15 @@
     <string name="txt_access_main_text"><b>랩코드 앱 접근 <font color='#5138E5'>필수</font> 권한 안내</b></string>
     <string name="txt_access_sub_text">데이터 스캔을 위해 <font color='#303538'><b>카메라</b></font> 사용권한 \n &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 허가가 필요합니다.</string>
 
+    <string name="txt_scan_success_main"><b>이 제품은 <font color='#5138E5'>정품</font>입니다</b></string>
+    <string name="txt_scan_success_sub">안심하시고 사용하세요, 랩코드가 등록된 \n &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 정품 제품입니다.</string>
+
     <string name="txt_scan_guide_first">너무 너무 가깝거나 먼거리에서는 인식률이 떨어질 수 있어요.</string>
     <string name="txt_scan_guide_second">스마트폰을 인식하고자 하는 대상과 평행을 유지해주세요.</string>
     <string name="txt_scan_guide_third">플래시나 확대 버튼을 사용하면 인식률을 높일 수 있어요.</string>
+
+    <string name="txt_scan_alert_main">인식시간 지남</string>
+    <string name="txt_scan_alert_sub">인식 시간 30초가 지났어요, \n <b><font color='#5138E5'><u>스캔 가이드</u></font></b>를 읽고 스캔팁을 \n 확인 해보세요~</string>
 
     <string name="txt_network_error">네트워크 연결 오류</string>
     <string name="txt_network_try_again">네트워크 연결이 원활하지 않습니다.

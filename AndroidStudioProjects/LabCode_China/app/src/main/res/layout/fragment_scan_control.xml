@@ -1,188 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scan_child_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".navigation.scan.view.ScanControlFragment"
-    android:id="@+id/scan_child_content">
+    tools:context=".navigation.scan.view.ScanControlFragment">
 
     <com.snaptag.cameramodule.STCameraView
+        android:id="@+id/st_camera"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/st_camera" />
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:orientation="vertical"
+        android:weightSum="812">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_height="match_parent"
-            android:layout_width="match_parent" >
-
-            <androidx.constraintlayout.widget.Guideline
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/guide_line_1"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintGuide_percent="0.18"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="144" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/scan_cl_setting"
             android:layout_width="208dp"
-            android:layout_height="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guide_line_1">
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="100">
 
-        <ImageButton
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_camera_setting"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:id="@+id/camera_setting"/>
+            <ImageButton
+                android:id="@+id/camera_setting"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_camera_setting"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/flash"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            app:layout_constraintLeft_toRightOf="@+id/camera_setting"
-            app:layout_constraintRight_toLeftOf="@+id/zoom"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_flash"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            <ImageButton
+                android:id="@+id/flash"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_flash"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/camera_setting"
+                app:layout_constraintRight_toLeftOf="@+id/zoom"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <FrameLayout
                 android:id="@+id/flash2_frame"
                 android:layout_width="16dp"
                 android:layout_height="20dp"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/camera_setting"
-                app:layout_constraintRight_toLeftOf="@+id/zoom">
+                app:layout_constraintRight_toLeftOf="@+id/zoom"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageButton
+                    android:id="@+id/flash2"
                     android:layout_width="16dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/ic_flash2"
-                    android:id="@+id/flash2"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_flash2" />
 
             </FrameLayout>
 
 
-        <ImageButton
-            android:id="@+id/zoom"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_zoom"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            <ImageButton
+                android:id="@+id/zoom"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_zoom"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <FrameLayout
                 android:id="@+id/zoom_more_frame"
                 android:layout_width="16dp"
                 android:layout_height="20dp"
                 android:layout_marginRight="16dp"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent">
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <ImageButton
-                android:layout_width="16dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_zoom_more"
-                android:id="@+id/zoom_more"
-                android:background="@android:color/transparent"/>
+                <ImageButton
+                    android:id="@+id/zoom_more"
+                    android:layout_width="16dp"
+                    android:layout_height="20dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_zoom_more" />
             </FrameLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="132" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/zoom_box"
             android:layout_width="176dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="52dp"
-            app:layout_constraintTop_toBottomOf="@+id/scan_cl_setting"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:background="#0D101A4D"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:visibility="invisible">
 
             <ImageButton
                 android:id="@+id/zoom_1_0"
                 android:layout_width="52dp"
                 android:layout_height="32dp"
-                android:layout_marginTop="2dp"
                 android:layout_marginLeft="2dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="2dp"
                 android:background="@drawable/round"
                 android:src="@drawable/ic_zoom_1_0"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/zoom_1_5"
                 android:layout_width="52dp"
                 android:layout_height="32dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="2dp"
                 android:background="@drawable/round"
                 android:src="@drawable/ic_zoom_1_5"
-                android:layout_marginTop="2dp"
-                android:layout_marginLeft="8dp"
                 app:layout_constraintLeft_toRightOf="@+id/zoom_1_0"
                 app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
+
             <ImageButton
                 android:id="@+id/zoom_2_0"
                 android:layout_width="52dp"
                 android:layout_height="32dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="2dp"
                 android:background="@drawable/round"
                 android:src="@drawable/ic_zoom_2_0"
-                android:layout_marginTop="2dp"
-                android:layout_marginLeft="8dp"
                 app:layout_constraintLeft_toRightOf="@+id/zoom_1_5"
                 app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_camera_dot"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="436">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_camera_dot"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
         <TextView
             android:id="@+id/guideText"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="750dp"
+            android:background="#735138E5"
             android:gravity="center"
             android:text="너무 가깝거나 먼 거리에서는 인식률이 떨어질 수 있어요"
-            android:textColor="@color/white"
-            android:background="#735138E5"
             android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </FrameLayout>
+
+    </LinearLayout>
 
 </FrameLayout>
