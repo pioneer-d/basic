@@ -21,7 +21,10 @@ public class Data {
 
 
 
-    //아래로 Gep
+    //아래로 Get
+
+    @SerializedName("id")
+    public String id;
 
     @SerializedName("product")
     public Product product;
@@ -50,5 +53,9 @@ public class Data {
 
     public Team getTeam() {
         return team;
+    }
+
+    public String getId() {
+        return id;
     }
 }

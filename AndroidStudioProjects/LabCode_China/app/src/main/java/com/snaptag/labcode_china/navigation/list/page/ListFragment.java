@@ -50,7 +50,7 @@ public class ListFragment extends Fragment {
     int page = 1;
     private boolean lastItemFlag = false;
 
-    static String BASEURL = "https://admin.labcode.kr/";
+    static String BASEURL = "http://106.15.201.243/";
 
     private ListView listView;
     private ListBaseAdapter adapter;

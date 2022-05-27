@@ -100,7 +100,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
     //API 관련
     private ConstraintLayout zoomBox;
     private MutableLiveData detectResult = new MutableLiveData<DetectResult>();
-    static String BASEURL = "https://admin.labcode.kr/";
+    static String BASEURL = "http://106.15.201.243/";
 
     //page이동
     private Fragment successFragment;

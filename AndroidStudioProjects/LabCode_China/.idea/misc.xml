@@ -35,6 +35,9 @@
         <entry key="app/src/main/res/drawable/ic_resource_confirm.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/ic_resource_default.xml" value="0.2395" />
         <entry key="app/src/main/res/drawable/ic_scan.xml" value="0.29" />
+        <entry key="app/src/main/res/drawable/ic_scan_guide_1_main.xml" value="0.4445" />
+        <entry key="app/src/main/res/drawable/ic_scan_guide_2_image.xml" value="0.4445" />
+        <entry key="app/src/main/res/drawable/ic_scan_guide_2_main.xml" value="0.4445" />
         <entry key="app/src/main/res/drawable/ic_sp_01.xml" value="0.2395" />
         <entry key="app/src/main/res/drawable/ic_success_image.xml" value="0.3675" />
         <entry key="app/src/main/res/drawable/ic_success_text.xml" value="0.409" />
@@ -44,19 +47,20 @@
         <entry key="app/src/main/res/drawable/ic_zoom_1_5.xml" value="0.2815" />
         <entry key="app/src/main/res/drawable/ic_zoom_gray.xml" value="0.2815" />
         <entry key="app/src/main/res/drawable/ic_zoom_more.xml" value="0.2775" />
+        <entry key="app/src/main/res/drawable/list_more_divider.xml" value="0.409" />
         <entry key="app/src/main/res/drawable/radius_8.xml" value="0.35" />
         <entry key="app/src/main/res/drawable/round.xml" value="0.4275" />
         <entry key="app/src/main/res/drawable/switch_thumb.xml" value="0.4275" />
         <entry key="app/src/main/res/layout/activity_access_right.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_frequent_question.xml" value="0.43333333333333335" />
         <entry key="app/src/main/res/layout/activity_locationmanager.xml" value="0.19701086956521738" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_scan_guide.xml" value="0.34375" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/activity_scan_guide.xml" value="0.45" />
         <entry key="app/src/main/res/layout/activity_scan_success.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_term_of_service.xml" value="0.41822916666666665" />
         <entry key="app/src/main/res/layout/fragment_alert_time.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_control_list.xml" value="0.18072916666666666" />
         <entry key="app/src/main/res/layout/fragment_control_more.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_control_scan.xml" value="0.165" />

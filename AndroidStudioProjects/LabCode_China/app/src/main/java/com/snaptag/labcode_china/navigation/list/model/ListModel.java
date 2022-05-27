@@ -38,7 +38,7 @@ public class ListModel {
 
         SnaptagAPI retrofitAPI = retrofit.create(SnaptagAPI.class);
 
-
+                            //이거 꼭
         retrofitAPI.getData(getUuid(),1).enqueue(new Callback<Get>() {
             @Override
             public void onResponse(Call<Get> call, Response<Get> response) {
@@ -58,8 +58,8 @@ public class ListModel {
 //                    product = data.getData().get(0).getProduct().getDescription();
 //                    brand = data.getData().get(0).getProduct().getUrlCustom();
 
-                    Log.d("isEmpty() : ",String.valueOf(data.getData().isEmpty()));
-                    if(data.getData().isEmpty()){
+                    Log.d(thisName,"data.getData().size() : "+data.getData().size());
+                    if(data.getData().size() == 0){
                         presenter.notExist();
                     } else{
                         presenter.exist();

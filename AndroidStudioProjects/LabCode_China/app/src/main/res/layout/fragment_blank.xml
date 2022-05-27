@@ -15,12 +15,12 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="282" />
+            android:layout_weight="258" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="530">
+            android:layout_weight="554">
 
 
             <ImageView
@@ -32,14 +32,33 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
+            <TextView
+                android:id="@+id/blank_main"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="26dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#303538"
+                android:text="@string/txt_list_blank_main"
                 android:layout_marginTop="51dp"
-                android:src="@drawable/ic_list_guide"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/box" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:textSize="14dp"
+                android:textColor="#79828A"
+                android:text="@string/txt_list_blank_sub"
+                android:gravity="center"
+                android:layout_marginTop="12dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/blank_main" />
+
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
