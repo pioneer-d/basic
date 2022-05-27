@@ -10,6 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.navigation.more.baseAdapter.FrequentQuestionAdapter;
@@ -23,6 +24,7 @@ import java.util.Map;
 public class FrequentQuestionActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageButton backButton, allButton, howToUseButton, techButton;
+    TextView allText,useText, techText;
     View view;
     Fragment moreControlFragment;
     ExpandableListView expandableListView;
@@ -52,12 +54,16 @@ public class FrequentQuestionActivity extends AppCompatActivity implements View.
 
         expandableListView = (ExpandableListView) findViewById(R.id.question_list);
         backButton = findViewById(R.id.backButton);
+
         allButton = findViewById(R.id.allQuestion);
+        allText = findViewById(R.id.allQuestion_text);
+
         howToUseButton = findViewById(R.id.howToUseQuestion);
+        useText = findViewById(R.id.howToUseQuestion_text);
+
         techButton = findViewById(R.id.techQuestion);
+        techText = findViewById(R.id.techQuestion_text);
         rotate_button = AnimationUtils.loadAnimation(this,R.anim.rotation_arrow);
-
-
 
         init();
         initView();
@@ -75,23 +81,38 @@ public class FrequentQuestionActivity extends AppCompatActivity implements View.
             case R.id.backButton : onBackPressed();
                 break;
             case R.id.allQuestion:
-                allButton.setImageResource(R.drawable.ic_more_all_click);
-                howToUseButton.setImageResource(R.drawable.ic_more_use_non_click);
-                techButton.setImageResource(R.drawable.ic_more_tech_non_click);
+                allButton.setImageResource(R.drawable.ic_mini_selected_button);
+                allText.setText(R.string.txt_frequent_all_selected);
+
+                howToUseButton.setImageResource(R.drawable.ic_big_basic_button);
+                useText.setText(R.string.txt_frequent_use_basic);
+
+                techButton.setImageResource(R.drawable.ic_mini_basic_button);
+                techText.setText(R.string.txt_frequent_tech_basic);
                 init();
                 initView();
                 break;
             case R.id.howToUseQuestion:
-                howToUseButton.setImageResource(R.drawable.ic_more_use_click);
-                allButton.setImageResource(R.drawable.ic_more_all_non_click);
-                techButton.setImageResource(R.drawable.ic_more_tech_non_click);
+                allButton.setImageResource(R.drawable.ic_mini_basic_button);
+                allText.setText(R.string.txt_frequent_all_basic);
+
+                howToUseButton.setImageResource(R.drawable.ic_big_selected_button);
+                useText.setText(R.string.txt_frequent_use_selected);
+
+                techButton.setImageResource(R.drawable.ic_mini_basic_button);
+                techText.setText(R.string.txt_frequent_tech_basic);
                 showUse();
                 initView();
                 break;
             case R.id.techQuestion:
-                techButton.setImageResource(R.drawable.ic_more_tech_click);
-                allButton.setImageResource(R.drawable.ic_more_all_non_click);
-                howToUseButton.setImageResource(R.drawable.ic_more_use_non_click);
+                allButton.setImageResource(R.drawable.ic_mini_basic_button);
+                allText.setText(R.string.txt_frequent_all_basic);
+
+                howToUseButton.setImageResource(R.drawable.ic_big_basic_button);
+                useText.setText(R.string.txt_frequent_use_basic);
+
+                techButton.setImageResource(R.drawable.ic_mini_selected_button);
+                techText.setText(R.string.txt_frequent_tech_selected);
                 showTech();
                 initView();
                 break;

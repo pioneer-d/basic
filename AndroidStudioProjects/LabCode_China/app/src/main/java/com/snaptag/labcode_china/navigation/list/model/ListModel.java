@@ -38,7 +38,6 @@ public class ListModel {
 
         SnaptagAPI retrofitAPI = retrofit.create(SnaptagAPI.class);
 
-                            //이거 꼭
         retrofitAPI.getData(getUuid(),1).enqueue(new Callback<Get>() {
             @Override
             public void onResponse(Call<Get> call, Response<Get> response) {

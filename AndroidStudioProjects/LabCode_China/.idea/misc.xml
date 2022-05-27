@@ -52,7 +52,7 @@
         <entry key="app/src/main/res/drawable/round.xml" value="0.4275" />
         <entry key="app/src/main/res/drawable/switch_thumb.xml" value="0.4275" />
         <entry key="app/src/main/res/layout/activity_access_right.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_frequent_question.xml" value="0.43333333333333335" />
+        <entry key="app/src/main/res/layout/activity_frequent_question.xml" value="0.75" />
         <entry key="app/src/main/res/layout/activity_locationmanager.xml" value="0.19701086956521738" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_scan_guide.xml" value="0.45" />

@@ -10,6 +10,7 @@
 
     <string name="txt_scan_success_main"><b>이 제품은 <font color='#5138E5'>정품</font>입니다</b></string>
     <string name="txt_scan_success_sub">안심하시고 사용하세요, 랩코드가 등록된 \n &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 정품 제품입니다.</string>
+    <string name="txt_scan_success_button">제품 상세 보기</string>
 
     <string name="txt_scan_guide_first">너무 너무 가깝거나 먼거리에서는 인식률이 떨어질 수 있어요.</string>
     <string name="txt_scan_guide_second">스마트폰을 인식하고자 하는 대상과 평행을 유지해주세요.</string>
@@ -42,6 +43,13 @@
     <string name="txt_tos_title">이용약관</string>
     <string name="txt_scanGuide_title">스캔가이드</string>
     <string name="txt_app_version_title">앱 정보</string>
+
+    <string name="txt_frequent_all_basic"><font color='#525A61'>전체</font></string>
+    <string name="txt_frequent_all_selected"><font color='#FFFFFF'><b>전체</b></font></string>
+    <string name="txt_frequent_use_basic"><font color='#525A61'>이용방법</font></string>
+    <string name="txt_frequent_use_selected"><font color='#FFFFFF'><b>이용방법</b></font></string>
+    <string name="txt_frequent_tech_basic"><font color='#525A61'>기술</font></string>
+    <string name="txt_frequent_tech_selected"><font color='#FFFFFF'><b>기술</b></font></string>
 
     <string name="txt_use_1">LABCODE 사용법은 어떻게 되나요?</string>
     <string name="txt_use_2">정품 여부를 어떻게 확인할 수 있나요?</string>

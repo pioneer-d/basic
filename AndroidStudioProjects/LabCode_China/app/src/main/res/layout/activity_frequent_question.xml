@@ -46,7 +46,7 @@
         <ImageButton
             android:layout_width="68dp"
             android:layout_height="36dp"
-            android:src="@drawable/ic_more_all_click"
+            android:src="@drawable/ic_mini_selected_button"
             android:background="@android:color/transparent"
             android:id="@+id/allQuestion"
             android:layout_marginLeft="20dp"
@@ -54,10 +54,22 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
+        <TextView
+            android:id="@+id/allQuestion_text"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="@string/txt_frequent_all_selected"
+            app:layout_constraintTop_toTopOf="@+id/allQuestion"
+            app:layout_constraintBottom_toBottomOf="@+id/allQuestion"
+            app:layout_constraintLeft_toLeftOf="@+id/allQuestion"
+            app:layout_constraintRight_toRightOf="@+id/allQuestion"
+            android:textSize="16dp" />
+
+
         <ImageButton
             android:layout_width="96dp"
             android:layout_height="36dp"
-            android:src="@drawable/ic_more_use_non_click"
+            android:src="@drawable/ic_big_basic_button"
             android:background="@android:color/transparent"
             android:id="@+id/howToUseQuestion"
             android:layout_marginLeft="8dp"
@@ -65,16 +77,38 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
+        <TextView
+            android:id="@+id/howToUseQuestion_text"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="@string/txt_frequent_use_basic"
+            app:layout_constraintTop_toTopOf="@+id/howToUseQuestion"
+            app:layout_constraintBottom_toBottomOf="@+id/howToUseQuestion"
+            app:layout_constraintLeft_toLeftOf="@+id/howToUseQuestion"
+            app:layout_constraintRight_toRightOf="@+id/howToUseQuestion"
+            android:textSize="16dp" />
+
         <ImageButton
             android:layout_width="68dp"
             android:layout_height="36dp"
-            android:src="@drawable/ic_more_tech_non_click"
+            android:src="@drawable/ic_mini_basic_button"
             android:background="@android:color/transparent"
             android:id="@+id/techQuestion"
             android:layout_marginLeft="8dp"
             app:layout_constraintLeft_toRightOf="@+id/howToUseQuestion"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/techQuestion_text"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="@string/txt_frequent_tech_basic"
+            app:layout_constraintTop_toTopOf="@+id/techQuestion"
+            app:layout_constraintBottom_toBottomOf="@+id/techQuestion"
+            app:layout_constraintLeft_toLeftOf="@+id/techQuestion"
+            app:layout_constraintRight_toRightOf="@+id/techQuestion"
+            android:textSize="16dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
