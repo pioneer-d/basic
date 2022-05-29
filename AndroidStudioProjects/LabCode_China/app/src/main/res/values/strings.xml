@@ -24,6 +24,9 @@
     <string name="txt_scan_guide_2_sub">스마트폰을 인식하고자 하는 대상과 \n 평행을 유지해 주세요</string>
     <string name="txt_scan_guide_3_sub">인식이 잘되지 않을 경우 \n 플래시나 확대 버튼을 눌러 다시 시도해보세요</string>
 
+    <string name="txt_scan_guide_next_button">다음</string>
+    <string name="txt_scan_guide_finish_button">확인했어요</string>
+
     <string name="txt_scan_alert_main">인식시간 지남</string>
     <string name="txt_scan_alert_sub">인식 시간 30초가 지났어요, \n <b><font color='#5138E5'><u>스캔 가이드</u></font></b>를 읽고 스캔팁을 \n 확인 해보세요~</string>
 
@@ -185,6 +188,7 @@ NAT 서비스가 어떻게 사용되는지 분석하는 데 도움이 됩니다.
 당사의 개인 정보 보호 정책에 대한 질문이나 제안이 있으시면 주저하지 마시고 contact@snaptag.co.kr으로 문의하십시오.
 
     </string>
+
     <string name="txt_frequent_use1">
         앱을 열고 카메라 화면에 제품 이미지를 촬영해 주세요. LABCODE 기술이 자동적으로 스캔 될 거예요.
         \n

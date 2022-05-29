@@ -94,8 +94,8 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
 
     //리뉴얼 Location Data
     String getLocationData;
-    double longitude;
-    double latitude;
+    String longitude;   //경도
+    String latitude;    //위도
 
     //API 관련
     private ConstraintLayout zoomBox;
@@ -239,25 +239,9 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
 
         getLocationData = getGps();
         setLocation();
-        //if (getLocationData == null){
-         //   dialog.show();
-//            while (getLocationData == null){
-//                Log.d(thisName,"null로 인한 getGps() 반복 실행");
-//                getLocationData = getGps();
-            //코루틴이나 RxJava 활용해야할 듯 함.
-//            }
-        //} else{
 
         Log.d(thisName,"getLocationData : "+getLocationData);
 
-        //이게 여기 있으면 gps 못받아와도 카메라가 실행되니까 순서 다시 봐야함.
-//        if (stCameraView != null) {
-//            stCameraView.setStartZoom(1.0f);
-//            stCameraView.setFlash(false);
-//            Log.d(thisName, "stDetectStart() 실행직전");
-//            stCameraView.stDetectStart();
-//            }
-        //}
 
         onGoingTime = 0;
         startTimer();
@@ -320,7 +304,6 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void getDetectResult(DetectResult detectResult) {
-        //if (it.getResultType() == DetectResult.DETECTSUCCESS) ??
         Log.d(thisName, "getDetectResult() 실행");
         if (detectResult != null) {
             Log.d(thisName, "getDetectResult() 내부 detectResult != null() ");
@@ -341,7 +324,8 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         SnaptagAPI retrofitAPI = retrofit.create(SnaptagAPI.class);
         HashMap<String, Object> input = new HashMap<>();
 
-        Log.d(thisName,"스캔 성공시 getLocationData : "+getGps());
+        getLocationData = getGps();
+        splitGps(getLocationData);
 
         input.put("versionKey", detectResult.getVersion());
         input.put("countryKey", detectResult.getCountry());
@@ -355,6 +339,8 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         input.put("isAdminOnly", false);
         input.put("isDigital", false);
         input.put("deviceId", getUuid());
+        input.put("latitude", latitude);
+        input.put("longitude", longitude);
         input.put("deviceInfo", "");
 
         retrofitAPI.postData(input).enqueue(new Callback<Post>() {
@@ -590,6 +576,15 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
                 backgroundTask.dispose();
             }
         });
+    }
+
+    public void splitGps(String gpsData){
+        int point = gpsData.indexOf(",");
+        longitude = gpsData.substring(0,point);
+        latitude = gpsData.substring(point+1);
+        Log.d(thisName,"splitGps() 실행");
+        Log.d(thisName,"longitude : "+longitude);
+        Log.d(thisName,"latitude : "+latitude);
     }
 }
 

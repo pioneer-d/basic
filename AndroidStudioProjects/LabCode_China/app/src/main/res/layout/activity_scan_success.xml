@@ -25,11 +25,16 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="36" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="435">
+        android:layout_weight="399">
 
         <ImageView
             android:id="@+id/parent_image"
@@ -44,7 +49,7 @@
             android:id="@+id/scan_success"
             android:layout_width="wrap_content"
             android:layout_height="34dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="34dp"
             android:text="@string/txt_scan_success_main"
             android:textColor="#111111"
             android:textSize="26dp"
@@ -85,7 +90,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginLeft="20dp"
-            app:cardCornerRadius="20dp"
+            app:cardCornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/data_frame"
             app:layout_constraintLeft_toLeftOf="@+id/data_frame"
             app:layout_constraintTop_toTopOf="@+id/data_frame">

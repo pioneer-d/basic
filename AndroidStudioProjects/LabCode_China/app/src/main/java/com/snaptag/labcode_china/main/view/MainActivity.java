@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         builder.setPositiveButton(R.string.txt_agree, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                finish();
+                networkError();
             }
         });
 

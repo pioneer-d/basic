@@ -6,9 +6,11 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.navigation.more.baseAdapter.ScreeSlidePagerAdapter;
@@ -21,10 +23,11 @@ public class ScanGuideActivity extends AppCompatActivity {
     private ViewPager2 pager;
     private FragmentStateAdapter pagerAdapter;
     private View view;
+    private ImageButton scanGuideNext;
+    private TextView scanGuideNextText;
     DotsIndicator dotsIndicator;
 
     ImageButton backButton;
-    Fragment moreControlFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,8 @@ public class ScanGuideActivity extends AppCompatActivity {
         setContentView(view);
 
         pager = (ViewPager2) view.findViewById(R.id.sliderViewPager);
+        scanGuideNext = view.findViewById(R.id.scan_guide_next);
+        scanGuideNextText = view.findViewById(R.id.scan_guide_next_text);
 
         pagerAdapter = new ScreeSlidePagerAdapter(this);
         pager.setAdapter(pagerAdapter);
@@ -42,11 +47,34 @@ public class ScanGuideActivity extends AppCompatActivity {
         dotsIndicator.setViewPager2(pager);
 
         backButton = view.findViewById(R.id.backButton);
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
             }
         });
+
+        scanGuideNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int current = pager.getCurrentItem();
+                if (current == 0) {
+                    pager.setCurrentItem(1,true);
+                    scanGuideNextText.setText(R.string.txt_scan_guide_next_button);
+                } else if (current == 1) {
+                    pager.setCurrentItem(2,true);
+                    scanGuideNextText.setText(R.string.txt_scan_guide_finish_button);
+                } else if (current == 2) {
+                    onBackPressed();
+                } else {
+                    scanGuideNextText.setText(R.string.txt_scan_guide_next_button);
+                }
+            }
+        });
+
+
+
     }
+
 }

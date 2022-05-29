@@ -18,6 +18,7 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void controlNavigation(int item, Context context) {
+        //여기서 ScanControlFragment에서 했던 setLocation 코루틴 활용해야 할 듯.
         if (confirm.confirmNetwork(context)){
             switch (item){
                 case R.id.page_scan : view.callScan(); break;
