@@ -18,6 +18,7 @@ import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.navigation.more.baseAdapter.MoreBaseAdapter;
 import com.snaptag.labcode_china.navigation.more.data.MoreItemData;
 import com.snaptag.labcode_china.navigation.more.page.FrequentQuestionActivity;
+import com.snaptag.labcode_china.navigation.more.page.PersonalInfoActivity;
 import com.snaptag.labcode_china.navigation.more.page.ScanGuideActivity;
 import com.snaptag.labcode_china.navigation.more.page.TermOfServiceActivity;
 import com.snaptag.labcode_china.navigation.more.presenter.MoreContract;
@@ -37,7 +38,7 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
     String latestVersion;
 
     Fragment frequentQuestionFragment, tosFragment, scanGuideFragment;
-    MoreItemData frequentQuestion, termOfService, scanGuide, appVersion;
+    MoreItemData frequentQuestion, termOfService, personalInfo, scanGuide, customerService, appVersion;
 
     private static MoreControlFragment instance;
     private MoreControlFragment() {}
@@ -76,12 +77,17 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
 
         frequentQuestion = new MoreItemData(R.string.txt_frequent_quest_title,R.drawable.ic_arrow);
         termOfService = new MoreItemData(R.string.txt_tos_title,R.drawable.ic_arrow);
+        personalInfo = new MoreItemData(R.string.txt_personal_info,R.drawable.ic_arrow);
         scanGuide = new MoreItemData(R.string.txt_scanGuide_title,R.drawable.ic_arrow);
+        customerService = new MoreItemData(R.string.txt_customer_service,R.drawable.ic_arrow);
         appVersion = new MoreItemData(R.string.txt_app_version_title,thisVersion);
+
 
         adapter.addItem(frequentQuestion);
         adapter.addItem(termOfService);
+        adapter.addItem(personalInfo);
         adapter.addItem(scanGuide);
+        adapter.addItem(customerService);
         adapter.addItem(appVersion);
 
         listView.setAdapter(adapter);
@@ -92,16 +98,11 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
                 Object item = adapterView.getItemAtPosition(position);
                 Log.d(thisName,"Click Item : "+item);
 
-                if (item == frequentQuestion){
-                    Log.d(thisName,"goFrequentQuestion()");
-                    goFrequentQuestion();
-                } else if (item == termOfService){
-                    Log.d(thisName,"goTos()");
-                    goTos();
-                } else if (item == scanGuide){
-                    Log.d(thisName,"goScanGuide()");
-                    goScanGuide();
-                }
+                if (item == frequentQuestion){ goFrequentQuestion(); }
+                else if (item == termOfService){ goTos(); }
+                else if (item == personalInfo){ goPersonal(); }
+                else if (item == scanGuide){ goScanGuide(); }
+                else if (item == customerService){ goCustomer(); }
             }
         });
         return view;
@@ -117,9 +118,6 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
 
     @Override
     public void goFrequentQuestion() {
-//        frequentQuestionFragment = new FrequentQuestionFragment();
-//        manageChildFragment(frequentQuestionFragment,this);
-
         Intent intent = new Intent(getActivity(), FrequentQuestionActivity.class);
         startActivity(intent);
 
@@ -127,26 +125,25 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
 
     @Override
     public void goTos() {
-//        tosFragment = new TermOfServiceFragment();
-//        manageChildFragment(tosFragment,this);
         Intent intent = new Intent(getActivity(), TermOfServiceActivity.class);
         startActivity(intent);
     }
 
     @Override
+    public void goPersonal() {
+        Intent intent = new Intent(getActivity(), PersonalInfoActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
     public void goScanGuide() {
-//        scanGuideFragment = new ScanGuideFragment();
-//        manageChildFragment(scanGuideFragment,this);
         Intent intent = new Intent(getActivity(), ScanGuideActivity.class);
         startActivity(intent);
     }
 
-    public void manageChildFragment(Fragment main, Fragment sub){
-        //getChildFragmentManager().beginTransaction().replace(R.id.main_content,main).addToBackStack(null).commit();
-        if (main != null) {getParentFragmentManager().beginTransaction().add(R.id.main_content,main).show(main).commit();}
-        if (sub != null) {
-            getParentFragmentManager().beginTransaction().hide(sub).commit();
-        }
+    @Override
+    public void goCustomer(){
+
     }
 
 

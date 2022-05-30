@@ -5,7 +5,9 @@ public interface MoreContract {
     interface View{
         void goFrequentQuestion();
         void goTos();
+        void goPersonal();
         void goScanGuide();
+        void goCustomer();
     }
 
     interface Presenter{
