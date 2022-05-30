@@ -527,7 +527,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         if (mPref.getString("SOUND_PREF", null) == null){
             soundDegree = true;
         }else {
-            soundDegree = Boolean.valueOf(mPref.getString("SOUND_PREF", null));
+            soundDegree = Boolean.parseBoolean(mPref.getString("SOUND_PREF", null));
         }
         Log.d(thisName,"soundDegree : "+String.valueOf(soundDegree));
 
@@ -535,15 +535,10 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         if (mPref.getString("VIBRATE_PREF", null) == null){
             vibrateDegree = true;
         } else {
-            vibrateDegree = Boolean.valueOf(mPref.getString("VIBRATE_PREF", null));
+            vibrateDegree = Boolean.parseBoolean(mPref.getString("VIBRATE_PREF", null));
         }
         Log.d(thisName,"vibrateDegree : "+String.valueOf(vibrateDegree));
     }
-
-//    public void setLocation(){
-//        GetLocation locationManager = new GetLocation(getActivity());
-//        locationManager.callLocation();
-//    }
 
     private void setLocation() {
         // task에서 반환할 Hashmap

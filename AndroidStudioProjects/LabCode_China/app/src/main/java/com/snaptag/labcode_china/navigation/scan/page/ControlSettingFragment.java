@@ -50,9 +50,7 @@ public class ControlSettingFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
+        settingSoundVibrate();
     }
 
     @Override
@@ -149,16 +147,20 @@ public class ControlSettingFragment extends Fragment {
     }
 
     public void settingSoundVibrate(){
-        Log.d(thisName,"settingSoundVibrate() 실행");
         mPref = getActivity().getSharedPreferences("SOUND_PREF", getActivity().MODE_PRIVATE);
-        Log.d(thisName,"SharedPreferences에서 추출한 값 : "+String.valueOf(mPref.getString("SOUND_PREF", null)));
-        soundDegree = Boolean.parseBoolean(mPref.getString("SOUND_PREF", null));
+        if (mPref.getString("SOUND_PREF", null) == null){
+            soundDegree = true;
+        }else {
+            soundDegree = Boolean.parseBoolean(mPref.getString("SOUND_PREF", null));
+        }
+        Log.d(thisName,"soundDegree : "+String.valueOf(soundDegree));
 
         mPref = getActivity().getSharedPreferences("VIBRATE_PREF", getActivity().MODE_PRIVATE);
-        vibrateDegree = Boolean.parseBoolean(mPref.getString("VIBRATE_PREF", null));
-
-        Log.d(thisName,"soundDegree : "+String.valueOf(soundDegree));
-        Log.d(thisName,"vibrateDegree : "+String.valueOf(vibrateDegree));
+        if (mPref.getString("VIBRATE_PREF", null) == null){
+            vibrateDegree = true;
+        } else {
+            vibrateDegree = Boolean.parseBoolean(mPref.getString("VIBRATE_PREF", null));
+        }
     }
 
 }

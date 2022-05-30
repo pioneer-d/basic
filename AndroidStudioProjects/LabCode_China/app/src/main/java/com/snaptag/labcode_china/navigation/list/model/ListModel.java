@@ -19,7 +19,7 @@ public class ListModel {
     static String thisName = "ListModel";
 
     ListContract.Presenter presenter;
-    static String BASEURL = "https://admin.labcode.kr/";
+    static String BASEURL = "http://106.15.201.243/";
     Activity activity;
 
 
@@ -47,15 +47,7 @@ public class ListModel {
                     Get data = response.body();
                     Log.d("response.body() : ", String.valueOf(response.body()));
                     Log.d("message : ", data.getMessage());
-//                    Log.d("sourceImage : ",String.valueOf(data.getData().get(0).getProduct().getSourceImage()));
-//                    Log.d("genre : ",data.getData().get(0).getProduct().getTitle());
-//                    Log.d("product : ",data.getData().get(0).getProduct().getDescription());
-//                    Log.d("brand : ",data.getData().get(0).getProduct().getUrlCustom());
-//
-//                    image = data.getData().get(0).getProduct().getSourceImage();
-//                    genre = data.getData().get(0).getProduct().getTitle();
-//                    product = data.getData().get(0).getProduct().getDescription();
-//                    brand = data.getData().get(0).getProduct().getUrlCustom();
+
 
                     Log.d(thisName,"data.getData().size() : "+data.getData().size());
                     if(data.getData().size() == 0){

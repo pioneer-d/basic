@@ -12,7 +12,7 @@
     <string name="txt_scan_success_sub">안심하시고 사용하세요, 랩코드가 등록된 \n &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 정품 제품입니다.</string>
     <string name="txt_scan_success_button">제품 상세 보기</string>
 
-    <string name="txt_scan_guide_first">너무 너무 가깝거나 먼거리에서는 인식률이 떨어질 수 있어요.</string>
+    <string name="txt_scan_guide_first">너무 가깝거나 먼거리에서는 인식률이 떨어질 수 있어요.</string>
     <string name="txt_scan_guide_second">스마트폰을 인식하고자 하는 대상과 평행을 유지해주세요.</string>
     <string name="txt_scan_guide_third">플래시나 확대 버튼을 사용하면 인식률을 높일 수 있어요.</string>
 

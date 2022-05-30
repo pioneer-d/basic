@@ -59,21 +59,22 @@ public class ScanGuideActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int current = pager.getCurrentItem();
-                if (current == 0) {
-                    pager.setCurrentItem(1,true);
-                    scanGuideNextText.setText(R.string.txt_scan_guide_next_button);
-                } else if (current == 1) {
-                    pager.setCurrentItem(2,true);
-                    scanGuideNextText.setText(R.string.txt_scan_guide_finish_button);
-                } else if (current == 2) {
-                    onBackPressed();
-                } else {
-                    scanGuideNextText.setText(R.string.txt_scan_guide_next_button);
-                }
+                if (current == 0) { pager.setCurrentItem(1,true); }
+                else if (current == 1) { pager.setCurrentItem(2,true); }
+                else if (current == 2) { onBackPressed(); }
             }
         });
 
-
+        pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                Log.d(thisName,"onPageSelected() 실행");
+                if (position == 0) {scanGuideNextText.setText(R.string.txt_scan_guide_next_button);}
+                else if (position == 1) {scanGuideNextText.setText(R.string.txt_scan_guide_next_button);}
+                else if (position == 2) {scanGuideNextText.setText(R.string.txt_scan_guide_finish_button);}
+            }
+        });
 
     }
 

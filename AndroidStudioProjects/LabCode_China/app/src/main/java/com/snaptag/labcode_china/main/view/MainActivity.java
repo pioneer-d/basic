@@ -22,6 +22,7 @@ import com.snaptag.labcode_china.navigation.more.view.MoreControlFragment;
 import com.snaptag.labcode_china.navigation.list.view.ListControlFragment;
 import com.snaptag.labcode_china.navigation.scan.page.ScanSuccessActivity;
 import com.snaptag.labcode_china.navigation.scan.view.ScanControlFragment;
+import com.snaptag.labcode_china.network.NetworkConfirm;
 
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private Fragment scanControlFragment, listControlFragment, moreControlFragment;
     private MainContract.Presenter presenter;
     private ScanSuccessActivity scanSuccessActivity;
+    NetworkConfirm confirm = NetworkConfirm.getInstance();
 
     private FrameLayout frameLayout;
     private BottomNavigationView bottomNavigationView;
@@ -80,6 +82,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 presenter.controlNavigation(item.getItemId(),MainActivity.this);
+                if (item.getItemId() == R.id.page_scan) {fragmentFlag = "callScan";}
+                else if (item.getItemId() == R.id.page_list) {fragmentFlag = "callList";}
+                else if (item.getItemId() == R.id.page_more) {fragmentFlag = "callMore";}
                 return true;
             }
         });
@@ -93,7 +98,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         builder.setPositiveButton(R.string.txt_agree, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                networkError();
+                if(confirm.confirmNetwork(MainActivity.this)){
+                    init();
+                }else{
+                    networkError();
+                }
             }
         });
 
