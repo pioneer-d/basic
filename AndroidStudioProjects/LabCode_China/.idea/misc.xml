@@ -62,6 +62,7 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_term_of_service.xml" value="0.41822916666666665" />
         <entry key="app/src/main/res/layout/content_personal_info.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/layout/dialog_network_alert.xml" value="0.34427083333333336" />
         <entry key="app/src/main/res/layout/fragment_alert_time.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_control_list.xml" value="0.18072916666666666" />
