@@ -37,7 +37,6 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
     String thisVersion;
     String latestVersion;
 
-    Fragment frequentQuestionFragment, tosFragment, scanGuideFragment;
     MoreItemData frequentQuestion, termOfService, personalInfo, scanGuide, customerService, appVersion;
 
     private static MoreControlFragment instance;

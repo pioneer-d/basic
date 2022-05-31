@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.txt_network_error);
         builder.setMessage(R.string.txt_network_try_again);
+        builder.setCancelable(false);
         builder.setPositiveButton(R.string.txt_agree, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -127,11 +128,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         getSupportFragmentManager().beginTransaction().replace(R.id.main_content, moreControlFragment).commit();
         textView.setText(R.string.txt_more);
     }
-
-//    public void goScanSuccess(String image, String genre, String product, String brand, String url){
-//        Intent intent = new Intent(getApplicationContext(), ScanSuccessActivity.class);
-//        startActivity(intent);
-//    }
 
 
 }

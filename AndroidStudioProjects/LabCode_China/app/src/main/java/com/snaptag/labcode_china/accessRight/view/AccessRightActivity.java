@@ -67,7 +67,7 @@ public class AccessRightActivity extends AppCompatActivity implements AccessRigh
         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         intent.setData(Uri.parse("package:" + BuildConfig.APPLICATION_ID));
         startActivity(intent);
-        Toast.makeText(this, "해당 앱은 카메라,위치 권한이 필요합니다. \n 거부된 권한을 설정에서 확인해 주세요.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.txt_camera_location_right, Toast.LENGTH_SHORT).show();
         finish();   // 일단 finish
     }
 

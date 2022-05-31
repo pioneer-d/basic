@@ -26,6 +26,7 @@ import android.view.ViewGroup;
 import android.webkit.URLUtil;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.JsonObject;
 import com.snaptag.cameramodule.STCameraView;
@@ -231,6 +232,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         Log.d(thisName, "onResume() 실행");
 
         //여기서 먼저 호출하고
+        checkGpsOnOff();
         GetLocation locationManager = new GetLocation(getActivity());
         locationManager.callLocation();
 
@@ -580,6 +582,19 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         Log.d(thisName,"splitGps() 실행");
         Log.d(thisName,"longitude : "+longitude);
         Log.d(thisName,"latitude : "+latitude);
+    }
+
+    public void checkGpsOnOff(){
+
+        Log.d(thisName,"위치 접근 제어 활성 상태 확인");
+
+        if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            Toast.makeText(getActivity(), R.string.txt_location_active, Toast.LENGTH_SHORT).show();
+
+            // GPS 설정 화면으로 이동
+            Intent gpsOptionsIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivity(gpsOptionsIntent);
+        }
     }
 }
 
