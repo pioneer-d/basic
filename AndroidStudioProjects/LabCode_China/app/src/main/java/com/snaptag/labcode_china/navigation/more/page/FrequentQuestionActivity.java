@@ -53,6 +53,8 @@ public class FrequentQuestionActivity extends AppCompatActivity implements View.
         indicatorLocation = view.getWidth()+950;
 
         expandableListView = (ExpandableListView) findViewById(R.id.question_list);
+        expandableListView.setIndicatorBounds(indicatorLocation,view.getWidth());
+
         backButton = findViewById(R.id.backButton);
 
         allButton = findViewById(R.id.allQuestion);
@@ -196,7 +198,6 @@ public class FrequentQuestionActivity extends AppCompatActivity implements View.
     private void initView(){
 
         ExpandableListAdapter adapter = new FrequentQuestionAdapter(this,mGroup,mChild);
-        expandableListView.setIndicatorBounds(indicatorLocation,view.getWidth());
         expandableListView.setAdapter( adapter );
         expandableListView.setOnChildClickListener( new ExpandableListView.OnChildClickListener() {
             @Override

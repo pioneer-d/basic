@@ -141,7 +141,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         zoomMore = view.findViewById(R.id.zoom_more_frame).findViewById(R.id.zoom_more);
 
         zoomBox = view.findViewById(R.id.zoom_box);
-        zoomBox.setBackgroundResource(R.drawable.ic_gray_box);
+        //zoomBox.setBackgroundResource(R.drawable.ic_gray_box);
         zoom_1_0 = view.findViewById(R.id.zoom_1_0);
         zoom_1_5 = view.findViewById(R.id.zoom_1_5);
         zoom_2_0 = view.findViewById(R.id.zoom_2_0);
