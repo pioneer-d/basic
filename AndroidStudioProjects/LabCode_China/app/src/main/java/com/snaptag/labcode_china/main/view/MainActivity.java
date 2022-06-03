@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void networkError() {
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_network_alert);
+        dialog.setCancelable(false);
 
         TextView agree = dialog.findViewById(R.id.alert_tv_button);
         agree.setOnClickListener(new View.OnClickListener() {

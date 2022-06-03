@@ -19,6 +19,7 @@
         <entry key="app/src/main/res/drawable/ic_camera_setting.xml" value="0.237" />
         <entry key="app/src/main/res/drawable/ic_cancel_button.xml" value="0.3675" />
         <entry key="app/src/main/res/drawable/ic_clock.xml" value="0.296" />
+        <entry key="app/src/main/res/drawable/ic_customer_title.xml" value="0.3015" />
         <entry key="app/src/main/res/drawable/ic_ellipse_10.xml" value="0.347" />
         <entry key="app/src/main/res/drawable/ic_filled_circle.xml" value="0.296" />
         <entry key="app/src/main/res/drawable/ic_flash.xml" value="0.237" />
@@ -31,6 +32,7 @@
         <entry key="app/src/main/res/drawable/ic_more.xml" value="0.2645" />
         <entry key="app/src/main/res/drawable/ic_more_all_click.xml" value="0.41" />
         <entry key="app/src/main/res/drawable/ic_more_use_non_click.xml" value="0.41" />
+        <entry key="app/src/main/res/drawable/ic_product_detail_button.xml" value="0.3015" />
         <entry key="app/src/main/res/drawable/ic_question_image.xml" value="0.162" />
         <entry key="app/src/main/res/drawable/ic_resource_confirm.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/ic_resource_default.xml" value="0.2395" />
@@ -52,17 +54,18 @@
         <entry key="app/src/main/res/drawable/round.xml" value="0.4275" />
         <entry key="app/src/main/res/drawable/switch_thumb.xml" value="0.4275" />
         <entry key="app/src/main/res/layout/activity_access_right.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_customer_service.xml" value="0.3927083333333333" />
-        <entry key="app/src/main/res/layout/activity_frequent_question.xml" value="0.75" />
+        <entry key="app/src/main/res/layout/activity_customer_service.xml" value="0.60828025477707" />
+        <entry key="app/src/main/res/layout/activity_frequent_question.xml" value="0.625" />
         <entry key="app/src/main/res/layout/activity_locationmanager.xml" value="0.19701086956521738" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_personal_info.xml" value="0.35833333333333334" />
-        <entry key="app/src/main/res/layout/activity_scan_guide.xml" value="0.625" />
+        <entry key="app/src/main/res/layout/activity_scan_guide.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_scan_success.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_term_of_service.xml" value="0.41822916666666665" />
         <entry key="app/src/main/res/layout/content_personal_info.xml" value="0.35833333333333334" />
-        <entry key="app/src/main/res/layout/dialog_network_alert.xml" value="0.34427083333333336" />
+        <entry key="app/src/main/res/layout/dialog_first_popup.xml" value="1.0" />
+        <entry key="app/src/main/res/layout/dialog_network_alert.xml" value="0.625" />
         <entry key="app/src/main/res/layout/fragment_alert_time.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_control_list.xml" value="0.18072916666666666" />

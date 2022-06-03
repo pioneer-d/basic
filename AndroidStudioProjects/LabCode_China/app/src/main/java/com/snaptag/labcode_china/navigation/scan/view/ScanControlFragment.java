@@ -576,6 +576,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
     }
 
     public void splitGps(String gpsData){
+        if (gpsData == null) {gpsData = "0,0";}
         int point = gpsData.indexOf(",");
         longitude = gpsData.substring(0,point);
         latitude = gpsData.substring(point+1);

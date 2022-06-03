@@ -17,6 +17,7 @@ import android.widget.ListView;
 import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.navigation.more.baseAdapter.MoreBaseAdapter;
 import com.snaptag.labcode_china.navigation.more.data.MoreItemData;
+import com.snaptag.labcode_china.navigation.more.page.CustomerServiceActivity;
 import com.snaptag.labcode_china.navigation.more.page.FrequentQuestionActivity;
 import com.snaptag.labcode_china.navigation.more.page.PersonalInfoActivity;
 import com.snaptag.labcode_china.navigation.more.page.ScanGuideActivity;
@@ -142,7 +143,8 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
 
     @Override
     public void goCustomer(){
-
+        Intent intent = new Intent(getActivity(), CustomerServiceActivity.class);
+        startActivity(intent);
     }
 
 

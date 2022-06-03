@@ -3,11 +3,14 @@ package com.snaptag.labcode_china.splash.view;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.accessRight.view.AccessRightActivity;
@@ -44,19 +47,20 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
 
     @Override
     public void networkError() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.txt_network_error);
-        builder.setMessage(R.string.txt_network_try_again);
-        builder.setCancelable(false);
-        builder.setPositiveButton(R.string.txt_agree, new DialogInterface.OnClickListener() {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_network_alert);
+        dialog.setCancelable(false);
+
+        TextView agree = dialog.findViewById(R.id.alert_tv_button);
+        dialog.show();
+        agree.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+            public void onClick(View view) {
+                dialog.dismiss();
                 init();
             }
         });
 
-        AlertDialog dialog = builder.create();
-        dialog.show();
     }
 
 }

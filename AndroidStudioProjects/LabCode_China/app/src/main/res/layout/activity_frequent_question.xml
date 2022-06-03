@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="104">
+        android:layout_weight="87">
 
     <ImageButton
         android:id="@+id/backButton"
@@ -115,7 +115,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="608">
+        android:layout_weight="625">
 
 
 

@@ -61,7 +61,7 @@
                 android:layout_height="match_parent"
                 android:textColor="#303538"
                 android:textSize="14dp"
-                android:text="@string/txt_personal_info_text" />
+                android:text="@string/txt_personal_info_content" />
 
         </ScrollView>
 
