@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.snaptag.labcode_china.R;
 
 public class AlertTimeFragment extends Fragment{
 
+    static String thisName = "AlertTimeFragment";
     View view;
     ImageButton imageButton;
     Fragment scanControlFragment;
@@ -47,6 +49,5 @@ public class AlertTimeFragment extends Fragment{
         });
         return view;
     }
-
 
 }

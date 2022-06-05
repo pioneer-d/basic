@@ -244,7 +244,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
 
         Log.d(thisName,"getLocationData : "+getLocationData);
 
-
+        if (timer != null) { timer.cancel(); }
         onGoingTime = 0;
         startTimer();
     }
@@ -253,15 +253,14 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
     public void onPause() {
         super.onPause();
         Log.d(thisName, "onPause() 실행");
-        stopTimer();
-        stCameraView.stDetectStop();
+        timer.cancel();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         Log.d(thisName, "onDestroy() 실행");
-        stopTimer();
+        timer.cancel();
     }
 
     //-> go to presenter
@@ -275,11 +274,11 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
                 onGoingTime++;
                 Log.d(thisName, "onGoingTime : " + String.valueOf(onGoingTime));
 
-                if (onGoingTime % 9 == 0) {
+                if (onGoingTime % 15 == 0) {
                     guideText.setText(R.string.txt_scan_guide_first);
-                } else if (onGoingTime % 9 == 3) {
+                } else if (onGoingTime % 15 == 5) {
                     guideText.setText(R.string.txt_scan_guide_second);
-                } else if (onGoingTime % 9 == 6) {
+                } else if (onGoingTime % 15 == 10) {
                     guideText.setText(R.string.txt_scan_guide_third);
                 }
                 if (onGoingTime == 30) {
