@@ -41,7 +41,9 @@ public class MoreControlFragment extends Fragment implements MoreContract.View {
     MoreItemData frequentQuestion, termOfService, personalInfo, scanGuide, customerService, appVersion;
 
     private static MoreControlFragment instance;
-    private MoreControlFragment() {}
+    public MoreControlFragment() {
+        Log.d(thisName,"MoreControlFragment 기본 생성자");
+    }
 
     public static MoreControlFragment newInstance() {
         if(instance == null){

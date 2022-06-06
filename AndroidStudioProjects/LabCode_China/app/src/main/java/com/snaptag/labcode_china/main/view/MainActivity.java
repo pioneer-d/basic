@@ -93,10 +93,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         });
     }
 
-    /*
-    alert_tv_title
-    alert_tv_content
-     */
 
     @Override
     public void networkError() {
@@ -121,19 +117,34 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(thisName,"onPause()");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(thisName,"onResume()");
+    }
+
+    @Override
     public void callScan() {
+        Log.d(thisName, "callScan()");
         getSupportFragmentManager().beginTransaction().replace(R.id.main_content, scanControlFragment).commit();
         textView.setText("");
     }
 
     @Override
     public void callList() {
+        Log.d(thisName,"callList()");
         getSupportFragmentManager().beginTransaction().replace(R.id.main_content, listControlFragment).commit();
         textView.setText(R.string.txt_list);
     }
 
     @Override
     public void callMore() {
+        Log.d(thisName,"callMore()");
         getSupportFragmentManager().beginTransaction().replace(R.id.main_content, moreControlFragment).commit();
         textView.setText(R.string.txt_more);
     }

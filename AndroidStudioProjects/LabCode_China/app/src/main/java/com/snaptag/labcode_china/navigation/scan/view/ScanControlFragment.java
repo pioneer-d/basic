@@ -60,7 +60,8 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
 
     private static ScanControlFragment instance;
 
-    private ScanControlFragment() {
+    public ScanControlFragment() {
+        Log.d(thisName,"ScanControlFragment 기본 생성자");
     }
 
     private static String thisName = "ScanControlFragment";
@@ -415,6 +416,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
     private void goAlertTime() {
         alertTimeFragment = new AlertTimeFragment(this);
         getChildFragmentManager().beginTransaction().add(R.id.scan_child_content, alertTimeFragment).commitAllowingStateLoss();
+        onPause();
     }
 
     //-> go to Model

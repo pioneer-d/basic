@@ -1,6 +1,7 @@
 package com.snaptag.labcode_china.navigation.list.view;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.snaptag.labcode_china.navigation.list.presenter.ListPresenter;
 
 public class ListControlFragment extends Fragment implements ListContract.View {
 
+    static String thisName = "ListControlFragment";
     ListContract.Presenter presenter;
     View view;
 
@@ -27,7 +29,9 @@ public class ListControlFragment extends Fragment implements ListContract.View {
     private Fragment listFragment;
 
     private static ListControlFragment instance;
-    private ListControlFragment() { }
+    public ListControlFragment() {
+        Log.d(thisName,"ListControlFragment() 기본 생성자");
+    }
 
     public static ListControlFragment newInstance(){
         if(instance == null){
@@ -49,6 +53,17 @@ public class ListControlFragment extends Fragment implements ListContract.View {
         }
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(thisName,"onPause()");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(thisName,"onResume()");
+    }
 
     private void init(){
         presenter.controlView();
@@ -64,7 +79,6 @@ public class ListControlFragment extends Fragment implements ListContract.View {
     public void goBlank() {
         blankFragment = new BlankFragment();
         getChildFragmentManager().beginTransaction().replace(R.id.list_child_content,blankFragment).commit();
-        //addToBackStack 고려해야함.
     }
 
     @Override

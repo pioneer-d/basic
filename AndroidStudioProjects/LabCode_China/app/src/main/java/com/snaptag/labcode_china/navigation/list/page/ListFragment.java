@@ -57,13 +57,25 @@ public class ListFragment extends Fragment {
     private ListItemData itemData;
 
     public ListFragment() {
-
+        Log.d(thisName,"ListFragment 기본 생성자 호출()");
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(thisName,"onPause()");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(thisName,"onResume()");
     }
 
     private void init(){
