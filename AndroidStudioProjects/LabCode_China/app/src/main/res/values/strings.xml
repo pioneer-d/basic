@@ -18,7 +18,7 @@
 
     <string name="txt_camera_location_right">해당 앱은 카메라,위치 권한이 필요합니다. \n
  거부된 권한을 설정에서 확인해 주세요.</string>
-    
+
     <string name="txt_location_active">위치 접근 제어의 활성화가 필요합니다.</string>
 
     <string name="txt_scan_success_main"><b>이 제품은 <font color='#5138E5'>정품</font>입니다</b></string>
@@ -50,6 +50,7 @@
     <string name="txt_network_try_again">네트워크 연결이 원활하지 않습니다. \n
  연결상태를 확인하고 다시 시도해주세요</string>
     <string name="txt_agree">확인</string>
+    <string name="txt_agree2">확인</string>
     <string name="txt_cancel">취소</string>
     <string name="txt_reject">거부</string>
 

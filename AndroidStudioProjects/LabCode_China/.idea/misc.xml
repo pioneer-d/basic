@@ -52,6 +52,9 @@
         <entry key="app/src/main/res/drawable/list_more_divider.xml" value="0.409" />
         <entry key="app/src/main/res/drawable/radius_8.xml" value="0.35" />
         <entry key="app/src/main/res/drawable/round.xml" value="0.4275" />
+        <entry key="app/src/main/res/drawable/switch_off.xml" value="0.2475" />
+        <entry key="app/src/main/res/drawable/switch_on.xml" value="0.2475" />
+        <entry key="app/src/main/res/drawable/switch_selector.xml" value="0.2475" />
         <entry key="app/src/main/res/drawable/switch_thumb.xml" value="0.4275" />
         <entry key="app/src/main/res/layout/activity_access_right.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_customer_service.xml" value="0.60828025477707" />
@@ -64,14 +67,14 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_term_of_service.xml" value="0.335" />
         <entry key="app/src/main/res/layout/content_personal_info.xml" value="0.35833333333333334" />
-        <entry key="app/src/main/res/layout/dialog_first_popup.xml" value="1.0" />
+        <entry key="app/src/main/res/layout/dialog_first_popup.xml" value="0.375" />
         <entry key="app/src/main/res/layout/dialog_network_alert.xml" value="0.625" />
         <entry key="app/src/main/res/layout/fragment_alert_time.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_control_list.xml" value="0.18072916666666666" />
         <entry key="app/src/main/res/layout/fragment_control_more.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_control_scan.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/fragment_control_setting.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_control_setting.xml" value="0.47346938775510206" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/fragment_frequent_question.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.165" />

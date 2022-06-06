@@ -101,8 +101,8 @@ public class SplashPresenter implements SplashContract.Presenter {
             }
         };
 
-        Pattern pattern1 = Pattern.compile("이용 약관");
-        Pattern pattern2 = Pattern.compile("개인 정보 보호 정책");
+        Pattern pattern1 = Pattern.compile("이용 약관"); //用户协议
+        Pattern pattern2 = Pattern.compile("개인 정보 보호 정책"); //用户协议
 
         Linkify.addLinks(text, pattern1, "http://snaptag.com.cn/terms",null,mTransform);
         Linkify.addLinks(text, pattern2, "http://snaptag.com.cn/personal",null,mTransform);

@@ -92,13 +92,14 @@
                     android:layout_marginRight="60dp"
                     app:layout_constraintTop_toBottomOf="@+id/alert_v_2"
                     />
+                <!-- android:layout_marginRight="25dp" -->
 
 
                 <TextView
                     android:id="@+id/alert_tv_button2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/txt_agree"
+                    android:text="@string/txt_agree2"
                     android:textSize="18dp"
                     android:textStyle="bold"
                     android:layout_marginTop="18dp"
