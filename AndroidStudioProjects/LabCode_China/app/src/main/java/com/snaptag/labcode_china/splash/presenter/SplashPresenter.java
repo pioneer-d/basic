@@ -1,10 +1,8 @@
 package com.snaptag.labcode_china.splash.presenter;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.text.util.Linkify;

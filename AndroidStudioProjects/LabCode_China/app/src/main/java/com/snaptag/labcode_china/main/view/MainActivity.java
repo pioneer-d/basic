@@ -1,28 +1,25 @@
 package com.snaptag.labcode_china.main.view;
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.snaptag.labcode_china.R;
 import com.snaptag.labcode_china.main.presenter.MainContract;
 import com.snaptag.labcode_china.main.presenter.MainPresenter;
-import com.snaptag.labcode_china.navigation.more.view.MoreControlFragment;
 import com.snaptag.labcode_china.navigation.list.view.ListControlFragment;
+import com.snaptag.labcode_china.navigation.more.view.MoreControlFragment;
 import com.snaptag.labcode_china.navigation.scan.page.ScanSuccessActivity;
 import com.snaptag.labcode_china.navigation.scan.view.ScanControlFragment;
 import com.snaptag.labcode_china.network.NetworkConfirm;
@@ -131,21 +128,21 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void callScan() {
         Log.d(thisName, "callScan()");
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, scanControlFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, scanControlFragment).commitAllowingStateLoss();
         textView.setText("");
     }
 
     @Override
     public void callList() {
         Log.d(thisName,"callList()");
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, listControlFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, listControlFragment).commitAllowingStateLoss();
         textView.setText(R.string.txt_list);
     }
 
     @Override
     public void callMore() {
         Log.d(thisName,"callMore()");
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, moreControlFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, moreControlFragment).commitAllowingStateLoss();
         textView.setText(R.string.txt_more);
     }
 

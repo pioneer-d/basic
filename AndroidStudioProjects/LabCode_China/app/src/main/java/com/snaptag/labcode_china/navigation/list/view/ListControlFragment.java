@@ -85,10 +85,10 @@ public class ListControlFragment extends Fragment implements ListContract.View {
     public void goList() {
         listFragment = new ListFragment();
 
-        Bundle bundle = new Bundle();
-        listFragment.setArguments(bundle);
+        //Bundle bundle = new Bundle();
+        //listFragment.setArguments(bundle);
+        getChildFragmentManager().beginTransaction().replace(R.id.list_child_content, listFragment).commitAllowingStateLoss();
 
-        getChildFragmentManager().beginTransaction().replace(R.id.list_child_content, listFragment).commit();
 
     }
 

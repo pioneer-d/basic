@@ -226,27 +226,6 @@ public class ListFragment extends Fragment {
     }
 
 
-//    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//        @Override
-//        public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-//            Object item = adapterView.getItemAtPosition(position);
-//            Log.d(thisName,"Click Item : "+item);
-//
-//            if (item == frequentQuestion){
-//                Log.d(thisName,"goFrequentQuestion()");
-//                goFrequentQuestion();
-//            } else if (item == termOfService){
-//                Log.d(thisName,"goTos()");
-//                goTos();
-//            } else if (item == scanGuide){
-//                Log.d(thisName,"goScanGuide()");
-//                goScanGuide();
-//            }
-//
-//
-//        }
-//    });
-
     public String getUuid() {
         SharedPreferences mPref = getActivity().getSharedPreferences("KEY_PREF", getActivity().MODE_PRIVATE);
         return mPref.getString("KEY_UUID", null);
