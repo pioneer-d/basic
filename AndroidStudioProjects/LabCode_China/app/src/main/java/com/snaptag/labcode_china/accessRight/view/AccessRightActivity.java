@@ -68,7 +68,7 @@ public class AccessRightActivity extends AppCompatActivity implements AccessRigh
         intent.setData(Uri.parse("package:" + BuildConfig.APPLICATION_ID));
         startActivity(intent);
         Toast.makeText(this, R.string.txt_camera_location_right, Toast.LENGTH_SHORT).show();
-        finish();   // 일단 finish
+        finish();
     }
 
     @Override
