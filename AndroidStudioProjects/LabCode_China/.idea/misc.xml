@@ -63,7 +63,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_personal_info.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/activity_scan_guide.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/activity_scan_success.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_scan_success.xml" value="0.49331635900700194" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_term_of_service.xml" value="0.335" />
         <entry key="app/src/main/res/layout/content_personal_info.xml" value="0.35833333333333334" />
@@ -81,7 +81,7 @@
         <entry key="app/src/main/res/layout/fragment_more.xml" value="0.275" />
         <entry key="app/src/main/res/layout/fragment_my_list.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/fragment_scan.xml" value="0.275" />
-        <entry key="app/src/main/res/layout/fragment_scan_control.xml" value="0.7125541125541126" />
+        <entry key="app/src/main/res/layout/fragment_scan_control.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_scan_control__test.xml" value="0.503052503052503" />
         <entry key="app/src/main/res/layout/fragment_scan_guide.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_scan_guide_page_1.xml" value="0.4109375" />

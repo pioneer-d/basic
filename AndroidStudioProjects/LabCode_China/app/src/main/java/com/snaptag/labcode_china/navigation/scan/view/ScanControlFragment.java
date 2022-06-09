@@ -166,7 +166,7 @@ public class ScanControlFragment extends Fragment implements View.OnClickListene
         //임시 로딩창
         dialog = new ProgressDialog(getActivity());
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMessage("GPS 얻어오는 중...");
+        dialog.setMessage("GPS 获取中...");    //GPS 얻어오는 중
 
         initCameraModule();
         return view;

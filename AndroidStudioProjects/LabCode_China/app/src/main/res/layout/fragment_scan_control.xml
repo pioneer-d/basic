@@ -182,7 +182,7 @@
             android:layout_marginTop="750dp"
             android:background="#735138E5"
             android:gravity="center"
-            android:text="너무 가깝거나 먼 거리에서는 인식률이 떨어질 수 있어요"
+            android:text="距离太近或太远可能导致识别率下降"
             android:textAlignment="center"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent" />
