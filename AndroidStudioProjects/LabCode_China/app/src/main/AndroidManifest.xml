@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.snaptag.labcode_china">
+    package="com.snaptagScanner.china">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -21,27 +21,27 @@
         android:theme="@style/Theme.LabCode_China"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".navigation.more.page.CustomerServiceActivity"
+            android:name="com.snaptagScanner.china.navigation.more.page.CustomerServiceActivity"
             android:exported="false" />
         <activity
-            android:name=".navigation.more.page.PersonalInfoActivity"
+            android:name="com.snaptagScanner.china.navigation.more.page.PersonalInfoActivity"
             android:exported="false"
             android:label="@string/title_activity_personal_info"
             android:theme="@style/Theme.LabCode_China.NoActionBar" />
         <activity
-            android:name=".navigation.more.page.ScanGuideActivity"
+            android:name="com.snaptagScanner.china.navigation.more.page.ScanGuideActivity"
             android:exported="false" />
         <activity
-            android:name=".navigation.more.page.TermOfServiceActivity"
+            android:name="com.snaptagScanner.china.navigation.more.page.TermOfServiceActivity"
             android:exported="false" />
         <activity
-            android:name=".navigation.more.page.FrequentQuestionActivity"
+            android:name="com.snaptagScanner.china.navigation.more.page.FrequentQuestionActivity"
             android:exported="false" />
         <activity
-            android:name=".navigation.scan.page.ScanSuccessActivity"
+            android:name="com.snaptagScanner.china.navigation.scan.page.ScanSuccessActivity"
             android:exported="false" />
         <activity
-            android:name=".splash.view.SplashActivity"
+            android:name="com.snaptagScanner.china.splash.view.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,10 +50,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".accessRight.view.AccessRightActivity"
+            android:name="com.snaptagScanner.china.accessRight.view.AccessRightActivity"
             android:exported="true" />
         <activity
-            android:name=".main.view.MainActivity"
+            android:name="com.snaptagScanner.china.main.view.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
     </application>

@@ -5,7 +5,7 @@
     android:id="@+id/scan_child_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".navigation.scan.view.ScanControlFragment">
+    tools:context="com.snaptagScanner.china.navigation.scan.view.ScanControlFragment">
 
     <com.snaptag.cameramodule.STCameraView
         android:id="@+id/st_camera"

@@ -4,7 +4,7 @@
     android:id="@+id/more_child_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".navigation.more.view.MoreControlFragment">
+    tools:context="com.snaptagScanner.china.navigation.more.view.MoreControlFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

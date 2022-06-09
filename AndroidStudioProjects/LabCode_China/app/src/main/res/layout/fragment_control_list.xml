@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".navigation.list.view.ListControlFragment"
+    tools:context="com.snaptagScanner.china.navigation.list.view.ListControlFragment"
     android:id="@+id/list_child_content">
 
 

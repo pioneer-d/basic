@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:weightSum="812"
     android:orientation="vertical"
-    tools:context=".main.view.MainActivity">
+    tools:context="com.snaptagScanner.china.main.view.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
