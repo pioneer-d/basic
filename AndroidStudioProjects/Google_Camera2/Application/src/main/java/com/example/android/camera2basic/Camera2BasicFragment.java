@@ -80,15 +80,17 @@ public class Camera2BasicFragment extends Fragment
      * Conversion from screen rotation to JPEG orientation.
      * 화면 회전에서 JPEG 방향으로 변환합니다.
      */
+
+    //Debug_2
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
     private static final int REQUEST_CAMERA_PERMISSION = 1;
     private static final String FRAGMENT_DIALOG = "dialog";
 
     static {
-        ORIENTATIONS.append(Surface.ROTATION_0, 90);
-        ORIENTATIONS.append(Surface.ROTATION_90, 0);
-        ORIENTATIONS.append(Surface.ROTATION_180, 270);
-        ORIENTATIONS.append(Surface.ROTATION_270, 180);
+        ORIENTATIONS.append(Surface.ROTATION_0, 90);    //0,90
+        ORIENTATIONS.append(Surface.ROTATION_90, 0);    //1,0
+        ORIENTATIONS.append(Surface.ROTATION_180, 270); //2,270
+        ORIENTATIONS.append(Surface.ROTATION_270, 180); //3,180
     }
 
     /**
@@ -135,6 +137,9 @@ public class Camera2BasicFragment extends Fragment
      * {@link TextureView.SurfaceTextureListener} handles several lifecycle events on a
      * {@link TextureView}.
      */
+
+    //Debug_6
+    //맨 먼저 진입하는 부분인 Sureface Texture 가 준비가 되면, 다른 표현으로는  카메라 영상을 보여줄 화면이 준비가 되면 OpenCamera 실행
     private final TextureView.SurfaceTextureListener mSurfaceTextureListener
             = new TextureView.SurfaceTextureListener() {
 
@@ -449,18 +454,25 @@ public class Camera2BasicFragment extends Fragment
         }
     }
 
+    //Debug_1
+    //Activity에서 생성자 호출
     public static Camera2BasicFragment newInstance() {
         Log.d(thisName,"newInstance()");
         return new Camera2BasicFragment();
     }
 
+    //Debug_2
+    //fragment_camera2_basic 레이아웃에 AutoFitTextureView이 포함되어 있기에, AutoFitTextureView의 생성자도 호출됨.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(thisName,"onCreateView()");
         return inflater.inflate(R.layout.fragment_camera2_basic, container, false);
+        //container는 부모 레이아웃.
+        //attachToRoot: true일 경우 생성되는 뷰를 root의 자식으로 만든다, false일 경우 root는 생성되는 View의 LayoutParam을 생성하는 데만 사용된다.
     }
 
+    //Debug_3
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         Log.d(thisName,"onViewCreated()");
@@ -469,6 +481,8 @@ public class Camera2BasicFragment extends Fragment
         mTextureView = (AutoFitTextureView) view.findViewById(R.id.texture);
     }
 
+    //Debug_4
+    //Fragment 와 연결된  Activity  가 OnCreat() 메서드의 작업을 완료했을 때 호출
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -476,6 +490,9 @@ public class Camera2BasicFragment extends Fragment
         mFile = new File(getActivity().getExternalFilesDir(null), "pic.jpg");
     }
 
+    //Debug_5
+    //Background로 작업을 돌리기 위해서 Thread를 Start
+    //Rendering 할 수 있는 지 확인 후 실제 Camera Open
     @Override
     public void onResume() {
         super.onResume();
@@ -496,6 +513,8 @@ public class Camera2BasicFragment extends Fragment
         if (mTextureView.isAvailable()) {
             openCamera(mTextureView.getWidth(), mTextureView.getHeight());
         } else {
+            //Surface은 EGL처럼 GPU을 사용하여 Display 해주는 역할.
+            //Sureface 관련 이벤트들을 듣기 위해 설정하는 부분.
             mTextureView.setSurfaceTextureListener(mSurfaceTextureListener);
         }
     }
@@ -508,6 +527,7 @@ public class Camera2BasicFragment extends Fragment
         super.onPause();
     }
 
+    //Debug_8
     private void requestCameraPermission() {
         if (shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
             new ConfirmationDialog().show(getChildFragmentManager(), FRAGMENT_DIALOG);
@@ -535,10 +555,14 @@ public class Camera2BasicFragment extends Fragment
      * @param width  The width of available size for camera preview
      * @param height The height of available size for camera preview
      */
+
+    //Debug_9
+    //Camera 영상을 내보내기 위한 Setup 과정
     @SuppressWarnings("SuspiciousNameCombination")
     private void setUpCameraOutputs(int width, int height) {
         Log.d(thisName,"setUpCameraOutputs()");
         Activity activity = getActivity();
+        //CameraManager 은 camera Service  로서 Camera HAL 통해서 카메라 기능을 query(쿼리)할 수 있음
         CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
         try {
             for (String cameraId : manager.getCameraIdList()) {
@@ -648,6 +672,11 @@ public class Camera2BasicFragment extends Fragment
     /**
      * Opens the camera specified by {@link Camera2BasicFragment#mCameraId}.
      */
+    //Debug_7
+    //1) 카메라 사용에 대한 권한 획득
+    //2) setUpCameraOutputs(width, height) 통해 카메라 설정
+    //3) configureTransform 통해 카메라 화면(Preview) 회전 설정
+    //4) Camera Open 통해 Camera  preview, Autofocus 설정
     private void openCamera(int width, int height) {
         Log.d(thisName,"openCamera()");
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
