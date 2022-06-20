@@ -198,10 +198,13 @@ public class Camera2BasicFragment extends Fragment
      */
     private final CameraDevice.StateCallback mStateCallback = new CameraDevice.StateCallback() {
 
+        //Debug_12
+        // 세마포 해제
         @Override
         public void onOpened(@NonNull CameraDevice cameraDevice) {
             // This method is called when the camera is opened.  We start camera preview here.
             Log.d(thisName,"onOpened()");
+            // 이전에 설정되었던 세마포(Lock) 을 해제
             mCameraOpenCloseLock.release();
             mCameraDevice = cameraDevice;
             createCameraPreviewSession();
@@ -255,6 +258,9 @@ public class Camera2BasicFragment extends Fragment
      * This a callback object for the {@link ImageReader}. "onImageAvailable" will be called when a
      * still image is ready to be saved.
      */
+
+    //Debug_10
+    // 이 부분은 센서로부터 영상이 오는데 촬영할 준비가 될 때 Callback이 호출이 되어 파일로 저장하는 부분.
     private final ImageReader.OnImageAvailableListener mOnImageAvailableListener
             = new ImageReader.OnImageAvailableListener() {
 
@@ -316,7 +322,10 @@ public class Camera2BasicFragment extends Fragment
                     Integer afState = result.get(CaptureResult.CONTROL_AF_STATE);
                     if (afState == null) {
                         captureStillPicture();
-                    } else if (CaptureResult.CONTROL_AF_STATE_FOCUSED_LOCKED == afState ||
+                    }
+                    // CONTROL_AF_STATE_FOCUSED_LOCKED : Af 가 성공적으로 포커스를 잡았고 Lock 된 경우
+                    //CONTROL_AF_STATE_NOT_FOCUSED_LOCKED : Af 가 성공적으로 포커스를 못했고 Lock 이 된 경우
+                    else if (CaptureResult.CONTROL_AF_STATE_FOCUSED_LOCKED == afState ||
                             CaptureResult.CONTROL_AF_STATE_NOT_FOCUSED_LOCKED == afState) {
                         // CONTROL_AE_STATE can be null on some devices
                         Integer aeState = result.get(CaptureResult.CONTROL_AE_STATE);
@@ -455,21 +464,22 @@ public class Camera2BasicFragment extends Fragment
     }
 
     //Debug_1
-    //Activity에서 생성자 호출
+    // Activity에서 생성자 호출
     public static Camera2BasicFragment newInstance() {
         Log.d(thisName,"newInstance()");
         return new Camera2BasicFragment();
     }
 
     //Debug_2
-    //fragment_camera2_basic 레이아웃에 AutoFitTextureView이 포함되어 있기에, AutoFitTextureView의 생성자도 호출됨.
+    // fragment_camera2_basic 레이아웃에 AutoFitTextureView이 포함되어 있기에, AutoFitTextureView의 생성자도 호출됨.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(thisName,"onCreateView()");
         return inflater.inflate(R.layout.fragment_camera2_basic, container, false);
-        //container는 부모 레이아웃.
-        //attachToRoot: true일 경우 생성되는 뷰를 root의 자식으로 만든다, false일 경우 root는 생성되는 View의 LayoutParam을 생성하는 데만 사용된다.
+        // container는 부모 레이아웃.
+        // attachToRoot: true일 경우 생성되는 뷰를 root의 자식으로 만든다,
+        // false일 경우 root는 생성되는 View의 LayoutParam을 생성하는 데만 사용된다.
     }
 
     //Debug_3
@@ -482,7 +492,7 @@ public class Camera2BasicFragment extends Fragment
     }
 
     //Debug_4
-    //Fragment 와 연결된  Activity  가 OnCreat() 메서드의 작업을 완료했을 때 호출
+    // Fragment 와 연결된  Activity  가 OnCreat() 메서드의 작업을 완료했을 때 호출
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -491,8 +501,8 @@ public class Camera2BasicFragment extends Fragment
     }
 
     //Debug_5
-    //Background로 작업을 돌리기 위해서 Thread를 Start
-    //Rendering 할 수 있는 지 확인 후 실제 Camera Open
+    // Background로 작업을 돌리기 위해서 Thread를 Start
+    // Rendering 할 수 있는 지 확인 후 실제 Camera Open
     @Override
     public void onResume() {
         super.onResume();
@@ -508,13 +518,13 @@ public class Camera2BasicFragment extends Fragment
         /*
         화면을 껐다가 다시 켜면 서페이스 텍스처가 이미 사용 가능하며 "on Surface Texture Available"이 호출되지 않습니다.
         이 경우 카메라를 열고 여기서 미리보기를 시작할 수 있습니다.
-        그렇지 않으면 지표면이 SurfaceTextureListener에서 준비될 때까지 기다립니다.
+        그렇지 않으면 지표면이 SurfaceTextureListener 에서 준비될 때까지 기다립니다.
          */
         if (mTextureView.isAvailable()) {
             openCamera(mTextureView.getWidth(), mTextureView.getHeight());
         } else {
-            //Surface은 EGL처럼 GPU을 사용하여 Display 해주는 역할.
-            //Sureface 관련 이벤트들을 듣기 위해 설정하는 부분.
+            // Surface 은 EGL처럼 GPU을 사용하여 Display 해주는 역할.
+            // Sureface 관련 이벤트들을 듣기 위해 설정하는 부분.
             mTextureView.setSurfaceTextureListener(mSurfaceTextureListener);
         }
     }
@@ -557,7 +567,7 @@ public class Camera2BasicFragment extends Fragment
      */
 
     //Debug_9
-    //Camera 영상을 내보내기 위한 Setup 과정
+    // Camera 영상을 내보내기 위한 Setup 과정
     @SuppressWarnings("SuspiciousNameCombination")
     private void setUpCameraOutputs(int width, int height) {
         Log.d(thisName,"setUpCameraOutputs()");
@@ -565,6 +575,9 @@ public class Camera2BasicFragment extends Fragment
         //CameraManager 은 camera Service  로서 Camera HAL 통해서 카메라 기능을 query(쿼리)할 수 있음
         CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
         try {
+            // 카메라가 List (개수) 얻어 올 수 있음.
+            // LENS_FACING_FRONT (전면 카메라) value : 0
+            // LENS_FACING_BACK  (후면 카메라) value : 1
             for (String cameraId : manager.getCameraIdList()) {
                 CameraCharacteristics characteristics
                         = manager.getCameraCharacteristics(cameraId);
@@ -575,6 +588,8 @@ public class Camera2BasicFragment extends Fragment
                     continue;
                 }
 
+                // Stream : 영상의 흘러나옴 / Configuration : 구성
+                // 영상의 사이즈별 포맷하는 과정.
                 StreamConfigurationMap map = characteristics.get(
                         CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
                 if (map == null) {
@@ -582,21 +597,29 @@ public class Camera2BasicFragment extends Fragment
                 }
 
                 // For still image captures, we use the largest available size.
+                // 이후 해상도가 가장 큰 것을 찾아서 largest로 넣음.
                 Size largest = Collections.max(
                         Arrays.asList(map.getOutputSizes(ImageFormat.JPEG)),
                         new CompareSizesByArea());
                 mImageReader = ImageReader.newInstance(largest.getWidth(), largest.getHeight(),
                         ImageFormat.JPEG, /*maxImages*/2);
+
+                // 이 부분은 센서로부터 영상이 오는데, 촬영할 준비가 될 때 Callback이 호출이 되어 파일로 저장하는 부분.
                 mImageReader.setOnImageAvailableListener(
                         mOnImageAvailableListener, mBackgroundHandler);
 
                 // Find out if we need to swap dimension to get the preview size relative to sensor
                 // coordinate.
+                // display 를 회전할 때 영상의 비율을 화면에 맞게 정하는 부분.
+                // 카메라 센서는 주로 4:3 비율로 영상을 출력을 하는데
+                // Display 을 세로(Portrait) 할 경우, 그 에 맞는 비율로 보내주기 위한 방법
                 int displayRotation = activity.getWindowManager().getDefaultDisplay().getRotation();
                 //noinspection ConstantConditions
                 mSensorOrientation = characteristics.get(CameraCharacteristics.SENSOR_ORIENTATION);
                 boolean swappedDimensions = false;
                 switch (displayRotation) {
+                    // displayRotation 이 0도, 180이면 swappedDimensions 을 true 설정하여
+                    // 아래처럼 preview width, height 을 Swap(바꿔) 줌.
                     case Surface.ROTATION_0:
                     case Surface.ROTATION_180:
                         if (mSensorOrientation == 90 || mSensorOrientation == 270) {
@@ -638,11 +661,16 @@ public class Camera2BasicFragment extends Fragment
                 // Danger, W.R.! Attempting to use too large a preview size could  exceed the camera
                 // bus' bandwidth limitation, resulting in gorgeous previews but the storage of
                 // garbage capture data.
+                // 너무 큰 Preview 를 사용하면 카메라를 초과할 수 있음.
+                // 이 부분은 현재 display 에 맞는 최적의 preview size 를 선택하는 부분임.
                 mPreviewSize = chooseOptimalSize(map.getOutputSizes(SurfaceTexture.class),
                         rotatedPreviewWidth, rotatedPreviewHeight, maxPreviewWidth,
                         maxPreviewHeight, largest);
 
                 // We fit the aspect ratio of TextureView to the size of preview we picked.
+                // 다음 코드는 display 에 맞는 최적의 preview size 가 선택이 되었으며
+                // width 와 height 의 비율이 4:3 인지, 16:9 인지를 TextureView 에 알려주는 부분.
+                // 이는 TextureView 도 카메라 preview 비율대로 설정을 하기 위함.
                 int orientation = getResources().getConfiguration().orientation;
                 if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     mTextureView.setAspectRatio(
@@ -653,6 +681,8 @@ public class Camera2BasicFragment extends Fragment
                 }
 
                 // Check if the flash is supported.
+                // Flash 가 지원이 되는지 확인하는 부분.
+                // Flash 가 지원이 된다면 mFlashSupported 가 available 하다고 설정이 됨.
                 Boolean available = characteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
                 mFlashSupported = available == null ? false : available;
 
@@ -684,14 +714,20 @@ public class Camera2BasicFragment extends Fragment
             requestCameraPermission();
             return;
         }
-        setUpCameraOutputs(width, height);
-        configureTransform(width, height);
+        setUpCameraOutputs(width, height);  //Debug_9
+        configureTransform(width, height);  //Debug_11
         Activity activity = getActivity();
         CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
         try {
+            // 이부분이 Sehmapho
+            // 2500 ms까지 주어진 대기 시간까지 Lock 과 unlock 을 하는 것으로
+            // 약한 세마포. 주어진 시간이 지나면 Lock 이 자동으로 unlock 이 됨.
+            // 이렇게 시간을 정해준 이유는 세마포 lock 한 후 unlock 을 빼먹어도, 2500ms 이후에는 Lock 효력을 없애기 위함
             if (!mCameraOpenCloseLock.tryAcquire(2500, TimeUnit.MILLISECONDS)) {
                 throw new RuntimeException("Time out waiting to lock camera opening.");
             }
+            // ConfigureTransform 한 후에 Camera Manager 통해서 Camera open
+            // Camera Open 을 하기 위해서는 Camera 모듈이 정상적으로 동작을 한다면 onOpened Callback 이 호출됨.
             manager.openCamera(mCameraId, mStateCallback, mBackgroundHandler);
         } catch (CameraAccessException e) {
             e.printStackTrace();
@@ -703,6 +739,8 @@ public class Camera2BasicFragment extends Fragment
     /**
      * Closes the current {@link CameraDevice}.
      */
+
+    // 여기서도 Semapho 사용
     private void closeCamera() {
         Log.d(thisName,"closeCamera()");
         try {
@@ -770,6 +808,12 @@ public class Camera2BasicFragment extends Fragment
     /**
      * Creates a new {@link CameraCaptureSession} for camera preview.
      */
+
+    //Debug_13
+    // 정상적으로 open 이 되어서 하위단에서 onOpened Callback 을 보내면 (Camera Hal layer)
+    // 이전에 설정되었던 세마포(Lock) 을 해제해 주고(mCameraOpenCloseLock.release()),
+    // createCameraPreviewSession() 호출
+    // camera preview 영상을 TextureView 에 보내는 마지막 단계
     private void createCameraPreviewSession() {
         Log.d(thisName,"createCameraPreviewSession()");
         try {
@@ -777,18 +821,25 @@ public class Camera2BasicFragment extends Fragment
             assert texture != null;
 
             // We configure the size of default buffer to be the size of camera preview we want.
+            // TextureView 객체에 Preview Width, Height  크기만큼 버퍼를 설정을 하고
             texture.setDefaultBufferSize(mPreviewSize.getWidth(), mPreviewSize.getHeight());
 
             // This is the output Surface we need to start preview.
+            // 카메라 영상을 Surface 전달하여 surface 객체를 만듬
             Surface surface = new Surface(texture);
 
             // We set up a CaptureRequest.Builder with the output Surface.
+            // 카메라 영상과 연결된 CaptureRequest.Builder 를 Surface 로 Target 추가해주는 부분.
+            // 여기서 Target 을 저장소에 File 저장을  로 하면 Preview 영상은 File 로 저장이 됨.
             mPreviewRequestBuilder
                     = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
             mPreviewRequestBuilder.addTarget(surface);
             mPreviewRequestBuilder.addTarget(imageProcessingReader.getSurface());
             imageProcessingReader.setOnImageAvailableListener(previewCallback, new Handler());
+
             // Here, we create a CameraCaptureSession for camera preview.
+            // CaptureSession 을 생성을 하고 난 후에 상태 Callback (StateCallback) 이 onConfigured 오면
+            // CaptureRequest.Builder (mPreviewRequestBuilder) 통해서  Auto focus, Flash, 등등을 설정함.
             mCameraDevice.createCaptureSession(Arrays.asList(surface, mImageReader.getSurface(),imageProcessingReader.getSurface()),
                     new CameraCaptureSession.StateCallback() {
 
@@ -803,6 +854,7 @@ public class Camera2BasicFragment extends Fragment
                             // When the session is ready, we start displaying the preview.
                             mCaptureSession = cameraCaptureSession;
                             try {
+                                // Auto focus, Flash, 등등을 설정함.
                                 // Auto focus should be continuous for camera preview.
                                 mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE,
                                         CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE);
@@ -810,6 +862,7 @@ public class Camera2BasicFragment extends Fragment
                                 setAutoFlash(mPreviewRequestBuilder);
 
                                 // Finally, we start displaying the camera preview.
+                                // camera 영상을 Maximum Rate로 (FPS, 초당 카메라 영상을 보내는 속도) 계속 보내줌.
                                 mPreviewRequest = mPreviewRequestBuilder.build();
                                 mCaptureSession.setRepeatingRequest(mPreviewRequest,
                                         mCaptureCallback, mBackgroundHandler);
@@ -838,6 +891,12 @@ public class Camera2BasicFragment extends Fragment
      * @param viewWidth  The width of `mTextureView`
      * @param viewHeight The height of `mTextureView`
      */
+
+    //Debug_11
+    // SetUpCameraOutputs 에서 결정된 Preview 사이즈를 가지고
+    // Preview 을 Display 할 TextureView 의 크기를 정함.
+    // 보통 영상을 Transform 한다고 하면 영상을 X, Y 위치로 이동한다.
+    // 이런 용어로 자주 사용
     private void configureTransform(int viewWidth, int viewHeight) {
         Log.d(thisName,"configureTransform()");
         Activity activity = getActivity();
@@ -845,6 +904,7 @@ public class Camera2BasicFragment extends Fragment
             return;
         }
         int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
+        // matrix 이용해서 Scale(이미지 축소, 확대), Rotate(회전)한 후에  Texture 를 setTransform() 함수로 설정
         Matrix matrix = new Matrix();
         RectF viewRect = new RectF(0, 0, viewWidth, viewHeight);
         RectF bufferRect = new RectF(0, 0, mPreviewSize.getHeight(), mPreviewSize.getWidth());
@@ -913,6 +973,8 @@ public class Camera2BasicFragment extends Fragment
      * Capture a still picture. This method should be called when we get a response in
      * {@link #mCaptureCallback} from both {@link #lockFocus()}.
      */
+
+    // 영상(Frame) 튜닝 하는 곳.
     private void captureStillPicture() {
         Log.d(thisName,"captureStillPicture()");
         try {
@@ -921,6 +983,9 @@ public class Camera2BasicFragment extends Fragment
                 return;
             }
             // This is the CaptureRequest.Builder that we use to take a picture.
+            // CaptureRequest.Builder 는 TEMPLATE_STILL_CAPTURE로  capture 을 위한 영상을 요청
+            // 색감이나 노이즈 등을 조절
+            // 여기서 Capture 용과 Preview 용 따로 영상 튜닝
             final CaptureRequest.Builder captureBuilder =
                     mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);
             captureBuilder.addTarget(mImageReader.getSurface());
@@ -931,6 +996,7 @@ public class Camera2BasicFragment extends Fragment
             setAutoFlash(captureBuilder);
 
             // Orientation
+            // 모바일 방향의 따라 촬영할 사진의 Orientation 설정
             int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
             captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, getOrientation(rotation));
 
@@ -974,6 +1040,7 @@ public class Camera2BasicFragment extends Fragment
      * Unlock the focus. This method should be called when still image capture sequence is
      * finished.
      */
+    // Capture가 종료되고 다시 Preview로 돌아가도록 하는 과정.
     private void unlockFocus() {
         Log.d(thisName,"unlockFocus()");
         try {
