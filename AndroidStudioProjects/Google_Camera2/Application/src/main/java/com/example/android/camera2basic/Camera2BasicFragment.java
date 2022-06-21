@@ -492,7 +492,7 @@ public class Camera2BasicFragment extends Fragment
     }
 
     //Debug_4
-    // Fragment 와 연결된  Activity  가 OnCreat() 메서드의 작업을 완료했을 때 호출
+    // Fragment 와 연결된  Activity  가 OnCreate() 메서드의 작업을 완료했을 때 호출
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -521,10 +521,11 @@ public class Camera2BasicFragment extends Fragment
         그렇지 않으면 지표면이 SurfaceTextureListener 에서 준비될 때까지 기다립니다.
          */
         if (mTextureView.isAvailable()) {
+            Log.e("Test",String.valueOf(mTextureView.getWidth())+String.valueOf(mTextureView.getHeight()));
             openCamera(mTextureView.getWidth(), mTextureView.getHeight());
         } else {
             // Surface 은 EGL처럼 GPU을 사용하여 Display 해주는 역할.
-            // Sureface 관련 이벤트들을 듣기 위해 설정하는 부분.
+            // Surface 관련 이벤트들을 듣기 위해 설정하는 부분.
             mTextureView.setSurfaceTextureListener(mSurfaceTextureListener);
         }
     }
@@ -572,12 +573,13 @@ public class Camera2BasicFragment extends Fragment
     private void setUpCameraOutputs(int width, int height) {
         Log.d(thisName,"setUpCameraOutputs()");
         Activity activity = getActivity();
-        //CameraManager 은 camera Service  로서 Camera HAL 통해서 카메라 기능을 query(쿼리)할 수 있음
+        // CameraManager 은 camera Service 로서 Camera HAL 통해서 카메라 기능을 query(쿼리)할 수 있음
         CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
         try {
             // 카메라가 List (개수) 얻어 올 수 있음.
             // LENS_FACING_FRONT (전면 카메라) value : 0
             // LENS_FACING_BACK  (후면 카메라) value : 1
+            // LENS_FACING_EXTERNAL (기타 카메라) value : 2
             for (String cameraId : manager.getCameraIdList()) {
                 CameraCharacteristics characteristics
                         = manager.getCameraCharacteristics(cameraId);
@@ -589,7 +591,7 @@ public class Camera2BasicFragment extends Fragment
                 }
 
                 // Stream : 영상의 흘러나옴 / Configuration : 구성
-                // 영상의 사이즈별 포맷하는 과정.
+                // 카메라가 지원하는 영상의 사이즈 포맷하는 과정.
                 StreamConfigurationMap map = characteristics.get(
                         CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
                 if (map == null) {
@@ -719,7 +721,7 @@ public class Camera2BasicFragment extends Fragment
         Activity activity = getActivity();
         CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
         try {
-            // 이부분이 Sehmapho
+            // 이부분이 Semaphore
             // 2500 ms까지 주어진 대기 시간까지 Lock 과 unlock 을 하는 것으로
             // 약한 세마포. 주어진 시간이 지나면 Lock 이 자동으로 unlock 이 됨.
             // 이렇게 시간을 정해준 이유는 세마포 lock 한 후 unlock 을 빼먹어도, 2500ms 이후에는 Lock 효력을 없애기 위함
@@ -830,17 +832,17 @@ public class Camera2BasicFragment extends Fragment
 
             // We set up a CaptureRequest.Builder with the output Surface.
             // 카메라 영상과 연결된 CaptureRequest.Builder 를 Surface 로 Target 추가해주는 부분.
-            // 여기서 Target 을 저장소에 File 저장을  로 하면 Preview 영상은 File 로 저장이 됨.
+            // 여기서 Target 을 저장소에 File 저장을 하면 Preview 영상은 File 로 저장이 됨.
             mPreviewRequestBuilder
                     = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
             mPreviewRequestBuilder.addTarget(surface);
-            mPreviewRequestBuilder.addTarget(imageProcessingReader.getSurface());
-            imageProcessingReader.setOnImageAvailableListener(previewCallback, new Handler());
+            mPreviewRequestBuilder.addTarget(imageProcessingReader.getSurface());      //???
+            imageProcessingReader.setOnImageAvailableListener(previewCallback, new Handler());  //???
 
             // Here, we create a CameraCaptureSession for camera preview.
             // CaptureSession 을 생성을 하고 난 후에 상태 Callback (StateCallback) 이 onConfigured 오면
             // CaptureRequest.Builder (mPreviewRequestBuilder) 통해서  Auto focus, Flash, 등등을 설정함.
-            mCameraDevice.createCaptureSession(Arrays.asList(surface, mImageReader.getSurface(),imageProcessingReader.getSurface()),
+            mCameraDevice.createCaptureSession(Arrays.asList(surface, mImageReader.getSurface(),mImageReader.getSurface()),
                     new CameraCaptureSession.StateCallback() {
 
                         @Override
@@ -896,7 +898,6 @@ public class Camera2BasicFragment extends Fragment
     // SetUpCameraOutputs 에서 결정된 Preview 사이즈를 가지고
     // Preview 을 Display 할 TextureView 의 크기를 정함.
     // 보통 영상을 Transform 한다고 하면 영상을 X, Y 위치로 이동한다.
-    // 이런 용어로 자주 사용
     private void configureTransform(int viewWidth, int viewHeight) {
         Log.d(thisName,"configureTransform()");
         Activity activity = getActivity();
