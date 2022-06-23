@@ -2,7 +2,7 @@ package com.basic.kotlin_project.step_3_type;
 
 import com.basic.kotlin_project.step_1_variable.Person;
 
-public class ja_step {
+public class ja_type {
 
     // 크기가 작은 type에서 상대적으로 크기가 큰 type에 값을 넣으면 암시적으로 형 변환이 됨.
     int number1 = 10;
