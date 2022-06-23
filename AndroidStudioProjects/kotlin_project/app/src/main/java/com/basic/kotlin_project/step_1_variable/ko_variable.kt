@@ -3,7 +3,7 @@ package com.basic.kotlin_project.step_1_variable
     fun main(){
 
     var number1 = 10L // == var number1: Long = 10L
-    val number2 = 10L
+    val number2 = 10L   // like final of java
     // -> 이 둘의 차이는 가변인가 불변인가.
 
 
