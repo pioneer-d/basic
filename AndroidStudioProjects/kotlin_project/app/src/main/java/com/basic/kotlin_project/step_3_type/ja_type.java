@@ -10,7 +10,7 @@ public class ja_type {
 
 
     public static void printPerson(Object obj){
-        // 좌측 변수가 우측 타입과 같으면 true, 다르면 false
+        // instanceof :  좌측 변수가 우측 타입과 같으면 true, 다르면 false
         if (obj instanceof Person){
             Person person = (Person) obj;
             System.out.println(person.getName());

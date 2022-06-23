@@ -12,7 +12,7 @@ package com.basic.kotlin_project.step_6_repeatingSentence
         // for문 종류 (등차수열 - Progression)
         // 이때 downTo, step도 함수다!(중위 호출 함수)
 
-        //1부터 3까지 -> IntRange
+        //1부터 3까지
         for (i in 1..3){
             println(i)
         }

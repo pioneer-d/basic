@@ -7,6 +7,7 @@ public class ja_repeating {
 
     public static void main(String[] args) {
 
+        // for each문
         List<Long> numbers = Arrays.asList(1L, 2L, 3L);
         for (long number : numbers){
             System.out.println(number);
