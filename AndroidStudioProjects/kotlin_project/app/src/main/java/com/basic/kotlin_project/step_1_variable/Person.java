@@ -1,4 +1,4 @@
-package com.basic.kotlin_project.day_1;
+package com.basic.kotlin_project.step_1_variable;
 
 public class Person {
 
@@ -8,4 +8,7 @@ public class Person {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
 }

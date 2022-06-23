@@ -1,6 +1,6 @@
-package com.basic.kotlin_project.day_1;
+package com.basic.kotlin_project.step_2_null;
 
-public class ja_null_2 {
+public class ja_null {
 
     // A로 시작하는 지 알기위할 때,
     // null이 들어올 경우 Exception 발생

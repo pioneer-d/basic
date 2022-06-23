@@ -1,9 +1,6 @@
-package com.basic.kotlin_project.day_1;
+package com.basic.kotlin_project.step_1_variable;
 
-import java.util.Arrays;
-import java.util.List;
-
-public class ja_variable_1 {
+public class ja_variable {
 
     public static void main(String[] args) {
 
