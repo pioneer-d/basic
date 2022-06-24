@@ -12,7 +12,7 @@ package com.basic.kotlin_project.step_8_function
 
     // 위와 동일한 함수
     // '{}' 대신 '=' 사용 가능
-    // 반환 타입 추론 가능 == 생략가능 (block 사용경우 Unit이 아니면 생략 불가!)
+    // 반환 타입 추론 가능 -> 생략가능 (block 사용경우 Unit이 아니면 생략 불가!)
     // if-else 문의 {} 생략 가능
     fun maxInt2(a : Int, b : Int) = if (a < b) b else a
 

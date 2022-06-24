@@ -29,6 +29,10 @@ package com.basic.kotlin_project.step_6_repeatingSentence
 
         // while은 java와 동일함!
 
+        for (i in 2..11 step 2){
+            println(i)
+        }
+
     }
 
 
